@@ -1,0 +1,31 @@
+{
+  "type": "module",
+  "dependencies": {
+    "@prisma/client": "^6.16.2",
+    "@supabase/supabase-js": "^2.57.4",
+    "argon2": "^0.44.0",
+    "body-parser": "^2.2.0",
+    "concurrently": "^9.2.1",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.2",
+    "eslint": "^9.36.0",
+    "express": "^5.1.0",
+    "express-async-handler": "^1.2.0",
+    "jsonwebtoken": "^9.0.2",
+    "path": "^0.12.7",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^24.7.0",
+    "supabase": "^2.45.5"
+  },
+  "scripts": {
+    "dev": "node --watch ./dist/server.js",
+    "start": "node ./dist/server.js",
+    "all": "concurrently \"npx tsc\" \"node --watch ./dist/server.js\" \"cd ../frontend && npm run dev\""
+  }
+}
