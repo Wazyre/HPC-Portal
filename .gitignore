@@ -32,4 +32,4 @@ dist-ssr
 *.sw?
 
 # Keep the generated Prisma Client + query engine out of version control
-generated/prisma/
+# generated/prisma/

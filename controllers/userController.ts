@@ -1,5 +1,5 @@
 import expressAsyncHandler from 'express-async-handler';
-import { PrismaClient } from '../generated/prisma/client.ts';
+import { PrismaClient } from '../generated/prisma/client.js';
 import { argon2id, hash, verify } from 'argon2';
 import type { UserModel } from '../generated/prisma/models.ts';
 import { generateToken, verifyToken } from '../utils/generateTokens.ts';
@@ -17,7 +17,7 @@ export const getUser = expressAsyncHandler(async (req, res) => {
         }
     }).then(async(user: UserModel | null) => {
         res.json(user);
-    }).catch(err => {
+    }).catch((err: any) => {
         res.status(400).json({userNotFound: "Can't find user", err});
     });
 });
@@ -36,7 +36,7 @@ export const authorizeUser = expressAsyncHandler(async (req, res) => {
         } else {
             res.status(400).json({loginDetailsFailed: "Invalid Credentials."});
         }
-    }).catch(err => {
+    }).catch((err: any) => {
         console.error(err)
         res.status(400).json({loginDetailsFailed: "Invalid Credentials."});
     });
@@ -51,7 +51,7 @@ export const verifyUser = expressAsyncHandler(async (req, res) => {
             }
         }).then(async(user: UserModel | null) => {
             res.json({...user, accessToken: decoded!.data.token});
-        }).catch(err => {
+        }).catch((err: any) => {
             res.status(400).json({userNotFound: "Can't find user", err});
         });
     })
@@ -69,7 +69,7 @@ export const changePassword = expressAsyncHandler(async (req, res) => {
         }
     }).then(async(user: UserModel) => {
         res.json(user);
-    }).catch(err => {
+    }).catch((err: any) => {
         console.error(err);
         res.status(400).json({err});
     });

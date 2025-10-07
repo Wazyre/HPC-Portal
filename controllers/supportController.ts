@@ -1,5 +1,5 @@
 import expressAsyncHandler from 'express-async-handler';
-import { PrismaClient } from '../generated/prisma/client.ts';
+import { PrismaClient } from '../generated/prisma/client.js';
 import type { SupportModel } from '../generated/prisma/models.ts';
 
 const prisma = new PrismaClient();
@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 export const getTickets = expressAsyncHandler(async (req, res) => {
     await prisma.support.findMany().then(async(tickets: SupportModel[] | null) => {
         res.json(tickets);
-    }).catch(err => {
+    }).catch((err: any) => {
         res.status(400).json({databaseEmpty: "No tickets exist", err});
     })
 });
@@ -19,7 +19,7 @@ export const getTicket = expressAsyncHandler(async (req, res) => {
         }
     }).then(async(ticket: SupportModel | null) => {
         res.json(ticket);
-    }).catch(err => {
+    }).catch((err: any) => {
         res.status(400).json({ticketNotFound: "Can't find ticket", err});
     });
 });
@@ -36,7 +36,7 @@ export const submitTicket = expressAsyncHandler(async (req, res) => {
         }
     }).then(async(ticket: SupportModel | null) => {
         res.json(ticket);
-    }).catch(err => {
+    }).catch((err: any) => {
         res.status(400).json({ticketNotSubmitted: "Problem with submitting ticket", err});
     });
 });
