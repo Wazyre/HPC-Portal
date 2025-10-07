@@ -25,7 +25,8 @@
   },
   "scripts": {
     "dev": "node --watch ./dist/server.js",
-    "start": "concurrently \"tsc -b && node ./dist/server.js\" \"cd frontend && npm run build\"",
-    "all": "concurrently \"tsc -b && node --watch ./dist/server.js\" \"cd frontend && npm run dev\""
+    "build": "tsc -b",
+    "start": "node ./dist/server.js",
+    "all": "concurrently \"node ./dist/server.js\" \"cd frontend && npm run dev\""
   }
 }
