@@ -39,10 +39,10 @@ app.use('/api/support', supportRoutes);
 // Serve static assets if in production
 if(STATUS === 'production') {
   //Set static folder
-  app.use(express.static('frontend/build'));
+  app.use(express.static('frontend/dist'));
 
   app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
+    res.sendFile(path.resolve(__dirname, 'frontend', 'dist', 'index.html'));
   })
 }
 
