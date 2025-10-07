@@ -1,32 +1,33 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
-import httpProxy from 'http-proxy';
+// import httpProxy from 'http-proxy';
 
-const proxy = httpProxy.createProxyServer();
+// const proxy = httpProxy.createProxyServer();
 
 // https://vite.dev/config/
 export default defineConfig({
-  server: {
-    proxy: {
-      '/api': {
-        target: 'http://localhost:5000',
-        changeOrigin: true,
-        // rewrite: (path) => path.replace(/^\/api/, ''),
-        secure: false,      
-        ws: true,
-        configure: (proxy, _options) => {
-          proxy.on('error', (err, _req, _res) => {
-            console.log('proxy error', err);
-          });
-          proxy.on('proxyReq', (proxyReq, req, _res) => {
-            console.log('Sending Request to the Target:', req.method, req.url);
-          });
-          proxy.on('proxyRes', (proxyRes, req, _res) => {
-            console.log('Received Response from the Target:', proxyRes.statusCode, req.url);
-          });
-        },
-      }
-    }
-  },
   plugins: [react()],
 })
+
+// server: {
+//     proxy: {
+//       '/api': {
+//         target: 'http://localhost:5000',
+//         changeOrigin: true,
+//         // rewrite: (path) => path.replace(/^\/api/, ''),
+//         secure: false,      
+//         ws: true,
+//         configure: (proxy) => {
+//           proxy.on('error', (err) => {
+//             console.log('proxy error', err);
+//           });
+//           proxy.on('proxyReq', (req) => {
+//             console.log('Sending Request to the Target:', req.method, req.req.url);
+//           });
+//           proxy.on('proxyRes', (proxyRes, req) => {
+//             console.log('Received Response from the Target:', proxyRes.statusCode, req.url);
+//           });
+//         },
+//       }
+//     }
+//   },

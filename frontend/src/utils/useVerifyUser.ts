@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useLazyVerifyUserQuery } from "../apis/authorizeApi";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
-import { selectRole, selectTokenExpiryDate, setAuthorizedUser } from "../slices/authorizationSlice";
+import { selectRole, selectTokenExpiryDate, setAuthorizedUser, type AuthorizedUser } from "../slices/authorizationSlice";
 import { useNavigate } from "react-router";
 
 
@@ -19,7 +19,7 @@ export const useVerifyUser = () => {
             const tokenDate = new Date(tokenExpiryDate);
             if (tokenDate > date) {
                 verifyUser().unwrap()
-                .then(user => {
+                .then((user: AuthorizedUser) => {
                     dispatch(setAuthorizedUser(user));
                     navigate('/dashboard');
                 }).catch(err => {

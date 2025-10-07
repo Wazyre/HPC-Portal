@@ -24,7 +24,7 @@ export const notificationsSlice = createSlice({
             reducer(state, action: PayloadAction<Notification>) {
                 state.push(action.payload);
             },
-            prepare(id: string, dateTitle: string, message: string, color: string, 
+            prepare(id: string, message: string, color: string, 
                 withCloseButton: true, withBorder: true, position: 'top-right') {
                 return {
                     payload: {

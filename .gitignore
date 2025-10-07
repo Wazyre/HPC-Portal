@@ -8,20 +8,20 @@ pnpm-debug.log*
 lerna-debug.log*
 
 frontend/node_modules/
-backend/node_modules/
+node_modules/
 
-backend/supabase
+supabase
 
 frontend/.env
-backend/.env
+.env
 
-backend/dist
+dist
 dist
 dist-ssr
 *.local
 
 # Editor directories and files
-backend/.vscode/*
+.vscode/*
 !.vscode/extensions.json
 .idea
 .DS_Store
@@ -32,4 +32,4 @@ backend/.vscode/*
 *.sw?
 
 # Keep the generated Prisma Client + query engine out of version control
-backend/generated/prisma/
+generated/prisma/

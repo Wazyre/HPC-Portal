@@ -1,5 +1,3 @@
-- Redux persistant data through cookies or localStorage
-- Access Tokens?
 - Fix Loader to be centered; TicketPortal
 - Change pill color based on status Ticket Portal
 - Dropdown in profile header to log out

@@ -1,7 +1,15 @@
 {
+  // Visit https://aka.ms/tsconfig to read more about this file
+  // This is the master tsconfig file applying changes to all tsconfigs
   "compilerOptions": {
-    // ...
-    "strict": true
+    // File Layout
+    "rootDir": "./",
+    "outDir": "./dist",
+    // "esModuleInterop": true,
+
+    // Recommended Options
+    "strict": true,
+    "incremental": true,
   },
   "files": [],
   "references": [
