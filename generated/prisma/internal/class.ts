@@ -33,6 +33,10 @@ const config: runtime.GetPrismaClientConfig = {
         "fromEnvVar": null,
         "value": "windows",
         "native": true
+      },
+      {
+        "fromEnvVar": null,
+        "value": "debian-openssl-3.0.x"
       }
     ],
     "previewFeatures": [],
@@ -40,8 +44,8 @@ const config: runtime.GetPrismaClientConfig = {
     "isCustomOutput": true
   },
   "relativePath": "../..",
-  "clientVersion": "6.16.2",
-  "engineVersion": "1c57fdcd7e44b29b9313256c76699e91c3ac3c43",
+  "clientVersion": "6.16.3",
+  "engineVersion": "bb420e667c1820a8c05a38023385f6cc7ef8e83a",
   "datasourceNames": [
     "db"
   ],
@@ -55,8 +59,8 @@ const config: runtime.GetPrismaClientConfig = {
       }
     }
   },
-  "inlineSchema": "datasource db {\n  provider  = \"postgresql\"\n  url       = env(\"DATABASE_URL\")\n  directUrl = env(\"DIRECT_URL\")\n}\n\ngenerator client {\n  provider = \"prisma-client\"\n  output   = \"./generated/prisma\"\n}\n\nmodel User {\n  id        Int    @id @default(autoincrement())\n  email     String @unique\n  password  String\n  firstName String\n  lastName  String\n  company   String\n  role      String\n}\n\nmodel Support {\n  id          Int      @id @default(autoincrement())\n  email       String\n  name        String\n  subject     String\n  description String\n  status      String\n  createdAt   DateTime\n}\n",
-  "inlineSchemaHash": "b1443c0b65dd877526b8335b7999f8f1d2aa0329d6885e3a02769698e2ebb97e",
+  "inlineSchema": "datasource db {\n  provider  = \"postgresql\"\n  url       = env(\"DATABASE_URL\")\n  directUrl = env(\"DIRECT_URL\")\n}\n\ngenerator client {\n  provider      = \"prisma-client\"\n  binaryTargets = [\"native\", \"debian-openssl-3.0.x\"] // For running on Render platform\n  output        = \"./generated/prisma\"\n}\n\nmodel User {\n  id        Int    @id @default(autoincrement())\n  email     String @unique\n  password  String\n  firstName String\n  lastName  String\n  company   String\n  role      String\n}\n\nmodel Support {\n  id          Int      @id @default(autoincrement())\n  email       String\n  name        String\n  subject     String\n  description String\n  status      String\n  createdAt   DateTime\n}\n",
+  "inlineSchemaHash": "c0c5c2f9a67e9d3c5a5882e4f9da3bd3957d8e63783e5687cea7fe4d9dbb3e6f",
   "copyEngine": true,
   "runtimeDataModel": {
     "models": {},
