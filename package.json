@@ -23,13 +23,13 @@
     "supabase": "^2.45.5"
   },
   "scripts": {
-    "dev": "node --watch ./dist/server.js",
-    "server": "node ./dist/server.js",
+    "dev": "node --watch server.ts",
+    "server": "node server.ts",
     "server-build": "npm install && tsc -b",
     "client": "npm run preview --prefix frontend",
     "client-build": "npm install --prefix frontend && npm run build --prefix frontend",
     "start": "concurrently \"npm run server\" \"npm run client\"",
     "build": "concurrently \"npm run server-build\" \"npm run client-build\"",
-    "all": "concurrently \"node ./dist/server.js\" \"cd frontend && npm run dev\""
+    "all": "concurrently \"node server.ts\" \"npm run dev --prefix frontend\""
   }
 }

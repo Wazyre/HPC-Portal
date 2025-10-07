@@ -1,7 +1,7 @@
 import path from 'path';
 import dotenv from 'dotenv';
 import express from 'express';
-import { PrismaClient } from './generated/prisma/client.js';
+import { PrismaClient } from './generated/prisma/client.ts';
 import userRoutes from './routes/userRoutes.ts';
 import supportRoutes from './routes/supportRoutes.ts';
 

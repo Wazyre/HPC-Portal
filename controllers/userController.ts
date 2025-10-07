@@ -1,5 +1,5 @@
 import expressAsyncHandler from 'express-async-handler';
-import { PrismaClient } from '../generated/prisma/client.js';
+import { PrismaClient } from '../generated/prisma/client.ts';
 import { argon2id, hash, verify } from 'argon2';
 import type { UserModel } from '../generated/prisma/models.ts';
 import { generateToken, verifyToken } from '../utils/generateTokens.ts';

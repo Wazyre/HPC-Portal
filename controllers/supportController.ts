@@ -1,5 +1,5 @@
 import expressAsyncHandler from 'express-async-handler';
-import { PrismaClient } from '../generated/prisma/client.js';
+import { PrismaClient } from '../generated/prisma/client.ts';
 import type { SupportModel } from '../generated/prisma/models.ts';
 
 const prisma = new PrismaClient();
