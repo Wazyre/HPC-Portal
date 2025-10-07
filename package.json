@@ -10,6 +10,7 @@
     "argon2": "^0.44.0",
     "body-parser": "^2.2.0",
     "concurrently": "^9.2.1",
+    "copyfiles": "^2.4.1",
     "dotenv": "^17.2.2",
     "eslint": "^9.36.0",
     "express": "^5.1.0",
@@ -23,9 +24,9 @@
     "supabase": "^2.45.5"
   },
   "scripts": {
-    "dev": "node --watch server.ts",
-    "server": "node server.ts",
-    "server-build": "npm install && tsc -b",
+    "dev": "node --watch ./dist/server.js",
+    "server": "node ./dist/server.js",
+    "server-build": "npm install && tsc -b && copyfiles generated/prisma/*.node dist/",
     "client": "npm run preview --prefix frontend",
     "client-build": "npm install --prefix frontend && npm run build --prefix frontend",
     "start": "concurrently \"npm run server\" \"npm run client\"",
