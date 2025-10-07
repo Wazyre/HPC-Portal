@@ -25,7 +25,7 @@
   },
   "scripts": {
     "dev": "node --watch ./dist/server.js",
-    "build": "tsc -b",
+    "build": "npm install && tsc -b",
     "start": "node ./dist/server.js",
     "all": "concurrently \"node ./dist/server.js\" \"cd frontend && npm run dev\""
   }
