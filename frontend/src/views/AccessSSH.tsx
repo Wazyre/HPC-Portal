@@ -23,7 +23,7 @@ const AccessSSH = () => {
                 </Text>
                 <List>
                     <ListItem><Anchor href="#windows">Windows PC</Anchor></ListItem>
-                    <ListItem><Anchor href="#mac">Windows PC</Anchor></ListItem>
+                    <ListItem><Anchor href="#mac">Mac/Linux</Anchor></ListItem>
                     {/* <ListItem><Anchor href="#linux">Windows PC</Anchor></ListItem> */}
                 </List>
             </Card>
