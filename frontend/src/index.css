@@ -56,6 +56,16 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+.mantine-Button-root[data-expanded] .mantine-Button-section[data-position="right"] {
+  transform: rotate(180deg);
+  transition: all 0.2s linear;
+}
+
+.mantine-Button-root .mantine-Button-section[data-position="right"] {
+  transition: all 0.2s linear;
+}
+
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

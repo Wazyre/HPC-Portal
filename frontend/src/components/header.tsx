@@ -9,6 +9,7 @@ import ikarusIcon from "../assets/images/icon.png";
 
 import classes from "../sourceStyle.module.css"
 import type { MouseEventHandler } from "react";
+import HeaderMenu from "./headerMenu";
 
 
 interface HeaderProps {
@@ -71,6 +72,7 @@ const Header = ({mobileOpened, toggleMobile, desktopOpened, toggleDesktop}: Head
                     <IconMoon className={cx(classes.icon, classes.dark)} stroke={1.5} />
                 </ActionIcon>
                 <Avatar component={Link} to="/profile" src={ikarusIcon}/>
+                <HeaderMenu/>
             </Group>
         </Group>
     );

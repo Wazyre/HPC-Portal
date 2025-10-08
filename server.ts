@@ -22,7 +22,6 @@ const prisma = new PrismaClient();
 // Env variables
 const PORT = process.env.SERVER_PORT || 54322;
 const STATUS = process.env.NODE_ENV || 'development'
-const DB_URI = process.env.DB_URI
 
 // Setup APIs
 app.use('/api/users', userRoutes);
