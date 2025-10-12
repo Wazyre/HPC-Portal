@@ -1,4 +1,4 @@
-import { ActionIcon, Avatar, Burger, Group, useComputedColorScheme, useMantineColorScheme } from "@mantine/core";
+import { ActionIcon, Avatar, Burger, Group, Indicator, useComputedColorScheme, useMantineColorScheme } from "@mantine/core";
 import { IconBell, IconMoon, IconSun } from "@tabler/icons-react";
 import { Link } from "react-router";
 import { useAppSelector } from "../app/hooks";
@@ -53,15 +53,17 @@ const Header = ({mobileOpened, toggleMobile}: HeaderProps) => {
                 size="sm"
             /> */}
             <Group gap="xs">
-                <ActionIcon
-                    onClick={showNotifications}
-                    variant="subtle"
-                    size="xl"
-                    aria-label="Notifications"
-                >
-                    <IconBell className={cx(classes.icon, classes.light)} stroke={1.5} />
-                    <IconBell className={cx(classes.icon, classes.dark)} stroke={1.5} />
-                </ActionIcon>
+                <Indicator processing>
+                    <ActionIcon
+                        onClick={showNotifications}
+                        variant="transparent"
+                        size="xl"
+                        aria-label="Notifications"
+                    >
+                        <IconBell className={cx(classes.icon, classes.light)} stroke={1.5} />
+                        <IconBell className={cx(classes.icon, classes.dark)} stroke={1.5} />
+                    </ActionIcon>
+                </Indicator>
                 <ActionIcon
                     onClick={() => setColorScheme(computedColorScheme === 'light' ? 'dark' : 'light')}
                     variant="subtle"

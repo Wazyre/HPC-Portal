@@ -12,7 +12,7 @@ const AccessSSH = () => {
             <Title order={2}>Access Using SSH</Title>
             <Card className={classes.card} radius="lg" m={20}>
                 <CardSection className={classes.header} bg="blue" p={10} withBorder={true}>
-                    <Text>Secure Shell (SSH)</Text>
+                    <Text c="white">Secure Shell (SSH)</Text>
                 </CardSection>
                 <Text fw={700}>
                     In this part, you will learn a common way to access high-performance computing systems (IKARUS) using SSH sessions.

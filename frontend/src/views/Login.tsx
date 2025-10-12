@@ -1,4 +1,4 @@
-import { Button, Container, Image, PasswordInput, Stack, TextInput } from "@mantine/core";
+import { Button, Container, Group, Image, PasswordInput, Stack, TextInput } from "@mantine/core";
 import { isEmail, useForm } from "@mantine/form";
 // import { useDispatch, useSelector } from "react-redux";
 import { setAuthorizedUser, type LoginUser } from "../slices/authorizationSlice";
@@ -58,15 +58,20 @@ const Login = () => {
     //     );
     // } else {
         return (
-            <Container fluid >
+            <Container fluid mt={20}>
                 <Stack align="center">
-                    <Image fit="contain" h={300} src={ikarusLogo}/>
+                    <Image fit="contain" h={150} src={ikarusLogo}/>
                     <form onSubmit={form.onSubmit(handleSubmit)}>
                         <TextInput type="email" {...form.getInputProps('email')} mt="md" label="Email" placeholder="Email" />
                         <PasswordInput type="password" {...form.getInputProps('password')} mt="md" label="Password" placeholder="****" error={error ?"Invalid Credentials" : ""}/>
-                        <Button loading={isLoading} type="submit" mt="md">
-                            Submit
-                        </Button>
+                        <Group justify="flex-end">
+                            <Button component="a" disabled={isLoading} size="xs" href="https://khpc.kisr.edu.kw/" mt="md">
+                                Cancel
+                            </Button>
+                            <Button loading={isLoading} size="xs" type="submit" mt="md" >
+                                Submit
+                            </Button>
+                        </Group>
                     </form>
                 </Stack>
             </Container>

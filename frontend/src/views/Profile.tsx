@@ -30,7 +30,7 @@ const Profile  = () => {
                     direction="row"
                     gap="lg"
                 >
-                    <Image src={profImg} w={250} h={250}/>
+                    <Image src={profImg} radius={150} w={150} h={150}/>
                     <Stack>
                         <Text>{'Name: '+ name}</Text>
                         <Text>{'Company: ' + company}</Text>
