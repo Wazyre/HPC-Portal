@@ -60,7 +60,6 @@
 
 .light {
   @mixin light {
-    
     display: none;
   }
 

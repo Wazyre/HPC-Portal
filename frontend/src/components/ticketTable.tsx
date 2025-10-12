@@ -1,7 +1,8 @@
-import { Checkbox, Pill, Table, TableTbody, TableTd, TableTh, TableThead, TableTr, Text } from "@mantine/core";
+import { Checkbox, Menu, MenuDropdown, MenuItem, MenuTarget, Pill, Table, TableTbody, TableTd, TableTh, TableThead, TableTr, Text } from "@mantine/core";
 import type { SupportTicket } from "../views/Support";
 import { useEffect, useState } from "react";
 import React from "react";
+import { IconDotsVertical } from "@tabler/icons-react";
 
 interface ticketTableProps {
     tickets: SupportTicket[],
@@ -49,7 +50,15 @@ const TicketTable = ({tickets, activeTab, filter}: ticketTableProps) => {
                             <Pill>{ticket.status.toUpperCase()}</Pill>
                         </TableTd>
                         <TableTd>
-                            Test
+                            <Menu width={100}>
+                                <MenuTarget>
+                                    <IconDotsVertical/>
+                                </MenuTarget>
+                                <MenuDropdown>
+                                    <MenuItem>View</MenuItem>
+                                    <MenuItem>Delete</MenuItem>
+                                </MenuDropdown>
+                            </Menu>
                         </TableTd>
                     </TableTr>
                 )
