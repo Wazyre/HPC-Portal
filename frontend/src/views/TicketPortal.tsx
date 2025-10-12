@@ -7,6 +7,7 @@ import { useAppSelector } from "../app/hooks";
 import { selectRole } from "../slices/authorizationSlice";
 import { useNavigate } from "react-router";
 import { useVerifyUser } from "../utils/useVerifyUser";
+import type { SupportTicket } from "./Support";
 
 // const breadItems = [
 //     {title: <IconHome/>, href: '/dashboard'},
@@ -14,7 +15,8 @@ import { useVerifyUser } from "../utils/useVerifyUser";
 // ]
 
 const TicketPortal = () => {
-    const {data: tickets, isLoading, isSuccess, refetch} = useGetTicketsQuery();
+    const {data: tickets, isLoading, isSuccess} = useGetTicketsQuery();
+    const [allTickets, setAllTickets] = useState<SupportTicket[]>([]);
     const [openTickets, setOpenTickets] = useState<number>(0);
     const [closedTickets, setClosedTickets] = useState<number>(0);
     const [searchValue, setSearchValue] = useState<string>('');
@@ -23,10 +25,24 @@ const TicketPortal = () => {
 
     const navigate = useNavigate();
 
+    // useEffect(() => {
+    //     const fetchData = async() => {
+    //         await getTickets().unwrap()
+    //         .then((tickets: SupportTicket[]) => {
+    //             setAllTickets(tickets);
+    //             setOpenTickets(tickets.filter((ticket) => ticket.status === 'open').length);
+    //             setClosedTickets(tickets.filter((ticket) => ticket.status === 'closed').length);
+    //         });
+    //     }
+    //     fetchData();
+    // }, [])
+
     useEffect(() => {
-        if (isSuccess) {
-            setOpenTickets(tickets!.filter((ticket) => ticket.status === 'open').length);
-            setClosedTickets(tickets!.filter((ticket) => ticket.status === 'closed').length);
+        if(isSuccess) {
+            setAllTickets(tickets);
+            setOpenTickets(tickets.filter((ticket) => ticket.status === 'open').length);
+            setClosedTickets(tickets.filter((ticket) => ticket.status === 'closed').length);
+            
         }
     }, [tickets])
 
@@ -37,10 +53,6 @@ const TicketPortal = () => {
             navigate(-1);
         }
     }, []);
-
-    useEffect(() => {
-        refetch()
-    }, [])
 
     if (isLoading) {
         return (
@@ -119,7 +131,7 @@ const TicketPortal = () => {
                         
                     </GridCol>
                 </Grid>
-                <TicketTable tickets={tickets!} activeTab={activeTab} filter={searchValue.toLowerCase()}/>
+                <TicketTable tickets={allTickets} activeTab={activeTab} filter={searchValue.toLowerCase()}/>
             </Card>
         </Container>
     );

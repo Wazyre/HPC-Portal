@@ -48,6 +48,9 @@ const TicketTable = ({tickets, activeTab, filter}: ticketTableProps) => {
                         <TableTd>
                             <Pill>{ticket.status.toUpperCase()}</Pill>
                         </TableTd>
+                        <TableTd>
+                            Test
+                        </TableTd>
                     </TableTr>
                 )
             }
@@ -57,7 +60,7 @@ const TicketTable = ({tickets, activeTab, filter}: ticketTableProps) => {
 
     useEffect(() => {
         constructTable();
-    }, [filter, activeTab, selectedRows])
+    }, [tickets, activeTab, filter, selectedRows])
 
     return (
         <Table highlightOnHover>
