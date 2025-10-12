@@ -39,7 +39,7 @@ const Header = ({mobileOpened, toggleMobile}: HeaderProps) => {
     };
 
     return (
-        <Group justify="space-between">
+        <Group classNames={{root: classes.headerGroup}}>
             <Burger
                 opened={mobileOpened}
                 onClick={toggleMobile}
@@ -52,7 +52,7 @@ const Header = ({mobileOpened, toggleMobile}: HeaderProps) => {
                 visibleFrom="sm"
                 size="sm"
             /> */}
-            <Group>
+            <Group gap="xs">
                 <ActionIcon
                     onClick={showNotifications}
                     variant="subtle"

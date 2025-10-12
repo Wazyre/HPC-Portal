@@ -5,6 +5,10 @@
   border-radius: 20px;
 }
 
+.headerGroup {
+  justify-content: flex-end;
+}
+
 /* Charts */
 .chartInnerText {
   font-size: x-large;
@@ -42,6 +46,7 @@
   color: var(--mantine-color-ikarus-blue-8);
 }
 
+/* Theme Mixins */
 .dark {
   @mixin dark {
     display: none;
@@ -63,4 +68,10 @@
     color: white;
     display: block;
   }
+}
+
+/* Viewport Changes */
+/* See https://mantine.dev/styles/css-variables-list/ for CSS vars*/
+@media only screen and (max-width: 48rem) {
+  .headerGroup {justify-content: space-between;}
 }
