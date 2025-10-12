@@ -30,34 +30,36 @@ const Dashboard = () => {
                 <Text fw={700}>Storage Usage</Text>
                 <Text fz="xs" c="gray.6">Out of 500G</Text>
                 <ProgressRoot size={30}>
-                    <Tooltip label="33GB">
+                    <Tooltip label="33GB - Applications">
                         <ProgressSection value={28} color="green.5">
                             <ProgressLabel>Applications</ProgressLabel>
                         </ProgressSection>
                     </Tooltip>
-                    <Tooltip label="15GB">
+                    <Tooltip label="15GB - Documents">
                         <ProgressSection value={15} color="blue.5">
                             <ProgressLabel>Documents</ProgressLabel>
                         </ProgressSection>
                     </Tooltip>
-                    <Tooltip label="7GB">
+                    <Tooltip label="7GB - Images">
                         <ProgressSection value={7} color="yellow.5">
                             <ProgressLabel>Images</ProgressLabel>
                         </ProgressSection>
                     </Tooltip>
-                    <Tooltip label="26GB">
+                    <Tooltip label="26GB - Scripts">
                         <ProgressSection value={26} color="red.5">
                             <ProgressLabel>Scripts</ProgressLabel>
                         </ProgressSection>
                     </Tooltip>
-                    <Tooltip label="40GB">
+                    <Tooltip label="40GB - Other">
                         <ProgressSection value={40} color="gray.5">
                             <ProgressLabel>Other</ProgressLabel>
                         </ProgressSection>
                     </Tooltip>
-                    <ProgressSection value={100} color="gray.1">
-                        <ProgressLabel></ProgressLabel>
-                    </ProgressSection>
+                    <Tooltip label="300GB - Unused">
+                        <ProgressSection value={100} color="gray.1">
+                            <ProgressLabel></ProgressLabel>
+                        </ProgressSection>
+                    </Tooltip>
                 </ProgressRoot>
 
                 <Text fw={700} mt={20}>Avg. Utilization</Text>

@@ -16,7 +16,7 @@ const theme = createTheme({
 		'ikarus-grey': ["#f9fafb", "#e7e7e7", "#c9cccf", "#a9b1b8", "#8f99a5", "#7d8a99", "#738394", "#617181", "#556474", "#455768"],
 		'backgroundColor': virtualColor({
 			name: 'backgroundColor',
-			light: 'ikarus-grey.0',
+			light: 'ikarus-grey',
 			dark: 'black'
 		})
 	},

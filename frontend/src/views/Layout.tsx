@@ -44,7 +44,7 @@ const Layout = () => {
                     // toggleDesktop={toggleDesktop}
                 />
             </AppShellNavbar>
-            <AppShellMain bg="backgroundColor">
+            <AppShellMain bg="backgroundColor.0">
                 <Outlet/>
             </AppShellMain>
             <AppShellFooter ta="center" withBorder={false}>© 2025 KISR/IKARUS - All Rights Reserved</AppShellFooter>
