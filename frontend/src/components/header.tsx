@@ -19,7 +19,7 @@ interface HeaderProps {
     toggleDesktop: MouseEventHandler<HTMLButtonElement>
 }
 
-const Header = ({mobileOpened, toggleMobile, desktopOpened, toggleDesktop}: HeaderProps) => {
+const Header = ({mobileOpened, toggleMobile}: HeaderProps) => {
     const {setColorScheme} = useMantineColorScheme();
     const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true });
     const notifs = useAppSelector(selectAllNotifications);
@@ -46,12 +46,12 @@ const Header = ({mobileOpened, toggleMobile, desktopOpened, toggleDesktop}: Head
                 hiddenFrom="sm"
                 size="sm"
             />
-            <Burger
+            {/* <Burger
                 opened={desktopOpened}
                 onClick={toggleDesktop}
                 visibleFrom="sm"
                 size="sm"
-            />
+            /> */}
             <Group>
                 <ActionIcon
                     onClick={showNotifications}

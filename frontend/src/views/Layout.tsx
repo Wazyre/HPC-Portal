@@ -1,4 +1,4 @@
-import { AppShell, AppShellFooter, AppShellHeader, AppShellMain, AppShellNavbar, Image } from "@mantine/core";
+import { AppShell, AppShellFooter, AppShellHeader, AppShellMain, AppShellNavbar, Burger, Image } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { Outlet } from "react-router";
 import Sidebar from "../components/sidebar";
@@ -16,9 +16,9 @@ const Layout = () => {
             padding="md"
             header={{height: 60}}
             navbar={{
-                width: 230,
+                width: {xs: 230},
                 breakpoint: 'sm',
-                collapsed: { desktop: !desktopOpened, mobile: !mobileOpened },
+                collapsed: { mobile: !mobileOpened },
             }}
         >
             <AppShellHeader pt={5} pr={10} pl={10}>
@@ -30,8 +30,19 @@ const Layout = () => {
                 />
             </AppShellHeader>
             <AppShellNavbar pt={5} pl={10} pr={10}>
+                <Burger
+                    opened={mobileOpened}
+                    onClick={toggleMobile}
+                    hiddenFrom="sm"
+                    size="sm"
+                />
                 <Image radius="sm" src={ikarusLogo} w="auto" fit="contain"/>
-                <Sidebar/>
+                <Sidebar
+                    // mobileOpened={mobileOpened}
+                    // desktopOpened={desktopOpened}
+                    // toggleMobile={toggleMobile}
+                    // toggleDesktop={toggleDesktop}
+                />
             </AppShellNavbar>
             <AppShellMain bg="backgroundColor">
                 <Outlet/>

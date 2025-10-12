@@ -76,7 +76,7 @@ export const authorizationSlice = createSlice({
             state.accessToken = action.payload.accessToken;
             localStorage.setItem('authToken', action.payload.accessToken);
 
-            const date = new Date()
+            const date = new Date();
             date.setSeconds(date.getSeconds() + 86400); // 24 Hours
             state.tokenExpiryDate = date.toISOString();
 
