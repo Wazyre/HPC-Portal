@@ -1,4 +1,4 @@
-import { Button, Center, Image, PasswordInput, Stack, TextInput } from "@mantine/core";
+import { Button, Container, Image, PasswordInput, Stack, TextInput } from "@mantine/core";
 import { isEmail, useForm } from "@mantine/form";
 // import { useDispatch, useSelector } from "react-redux";
 import { setAuthorizedUser, type LoginUser } from "../slices/authorizationSlice";
@@ -58,9 +58,9 @@ const Login = () => {
     //     );
     // } else {
         return (
-            <Center w="100vw" h="100vh">
-                <Stack>
-                    <Image fit="contain" h={300} w={900} src={ikarusLogo}/>
+            <Container fluid >
+                <Stack align="center">
+                    <Image fit="contain" h={300} src={ikarusLogo}/>
                     <form onSubmit={form.onSubmit(handleSubmit)}>
                         <TextInput type="email" {...form.getInputProps('email')} mt="md" label="Email" placeholder="Email" />
                         <PasswordInput type="password" {...form.getInputProps('password')} mt="md" label="Password" placeholder="****" error={error ?"Invalid Credentials" : ""}/>
@@ -69,7 +69,7 @@ const Login = () => {
                         </Button>
                     </form>
                 </Stack>
-            </Center>
+            </Container>
         );
     // }
 };

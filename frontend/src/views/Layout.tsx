@@ -11,7 +11,7 @@ const Layout = () => {
     
     return (
         <AppShell
-            w={"100vw"}
+            w="100vw"
             layout="alt"
             padding="md"
             header={{height: 60}}
