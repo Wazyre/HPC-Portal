@@ -115,7 +115,7 @@ const Sidebar = () => {
                         <NavLink
                             component={Link}
                             label="Jobs"
-                            to="/stats/jobs"
+                            to="/stats/job"
                         />
                     </NavLink>
             : <></>}
