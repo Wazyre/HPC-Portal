@@ -47,6 +47,9 @@ export const loginApi = createApi({
         getTickets: builder.query<SupportTicket[], void>({
             query: () => '/support/'
         }),
+        getTicket: builder.query<SupportTicket, number>({
+            query: id => `/support/${id}`
+        }),
         submitSupport: builder.mutation<string, SupportTicket>({
             query: ticket => ({
                 url: '/support/submit',
@@ -57,4 +60,12 @@ export const loginApi = createApi({
     })
 })
 
-export const { useLazyAuthorizeUserQuery, useLazyVerifyUserQuery, useGetUserDetailsQuery, useEditPasswordMutation, useGetTicketsQuery, useSubmitSupportMutation } = loginApi;
+export const { 
+    useLazyAuthorizeUserQuery, 
+    useLazyVerifyUserQuery, 
+    useGetUserDetailsQuery, 
+    useEditPasswordMutation, 
+    useGetTicketsQuery, 
+    useGetTicketQuery, 
+    useSubmitSupportMutation 
+} = loginApi;

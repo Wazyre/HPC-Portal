@@ -26,7 +26,7 @@ const Dashboard = () => {
     return (
         <Container fluid>
             <Title order={2}>Dashboard</Title>
-            <Card radius="md" withBorder m={20}>
+            <Card>
                 <Text fw={700}>Storage Usage</Text>
                 <Text fz="xs" c="gray.6">Out of 500G</Text>
                 <ProgressRoot size={30}>

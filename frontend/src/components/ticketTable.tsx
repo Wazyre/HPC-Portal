@@ -2,7 +2,8 @@ import { Checkbox, Menu, MenuDropdown, MenuItem, MenuTarget, Pill, Table, TableT
 import type { SupportTicket } from "../views/Support";
 import { useEffect, useState } from "react";
 import React from "react";
-import { IconDotsVertical } from "@tabler/icons-react";
+import { IconDotsVertical, IconEye, IconTrash } from "@tabler/icons-react";
+import { Link } from "react-router";
 
 interface ticketTableProps {
     tickets: SupportTicket[],
@@ -55,8 +56,14 @@ const TicketTable = ({tickets, activeTab, filter}: ticketTableProps) => {
                                     <IconDotsVertical/>
                                 </MenuTarget>
                                 <MenuDropdown>
-                                    <MenuItem>View</MenuItem>
-                                    <MenuItem>Delete</MenuItem>
+                                    <MenuItem 
+                                        leftSection={<IconEye size={12}/>}
+                                        component={Link}
+                                        to={"/tickets/"+ticket.id}
+                                    >
+                                        View
+                                    </MenuItem>
+                                    <MenuItem leftSection={<IconTrash size={12}/>}>Delete</MenuItem>
                                 </MenuDropdown>
                             </Menu>
                         </TableTd>
