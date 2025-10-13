@@ -53,20 +53,21 @@ const Header = ({mobileOpened, toggleMobile}: HeaderProps) => {
                 size="sm"
             /> */}
             <Group gap="xs">
-                <Indicator processing>
-                    <ActionIcon
-                        onClick={showNotifications}
-                        variant="transparent"
-                        size="xl"
-                        aria-label="Notifications"
-                    >
+                <ActionIcon
+                    onClick={showNotifications}
+                    variant="transparent"
+                    size="xl"
+                    radius={"100%"}
+                    aria-label="Notifications"
+                >
+                    <Indicator processing>
                         <IconBell className={cx(classes.icon, classes.light)} stroke={1.5} />
                         <IconBell className={cx(classes.icon, classes.dark)} stroke={1.5} />
-                    </ActionIcon>
-                </Indicator>
+                    </Indicator>
+                </ActionIcon>
                 <ActionIcon
                     onClick={() => setColorScheme(computedColorScheme === 'light' ? 'dark' : 'light')}
-                    variant="subtle"
+                    variant="transparent"
                     size="xl"
                     aria-label="Toggle color scheme"
                 >
