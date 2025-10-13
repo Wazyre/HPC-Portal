@@ -1,7 +1,5 @@
 import { Anchor, Card, CardSection, Code, Container, Divider, Image, List, ListItem, Space, Text, Title } from "@mantine/core";
 import { moduleImgs } from "../assets/images/documents";
-
-import classes from "../sourceStyle.module.css"
 import { useVerifyUser } from "../utils/useVerifyUser";
 
 // Search by module command to goto
@@ -13,8 +11,8 @@ const Modules = () => {
     return (
         <Container fluid>
             <Title order={2}>Modules Documentaion</Title>
-            <Card className={classes.card} m={20}>
-                <CardSection className={classes.header} bg="blue" p={10} withBorder={true}>
+            <Card>
+                <CardSection bg="blue">
                     <Text>Modules</Text>
                 </CardSection>
                 <Text>
@@ -29,8 +27,8 @@ const Modules = () => {
                 </List>
             </Card>
 
-            <Card className={classes.card} m={20}>
-                <CardSection className={classes.header} bg="cyan.4" p={10} withBorder={true}>
+            <Card>
+                <CardSection bg="cyan.4">
                     <Text>Module Commands</Text>
                 </CardSection>
                 <Text>

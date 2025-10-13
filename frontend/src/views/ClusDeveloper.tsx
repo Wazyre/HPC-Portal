@@ -5,8 +5,6 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import { useVerifyUser } from "../utils/useVerifyUser";
 
-import classes from "../sourceStyle.module.css"
-
 // TODO check submit job bash instructions
 
 // Table data
@@ -46,8 +44,8 @@ const ClusDeveloper = () => {
     return (
         <Container fluid>
             <Title order={2}>Developer Cluster</Title>
-            <Card className={classes.card} m={20}>
-                <CardSection className={classes.header} bg="yellow.4" p={10} withBorder={true}>
+            <Card>
+                <CardSection bg="yellow.4">
                     <Text>Research Cluster</Text>
                 </CardSection>
                 <Text>
@@ -58,8 +56,8 @@ const ClusDeveloper = () => {
                 <Text>It is aimed to provide a long run-time platform for application development and testing before scaling to production without impacting IKARUS high-priority workloads. </Text>
             </Card>
 
-            <Card className={classes.card} m={20}>
-                <CardSection className={classes.header} bg="cyan.4" p={10} withBorder={true}>
+            <Card>
+                <CardSection bg="cyan.4">
                     <Text>Avaliable Resources</Text>
                 </CardSection>
                 <Text fz="lg">
@@ -81,8 +79,8 @@ const ClusDeveloper = () => {
                 </Table>
             </Card>
 
-            <Card className={classes.card} m={20}>
-                <CardSection className={classes.header} bg="cyan.4" p={10} withBorder={true}>
+            <Card>
+                <CardSection bg="cyan.4">
                     <Text>Submit Job</Text>
                 </CardSection>
                 <Text>

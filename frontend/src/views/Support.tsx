@@ -82,7 +82,7 @@ const Support = () => {
     return (
         <Container fluid>
             <Title order={2}>Frequently Asked Questions</Title>
-            <Card >
+            <Card>
                 <Accordion variant="contained">
                     <AccordionItem value="subjobs">
                         <AccordionControl icon={<IconHelp className={classes.iconStatic}/>}>
@@ -111,7 +111,7 @@ const Support = () => {
                 </Accordion>
             </Card>
 
-            <Card radius="md" withBorder p={30}>
+            <Card>
                 <CardSection>
                     <Text fw={700}>Support Request</Text>
                 </CardSection>

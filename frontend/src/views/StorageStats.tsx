@@ -36,7 +36,7 @@ const StorageStats = () => {
             <Title order={2}>Storage Statistics</Title>
             <Grid>
                 <GridCol span={4}>
-                    <Card radius="md" withBorder m={20}>
+                    <Card>
                         <Text>Research Cluster</Text>
                         <Stack align="center">
                             <RingProgress 
@@ -55,7 +55,7 @@ const StorageStats = () => {
                     </Card>
                 </GridCol>
                 <GridCol span={4}>
-                    <Card radius="md" withBorder m={20}>
+                    <Card>
                         <Text>Project Cluster</Text>
                         <Stack align="center">
                             <DonutChart 
@@ -76,7 +76,7 @@ const StorageStats = () => {
                     </Card>
                 </GridCol>
                 <GridCol span={4}>
-                    <Card radius="md" withBorder m={20}>
+                    <Card>
                         <Text>Developer Cluster</Text>
                         <Stack align="center">
                             <DonutChart 
@@ -98,7 +98,7 @@ const StorageStats = () => {
                 </GridCol>
 
                 <GridCol span={6}>
-                    <Card radius="md" withBorder m={20}>
+                    <Card>
                         <Stack align="center">
                             <DonutChart 
                                 w={100} 
@@ -118,7 +118,7 @@ const StorageStats = () => {
                     </Card>
                 </GridCol>
                 <GridCol span={6}>
-                    <Card radius="md" withBorder m={20}>
+                    <Card>
                         <Stack align="center">
                             <DonutChart 
                                 w={100} 

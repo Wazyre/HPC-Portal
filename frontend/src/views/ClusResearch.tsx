@@ -5,8 +5,6 @@ import { selectRole } from "../slices/authorizationSlice";
 import { useEffect } from "react";
 import { useVerifyUser } from "../utils/useVerifyUser";
 
-import classes from "../sourceStyle.module.css"
-
 // Table data
 const params = [
     {param: "Groups", value: "Research", desc: "Accounts with free access, small-scale or short-time projects will be part of this group"},
@@ -45,8 +43,8 @@ const ClusResearch = () => {
     return (
         <Container fluid>
             <Title order={2}>Research Cluster</Title>
-            <Card className={classes.card} m={20}>
-                <CardSection className={classes.header} bg="yellow.4" p={10} withBorder={true}>
+            <Card>
+                <CardSection bg="yellow.4">
                     <Text>Research Cluster</Text>
                 </CardSection>
                 <Text>
@@ -57,8 +55,8 @@ const ClusResearch = () => {
                 <Text>It is aimed to provide a flexible and accessible platform for application development and testing before scaling to production without impacting IKARUS high-priority workloads. </Text>
             </Card>
 
-            <Card className={classes.card} m={20}>
-                <CardSection className={classes.header} bg="cyan.4" p={10} withBorder={true}>
+            <Card>
+                <CardSection bg="cyan.4">
                     <Text>Avaliable Resources</Text>
                 </CardSection>
                 <Text fz="lg">
@@ -80,8 +78,8 @@ const ClusResearch = () => {
                 </Table>
             </Card>
 
-            <Card className={classes.card} m={20}>
-                <CardSection className={classes.header} bg="cyan.4" p={10} withBorder={true}>
+            <Card>
+                <CardSection bg="cyan.4">
                     <Text>Submit Job</Text>
                 </CardSection>
                 <Text>

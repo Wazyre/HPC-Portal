@@ -71,7 +71,7 @@ const TicketPortal = () => {
             <Space h="xl"/>
             <Grid grow justify="center">
                 <GridCol span={4}>
-                    <Card radius="md" withBorder>
+                    <Card>
                         <Group>
                             <ThemeIcon size="xl" color="violet.1">
                                 <IconTicket color="#465fff"/>
@@ -82,7 +82,7 @@ const TicketPortal = () => {
                     </Card>
                 </GridCol>
                 <GridCol span={4}>
-                    <Card radius="md" withBorder>
+                    <Card>
                         <Group>
                             <ThemeIcon size="xl" color="yellow.1">
                                 <IconHourglassEmpty color="#f9a83f"/>
@@ -93,7 +93,7 @@ const TicketPortal = () => {
                     </Card>
                 </GridCol>
                 <GridCol span={4}>
-                    <Card radius="md" withBorder>
+                    <Card>
                         <Group>
                             <ThemeIcon size="xl" color="green.1">
                                 <IconCircleCheck color="#4ec990"/>
@@ -105,7 +105,7 @@ const TicketPortal = () => {
                 </GridCol>
             </Grid>
 
-            <Card mt={20} radius="md" withBorder>
+            <Card>
                 <Grid>
                     <GridCol span={3}>
                         <Text>Support Tickets</Text>

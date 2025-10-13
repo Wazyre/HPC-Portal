@@ -7,8 +7,6 @@ import profImg from "../assets/images/icon.png";
 import { IconEdit } from "@tabler/icons-react";
 import { useVerifyUser } from "../utils/useVerifyUser";
 
-// import classes from "../sourceStyle.module.css";
-
 const Profile  = () => {
     const [opened, {open, close}] = useDisclosure(false);
 
@@ -22,7 +20,7 @@ const Profile  = () => {
     return (
         <Container fluid>
             <Title order={2}>Profile</Title>
-            <Card radius="md" withBorder m={20}>
+            <Card>
                     <Text fw={700}>Bio Details</Text>
                 <Flex
                     justify="flex-start"
@@ -37,7 +35,7 @@ const Profile  = () => {
                     </Stack>
                 </Flex>
             </Card>
-            <Card radius="md" withBorder m={20}>   
+            <Card>   
                 <Text fw={700}>Login Information</Text>
                 <Stack mt={20}>
                     <Text>{'Email: ' + email}</Text>

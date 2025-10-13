@@ -1,8 +1,6 @@
 import { Anchor, Card, CardSection, Code, Container, List, ListItem, Text, Title } from "@mantine/core";
 import { useVerifyUser } from "../utils/useVerifyUser";
 
-import classes from "../sourceStyle.module.css"
-
 const AccessSSH = () => {
 
     useVerifyUser();
@@ -10,8 +8,8 @@ const AccessSSH = () => {
     return (
         <Container fluid>
             <Title order={2}>Access Using SSH</Title>
-            <Card className={classes.card} radius="lg" m={20}>
-                <CardSection className={classes.header} bg="blue" p={10} withBorder={true}>
+            <Card>
+                <CardSection bg="blue">
                     <Text c="white">Secure Shell (SSH)</Text>
                 </CardSection>
                 <Text fw={700}>
@@ -28,8 +26,8 @@ const AccessSSH = () => {
                 </List>
             </Card>
 
-            <Card id="windows" className={classes.card} radius="lg" m={20}>
-                <CardSection className={classes.header} bg="cyan.4" p={10} withBorder={true}>
+            <Card id="windows">
+                <CardSection bg="cyan.4">
                     <Text>Connecting on a Windows PC</Text>
                 </CardSection>
                 <Text>
@@ -61,8 +59,8 @@ const AccessSSH = () => {
                 </List>
             </Card>
 
-            <Card id="mac" className={classes.card} radius="lg" m={20}>
-                <CardSection className={classes.header} bg="green.4" p={10} withBorder={true}>
+            <Card id="mac">
+                <CardSection bg="green.4">
                     <Text>Connecting on Mac/Linux</Text>
                 </CardSection>
                 <Text>

@@ -1,11 +1,13 @@
 import '@mantine/core/styles.css';
 
-import { createTheme, MantineProvider, virtualColor } from '@mantine/core';
+import { Card, createTheme, MantineProvider, virtualColor } from '@mantine/core';
 import { RouterProvider } from 'react-router';
 import { router } from './routes';
 import { Notifications } from '@mantine/notifications';
 import '@mantine/core/styles.css';
 import '@mantine/notifications/styles.css';
+
+import classes from './sourceStyle.module.css';
 
 // The following theme controls the default css
 const theme = createTheme({
@@ -21,7 +23,15 @@ const theme = createTheme({
 		})
 	},
 	primaryColor: 'ikarus-blue',
-	primaryShade: 8
+	primaryShade: 8,
+	components: {
+		Card: Card.extend({
+			classNames: {
+				root: classes.card,
+				section: classes.cardSection
+			}
+		})
+	}
 })
 
 function App() {

@@ -5,8 +5,6 @@ import { useNavigate } from "react-router";
 import { useEffect } from "react";
 import { useVerifyUser } from "../utils/useVerifyUser";
 
-import classes from "../sourceStyle.module.css"
-
 // Table data
 const params = [
     {param: "Groups", value: "Project", desc: "Accounts with free access, small-scale or short-time projects will be part of this group"},
@@ -45,8 +43,8 @@ const ClusProject = () => {
     return (
         <Container fluid>
             <Title order={2}>Project Cluster</Title>
-            <Card className={classes.card} m={20}>
-                <CardSection className={classes.header} bg="yellow.4" p={10} withBorder={true}>
+            <Card>
+                <CardSection bg="yellow.4">
                     <Text>Project Cluster</Text>
                 </CardSection>
                 <Text>
@@ -57,8 +55,8 @@ const ClusProject = () => {
                 <Text>It is aimed to provide the necessary resources with flexible, accessible platforms for integrated applications, ongoing KISR projects and related workloads. </Text>
             </Card>
 
-            <Card className={classes.card} m={20}>
-                <CardSection className={classes.header} bg="cyan.4" p={10} withBorder={true}>
+            <Card>
+                <CardSection bg="cyan.4">
                     <Text>Avaliable Resources</Text>
                 </CardSection>
                 <Text fz="lg">
@@ -80,8 +78,8 @@ const ClusProject = () => {
                 </Table>
             </Card>
 
-            <Card className={classes.card} m={20}>
-                <CardSection className={classes.header} bg="cyan.4" p={10} withBorder={true}>
+            <Card>
+                <CardSection bg="cyan.4">
                     <Text>Submit Job</Text>
                 </CardSection>
                 <Text>
