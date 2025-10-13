@@ -17,7 +17,7 @@ const TicketTable = ({tickets, activeTab, filter}: ticketTableProps) => {
 
     const getDateString = (dateString: string) => {
         const date = new Date(dateString);
-        return date.getDay() + ' ' + date.toLocaleString('default', { month: 'short' }) + ', ' + date.getFullYear();
+        return date.getDate() + ' ' + date.toLocaleString('default', { month: 'short' }) + ', ' + date.getFullYear();
     }
 
     const constructTable = () => {
