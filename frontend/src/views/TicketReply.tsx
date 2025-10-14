@@ -1,8 +1,10 @@
-import { Card, CardSection, Container, Group, Loader, Stack, Text } from "@mantine/core";
+import { Card, CardSection, Container, Group, Loader, Pill, Stack, Table, TableTbody, TableTd, TableTr, Text } from "@mantine/core";
 import { useGetTicketQuery } from "../apis/authorizeApi";
 import { useParams } from "react-router";
-
-// import classes from "../sourceStyle.module.css";
+import { RichTextEditor } from '@mantine/tiptap';
+import { useEditor } from '@tiptap/react';
+import StarterKit from '@tiptap/starter-kit';
+import Placeholder from '@tiptap/extension-placeholder';
 import { useEffect, useState } from "react";
 
 // interface TicketReplyProps {
@@ -26,6 +28,17 @@ const TicketReply = () => {
     const id = useParams().tid;
     const {data: ticket, isLoading, isSuccess} = useGetTicketQuery(parseInt(id!));
     
+    const editor = useEditor({
+        shouldRerenderOnTransaction: true,
+        extensions: [StarterKit, Placeholder.configure({ placeholder: 'This is placeholder' })],
+        content: '',
+    });
+
+    const getDateString = (dateString: string) => {
+        const date = new Date(dateString);
+        return date.getDate() + ' ' + date.toLocaleString('default', { month: 'short' }) + ', ' + date.getFullYear();
+    }
+
     useEffect(() => {
         if(isSuccess) {
             setTicketDate(formatAMPM(new Date(ticket!.createdAt)));
@@ -42,18 +55,54 @@ const TicketReply = () => {
 
     return (
         <Container fluid>
-            <Card>
-                <CardSection p={10}>
+            <Group>
+                <Card>
+                <CardSection>
                     <Text fw={700}>{"Ticket #" + ticket!.id}</Text>
                     <Text fz={12}>{ticketDate}</Text>
                 </CardSection>
                 <Group justify="space-between">
 
                 </Group>
+                <RichTextEditor editor={editor}>
+      <RichTextEditor.Content />
+    </RichTextEditor>
             </Card>
             <Card>
-
+                <CardSection>
+                    <Text fw={700}>Ticket Details</Text>
+                </CardSection>
+                <Table>
+                    <TableTbody>
+                        <TableTr>
+                            <TableTd>Customer</TableTd>
+                            <TableTd>{ticket!.name}</TableTd>
+                        </TableTr>
+                        <TableTr>
+                            <TableTd>Email</TableTd>
+                            <TableTd>{ticket!.email}</TableTd>
+                        </TableTr>
+                        <TableTr>
+                            <TableTd>Ticket ID</TableTd>
+                            <TableTd>{'#'+ticket!.id}</TableTd>
+                        </TableTr>
+                        <TableTr>
+                            <TableTd>Category</TableTd>
+                            <TableTd>{ticket!.subject}</TableTd>
+                        </TableTr>
+                        <TableTr>
+                            <TableTd>Created</TableTd>
+                            <TableTd>{getDateString(ticket!.createdAt)}</TableTd>
+                        </TableTr>
+                        <TableTr>
+                            <TableTd>Status</TableTd>
+                            <TableTd><Pill>{ticket!.status.toUpperCase()}</Pill></TableTd>
+                        </TableTr>
+                    </TableTbody>
+                </Table>
             </Card>
+            </Group>
+            
         </Container>
     );
 };
