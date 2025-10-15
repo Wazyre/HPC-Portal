@@ -56,9 +56,11 @@ const TicketPortal = () => {
 
     if (isLoading) {
         return (
-            <Stack justify={"center"} align={"center"}>
-                <Loader color="ikarus-blue" type="bars"/>
-            </Stack>
+            <Container fluid>
+                <Stack justify={"center"} align={"center"}>
+                    <Loader color="ikarus-blue" type="bars"/>
+                </Stack>
+            </Container>
         )
     }
     

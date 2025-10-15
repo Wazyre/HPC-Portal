@@ -45,6 +45,7 @@ const Login = () => {
             }); // Unwrap to catch any errors
             
         } catch (err) {
+            form.resetField('password');
             console.error("Failed Login: ", err, error?.toString());
         }
     };
@@ -62,8 +63,8 @@ const Login = () => {
                 <Stack align="center">
                     <Image fit="contain" h={150} src={ikarusLogo}/>
                     <form onSubmit={form.onSubmit(handleSubmit)}>
-                        <TextInput type="email" {...form.getInputProps('email')} mt="md" label="Email" placeholder="Email" />
-                        <PasswordInput type="password" {...form.getInputProps('password')} mt="md" label="Password" placeholder="****" error={error ?"Invalid Credentials" : ""}/>
+                        <TextInput key={form.key('email')} type="email" {...form.getInputProps('email')} mt="md" label="Email" placeholder="Email" />
+                        <PasswordInput key={form.key('password')} type="password" {...form.getInputProps('password')} mt="md" label="Password" placeholder="****" error={error ?"Invalid Credentials" : ""}/>
                         <Group justify="flex-end">
                             <Button component="a" disabled={isLoading} size="xs" href="https://khpc.kisr.edu.kw/" mt="md">
                                 Cancel

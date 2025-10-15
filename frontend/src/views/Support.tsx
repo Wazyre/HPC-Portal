@@ -20,6 +20,7 @@ export interface SupportTicket {
 }
 
 const selectData = [
+    '',
     'Access', 
     'Account', 
     'Data', 
@@ -34,18 +35,20 @@ const selectData = [
 const Support = () => {
     const email = useAppSelector(selectEmail);
     const name = useAppSelector(selectName);
-    const [submitTicket, { isLoading }] = useSubmitSupportMutation();
+    const [submitTicket, { isLoading, isSuccess }] = useSubmitSupportMutation();
 
     const form = useForm({
         mode: 'uncontrolled',
         initialValues: {
             email: email,
-            subject: 'Access',
+            subject: '',
             description: '',
             agreement: false,
         },
         validate: {
             email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
+            subject: (value) => (/^\S+$/.test(value) ? null : 'Please select a subject'),
+            description: (value) => (/^\S+$/.test(value) ? null : 'Please describe in a few words your problem'),
             agreement: (value) => (value ? null : 'Agree to the terms')
         }
     });
@@ -67,6 +70,7 @@ const Support = () => {
                 color: 'blue',
                 position: 'top-center'
             });
+            form.reset();
         } catch (err) {
             console.error('Failed to submit: ', err)
             notifications.show({
@@ -113,7 +117,13 @@ const Support = () => {
 
             <Card>
                 <CardSection>
-                    <Text fw={700}>Support Request</Text>
+                    <Group>
+                        <Text fw={700}>Support Request</Text>
+                        {isSuccess ?
+                            <Text size="sm">Ticket Submitted!</Text>
+                            : <></>
+                        }
+                    </Group>
                 </CardSection>
                 <form onSubmit={form.onSubmit(handleSubmit)}>
                     <TextInput
@@ -129,6 +139,7 @@ const Support = () => {
                         mt={20}
                         label="Subject"
                         data={selectData}
+                        error={form.errors.subject}
                         onChange={(value) => form.setFieldValue('subject', value.target.value.toString())}
                         key={form.key('subject')}
                         value={form.getInputProps('subject').defaultValue}
@@ -137,7 +148,6 @@ const Support = () => {
                         withAsterisk
                         mt={20}
                         label="Description"
-                        error="Please write a small description."
                         key={form.key('description')}
                         {...form.getInputProps('description')}
                     />
