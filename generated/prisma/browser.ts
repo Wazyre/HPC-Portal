@@ -26,3 +26,8 @@ export type User = Prisma.UserModel
  * 
  */
 export type Support = Prisma.SupportModel
+/**
+ * Model Comment
+ * 
+ */
+export type Comment = Prisma.CommentModel

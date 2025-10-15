@@ -11,21 +11,34 @@ generator client {
 }
 
 model User {
-    id          Int     @id @default(autoincrement())
-    email       String  @unique
+    id          Int         @id @default(autoincrement())
+    email       String      @unique
     password    String
     firstName   String
     lastName    String
     company     String
     role        String
+    comments    Comment[]
 }
 
 model Support {
-    id          Int     @id @default(autoincrement())
-    email       String
+    id          Int         @id @default(autoincrement())
+    email       String      
     name        String
     subject     String
     description String
     status      String
+    createdAt   DateTime    @default(now())
+    updatedAt   DateTime    @default(now())
+    comments    Comment[]
+}
+
+model Comment {
+    id          Int         @id @default(autoincrement())
+    comment     String
+    author      User        @relation(fields: [authorId], references: [id])
+    authorId    Int         
     createdAt   DateTime
+    ticket      Support     @relation(fields: [ticketId], references: [id])
+    ticketId    Int
 }

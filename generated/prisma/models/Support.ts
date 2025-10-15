@@ -41,6 +41,7 @@ export type SupportMinAggregateOutputType = {
   description: string | null
   status: string | null
   createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type SupportMaxAggregateOutputType = {
@@ -51,6 +52,7 @@ export type SupportMaxAggregateOutputType = {
   description: string | null
   status: string | null
   createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type SupportCountAggregateOutputType = {
@@ -61,6 +63,7 @@ export type SupportCountAggregateOutputType = {
   description: number
   status: number
   createdAt: number
+  updatedAt: number
   _all: number
 }
 
@@ -81,6 +84,7 @@ export type SupportMinAggregateInputType = {
   description?: true
   status?: true
   createdAt?: true
+  updatedAt?: true
 }
 
 export type SupportMaxAggregateInputType = {
@@ -91,6 +95,7 @@ export type SupportMaxAggregateInputType = {
   description?: true
   status?: true
   createdAt?: true
+  updatedAt?: true
 }
 
 export type SupportCountAggregateInputType = {
@@ -101,6 +106,7 @@ export type SupportCountAggregateInputType = {
   description?: true
   status?: true
   createdAt?: true
+  updatedAt?: true
   _all?: true
 }
 
@@ -198,6 +204,7 @@ export type SupportGroupByOutputType = {
   description: string
   status: string
   createdAt: Date
+  updatedAt: Date
   _count: SupportCountAggregateOutputType | null
   _avg: SupportAvgAggregateOutputType | null
   _sum: SupportSumAggregateOutputType | null
@@ -231,6 +238,8 @@ export type SupportWhereInput = {
   description?: Prisma.StringFilter<"Support"> | string
   status?: Prisma.StringFilter<"Support"> | string
   createdAt?: Prisma.DateTimeFilter<"Support"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Support"> | Date | string
+  comments?: Prisma.CommentListRelationFilter
 }
 
 export type SupportOrderByWithRelationInput = {
@@ -241,6 +250,8 @@ export type SupportOrderByWithRelationInput = {
   description?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  comments?: Prisma.CommentOrderByRelationAggregateInput
 }
 
 export type SupportWhereUniqueInput = Prisma.AtLeast<{
@@ -254,6 +265,8 @@ export type SupportWhereUniqueInput = Prisma.AtLeast<{
   description?: Prisma.StringFilter<"Support"> | string
   status?: Prisma.StringFilter<"Support"> | string
   createdAt?: Prisma.DateTimeFilter<"Support"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Support"> | Date | string
+  comments?: Prisma.CommentListRelationFilter
 }, "id">
 
 export type SupportOrderByWithAggregationInput = {
@@ -264,6 +277,7 @@ export type SupportOrderByWithAggregationInput = {
   description?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   _count?: Prisma.SupportCountOrderByAggregateInput
   _avg?: Prisma.SupportAvgOrderByAggregateInput
   _max?: Prisma.SupportMaxOrderByAggregateInput
@@ -282,6 +296,7 @@ export type SupportScalarWhereWithAggregatesInput = {
   description?: Prisma.StringWithAggregatesFilter<"Support"> | string
   status?: Prisma.StringWithAggregatesFilter<"Support"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Support"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Support"> | Date | string
 }
 
 export type SupportCreateInput = {
@@ -290,7 +305,9 @@ export type SupportCreateInput = {
   subject: string
   description: string
   status: string
-  createdAt: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  comments?: Prisma.CommentCreateNestedManyWithoutTicketInput
 }
 
 export type SupportUncheckedCreateInput = {
@@ -300,7 +317,9 @@ export type SupportUncheckedCreateInput = {
   subject: string
   description: string
   status: string
-  createdAt: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutTicketInput
 }
 
 export type SupportUpdateInput = {
@@ -310,6 +329,8 @@ export type SupportUpdateInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  comments?: Prisma.CommentUpdateManyWithoutTicketNestedInput
 }
 
 export type SupportUncheckedUpdateInput = {
@@ -320,6 +341,8 @@ export type SupportUncheckedUpdateInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutTicketNestedInput
 }
 
 export type SupportCreateManyInput = {
@@ -329,7 +352,8 @@ export type SupportCreateManyInput = {
   subject: string
   description: string
   status: string
-  createdAt: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type SupportUpdateManyMutationInput = {
@@ -339,6 +363,7 @@ export type SupportUpdateManyMutationInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type SupportUncheckedUpdateManyInput = {
@@ -349,6 +374,7 @@ export type SupportUncheckedUpdateManyInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type SupportCountOrderByAggregateInput = {
@@ -359,6 +385,7 @@ export type SupportCountOrderByAggregateInput = {
   description?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type SupportAvgOrderByAggregateInput = {
@@ -373,6 +400,7 @@ export type SupportMaxOrderByAggregateInput = {
   description?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type SupportMinOrderByAggregateInput = {
@@ -383,16 +411,123 @@ export type SupportMinOrderByAggregateInput = {
   description?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type SupportSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
 }
 
+export type SupportScalarRelationFilter = {
+  is?: Prisma.SupportWhereInput
+  isNot?: Prisma.SupportWhereInput
+}
+
 export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
 }
 
+export type SupportCreateNestedOneWithoutCommentsInput = {
+  create?: Prisma.XOR<Prisma.SupportCreateWithoutCommentsInput, Prisma.SupportUncheckedCreateWithoutCommentsInput>
+  connectOrCreate?: Prisma.SupportCreateOrConnectWithoutCommentsInput
+  connect?: Prisma.SupportWhereUniqueInput
+}
+
+export type SupportUpdateOneRequiredWithoutCommentsNestedInput = {
+  create?: Prisma.XOR<Prisma.SupportCreateWithoutCommentsInput, Prisma.SupportUncheckedCreateWithoutCommentsInput>
+  connectOrCreate?: Prisma.SupportCreateOrConnectWithoutCommentsInput
+  upsert?: Prisma.SupportUpsertWithoutCommentsInput
+  connect?: Prisma.SupportWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.SupportUpdateToOneWithWhereWithoutCommentsInput, Prisma.SupportUpdateWithoutCommentsInput>, Prisma.SupportUncheckedUpdateWithoutCommentsInput>
+}
+
+export type SupportCreateWithoutCommentsInput = {
+  email: string
+  name: string
+  subject: string
+  description: string
+  status: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type SupportUncheckedCreateWithoutCommentsInput = {
+  id?: number
+  email: string
+  name: string
+  subject: string
+  description: string
+  status: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type SupportCreateOrConnectWithoutCommentsInput = {
+  where: Prisma.SupportWhereUniqueInput
+  create: Prisma.XOR<Prisma.SupportCreateWithoutCommentsInput, Prisma.SupportUncheckedCreateWithoutCommentsInput>
+}
+
+export type SupportUpsertWithoutCommentsInput = {
+  update: Prisma.XOR<Prisma.SupportUpdateWithoutCommentsInput, Prisma.SupportUncheckedUpdateWithoutCommentsInput>
+  create: Prisma.XOR<Prisma.SupportCreateWithoutCommentsInput, Prisma.SupportUncheckedCreateWithoutCommentsInput>
+  where?: Prisma.SupportWhereInput
+}
+
+export type SupportUpdateToOneWithWhereWithoutCommentsInput = {
+  where?: Prisma.SupportWhereInput
+  data: Prisma.XOR<Prisma.SupportUpdateWithoutCommentsInput, Prisma.SupportUncheckedUpdateWithoutCommentsInput>
+}
+
+export type SupportUpdateWithoutCommentsInput = {
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  subject?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type SupportUncheckedUpdateWithoutCommentsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  subject?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+
+/**
+ * Count Type SupportCountOutputType
+ */
+
+export type SupportCountOutputType = {
+  comments: number
+}
+
+export type SupportCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  comments?: boolean | SupportCountOutputTypeCountCommentsArgs
+}
+
+/**
+ * SupportCountOutputType without action
+ */
+export type SupportCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SupportCountOutputType
+   */
+  select?: Prisma.SupportCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * SupportCountOutputType without action
+ */
+export type SupportCountOutputTypeCountCommentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CommentWhereInput
+}
 
 
 export type SupportSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -403,6 +538,9 @@ export type SupportSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   description?: boolean
   status?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
+  comments?: boolean | Prisma.Support$commentsArgs<ExtArgs>
+  _count?: boolean | Prisma.SupportCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["support"]>
 
 export type SupportSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -413,6 +551,7 @@ export type SupportSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   description?: boolean
   status?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
 }, ExtArgs["result"]["support"]>
 
 export type SupportSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -423,6 +562,7 @@ export type SupportSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   description?: boolean
   status?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
 }, ExtArgs["result"]["support"]>
 
 export type SupportSelectScalar = {
@@ -433,13 +573,22 @@ export type SupportSelectScalar = {
   description?: boolean
   status?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
 }
 
-export type SupportOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "name" | "subject" | "description" | "status" | "createdAt", ExtArgs["result"]["support"]>
+export type SupportOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "name" | "subject" | "description" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["support"]>
+export type SupportInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  comments?: boolean | Prisma.Support$commentsArgs<ExtArgs>
+  _count?: boolean | Prisma.SupportCountOutputTypeDefaultArgs<ExtArgs>
+}
+export type SupportIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type SupportIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
 
 export type $SupportPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Support"
-  objects: {}
+  objects: {
+    comments: Prisma.$CommentPayload<ExtArgs>[]
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     email: string
@@ -448,6 +597,7 @@ export type $SupportPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     description: string
     status: string
     createdAt: Date
+    updatedAt: Date
   }, ExtArgs["result"]["support"]>
   composites: {}
 }
@@ -842,6 +992,7 @@ readonly fields: SupportFieldRefs;
  */
 export interface Prisma__SupportClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  comments<T extends Prisma.Support$commentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Support$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -878,6 +1029,7 @@ export interface SupportFieldRefs {
   readonly description: Prisma.FieldRef<"Support", 'String'>
   readonly status: Prisma.FieldRef<"Support", 'String'>
   readonly createdAt: Prisma.FieldRef<"Support", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"Support", 'DateTime'>
 }
     
 
@@ -894,6 +1046,10 @@ export type SupportFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.Inter
    * Omit specific fields from the Support
    */
   omit?: Prisma.SupportOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SupportInclude<ExtArgs> | null
   /**
    * Filter, which Support to fetch.
    */
@@ -913,6 +1069,10 @@ export type SupportFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extension
    */
   omit?: Prisma.SupportOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SupportInclude<ExtArgs> | null
+  /**
    * Filter, which Support to fetch.
    */
   where: Prisma.SupportWhereUniqueInput
@@ -930,6 +1090,10 @@ export type SupportFindFirstArgs<ExtArgs extends runtime.Types.Extensions.Intern
    * Omit specific fields from the Support
    */
   omit?: Prisma.SupportOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SupportInclude<ExtArgs> | null
   /**
    * Filter, which Support to fetch.
    */
@@ -979,6 +1143,10 @@ export type SupportFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions
    */
   omit?: Prisma.SupportOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SupportInclude<ExtArgs> | null
+  /**
    * Filter, which Support to fetch.
    */
   where?: Prisma.SupportWhereInput
@@ -1027,6 +1195,10 @@ export type SupportFindManyArgs<ExtArgs extends runtime.Types.Extensions.Interna
    */
   omit?: Prisma.SupportOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SupportInclude<ExtArgs> | null
+  /**
    * Filter, which Supports to fetch.
    */
   where?: Prisma.SupportWhereInput
@@ -1069,6 +1241,10 @@ export type SupportCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    * Omit specific fields from the Support
    */
   omit?: Prisma.SupportOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SupportInclude<ExtArgs> | null
   /**
    * The data needed to create a Support.
    */
@@ -1117,6 +1293,10 @@ export type SupportUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    * Omit specific fields from the Support
    */
   omit?: Prisma.SupportOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SupportInclude<ExtArgs> | null
   /**
    * The data needed to update a Support.
    */
@@ -1184,6 +1364,10 @@ export type SupportUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    */
   omit?: Prisma.SupportOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SupportInclude<ExtArgs> | null
+  /**
    * The filter to search for the Support to update in case it exists.
    */
   where: Prisma.SupportWhereUniqueInput
@@ -1210,6 +1394,10 @@ export type SupportDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    */
   omit?: Prisma.SupportOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SupportInclude<ExtArgs> | null
+  /**
    * Filter which Support to delete.
    */
   where: Prisma.SupportWhereUniqueInput
@@ -1230,6 +1418,30 @@ export type SupportDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 /**
+ * Support.comments
+ */
+export type Support$commentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Comment
+   */
+  select?: Prisma.CommentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Comment
+   */
+  omit?: Prisma.CommentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CommentInclude<ExtArgs> | null
+  where?: Prisma.CommentWhereInput
+  orderBy?: Prisma.CommentOrderByWithRelationInput | Prisma.CommentOrderByWithRelationInput[]
+  cursor?: Prisma.CommentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CommentScalarFieldEnum | Prisma.CommentScalarFieldEnum[]
+}
+
+/**
  * Support without action
  */
 export type SupportDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1241,4 +1453,8 @@ export type SupportDefaultArgs<ExtArgs extends runtime.Types.Extensions.Internal
    * Omit specific fields from the Support
    */
   omit?: Prisma.SupportOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SupportInclude<ExtArgs> | null
 }

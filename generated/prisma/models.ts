@@ -9,4 +9,5 @@
  */
 export type * from './models/User.ts'
 export type * from './models/Support.ts'
+export type * from './models/Comment.ts'
 export type * from './commonInputTypes.ts'
