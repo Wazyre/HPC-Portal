@@ -12,14 +12,15 @@ import Profile from "./views/Profile";
 import TicketPortal from "./views/TicketPortal";
 import StorageStats from "./views/StorageStats";
 import ClusterStats from "./views/ClusterStats";
+import TicketReply from "./views/TicketReply";
 
 export const router = createBrowserRouter([
     { index: true, Component: Login},
     {
         Component: Layout, // Main Component
         children: [ // Children are Outlets that fill the AppShell Main
-            { path: "/dashboard", Component: Dashboard},
-            { path: "/documentation",
+            {path: "/dashboard", Component: Dashboard},
+            {path: "/documentation",
                 children: [
                     {path: "ssh", Component: AccessSSH},
                     {path: "modules", Component: Modules},
@@ -28,14 +29,14 @@ export const router = createBrowserRouter([
                     {path: "cmds", Component: Dashboard},
                 ]
             },
-            { path: "/clusters",
+            {path: "/clusters",
                 children: [
                     {path: "research", Component: ClusResearch},
                     {path: "project", Component: ClusProject},
                     {path: "dev", Component: ClusDeveloper},
                 ]
             },
-            { path: "/stats",
+            {path: "/stats",
                 children: [
                     {path: "clusters", Component: ClusterStats},
                     {path: "storage", Component: StorageStats},
@@ -43,7 +44,12 @@ export const router = createBrowserRouter([
                 ]
             },
             {path: "support", Component: Support},
-            {path: "tickets", Component: TicketPortal},
+            {path: "tickets", 
+                children: [
+                    {index: true, Component: TicketPortal},
+                    {path: ":tid", Component: TicketReply}
+                ]
+            },
             {path: "profile", Component: Profile}
         ]
     }

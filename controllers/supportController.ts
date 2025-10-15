@@ -28,7 +28,6 @@ export const getTicket = expressAsyncHandler(async (req, res) => {
 
 // Used to get all pending tickets tied to a user
 export const getPendingTickets = expressAsyncHandler(async (req, res) => {
-    console.log('wepjifwepjfpwei')
     await prisma.support.findMany({
         where: {
             email: req.params.email!,

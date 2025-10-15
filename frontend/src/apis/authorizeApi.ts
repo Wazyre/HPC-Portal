@@ -48,7 +48,7 @@ export const loginApi = createApi({
             query: () => '/support/'
         }),
         getTicket: builder.query<SupportTicket, number>({
-            query: id => `/support/ticket/id:?${id}`
+            query: id => `/support/ticket/${id}`
         }),
         getPendingTickets: builder.query<number, string>({
             query: email => ({
