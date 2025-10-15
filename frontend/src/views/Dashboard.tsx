@@ -1,8 +1,12 @@
 import { DonutChart } from "@mantine/charts";
-import { Card, Container, Grid, GridCol, Pill, ProgressLabel, ProgressRoot, ProgressSection, Stack, Text, Title, Tooltip } from "@mantine/core";
+import { Card, Container, Grid, GridCol, Group, Loader, Pill, ProgressLabel, ProgressRoot, ProgressSection, Stack, Text, Title, Tooltip } from "@mantine/core";
+import { useVerifyUser } from "../utils/useVerifyUser";
+import { IconMail } from "@tabler/icons-react";
+import { useAppSelector } from "../app/hooks";
+import { selectEmail } from "../slices/authorizationSlice";
+import { useGetPendingTicketsQuery } from "../apis/authorizeApi";
 
 import classes from "../sourceStyle.module.css";
-import { useVerifyUser } from "../utils/useVerifyUser";
 
 //TODO Pulled from backend
 /*
@@ -20,14 +24,30 @@ const data = [
 const perc = 8.9
 
 const Dashboard = () => {
+    const email = useAppSelector(selectEmail);
+    const {data: pendingTickets, isLoading} = useGetPendingTicketsQuery(email);
 
     useVerifyUser();
+
+    if (isLoading) {
+        return (
+            <Container fluid>
+                <Stack justify={"center"} align={"center"}>
+                    <Loader color="ikarus-blue" type="bars"/>
+                </Stack>
+            </Container>
+        )
+    }
 
     return (
         <Container fluid>
             <Title order={2}>Dashboard</Title>
             <Card>
-                <Text fw={700}>Storage Usage</Text>
+                <Group>
+                    <IconMail/>
+                    <Text fw={700}>{'Pending Support Tickets: '+pendingTickets} </Text>
+                </Group>
+                <Text fw={700} mt={20}>Storage Usage</Text>
                 <Text fz="xs" c="gray.6">Out of 500G</Text>
                 <ProgressRoot size={30}>
                     <Tooltip label="33GB - Applications">

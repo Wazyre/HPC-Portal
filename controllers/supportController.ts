@@ -4,6 +4,7 @@ import type { SupportModel } from '../generated/prisma/models.ts';
 
 const prisma = new PrismaClient();
 
+// Get all tickets from DB
 export const getTickets = expressAsyncHandler(async (req, res) => {
     await prisma.support.findMany().then(async(tickets: SupportModel[] | null) => {
         res.json(tickets);
@@ -12,6 +13,7 @@ export const getTickets = expressAsyncHandler(async (req, res) => {
     })
 });
 
+// Get a single ticket by ID
 export const getTicket = expressAsyncHandler(async (req, res) => {
     await prisma.support.findUnique({
         where: {
@@ -24,6 +26,22 @@ export const getTicket = expressAsyncHandler(async (req, res) => {
     });
 });
 
+// Used to get all pending tickets tied to a user
+export const getPendingTickets = expressAsyncHandler(async (req, res) => {
+    console.log('wepjifwepjfpwei')
+    await prisma.support.findMany({
+        where: {
+            email: req.params.email!,
+            status: 'open'
+        }
+    }).then((tickets: SupportModel[] | null) => {
+        res.json(tickets?.length ? tickets.length : 0);
+    }).catch((err: any) => {
+        res.status(400).json({pendingTickets: "An error occured", err});
+    });
+});
+
+// Submit a support ticket
 export const submitTicket = expressAsyncHandler(async (req, res) => {
     await prisma.support.create({
         data: {

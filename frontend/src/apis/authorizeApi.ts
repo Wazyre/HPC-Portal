@@ -35,7 +35,7 @@ export const loginApi = createApi({
             query: () => (`/users/verify`)
         }),
         getUserDetails: builder.query<AuthorizedUser, string>({
-            query: email => `/users/${email}`
+            query: email => `/users/user/${email}`
         }),
         editPassword: builder.mutation<AuthorizedUser, LoginUser>({
             query: pass => ({
@@ -48,7 +48,13 @@ export const loginApi = createApi({
             query: () => '/support/'
         }),
         getTicket: builder.query<SupportTicket, number>({
-            query: id => `/support/${id}`
+            query: id => `/support/ticket/id:?${id}`
+        }),
+        getPendingTickets: builder.query<number, string>({
+            query: email => ({
+                url: `/support/pending/${email}`,
+                method: 'GET'
+            })
         }),
         submitSupport: builder.mutation<string, SupportTicket>({
             query: ticket => ({
@@ -67,5 +73,6 @@ export const {
     useEditPasswordMutation, 
     useGetTicketsQuery, 
     useGetTicketQuery, 
+    useGetPendingTicketsQuery,
     useSubmitSupportMutation 
 } = loginApi;

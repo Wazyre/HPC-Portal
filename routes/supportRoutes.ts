@@ -1,10 +1,11 @@
 import { Router } from "express";
-import { getTicket, getTickets, submitTicket } from "../controllers/supportController.ts";
+import { getPendingTickets, getTicket, getTickets, submitTicket } from "../controllers/supportController.ts";
 
 const router = Router();
 
 router.get('/', getTickets);
-router.get('/:id', getTicket);
+router.get('/pending/:email', getPendingTickets);
+router.get('/ticket/:id', getTicket);
 router.post('/submit', submitTicket);
 
 export default router;
