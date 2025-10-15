@@ -6,7 +6,7 @@ import { IconHelp } from "@tabler/icons-react";
 
 import classes from "../sourceStyle.module.css";
 import { useSubmitSupportMutation } from "../apis/authorizeApi";
-import { notifications } from "@mantine/notifications";
+// import { notifications } from "@mantine/notifications";
 import { useVerifyUser } from "../utils/useVerifyUser";
 
 export interface SupportTicket {
@@ -35,7 +35,7 @@ const selectData = [
 const Support = () => {
     const email = useAppSelector(selectEmail);
     const name = useAppSelector(selectName);
-    const [submitTicket, { isLoading, isSuccess }] = useSubmitSupportMutation();
+    const [submitTicket, { isLoading, isSuccess, isError }] = useSubmitSupportMutation();
 
     const form = useForm({
         mode: 'uncontrolled',
@@ -65,19 +65,19 @@ const Support = () => {
         }
         try {
             await submitTicket(ticket).unwrap();
-            notifications.show({
-                message: 'Ticket submitted!',
-                color: 'blue',
-                position: 'top-center'
-            });
+            // notifications.show({
+            //     message: 'Ticket submitted!',
+            //     color: 'blue',
+            //     position: 'top-center'
+            // });
             form.reset();
         } catch (err) {
             console.error('Failed to submit: ', err)
-            notifications.show({
-                message: 'Ticket failed to send, please try again.',
-                color: 'red',
-                position: 'top-center'
-            });
+            // notifications.show({
+            //     message: 'Ticket failed to send, please try again.',
+            //     color: 'red',
+            //     position: 'top-center'
+            // });
         }
     }
 
@@ -121,6 +121,10 @@ const Support = () => {
                         <Text fw={700}>Support Request</Text>
                         {isSuccess ?
                             <Text size="sm">Ticket Submitted!</Text>
+                            : <></>
+                        }
+                        {isError ?
+                            <Text c="red" size="sm">Ticket failed to send, please try again.</Text>
                             : <></>
                         }
                     </Group>
