@@ -65,6 +65,11 @@ button:focus-visible {
   transition: all 0.2s linear;
 }
 
+p {
+  hyphens: auto;
+  word-wrap: break-word;
+}
+
 
 @media (prefers-color-scheme: light) {
   :root {

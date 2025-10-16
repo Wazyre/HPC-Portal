@@ -1,7 +1,7 @@
 import { Button, Container, Group, Image, PasswordInput, Stack, TextInput } from "@mantine/core";
 import { isEmail, useForm } from "@mantine/form";
 // import { useDispatch, useSelector } from "react-redux";
-import { setAuthorizedUser, type LoginUser } from "../slices/authorizationSlice";
+import { setAuthorizedUser, type AuthorizedUser, type LoginUser } from "../slices/authorizationSlice";
 import { useAppDispatch } from "../app/hooks";
 import { useNavigate } from "react-router";
 import {  useLazyAuthorizeUserQuery } from "../apis/authorizeApi";
@@ -39,7 +39,7 @@ const Login = () => {
         }
         try {
             await authorizeUser(user).unwrap()
-            .then(user => {
+            .then((user: AuthorizedUser) => {
                 dispatch(setAuthorizedUser(user));
                 navigate('/dashboard');
             }); // Unwrap to catch any errors

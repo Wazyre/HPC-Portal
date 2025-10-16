@@ -1,12 +1,12 @@
 import { Checkbox, Menu, MenuDropdown, MenuItem, MenuTarget, Pill, Table, TableTbody, TableTd, TableTh, TableThead, TableTr, Text } from "@mantine/core";
-import type { SupportTicket } from "../views/Support";
+import type { TicketType } from "../utils/types";
 import { useEffect, useState } from "react";
 import React from "react";
 import { IconDotsVertical, IconEye, IconTrash } from "@tabler/icons-react";
 import { Link } from "react-router";
 
 interface ticketTableProps {
-    tickets: SupportTicket[],
+    tickets: TicketType[],
     activeTab: string,
     filter: string
 }

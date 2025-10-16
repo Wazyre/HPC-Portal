@@ -7,7 +7,7 @@ import { useAppSelector } from "../app/hooks";
 import { selectRole } from "../slices/authorizationSlice";
 import { useNavigate } from "react-router";
 import { useVerifyUser } from "../utils/useVerifyUser";
-import type { SupportTicket } from "./Support";
+import type { TicketType } from "../utils/types";
 
 // const breadItems = [
 //     {title: <IconHome/>, href: '/dashboard'},
@@ -16,7 +16,7 @@ import type { SupportTicket } from "./Support";
 
 const TicketPortal = () => {
     const {data: tickets, isLoading, isSuccess} = useGetTicketsQuery();
-    const [allTickets, setAllTickets] = useState<SupportTicket[]>([]);
+    const [allTickets, setAllTickets] = useState<TicketType[]>([]);
     const [openTickets, setOpenTickets] = useState<number>(0);
     const [closedTickets, setClosedTickets] = useState<number>(0);
     const [searchValue, setSearchValue] = useState<string>('');
@@ -40,8 +40,8 @@ const TicketPortal = () => {
     useEffect(() => {
         if(isSuccess) {
             setAllTickets(tickets);
-            setOpenTickets(tickets.filter((ticket) => ticket.status === 'open').length);
-            setClosedTickets(tickets.filter((ticket) => ticket.status === 'closed').length);
+            setOpenTickets(tickets.filter((ticket: TicketType) => ticket.status === 'open').length);
+            setClosedTickets(tickets.filter((ticket: TicketType) => ticket.status === 'closed').length);
             
         }
     }, [tickets])

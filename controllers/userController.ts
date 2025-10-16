@@ -6,16 +6,20 @@ import { generateToken, verifyToken } from '../utils/generateTokens.ts';
 
 const prisma = new PrismaClient();
 
-export const getUsers = () => {
-    return;
-};
+export const getUsers = expressAsyncHandler(async (req, res) => {
+    await prisma.user.findMany().then((users: UserModel[]) => {
+        res.json(users);
+    }).catch((err: any) => {
+        res.status(400).json({databaseEmpty: "No users found", err});
+    });
+});
 
 export const getUser = expressAsyncHandler(async (req, res) => {
     await prisma.user.findUnique({
         where: {
             email: req.body.email,
         }
-    }).then(async(user: UserModel | null) => {
+    }).then((user: UserModel | null) => {
         res.json(user);
     }).catch((err: any) => {
         res.status(400).json({userNotFound: "Can't find user", err});
@@ -49,7 +53,7 @@ export const verifyUser = expressAsyncHandler(async (req, res) => {
             where: {
                 id: decoded!.data.id,
             }
-        }).then(async(user: UserModel | null) => {
+        }).then((user: UserModel | null) => {
             res.json({...user, accessToken: decoded!.data.token});
         }).catch((err: any) => {
             res.status(400).json({userNotFound: "Can't find user", err});
@@ -67,7 +71,7 @@ export const changePassword = expressAsyncHandler(async (req, res) => {
         data: {
             password: newPassword!
         }
-    }).then(async(user: UserModel) => {
+    }).then((user: UserModel) => {
         res.json(user);
     }).catch((err: any) => {
         console.error(err);

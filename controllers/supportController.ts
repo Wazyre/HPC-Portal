@@ -1,12 +1,12 @@
 import expressAsyncHandler from 'express-async-handler';
 import { PrismaClient } from '../generated/prisma/client.ts';
-import type { SupportModel } from '../generated/prisma/models.ts';
+import type { CommentModel, SupportModel } from '../generated/prisma/models.ts';
 
 const prisma = new PrismaClient();
 
 // Get all tickets from DB
 export const getTickets = expressAsyncHandler(async (req, res) => {
-    await prisma.support.findMany().then(async(tickets: SupportModel[] | null) => {
+    await prisma.support.findMany().then((tickets: SupportModel[] | null) => {
         res.json(tickets);
     }).catch((err: any) => {
         res.status(400).json({databaseEmpty: "No tickets exist", err});
@@ -19,7 +19,7 @@ export const getTicket = expressAsyncHandler(async (req, res) => {
         where: {
             id: parseInt(req.params.id!),
         }
-    }).then(async(ticket: SupportModel | null) => {
+    }).then((ticket: SupportModel | null) => {
         res.json(ticket);
     }).catch((err: any) => {
         res.status(400).json({ticketNotFound: "Can't find ticket", err});
@@ -51,9 +51,40 @@ export const submitTicket = expressAsyncHandler(async (req, res) => {
             status: req.body.status,
             createdAt: req.body.createdAt
         }
-    }).then(async(ticket: SupportModel | null) => {
+    }).then((ticket: SupportModel | null) => {
         res.json(ticket);
     }).catch((err: any) => {
         res.status(400).json({ticketNotSubmitted: "Problem with submitting ticket", err});
+    });
+});
+
+export const getComments = expressAsyncHandler(async (req, res) => {
+    await prisma.comment.findMany({
+        relationLoadStrategy: 'join',
+        where: {
+            ticketId: parseInt(req.params.ticketId!)
+        },
+        include: {
+            author: true
+        }
+    }).then((comments: CommentModel[] | null) => {
+        res.json(comments);
+    }).catch((err: any) => {
+        res.status(400).json({commentsNotFound: "Problem with finding comments", err});
+    });
+});
+
+export const postComment = expressAsyncHandler(async (req, res) => {
+    await prisma.comment.create({
+        data: {
+            comment: req.body.comment,
+            createdAt: req.body.createdAt,
+            ticketId: parseInt(req.body.ticketId!),
+            authorId: parseInt(req.body.authorId!)
+        }
+    }).then((comment: CommentModel | null) => {
+        res.json(comment);
+    }).catch((err: any) => {
+        res.status(400).json({commentsNotSubmitted: "Problem with submitting new comment", err});
     });
 });

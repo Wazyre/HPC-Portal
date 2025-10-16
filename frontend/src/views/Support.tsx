@@ -8,16 +8,17 @@ import classes from "../sourceStyle.module.css";
 import { useSubmitSupportMutation } from "../apis/authorizeApi";
 // import { notifications } from "@mantine/notifications";
 import { useVerifyUser } from "../utils/useVerifyUser";
+import type { TicketType } from "../utils/types";
 
-export interface SupportTicket {
-    id: number,
-    email: string,
-    name: string,
-    subject: string,
-    description: string,
-    status: string,
-    createdAt: string
-}
+// export interface SupportTicket {
+//     id: number,
+//     email: string,
+//     name: string,
+//     subject: string,
+//     description: string,
+//     status: string,
+//     createdAt: string
+// }
 
 const selectData = [
     '',
@@ -54,14 +55,15 @@ const Support = () => {
     });
 
     const handleSubmit = async(values: typeof form.values) => {
-        const ticket: SupportTicket = {
+        const ticket: TicketType = {
             id: 0, // Dummy ID to satisfy type
             email: values.email,
             name: name,
             subject: values.subject,
             description: values.description,
             status: 'open',
-            createdAt: new Date().toISOString()
+            createdAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString()
         }
         try {
             await submitTicket(ticket).unwrap();

@@ -3,7 +3,7 @@
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import type { AuthorizedUser, LoginUser } from '../slices/authorizationSlice';
-import type { SupportTicket } from '../views/Support';
+import { type CommentType, type TicketType } from '../utils/types';
 import { type RootState } from '../app/store'
 
 // import type { Authorization } from 
@@ -44,10 +44,10 @@ export const loginApi = createApi({
                 body: pass
             })
         }),
-        getTickets: builder.query<SupportTicket[], void>({
+        getTickets: builder.query<TicketType[], void>({
             query: () => '/support/'
         }),
-        getTicket: builder.query<SupportTicket, number>({
+        getTicket: builder.query<TicketType, number>({
             query: id => `/support/ticket/${id}`
         }),
         getPendingTickets: builder.query<number, string>({
@@ -56,11 +56,21 @@ export const loginApi = createApi({
                 method: 'GET'
             })
         }),
-        submitSupport: builder.mutation<string, SupportTicket>({
+        submitSupport: builder.mutation<string, TicketType>({
             query: ticket => ({
                 url: '/support/submit',
                 method: 'POST',
                 body: ticket
+            })
+        }),
+        getComments: builder.query<CommentType[], number>({
+            query: ticketId => `support/comments/${ticketId}`
+        }),
+        postComment: builder.mutation<CommentType, CommentType>({
+            query: comment => ({
+                url: `/support/comment`,
+                method: 'POST',
+                body: comment
             })
         })
     })
@@ -74,5 +84,7 @@ export const {
     useGetTicketsQuery, 
     useGetTicketQuery, 
     useGetPendingTicketsQuery,
-    useSubmitSupportMutation 
+    useSubmitSupportMutation,
+    useGetCommentsQuery,
+    usePostCommentMutation, 
 } = loginApi;

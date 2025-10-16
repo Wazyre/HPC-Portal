@@ -605,7 +605,7 @@ export type $SupportPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
 export type SupportGetPayload<S extends boolean | null | undefined | SupportDefaultArgs> = runtime.Types.Result.GetResult<Prisma.$SupportPayload, S>
 
 export type SupportCountArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> =
-  Omit<SupportFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+  Omit<SupportFindManyArgs, 'select' | 'include' | 'distinct' | 'omit' | 'relationLoadStrategy'> & {
     select?: SupportCountAggregateInputType | true
   }
 
@@ -1054,6 +1054,7 @@ export type SupportFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.Inter
    * Filter, which Support to fetch.
    */
   where: Prisma.SupportWhereUniqueInput
+  relationLoadStrategy?: Prisma.RelationLoadStrategy
 }
 
 /**
@@ -1076,6 +1077,7 @@ export type SupportFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extension
    * Filter, which Support to fetch.
    */
   where: Prisma.SupportWhereUniqueInput
+  relationLoadStrategy?: Prisma.RelationLoadStrategy
 }
 
 /**
@@ -1128,6 +1130,7 @@ export type SupportFindFirstArgs<ExtArgs extends runtime.Types.Extensions.Intern
    * Filter by unique combinations of Supports.
    */
   distinct?: Prisma.SupportScalarFieldEnum | Prisma.SupportScalarFieldEnum[]
+  relationLoadStrategy?: Prisma.RelationLoadStrategy
 }
 
 /**
@@ -1180,6 +1183,7 @@ export type SupportFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions
    * Filter by unique combinations of Supports.
    */
   distinct?: Prisma.SupportScalarFieldEnum | Prisma.SupportScalarFieldEnum[]
+  relationLoadStrategy?: Prisma.RelationLoadStrategy
 }
 
 /**
@@ -1227,6 +1231,7 @@ export type SupportFindManyArgs<ExtArgs extends runtime.Types.Extensions.Interna
    */
   skip?: number
   distinct?: Prisma.SupportScalarFieldEnum | Prisma.SupportScalarFieldEnum[]
+  relationLoadStrategy?: Prisma.RelationLoadStrategy
 }
 
 /**
@@ -1249,6 +1254,7 @@ export type SupportCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    * The data needed to create a Support.
    */
   data: Prisma.XOR<Prisma.SupportCreateInput, Prisma.SupportUncheckedCreateInput>
+  relationLoadStrategy?: Prisma.RelationLoadStrategy
 }
 
 /**
@@ -1305,6 +1311,7 @@ export type SupportUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    * Choose, which Support to update.
    */
   where: Prisma.SupportWhereUniqueInput
+  relationLoadStrategy?: Prisma.RelationLoadStrategy
 }
 
 /**
@@ -1379,6 +1386,7 @@ export type SupportUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    * In case the Support was found with the provided `where` argument, update it with this data.
    */
   update: Prisma.XOR<Prisma.SupportUpdateInput, Prisma.SupportUncheckedUpdateInput>
+  relationLoadStrategy?: Prisma.RelationLoadStrategy
 }
 
 /**
@@ -1401,6 +1409,7 @@ export type SupportDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    * Filter which Support to delete.
    */
   where: Prisma.SupportWhereUniqueInput
+  relationLoadStrategy?: Prisma.RelationLoadStrategy
 }
 
 /**
