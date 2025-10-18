@@ -86,7 +86,7 @@ const ClusDeveloper = () => {
                 <Text>
                     To submit a job to "Developer" cluster in IKARUS, the “sbatch” file should have the following minimum "#SBATCH" configurations:
                 </Text>
-                <Code block color="gray.2">
+                <Code block>
 {`#!/bin/bash
 
 #SBATCH --job-name=example

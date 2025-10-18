@@ -40,7 +40,7 @@ const Modules = () => {
                 <Text>
                     To see the full list of the applications and libraries that are available for your account to use on IKARUS, you should use the command "module avail" as shown below (showing only a few of the tens of modules that are available):
                 </Text>
-                <Code block color="gray.2">
+                <Code block>
                     [hpcdemo@clavis1 ~]$ module avail 
                 </Code>
                 <Space h="md"/>
@@ -59,7 +59,7 @@ const Modules = () => {
                 <Text>
                     If you want to use a specific application, you can find which versions are available by using the command "module avail modulename" as shown below:
                 </Text>
-                <Code block color="gray.2">
+                <Code block>
                     [hpcdemo@clavis1 ~]$ module avail jasper 
                 </Code>
                 <Space h="md"/>
@@ -80,7 +80,7 @@ const Modules = () => {
                 <Text>
                     To find out what a module file does, use the command "module show modulename". This will show you brief information about what the module does along with how the module will update your environment as shown below:
                 </Text>
-                <Code block color="gray.2">
+                <Code block>
                     [hpcdemo@clavis1 ~]$ module show jasper 
                 </Code>
                 <Space h="md"/>
@@ -99,14 +99,14 @@ const Modules = () => {
                 <Text>
                     To add a module to your session, use the command "module add modulename". In most cases, running this command will not display anything and will just return you back to the Linux command prompt. For example to add the jasper module, use the command line shown below:
                 </Text>
-                <Code block color="gray.2">
+                <Code block>
                     [hpcdemo@clavis1 ~]$ module add jasper 
                 </Code>
                 <Space h="md"/>
                 <Text>
                     If you want to add a specific version of a module then you should include the version number, for example:
                 </Text>
-                <Code block color="gray.2">
+                <Code block>
                     [hpcdemo@clavis1 ~]$ module add jasper/2.0.14 
                 </Code>
                 <Space h="md"/>

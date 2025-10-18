@@ -1,6 +1,6 @@
 import '@mantine/core/styles.css';
 
-import { Card, createTheme, MantineProvider, virtualColor } from '@mantine/core';
+import { Card, Code, createTheme, MantineProvider, virtualColor } from '@mantine/core';
 import { RouterProvider } from 'react-router';
 import { router } from './routes';
 import { Notifications } from '@mantine/notifications';
@@ -29,6 +29,11 @@ const theme = createTheme({
 			classNames: {
 				root: classes.card,
 				section: classes.cardSection
+			}
+		}),
+		Code: Code.extend({
+			classNames: {
+				root: classes.code
 			}
 		})
 	}

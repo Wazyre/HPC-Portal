@@ -53,9 +53,9 @@ const AccessSSH = () => {
                     <ListItem>Enter the Username (hpcdemo)</ListItem>
                     <ListItem>Click OK</ListItem>
                     <ListItem>Enter your password followed by enter; this will not be echoed on the screen</ListItem>
-                    <Code block color="gray.2">password: </Code>
+                    <Code block>password: </Code>
                     <ListItem>If you have connected successfully, you will see something like the following:</ListItem>
-                    <Code block color="gray.2">[hpcdemo@clavis1 ~]$ </Code>
+                    <Code block>[hpcdemo@clavis1 ~]$ </Code>
                 </List>
             </Card>
 
@@ -69,13 +69,13 @@ const AccessSSH = () => {
                 <List type="ordered">
                     <ListItem>{"Go to Applications -> Utilities and open Terminal"}</ListItem>
                     <ListItem>Type ssh -Y yourusername@hpc.kisr.edu.kw</ListItem>
-                    <Code block color="gray.2">$ ssh -Y hpcdemo@hpc.kisr.edu.kw</Code>
+                    <Code block>$ ssh -Y hpcdemo@hpc.kisr.edu.kw</Code>
                     <ListItem>The first time you connect to IKARUS, a message asks if you want to continue connecting. This message appears because IKARUS has an RSA key that is not stored in your system registry/keychain, the identity of which cannot be verified. Type 'yes' and press enter.</ListItem>
-                    <Code block color="gray.2">Are you sure you want to continue connecting (yes/no/[fingerprint])? yes </Code>
+                    <Code block>Are you sure you want to continue connecting (yes/no/[fingerprint])? yes </Code>
                     <ListItem>Enter your password followed by enter; this will not be echoed on the screen.</ListItem>
-                    <Code block color="gray.2">password: </Code>
+                    <Code block>password: </Code>
                     <ListItem>If you have connected successfully, you will see something like the following:</ListItem>
-                    <Code block color="gray.2">[hpcdemo@clavis1 ~]$ </Code>
+                    <Code block>[hpcdemo@clavis1 ~]$ </Code>
                 </List>
             </Card>
 

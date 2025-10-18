@@ -1,13 +1,21 @@
 @import url("https://fonts.googleapis.com/css?family=Comfortaa:300,400,700");
 
+/* Card Overrides */
 .card {
   border: calc(0.0625rem * var(--mantine-scale)) solid var(--paper-border-color);
   margin: 20px;
   --paper-radius: var(--mantine-radius-md);
 }
 .cardSection {
-  border-bottom: calc(0.0625rem * var(--mantine-scale)) solid;
+  border-bottom: calc(0.0625rem * var(--mantine-scale)) solid var(--paper-border-color);
+  margin-bottom: 20px;
   padding: 10px;
+}
+
+/* Color Overrides */
+.code {
+  color: #000000;
+  --code-bg: var(--mantine-color-gray-2);
 }
 
 .headerGroup {
