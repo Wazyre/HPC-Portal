@@ -13,6 +13,7 @@ import TicketPortal from "./views/TicketPortal";
 import StorageStats from "./views/StorageStats";
 import ClusterStats from "./views/ClusterStats";
 import TicketReply from "./views/TicketReply";
+import FileManagement from "./views/FileManagement";
 
 export const router = createBrowserRouter([
     { index: true, Component: Login},
@@ -24,7 +25,7 @@ export const router = createBrowserRouter([
                 children: [
                     {path: "ssh", Component: AccessSSH},
                     {path: "modules", Component: Modules},
-                    {path: "fmgmt", Component: Dashboard},
+                    {path: "fmgmt", Component: FileManagement},
                     {path: "jobsub", Component: Dashboard},
                     {path: "cmds", Component: Dashboard},
                 ]
