@@ -70,7 +70,7 @@ const Login = () => {
                                 Cancel
                             </Button>
                             <Button loading={isLoading} size="xs" type="submit" mt="md" >
-                                Submit
+                                Login
                             </Button>
                         </Group>
                     </form>

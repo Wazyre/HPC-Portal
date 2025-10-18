@@ -7,6 +7,7 @@ import StarterKit from '@tiptap/starter-kit';
 import {Placeholder} from '@tiptap/extensions';
 import { useEffect, useState } from "react";
 import Comment from "../components/comment";
+import { useVerifyUser } from "../utils/useVerifyUser";
 
 const dayNames = ['Sun', 'Mon', 'Tues', 'Wed', 'Thu', 'Fri', 'Sat'];
 
@@ -55,6 +56,8 @@ const TicketReply = () => {
         return tempComments;
         
     };
+
+    useVerifyUser();
 
     useEffect(() => {
         if(isSuccess) {
