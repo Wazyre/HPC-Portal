@@ -48,7 +48,7 @@ const TicketTable = ({tickets, activeTab, filter}: ticketTableProps) => {
                         <TableTd>{ticket.subject}</TableTd>
                         <TableTd>{getDateString(ticket.createdAt)}</TableTd>
                         <TableTd>
-                            <Pill>{ticket.status.toUpperCase()}</Pill>
+                            <Pill tt="capitalize">{ticket.status}</Pill>
                         </TableTd>
                         <TableTd>
                             <Menu width={100}>

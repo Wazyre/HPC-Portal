@@ -112,7 +112,7 @@ const TicketPortal = () => {
                     <GridCol span={3}>
                         <Text>Support Tickets</Text>
                     </GridCol>
-                    <GridCol offset={3} span={2}>
+                    <GridCol offset={3} span="auto">
                         <Tabs value={activeTab} onChange={(value) => setActiveTab(value!)} color="ikarus-blue" variant="pills">
                             <TabsList>
                                 <TabsTab value="all">All</TabsTab>
@@ -121,7 +121,7 @@ const TicketPortal = () => {
                             </TabsList>
                         </Tabs>
                     </GridCol>
-                    <GridCol span={2}>
+                    <GridCol span="auto">
                         <TextInput 
                             placeholder="Search..."
                             leftSection={<IconSearch/>}
