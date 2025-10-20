@@ -8,6 +8,7 @@
 }
 .cardSection {
   border-bottom: calc(0.0625rem * var(--mantine-scale)) solid var(--paper-border-color);
+  font-weight: 700;
   margin-bottom: 20px;
   padding: 10px;
 }

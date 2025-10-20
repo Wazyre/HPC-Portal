@@ -11,14 +11,14 @@ const UsefulCommands = () => {
                 <Text mt={10}>Below is an example of IKARUS's command-line interface using the terminal program MAC OS Terminal:</Text>
                 <Image src={cmdImgs[0]}/>
 
-                <Text>As with any operating systems, the filesystem is based around files and directories. Linux is no exception to this and uses several commands for the user to navigate around its filesystem. When you type a path starting with a slash (/), then the root of the file tree is assumed. If you don't start your path with a slash, then the current directory is the assumed starting point.</Text>
+                <Text mt={10}>As with any operating systems, the filesystem is based around files and directories. Linux is no exception to this and uses several commands for the user to navigate around its filesystem. When you type a path starting with a slash (/), then the root of the file tree is assumed. If you don't start your path with a slash, then the current directory is the assumed starting point.</Text>
                 <Text>Files on Linux are case-sensitive. This means that FILE1 is different from file1, and “/etc/hosts” are different from “/etc/Hosts”. Everything on Linux is a file. A directory is a special kind of file, but it is still a case-sensitive file. Each terminal window, any hard disk or partition, and any process are all represented somewhere in the file system as a file.</Text>
             </Card>
 
             <Card>
                 <CardSection>Useful CLI Commands</CardSection>
-                <Text mt={20} fw={700} td="underline">Command “pwd”</Text>
-                <Text>On the command line “pwd” (or print working directory) displays the current directory you are in. This would appear as:</Text>
+                <Text fw={700} td="underline">Command “pwd”</Text>
+                <Text>On the command line <Box component="strong" >"pwd"</Box> (or print working directory) displays the current directory you are in. This would appear as:</Text>
                 <Image src={cmdImgs[1]}/>
                 <Divider mt={10}/>
 
@@ -41,12 +41,12 @@ const UsefulCommands = () => {
                 <Text>This command lists the contents of a directory, as shown below</Text>
                 <Image src={cmdImgs[5]}/>
                 
-                <Text mt={20}>The command “ls” has several options:</Text>
+                <Text mt={20}>The command <Box component="strong" >"ls"</Box> has several options:</Text>
                 <List>
-                    <ListItem><Box component="strong" >ls -l</Box> shows a long listing with more information</ListItem>
-                    <ListItem><Box component="strong" >ls -a</Box> shows all files including those that are hidden</ListItem>
-                    <ListItem><Box component="strong" >ls -la</Box> shows a combination of the options above</ListItem>
-                    <ListItem><Box component="strong" >ls *(file type)</Box> shows all files with that file type (e.g.: ls *.py will show all python files)</ListItem>
+                    <ListItem><Box component="strong" >ls -l: </Box>Shows a long listing with more information</ListItem>
+                    <ListItem><Box component="strong" >ls -a: </Box>Shows all files including those that are hidden</ListItem>
+                    <ListItem><Box component="strong" >ls -la: </Box>Shows a combination of the options above</ListItem>
+                    <ListItem><Box component="strong" >ls *(file type): </Box>Shows all files with that file type (e.g.: ls *.py will show all python files)</ListItem>
                 </List>
 
                 <Text mt={10} fw={700}>Example 1:</Text>
@@ -126,7 +126,7 @@ const UsefulCommands = () => {
                 {/* ------------------------------------ */}
 
                 <Text mt={20} fw={700} td="underline">Command "tac"</Text>
-                <Text>Works the same as the command “cat” but will show you the file backwards:</Text>
+                <Text>Works the same as the command <Box component="strong" >"cat"</Box> but will show you the file backwards:</Text>
                 <Image src={cmdImgs[24]}/>
                 <Divider mt={10}/>
                 
@@ -148,11 +148,11 @@ const UsefulCommands = () => {
                 {/* ------------------------------------ */}
 
                 <Text mt={20} fw={700} td="underline">Command "head"</Text>
-                <Text>In general, this command is used to show the first ten lines of a file. The command “head” has several options:</Text>
+                <Text>In general, this command is used to show the first ten lines of a file. The command <Box component="strong" >"head"</Box> has several options:</Text>
                 <List>
-                    <ListItem><Box component="strong" >{"head -n <number>: "}</Box>{"display the first <number> lines"}</ListItem>
-                    <ListItem><Box component="strong" >{"head -c <number>: "}</Box>{"display the first <number> bytes"}</ListItem>
-                    <ListItem><Box component="strong" >head -q: </Box>display the headers for multiple files sequentially</ListItem>
+                    <ListItem><Box component="strong" >{"head -n <number>: "}</Box>{"Display the first <number> lines"}</ListItem>
+                    <ListItem><Box component="strong" >{"head -c <number>: "}</Box>{"Display the first <number> bytes"}</ListItem>
+                    <ListItem><Box component="strong" >head -q: </Box>Display the headers for multiple files sequentially</ListItem>
                 </List>
                 <Image src={cmdImgs[27]}/>
                 <Divider mt={10}/>
@@ -160,13 +160,13 @@ const UsefulCommands = () => {
                 {/* ------------------------------------ */}
 
                 <Text mt={20} fw={700} td="underline">Command "tail"</Text>
-                <Text>Like the command <Box component="strong" >head</Box> but this time it will show the last ten lines of the file by default. They share the same option but in command <Box component="strong" >tail</Box> other options are available:</Text>
+                <Text>Like the command <Box component="strong" >"head"</Box> but this time it will show the last ten lines of the file by default. They share the same option but in command <Box component="strong" >tail</Box> other options are available:</Text>
                 <Image src={cmdImgs[28]}/>
 
-                <List>
-                    <ListItem><Box component="strong" >tail -f: </Box>continuously monitors a file for new data and displays any appended lines in real-time. This is highly useful for observing live log files.</ListItem>
+                <List mt={20}>
+                    <ListItem><Box component="strong" >tail -f: </Box>Continuously monitors a file for new data and displays any appended lines in real-time. This is highly useful for observing live log files</ListItem>
                     <Code block>[hpcdemo@clavis2 ~]$ tail -f /var/log/syslog</Code>
-                    <ListItem><Box component="strong" >tail -F: </Box>like -f but also handles file rotations (when a log file is renamed and a new one is created). It will attempt to reopen the file by name if it detects that the original file has been replaced.</ListItem>
+                    <ListItem><Box component="strong" >tail -F: </Box>Like -f but also handles file rotations (when a log file is renamed and a new one is created). It will attempt to reopen the file by name if it detects that the original file has been replaced</ListItem>
                     <Code block>[hpcdemo@clavis2 ~]$ tail -F /var/log/apache2/access.log</Code>
                 </List>
 
@@ -191,6 +191,73 @@ const UsefulCommands = () => {
                 
                 {/* ------------------------------------ */}
 
+                <Text mt={20} fw={700} td="underline">Command "find"</Text>
+                <Text>This command is very useful to find files, more options are provided on the command line by typing <Box component="strong" >"man find"</Box>, next are some examples of these options that are commenly used:</Text>
+
+                <List>
+                    <ListItem mt={10}>Find a directory and its contents</ListItem>
+                    <Image src={cmdImgs[29]} />
+                    <ListItem mt={10}>Find all files with “.py” extension</ListItem>
+                    <Image src={cmdImgs[30]} />
+                </List>
+                <Divider mt={10} />
+
+                {/* ------------------------------------ */}
+
+                <Text mt={20} fw={700} td="underline">Command "grep"</Text>
+                <Text>The <Box component="strong" >"grep"</Box> filter is famous among Linux users. The most common use of <Box component="strong" >"grep"</Box> is to filter lines of text containing (or not containing) a certain string.</Text>
+                <Image src={cmdImgs[31]} />
+                <Text mt={10}>As with most Linux commands, there are also many useful options that will go with each command and <Box component="strong" >"grep"</Box> is certainly no exception here</Text>
+                
+                <List>
+                    <ListItem><Box component="strong" >-i: </Box>Search in a case insensitive way</ListItem>
+                    <ListItem><Box component="strong" >-r: </Box>Search recursively down any directories too</ListItem>
+                    <ListItem><Box component="strong" >-v: </Box>Search for everything excluding “text”</ListItem>
+                </List>
+                <Code block>[hpcdemo@clavis2 ~]$ grep -i “text” /directory_name/file_name</Code>
+                <Divider mt={10} />
+
+                {/* ------------------------------------ */}
+
+                <Text mt={20} fw={700} td="underline">Command "wc"</Text>
+                <Text>Counting words, lines, and characters are easily done with this command, as shown below:</Text>
+                <Image src={cmdImgs[32]} />
+            </Card>
+
+            <Card>
+                <CardSection>Other Commands</CardSection>
+                <Text fw={700} td="underline">Command "date"</Text>
+                <Text>Display the date, time, time zone, and more.</Text>
+                <Image src={cmdImgs[33]} />
+                <Divider mt={10} />
+
+                {/* ------------------------------------ */}
+
+                <Text mt={20} fw={700} td="underline">Command "cal"</Text>
+                <Text>Displays the current month, with the current day highlighted.</Text>
+                <Image src={cmdImgs[34]} />
+                <Divider mt={10} />
+
+                {/* ------------------------------------ */}
+
+                <Text mt={20} fw={700} td="underline">Command "time"</Text>
+                <Text>Displays how long it takes to execute a command. The <Box component="strong" >"ls"</Box> command takes only a little time.</Text>
+                <Image src={cmdImgs[35]} />
+                <Divider mt={10} />
+
+                {/* ------------------------------------ */}
+
+                <Text mt={20} fw={700} td="underline">Command "sleep"</Text>
+                <Text>This command is sometimes used within the SHELL scripts to wait number of seconds. This example shows a five-second sleep.</Text>
+                <Code block>[hpcdemo@clavis2 ~]$ sleep 5</Code>
+                <Divider mt={10} />
+
+                {/* ------------------------------------ */}
+
+                <Text mt={20} fw={700} td="underline">Command "sort"</Text>
+                <Text>Sorts lines of the text files. By default, the output will be shown in screen page screen but this can be piped to another file.</Text>
+                <Code block>[hpcdemo@clavis2 ~]$ sort myfile.txt</Code>
+                <Code block>{"[hpcdemo@clavis2 ~]$ sort file.txt >> sorted_file.txt"}</Code>
             </Card>
 
         </Container>

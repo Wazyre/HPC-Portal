@@ -9,33 +9,34 @@ import cmdImg5 from './command-05.png';
 import cmdImg6 from './command-06.png';
 import cmdImg7 from './command-07.png';
 import cmdImg8 from './command-08.png';
-import cmdImg9 from './command-09.png';
-import cmdImg10 from './command-10.png';
-import cmdImg11 from './command-11.png';
-import cmdImg12 from './command-12.png';
-import cmdImg13 from './command-13.png';
-import cmdImg14 from './command-14.png';
-import cmdImg15 from './command-15.png';
-import cmdImg16 from './command-16.png';
-import cmdImg17 from './command-17.png';
-import cmdImg18 from './command-18.png';
-import cmdImg19 from './command-19.png';
-import cmdImg20 from './command-20.png';
-import cmdImg21 from './command-21.png';
-import cmdImg22 from './command-22.png';
-import cmdImg23 from './command-23.png';
-import cmdImg24 from './command-24.png';
-import cmdImg25 from './command-25.png';
-import cmdImg26 from './command-26.png';
-import cmdImg27 from './command-27.png';
-import cmdImg28 from './command-28.png';
-import cmdImg29 from './command-29.png';
-import cmdImg30 from './command-30.png';
-import cmdImg31 from './command-31.png';
-import cmdImg32 from './command-32.png';
-import cmdImg33 from './command-33.png';
-import cmdImg34 from './command-34.png';
-import cmdImg35 from './command-35.png';
+import cmdImg9 from './command-99.png';
+import cmdImg10 from './command-09.png';
+import cmdImg11 from './command-10.png';
+import cmdImg12 from './command-11.png';
+import cmdImg13 from './command-12.png';
+import cmdImg14 from './command-13.png';
+import cmdImg15 from './command-14.png';
+import cmdImg16 from './command-15.png';
+import cmdImg17 from './command-16.png';
+import cmdImg18 from './command-17.png';
+import cmdImg19 from './command-18.png';
+import cmdImg20 from './command-19.png';
+import cmdImg21 from './command-20.png';
+import cmdImg22 from './command-21.png';
+import cmdImg23 from './command-22.png';
+import cmdImg24 from './command-23.png';
+import cmdImg25 from './command-24.png';
+import cmdImg26 from './command-25.png';
+import cmdImg27 from './command-26.png';
+import cmdImg28 from './command-27.png';
+import cmdImg29 from './command-28.png';
+import cmdImg30 from './command-29.png';
+import cmdImg31 from './command-30.png';
+import cmdImg32 from './command-31.png';
+import cmdImg33 from './command-32.png';
+import cmdImg34 from './command-33.png';
+import cmdImg35 from './command-34.png';
+import cmdImg36 from './command-35.png';
 
 export const cmdImgs = [
     cmdImg1,
@@ -72,5 +73,6 @@ export const cmdImgs = [
     cmdImg32,
     cmdImg33,
     cmdImg34,
-    cmdImg35
+    cmdImg35,
+    cmdImg36
 ];
