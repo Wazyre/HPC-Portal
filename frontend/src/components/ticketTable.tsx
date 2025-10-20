@@ -25,6 +25,10 @@ const TicketTable = ({tickets, activeTab, filter}: ticketTableProps) => {
         const tempRows = tickets.map((ticket) => {
             // Search filter for name, email, or subject. Also matches to type of status
             if ((filter === '' || ticket.name.toLowerCase().includes(filter) || ticket.email.toLowerCase().includes(filter) || ticket.subject.toLowerCase().includes(filter)) && (activeTab === 'all' || activeTab === ticket.status.toLowerCase())) {
+                let name = ticket.name; // Because ticket is read-only
+                if (ticket.id === 3) {
+                    name = 'Tester for Ticket Viewing'
+                }
                 return (
                     <TableTr key={ticket.id}>
                         <TableTd>
@@ -42,7 +46,7 @@ const TicketTable = ({tickets, activeTab, filter}: ticketTableProps) => {
                         </TableTd>
                         <TableTd>{'#'+ticket.id}</TableTd>
                         <TableTd>
-                            {ticket.name}
+                            {name}
                             <Text fz={12} c="gray.7">{ticket.email}</Text>
                         </TableTd>
                         <TableTd>{ticket.subject}</TableTd>
