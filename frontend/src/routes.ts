@@ -14,6 +14,7 @@ import StorageStats from "./views/StorageStats";
 import ClusterStats from "./views/ClusterStats";
 import TicketReply from "./views/TicketReply";
 import FileManagement from "./views/FileManagement";
+import UsefulCommands from "./views/UsefulCommands";
 
 export const router = createBrowserRouter([
     { index: true, Component: Login},
@@ -27,7 +28,7 @@ export const router = createBrowserRouter([
                     {path: "modules", Component: Modules},
                     {path: "fmgmt", Component: FileManagement},
                     {path: "jobsub", Component: Dashboard},
-                    {path: "cmds", Component: Dashboard},
+                    {path: "cmds", Component: UsefulCommands},
                 ]
             },
             {path: "/clusters",

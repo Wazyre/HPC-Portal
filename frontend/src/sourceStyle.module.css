@@ -59,6 +59,12 @@
   color: var(--mantine-color-ikarus-blue-8);
 }
 
+/* Images */
+.img {
+  max-width: 600px;
+  border-radius: var(--mantine-radius-xs);
+}
+
 /* Theme Mixins */
 .dark {
   @mixin dark {
