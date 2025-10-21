@@ -52,7 +52,14 @@ const TicketTable = ({tickets, activeTab, filter}: ticketTableProps) => {
                         <TableTd>{ticket.subject}</TableTd>
                         <TableTd>{getDateString(ticket.createdAt)}</TableTd>
                         <TableTd>
-                            <Pill tt="capitalize">{ticket.status}</Pill>
+                            <Pill 
+                                tt="capitalize"
+                                fw={700}
+                                c={ticket.status === 'open' ? 'yellow.8' : 'green.8'}
+                                bg={ticket.status === 'open' ? 'yellow.1' : 'green.1'}
+                            >
+                                {ticket.status}
+                            </Pill>
                         </TableTd>
                         <TableTd>
                             <Menu width={100}>

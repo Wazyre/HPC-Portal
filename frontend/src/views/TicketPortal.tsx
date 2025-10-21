@@ -87,7 +87,7 @@ const TicketPortal = () => {
                     <Card>
                         <Group>
                             <ThemeIcon size="xl" color="yellow.1">
-                                <IconHourglassEmpty color="#f9a83f"/>
+                                <IconHourglassEmpty color="yellow.8"/>
                             </ThemeIcon>
                             <Text fw={700}>{openTickets}</Text>
                             <Text>Open Tickets</Text>
@@ -98,7 +98,7 @@ const TicketPortal = () => {
                     <Card>
                         <Group>
                             <ThemeIcon size="xl" color="green.1">
-                                <IconCircleCheck color="#4ec990"/>
+                                <IconCircleCheck color="green.8"/>
                             </ThemeIcon>
                             <Text fw={700}>{closedTickets}</Text>
                             <Text>Solved Tickets</Text>

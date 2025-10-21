@@ -1,4 +1,4 @@
-import { Button, Card, CardSection, Container, Divider, Grid, GridCol, Group, Loader, Pill, Stack, Table, TableTbody, TableTd, TableTr, Text } from "@mantine/core";
+import { Button, Card, CardSection, Container, Divider, Grid, GridCol, Group, Loader, Pill, Radio, RadioGroup, Stack, Table, TableTbody, TableTd, TableTr, Text } from "@mantine/core";
 import { useGetCommentsQuery, useGetTicketQuery } from "../apis/authorizeApi";
 import { useParams } from "react-router";
 import { RichTextEditor, RichTextEditorContent } from '@mantine/tiptap';
@@ -23,6 +23,7 @@ const formatAMPM = (date: Date) => {
 
 const TicketReply = () => {
     const [ticketDate, setTicketDate] = useState<string>('');
+    const [status, setStatus] = useState<string>('open');
     const [commentRows, setCommentRows] = useState<(React.JSX.Element | undefined)[]>([]);
     const id = useParams().tid;
     const {data: ticket, isLoading, isSuccess} = useGetTicketQuery(parseInt(id!));
@@ -62,6 +63,7 @@ const TicketReply = () => {
     useEffect(() => {
         if(isSuccess) {
             setTicketDate(formatAMPM(new Date(ticket!.createdAt)));
+            setStatus(ticket.status);
         }
     }, [ticket]);
 
@@ -95,7 +97,22 @@ const TicketReply = () => {
                         </RichTextEditor>
                         </Card>
                         
-                        <Group justify="flex-start" mt="md">
+                        <Group justify="space-between" mt="md">
+                            <Group>
+                                <Text>Status:</Text>
+                                <RadioGroup
+                                    value={status}
+                                    onChange={setStatus}
+                                    name="ticketStatus"
+                                    
+                                >
+                                    <Group>
+                                        <Radio value="open" label="Open"/>
+                                        <Radio value="pending" label="Pending"/>
+                                        <Radio value="solved" label="Solved"/>
+                                    </Group>
+                                </RadioGroup>
+                            </Group>
                             <Button type="submit" color="ikarus-blue.9">Reply</Button>
                         </Group>
                     </Card>
@@ -133,7 +150,14 @@ const TicketReply = () => {
                                 </TableTr>
                                 <TableTr>
                                     <TableTd>Status</TableTd>
-                                    <TableTd><Pill>{ticket!.status.toUpperCase()}</Pill></TableTd>
+                                    <TableTd><Pill
+                                        tt="capitalize"
+                                        fw={700}
+                                        c={ticket!.status === 'open' ? 'yellow.8' : 'green.8'}
+                                        bg={ticket!.status === 'open' ? 'yellow.1' : 'green.1'}
+                                    >
+                                        {ticket!.status}
+                                    </Pill></TableTd>
                                 </TableTr>
                             </TableTbody>
                         </Table>
