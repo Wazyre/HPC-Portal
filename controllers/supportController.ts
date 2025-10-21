@@ -82,8 +82,19 @@ export const postComment = expressAsyncHandler(async (req, res) => {
             ticketId: parseInt(req.body.ticketId!),
             authorId: parseInt(req.body.authorId!)
         }
-    }).then((comment: CommentModel | null) => {
-        res.json(comment);
+    }).then(async (comment: CommentModel | null) => {
+        await prisma.support.update({
+            where: {
+                id: parseInt(req.body.ticketId!)
+            },
+            data: {
+                status: req.body.status
+            }
+        }).then(() => {
+            res.json(comment);
+        }).catch((err: any) => {
+            res.status(400).json({ticketNotUpdated: "Problem with updating ticket status", err});
+        });
     }).catch((err: any) => {
         res.status(400).json({commentsNotSubmitted: "Problem with submitting new comment", err});
     });

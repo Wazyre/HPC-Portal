@@ -1,13 +1,13 @@
-import { Button, Card, CardSection, Container, Divider, Grid, GridCol, Group, Loader, Pill, Radio, RadioGroup, Stack, Table, TableTbody, TableTd, TableTr, Text } from "@mantine/core";
-import { useGetCommentsQuery, useGetTicketQuery } from "../apis/authorizeApi";
+import { Button, Card, CardSection, Container, Divider, Grid, GridCol, Group, Loader, Pill, Radio, RadioGroup, Stack, Table, TableTbody, TableTd, TableTr, Text, Textarea } from "@mantine/core";
+import { useGetCommentsQuery, useGetTicketQuery, usePostCommentMutation } from "../apis/authorizeApi";
 import { useParams } from "react-router";
-import { RichTextEditor, RichTextEditorContent } from '@mantine/tiptap';
-import { useEditor } from '@tiptap/react';
-import StarterKit from '@tiptap/starter-kit';
-import {Placeholder} from '@tiptap/extensions';
 import { useEffect, useState } from "react";
 import Comment from "../components/comment";
 import { useVerifyUser } from "../utils/useVerifyUser";
+import { useForm } from "@mantine/form";
+import type { CommentType } from "../utils/types";
+import { useAppSelector } from "../app/hooks";
+import { selectUserId } from "../slices/authorizationSlice";
 
 const dayNames = ['Sun', 'Mon', 'Tues', 'Wed', 'Thu', 'Fri', 'Sat'];
 
@@ -25,14 +25,20 @@ const TicketReply = () => {
     const [ticketDate, setTicketDate] = useState<string>('');
     const [status, setStatus] = useState<string>('open');
     const [commentRows, setCommentRows] = useState<(React.JSX.Element | undefined)[]>([]);
-    const id = useParams().tid;
-    const {data: ticket, isLoading, isSuccess} = useGetTicketQuery(parseInt(id!));
-    const {data: comments, isLoading: isLoadingComments, isSuccess: isSuccessComments} = useGetCommentsQuery(parseInt(id!));
+    const authorId = useAppSelector(selectUserId);
+    const ticketId = useParams().tid;
 
-    const editor = useEditor({
-        extensions: [StarterKit, Placeholder.configure({ placeholder: 'Type your reply here...' })],
-        
-    });
+    const {data: ticket, isLoading, isSuccess} = useGetTicketQuery(parseInt(ticketId!));
+    const {data: comments, isLoading: isLoadingComments, isSuccess: isSuccessComments} = useGetCommentsQuery(parseInt(ticketId!));
+    const [postComment, {isLoading: isLoadingPosting} ] = usePostCommentMutation();
+
+    const form = useForm({
+            mode: 'uncontrolled',
+            initialValues: {comment: '', status: ''},
+            validate: {
+                comment: (value) => (/^(?!\s*$).+/.test(value) ? null : 'Please enter a comment first.')
+            },
+        });
 
     const getDateString = (dateString: string) => {
         const date = new Date(dateString);
@@ -58,12 +64,39 @@ const TicketReply = () => {
         
     };
 
+    const handleSubmit = async(values: typeof form.values) => {
+        const newComment: CommentType = {
+            id: -1,
+            comment: values.comment,
+            createdAt: new Date().toISOString(),
+            ticketId: parseInt(ticketId!),
+            authorId: authorId,
+            author: undefined
+        }
+        try {
+            await postComment(newComment)
+            .then(() => {
+                window.location.reload();
+                
+            })
+            // form.reset();
+        } catch (err) {
+            console.error('Failed to submit: ', err)
+            // notifications.show({
+            //     message: 'Ticket failed to send, please try again.',
+            //     color: 'red',
+            //     position: 'top-center'
+            // });
+        }
+    }
+
     useVerifyUser();
 
     useEffect(() => {
         if(isSuccess) {
             setTicketDate(formatAMPM(new Date(ticket!.createdAt)));
             setStatus(ticket.status);
+            form.setFieldValue('status', ticket.status);
         }
     }, [ticket]);
 
@@ -91,30 +124,35 @@ const TicketReply = () => {
                             <Text size="xs" c="gray">{ticketDate}</Text>
                         </CardSection>
                         {commentRows}
-                        <Card>
-                            <RichTextEditor editor={editor}>
-                            <RichTextEditorContent/>
-                        </RichTextEditor>
-                        </Card>
-                        
-                        <Group justify="space-between" mt="md">
-                            <Group>
-                                <Text>Status:</Text>
-                                <RadioGroup
-                                    value={status}
-                                    onChange={setStatus}
-                                    name="ticketStatus"
-                                    
-                                >
-                                    <Group>
-                                        <Radio value="open" label="Open"/>
-                                        <Radio value="pending" label="Pending"/>
-                                        <Radio value="solved" label="Solved"/>
-                                    </Group>
-                                </RadioGroup>
+                        <form onSubmit={form.onSubmit(handleSubmit)}>
+                            <Textarea
+                                mt={20}
+                                styles={{input: {height: 200}}}
+                                key={form.key('comment')}
+                                placeholder="Type your reply here..."
+                                {...form.getInputProps('comment')}
+                            />
+                            
+                            <Group justify="space-between" mt="md">
+                                <Group>
+                                    <Text>Status:</Text>
+                                    <RadioGroup
+                                        key={form.key('status')}
+                                        value={status}
+                                        onChange={setStatus}
+                                        name="ticketStatus"
+                                    >
+                                        <Group>
+                                            <Radio key='radio1' value="open" label="Open" {...form.getInputProps('status', {type: 'checkbox'})}/>
+                                            <Radio key='radio2' value="pending" label="Pending" {...form.getInputProps('status', {type: 'checkbox'})}/>
+                                            <Radio key='radio3' value="solved" label="Solved" {...form.getInputProps('status', {type: 'checkbox'})}/>
+                                        </Group>
+                                    </RadioGroup>
+                                </Group>
+                                <Button loading={isLoadingPosting} type="submit" color="ikarus-blue.9">Reply</Button>
                             </Group>
-                            <Button type="submit" color="ikarus-blue.9">Reply</Button>
-                        </Group>
+                        </form>
+                        
                     </Card>
                 </GridCol>
                 <GridCol span="content">

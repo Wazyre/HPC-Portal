@@ -34,6 +34,7 @@ export interface AuthorizedUser {
 
 interface AuthorizationState {
     loggedIn: boolean,
+    id: number,
     accessToken: string,
     tokenExpiryDate: string,
     name: string,
@@ -44,6 +45,7 @@ interface AuthorizationState {
 
 const initialState: AuthorizationState = {
     loggedIn: false,
+    id: -1,
     accessToken: localStorage.getItem('authToken') || '',
     tokenExpiryDate: localStorage.getItem('tokenExpiryDate') || '',
     name: '',
@@ -73,6 +75,7 @@ export const authorizationSlice = createSlice({
         },
         setAuthorizedUser: (state, action: PayloadAction<AuthorizedUser>) => {
             state.loggedIn = true;
+            state.id = action.payload.id;
             state.accessToken = action.payload.accessToken;
             localStorage.setItem('authToken', action.payload.accessToken);
 
@@ -122,6 +125,7 @@ export const authorizationSlice = createSlice({
 export const {setLoggedIn, setAccessToken, setTokenExpiryDate, setRole, setAuthorizedUser, clearLogInData} = authorizationSlice.actions;
 
 export const selectIsLoggedIn = (state: RootState) => state.authorization.loggedIn;
+export const selectUserId = (state: RootState) => state.authorization.id;
 export const selectAccessToken = (state: RootState) => state.authorization.accessToken;
 export const selectTokenExpiryDate = (state: RootState) => state.authorization.tokenExpiryDate;
 export const selectName = (state: RootState) => state.authorization.name;
