@@ -7,7 +7,7 @@ import { useVerifyUser } from "../utils/useVerifyUser";
 import { useForm } from "@mantine/form";
 import type { CommentWithStatusType } from "../utils/types";
 import { useAppSelector } from "../app/hooks";
-import { selectUserId } from "../slices/authorizationSlice";
+import { selectRole, selectUserId } from "../slices/authorizationSlice";
 
 const dayNames = ['Sun', 'Mon', 'Tues', 'Wed', 'Thu', 'Fri', 'Sat'];
 
@@ -26,6 +26,7 @@ const TicketReply = () => {
     const [status, setStatus] = useState<string>('open');
     const [commentRows, setCommentRows] = useState<(React.JSX.Element | undefined)[]>([]);
     const authorId = useAppSelector(selectUserId);
+    const userRole = useAppSelector(selectRole);
     const ticketId = useParams().tid;
 
     const {data: ticket, isLoading, isSuccess} = useGetTicketQuery(parseInt(ticketId!));
@@ -72,7 +73,7 @@ const TicketReply = () => {
             ticketId: parseInt(ticketId!),
             authorId: authorId,
             author: undefined,
-            status: values.status
+            status: values.status || ticket!.status
         }
         try {
             await postComment(newComment)
@@ -135,21 +136,25 @@ const TicketReply = () => {
                             />
                             
                             <Group justify="space-between" mt="md">
-                                <Group>
-                                    <Text>Status:</Text>
-                                    <RadioGroup
-                                        key={form.key('status')}
-                                        value={status}
-                                        onChange={setStatus}
-                                        name="ticketStatus"
-                                    >
-                                        <Group>
-                                            <Radio key='radio1' value="open" label="Open" {...form.getInputProps('status', {type: 'checkbox'})}/>
-                                            <Radio key='radio2' value="pending" label="Pending" {...form.getInputProps('status', {type: 'checkbox'})}/>
-                                            <Radio key='radio3' value="solved" label="Solved" {...form.getInputProps('status', {type: 'checkbox'})}/>
-                                        </Group>
-                                    </RadioGroup>
-                                </Group>
+                                {userRole === 'admin' ?
+                                    <Group>
+                                        <Text>Status:</Text>
+                                        <RadioGroup
+                                            key={form.key('status')}
+                                            value={status}
+                                            onChange={setStatus}
+                                            name="ticketStatus"
+                                        >
+                                            <Group>
+                                                <Radio key='radio1' value="open" label="Open" {...form.getInputProps('status', {type: 'checkbox'})}/>
+                                                <Radio key='radio2' value="pending" label="Pending" {...form.getInputProps('status', {type: 'checkbox'})}/>
+                                                <Radio key='radio3' value="solved" label="Solved" {...form.getInputProps('status', {type: 'checkbox'})}/>
+                                            </Group>
+                                        </RadioGroup>
+                                    </Group>
+                                    : <></>
+                                }
+                                
                                 <Button loading={isLoadingPosting} type="submit" color="ikarus-blue.9">Reply</Button>
                             </Group>
                         </form>
