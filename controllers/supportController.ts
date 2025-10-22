@@ -6,7 +6,11 @@ const prisma = new PrismaClient();
 
 // Get all tickets from DB
 export const getTickets = expressAsyncHandler(async (req, res) => {
-    await prisma.support.findMany().then((tickets: SupportModel[] | null) => {
+    await prisma.support.findMany({
+        orderBy: {
+            createdAt: 'desc'
+        }
+    }).then((tickets: SupportModel[] | null) => {
         res.json(tickets);
     }).catch((err: any) => {
         res.status(400).json({databaseEmpty: "No tickets exist", err});

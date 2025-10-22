@@ -19,3 +19,5 @@ export interface CommentType {
     authorId: number,
     author: AuthorizedUser | undefined
 }
+
+export type CommentWithStatusType = CommentType & {status: string};

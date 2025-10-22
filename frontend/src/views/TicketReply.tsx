@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import Comment from "../components/comment";
 import { useVerifyUser } from "../utils/useVerifyUser";
 import { useForm } from "@mantine/form";
-import type { CommentType } from "../utils/types";
+import type { CommentWithStatusType } from "../utils/types";
 import { useAppSelector } from "../app/hooks";
 import { selectUserId } from "../slices/authorizationSlice";
 
@@ -65,13 +65,14 @@ const TicketReply = () => {
     };
 
     const handleSubmit = async(values: typeof form.values) => {
-        const newComment: CommentType = {
+        const newComment: CommentWithStatusType = {
             id: -1,
             comment: values.comment,
             createdAt: new Date().toISOString(),
             ticketId: parseInt(ticketId!),
             authorId: authorId,
-            author: undefined
+            author: undefined,
+            status: values.status
         }
         try {
             await postComment(newComment)

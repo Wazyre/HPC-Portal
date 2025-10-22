@@ -3,7 +3,7 @@
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import type { AuthorizedUser, LoginUser } from '../slices/authorizationSlice';
-import { type CommentType, type TicketType } from '../utils/types';
+import { type CommentType, type CommentWithStatusType, type TicketType } from '../utils/types';
 import { type RootState } from '../app/store'
 
 // import type { Authorization } from 
@@ -66,7 +66,7 @@ export const loginApi = createApi({
         getComments: builder.query<CommentType[], number>({
             query: ticketId => `support/comments/${ticketId}`
         }),
-        postComment: builder.mutation<CommentType, CommentType>({
+        postComment: builder.mutation<CommentType, CommentWithStatusType>({
             query: comment => ({
                 url: `/support/comment`,
                 method: 'POST',

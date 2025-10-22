@@ -41,7 +41,7 @@ const TicketPortal = () => {
         if(isSuccess) {
             setAllTickets(tickets);
             setOpenTickets(tickets.filter((ticket: TicketType) => ticket.status === 'open').length);
-            setClosedTickets(tickets.filter((ticket: TicketType) => ticket.status === 'closed').length);
+            setClosedTickets(tickets.filter((ticket: TicketType) => ticket.status === 'solved').length);
             
         }
     }, [tickets])
@@ -87,7 +87,7 @@ const TicketPortal = () => {
                     <Card>
                         <Group>
                             <ThemeIcon size="xl" color="yellow.1">
-                                <IconHourglassEmpty color="yellow.8"/>
+                                <IconHourglassEmpty color="#f38c00"/>
                             </ThemeIcon>
                             <Text fw={700}>{openTickets}</Text>
                             <Text>Open Tickets</Text>
@@ -98,7 +98,7 @@ const TicketPortal = () => {
                     <Card>
                         <Group>
                             <ThemeIcon size="xl" color="green.1">
-                                <IconCircleCheck color="green.8"/>
+                                <IconCircleCheck color="#31a368"/>
                             </ThemeIcon>
                             <Text fw={700}>{closedTickets}</Text>
                             <Text>Solved Tickets</Text>
