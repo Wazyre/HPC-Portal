@@ -1,4 +1,4 @@
-import { Breadcrumbs, Card, Container, Grid, GridCol, Group, Loader, Space, Stack, Tabs, TabsList, TabsTab, Text, TextInput, ThemeIcon, Title } from "@mantine/core";
+import { Breadcrumbs, Card, Container, Grid, GridCol, Group, Loader, Pagination, Space, Stack, Tabs, TabsList, TabsTab, Text, TextInput, ThemeIcon, Title } from "@mantine/core";
 import { IconCircleCheck, IconHourglassEmpty, IconSearch, IconTicket } from "@tabler/icons-react";
 import { useGetTicketsQuery } from "../apis/authorizeApi";
 import { useEffect, useState } from "react";
@@ -21,6 +21,7 @@ const TicketPortal = () => {
     const [closedTickets, setClosedTickets] = useState<number>(0);
     const [searchValue, setSearchValue] = useState<string>('');
     const [activeTab, setActiveTab] = useState<string>('all');
+    const [activePage, setActivePage] = useState(1)
     const userRole = useAppSelector(selectRole);
 
     const navigate = useNavigate();
@@ -129,11 +130,11 @@ const TicketPortal = () => {
                             onChange={(e) => setSearchValue(e.currentTarget.value)}
                         />
                     </GridCol>
-                    <GridCol>
-                        
-                    </GridCol>
                 </Grid>
-                <TicketTable tickets={allTickets} activeTab={activeTab} filter={searchValue.toLowerCase()}/>
+                <TicketTable tickets={allTickets.slice((activePage*15)-15, activePage*15)} activeTab={activeTab} filter={searchValue.toLowerCase()}/>
+                <Group justify="center" mt={20}>
+                    <Pagination value={activePage} onChange={setActivePage} total={Math.ceil(allTickets.length/15)}/>
+                </Group>
             </Card>
         </Container>
     );
