@@ -2,7 +2,7 @@ import { Checkbox, Menu, MenuDropdown, MenuItem, MenuTarget, Pill, Table, TableT
 import type { TicketType } from "../utils/types";
 import { useEffect, useState } from "react";
 import React from "react";
-import { IconDotsVertical, IconEye, IconTrash } from "@tabler/icons-react";
+import { IconDotsVertical, IconEye } from "@tabler/icons-react";
 import { Link } from "react-router";
 
 interface ticketTableProps {
@@ -74,7 +74,7 @@ const TicketTable = ({tickets, activeTab, filter}: ticketTableProps) => {
                                     >
                                         View
                                     </MenuItem>
-                                    <MenuItem leftSection={<IconTrash size={12}/>}>Delete</MenuItem>
+                                    {/* <MenuItem leftSection={<IconTrash size={12}/>}>Delete</MenuItem> */}
                                 </MenuDropdown>
                             </Menu>
                         </TableTd>
