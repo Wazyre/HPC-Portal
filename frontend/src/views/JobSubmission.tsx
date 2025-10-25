@@ -1,4 +1,4 @@
-import { Anchor, Card, CardSection, Code, Container, Divider, List, ListItem, Space, Table, TableTbody, TableTd, TableTh, TableThead, TableTr, Text, Title } from "@mantine/core";
+import { Anchor, Card, CardSection, Code, Container, Divider, List, ListItem, Table, TableTbody, TableTd, TableTh, TableThead, TableTr, Text, Title } from "@mantine/core";
 import { useVerifyUser } from "../utils/useVerifyUser";
 import { Link } from "react-router";
 
@@ -16,7 +16,7 @@ const JobSubmission = () => {
                 <Text >
                     One of the core components of HPC clusters such as IKARUS is the job
                     scheduler. The basic task of the job scheduler is to manage the
-                    allocation of tasks to compute nodes. On IKARUS, <Text component="span" fw={700}>SLURM</Text> 
+                    allocation of tasks to compute nodes. On IKARUS, <Text component="span" fw={700}>SLURM </Text> 
                     (Simple Linux Utility for Resource Management) workload manager is used. It is one of the most common 
                     schedulers used on Supercomputers and HPCs across the world.
                 </Text>
