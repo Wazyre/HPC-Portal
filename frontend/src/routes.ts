@@ -14,8 +14,8 @@ import StorageStats from "./views/StorageStats";
 import ClusterStats from "./views/ClusterStats";
 import TicketReply from "./views/TicketReply";
 import FileManagement from "./views/FileManagement";
-import UsefulCommands from "./views/UsefulCommands";
-import JobSubmission from "./views/JobSubmission";
+import UsefulCommands from "./views/userDocumentation/UsefulCommands";
+import JobSubmission from "./views/userDocumentation/JobSubmission";
 
 export const router = createBrowserRouter([
     { index: true, Component: Login},

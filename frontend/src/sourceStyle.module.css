@@ -66,6 +66,17 @@
   border-radius: var(--mantine-radius-xs);
 }
 
+/* Tables */
+.tableHead {
+  background-color: var(--mantine-color-ikarus-blue-8);
+  color: var(--mantine-color-white);
+  font-weight: 700;
+}
+
+:where([data-mantine-color-scheme="dark"]) .tableHead {
+  color: var(--mantine-color-dark-0);
+}
+
 /* Theme Mixins */
 .dark {
   @mixin dark {
