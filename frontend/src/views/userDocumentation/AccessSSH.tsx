@@ -1,5 +1,5 @@
 import { Anchor, Card, CardSection, Code, Container, List, ListItem, Text, Title } from "@mantine/core";
-import { useVerifyUser } from "../utils/useVerifyUser";
+import { useVerifyUser } from "../../utils/useVerifyUser";
 
 const AccessSSH = () => {
 

@@ -1,7 +1,10 @@
 import { Card, CardSection, Code, Container, Divider, Image, List, ListItem, Text, Title } from "@mantine/core";
 import { cmdImgs } from "../../assets/images/commands";
+import { useVerifyUser } from "../../utils/useVerifyUser";
 
 const UsefulCommands = () => {
+    useVerifyUser();
+
     return (
         <Container fluid>
             <Title order={2}>Useful Commands</Title>

@@ -1,6 +1,6 @@
 import { Anchor, Card, CardSection, Code, Container, Divider, Image, List, ListItem, Space, Text, Title } from "@mantine/core";
-import { moduleImgs } from "../assets/images/documents";
-import { useVerifyUser } from "../utils/useVerifyUser";
+import { moduleImgs } from "../../assets/images/documents";
+import { useVerifyUser } from "../../utils/useVerifyUser";
 
 // Search by module command to goto
 

@@ -1,6 +1,6 @@
 import { Box, Card, CardSection, Code, Container, Divider, Image, List, ListItem, Text, Title } from "@mantine/core";
-import { useVerifyUser } from "../utils/useVerifyUser";
-import { fileMngImgs } from "../assets/images/filemng";
+import { useVerifyUser } from "../../utils/useVerifyUser";
+import { fileMngImgs } from "../../assets/images/filemng";
 
 const FileManagement = () => {
 

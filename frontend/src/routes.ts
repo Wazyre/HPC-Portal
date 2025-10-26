@@ -1,19 +1,21 @@
 import { createBrowserRouter } from "react-router";
 import Layout from "./views/Layout";
 import Dashboard from "./views/Dashboard";
-import AccessSSH from "./views/AccessSSH";
+
 import Support from "./views/Support";
 import ClusResearch from "./views/ClusResearch";
 import ClusProject from "./views/ClusProject";
 import ClusDeveloper from "./views/ClusDeveloper";
-import Modules from "./views/Modules";
 import Login from "./views/Login";
 import Profile from "./views/Profile";
 import TicketPortal from "./views/TicketPortal";
 import StorageStats from "./views/StorageStats";
 import ClusterStats from "./views/ClusterStats";
 import TicketReply from "./views/TicketReply";
-import FileManagement from "./views/FileManagement";
+
+import AccessSSH from "./views/userDocumentation/AccessSSH";
+import Modules from "./views/userDocumentation/Modules";
+import FileManagement from "./views/userDocumentation/FileManagement";
 import UsefulCommands from "./views/userDocumentation/UsefulCommands";
 import JobSubmission from "./views/userDocumentation/JobSubmission";
 
