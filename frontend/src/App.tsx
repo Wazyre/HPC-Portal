@@ -43,7 +43,8 @@ const theme = createTheme({
 		}),
 		Table: Table.extend({
 			classNames: {
-				thead: classes.tableHead
+				thead: classes.tableHead,
+				tr: classes.tableRow
 			}
 		})
 	}

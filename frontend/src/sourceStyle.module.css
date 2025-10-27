@@ -80,6 +80,10 @@
   color: var(--mantine-color-dark-0);
 }
 
+:where([data-mantine-color-scheme="dark"]) .tableRow:where([data-striped="odd"]:nth-of-type(2n+1)):not(.tableHead>.tableRow)  {
+  color: var(--mantine-color-black);
+}
+
 /* Theme Mixins */
 .dark {
   @mixin dark {
