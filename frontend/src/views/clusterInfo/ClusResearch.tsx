@@ -1,9 +1,9 @@
-import { Card, CardSection, Code, Container, Divider, Space, Table, TableTbody, TableTd, TableTh, TableThead, TableTr, Text, Title } from "@mantine/core";
-import { useAppSelector } from "../app/hooks";
+import { Card, CardSection, Code, Container, Divider, Table, TableTbody, TableTd, TableTh, TableThead, TableTr, Text, Title } from "@mantine/core";
+import { useAppSelector } from "../../app/hooks";
 import { useNavigate } from "react-router";
-import { selectRole } from "../slices/authorizationSlice";
+import { selectRole } from "../../slices/authorizationSlice";
 import { useEffect } from "react";
-import { useVerifyUser } from "../utils/useVerifyUser";
+import { useVerifyUser } from "../../utils/useVerifyUser";
 
 // Table data
 const params = [
@@ -48,11 +48,17 @@ const ClusResearch = () => {
                     <Text>Research Cluster</Text>
                 </CardSection>
                 <Text>
-                    The Research cluster is a dedicated partition within IKARUS, utilizing less than 10% of its total resources to support experimental, early-stage or small-scale scientific projects or conducting proof-of-concept simulations. 
+                    The Research cluster is a dedicated partition within IKARUS, utilizing less than 
+                    10% of its total resources to support experimental, early-stage or small-scale 
+                    scientific projects or conducting proof-of-concept simulations. 
                 </Text>
                 <Divider my="md"/>
                 <Text fw={700}>Objective:</Text>
-                <Text>It is aimed to provide a flexible and accessible platform for application development and testing before scaling to production without impacting IKARUS high-priority workloads. </Text>
+                <Text>
+                    It is aimed to provide a flexible and accessible platform for application 
+                    development and testing before scaling to production without impacting IKARUS 
+                    high-priority workloads. 
+                </Text>
             </Card>
 
             <Card>
@@ -62,8 +68,8 @@ const ClusResearch = () => {
                 <Text fz="lg">
                     Integrated Kuwait Advanced Research for Ultrafast Systems (IKARUS) 
                 </Text>
-                <Space/>
-                <Text>Research Cluster</Text>
+
+                <Text mt={20}>Research Cluster</Text>
                 <Table striped stripedColor="gray.2">
                     <TableThead>
                         <TableTr>
@@ -83,7 +89,8 @@ const ClusResearch = () => {
                     <Text>Submit Job</Text>
                 </CardSection>
                 <Text>
-                    To submit a job to "Research" cluster in IKARUS, the “sbatch” file should have the following minimum "#SBATCH" configurations:
+                    To submit a job to "Research" cluster in IKARUS, the “sbatch” file should have the 
+                    following minimum "#SBATCH" configurations:
                 </Text>
                 <Code block>
 {`#!/bin/bash

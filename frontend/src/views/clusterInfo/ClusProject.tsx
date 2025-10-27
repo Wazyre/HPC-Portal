@@ -1,9 +1,9 @@
-import { Card, CardSection, Code, Container, Divider, Space, Table, TableTbody, TableTd, TableTh, TableThead, TableTr, Text, Title } from "@mantine/core";
-import { useAppSelector } from "../app/hooks";
-import { selectRole } from "../slices/authorizationSlice";
+import { Card, CardSection, Code, Container, Divider, Table, TableTbody, TableTd, TableTh, TableThead, TableTr, Text, Title } from "@mantine/core";
+import { useAppSelector } from "../../app/hooks";
+import { selectRole } from "../../slices/authorizationSlice";
 import { useNavigate } from "react-router";
 import { useEffect } from "react";
-import { useVerifyUser } from "../utils/useVerifyUser";
+import { useVerifyUser } from "../../utils/useVerifyUser";
 
 // Table data
 const params = [
@@ -48,11 +48,18 @@ const ClusProject = () => {
                     <Text>Project Cluster</Text>
                 </CardSection>
                 <Text>
-                    The Project cluster is a dedicated partition within IKARUS, utilizing almost 85% of its total resources to support KISR projects (equal-to-project lifespan) or collaborators (limited lifespan) working at other research institutions. Moreover, accounts for the integrated applications will be able to utlize the resources offered by this cluster.
+                    The Project cluster is a dedicated partition within IKARUS, utilizing almost 85% of 
+                    its total resources to support KISR projects (equal-to-project lifespan) or 
+                    collaborators (limited lifespan) working at other research institutions. Moreover, 
+                    accounts for the integrated applications will be able to utlize the resources offered 
+                    by this cluster.
                 </Text>
                 <Divider my="md"/>
                 <Text fw={700}>Objective:</Text>
-                <Text>It is aimed to provide the necessary resources with flexible, accessible platforms for integrated applications, ongoing KISR projects and related workloads. </Text>
+                <Text>
+                    It is aimed to provide the necessary resources with flexible, accessible platforms for 
+                    integrated applications, ongoing KISR projects and related workloads. 
+                </Text>
             </Card>
 
             <Card>
@@ -62,8 +69,8 @@ const ClusProject = () => {
                 <Text fz="lg">
                     Integrated Kuwait Advanced Research for Ultrafast Systems (IKARUS) 
                 </Text>
-                <Space/>
-                <Text>Project Cluster</Text>
+
+                <Text mt={20}>Project Cluster</Text>
                 <Table striped stripedColor="gray.2">
                     <TableThead>
                         <TableTr>
@@ -83,7 +90,8 @@ const ClusProject = () => {
                     <Text>Submit Job</Text>
                 </CardSection>
                 <Text>
-                    To submit a job to "Project" cluster in IKARUS, the “sbatch” file should have the following minimum "#SBATCH" configurations:
+                    To submit a job to "Project" cluster in IKARUS, the “sbatch” file should have the 
+                    following minimum "#SBATCH" configurations:
                 </Text>
                 <Code block>
 {`#!/bin/bash

@@ -1,9 +1,9 @@
-import { Card, CardSection, Code, Container, Divider, Space, Table, TableTbody, TableTd, TableTh, TableThead, TableTr, Text, Title } from "@mantine/core";
-import { useAppSelector } from "../app/hooks";
-import { selectRole } from "../slices/authorizationSlice";
+import { Card, CardSection, Code, Container, Divider, Table, TableTbody, TableTd, TableTh, TableThead, TableTr, Text, Title } from "@mantine/core";
+import { useAppSelector } from "../../app/hooks";
+import { selectRole } from "../../slices/authorizationSlice";
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
-import { useVerifyUser } from "../utils/useVerifyUser";
+import { useVerifyUser } from "../../utils/useVerifyUser";
 
 // TODO check submit job bash instructions
 
@@ -49,11 +49,16 @@ const ClusDeveloper = () => {
                     <Text>Research Cluster</Text>
                 </CardSection>
                 <Text>
-                    The Developer cluster is a dedicated partition within IKARUS, utilizing less than 5% of its total resources to support experimental or small-scale scientific developments and resource assessment tools. 
+                    The Developer cluster is a dedicated partition within IKARUS, utilizing less than 
+                    5% of its total resources to support experimental or small-scale scientific 
+                    developments and resource assessment tools. 
                 </Text>
                 <Divider my="md"/>
                 <Text fw={700}>Objective:</Text>
-                <Text>It is aimed to provide a long run-time platform for application development and testing before scaling to production without impacting IKARUS high-priority workloads. </Text>
+                <Text>
+                    It is aimed to provide a long run-time platform for application development and 
+                    testing before scaling to production without impacting IKARUS high-priority workloads. 
+                </Text>
             </Card>
 
             <Card>
@@ -63,8 +68,8 @@ const ClusDeveloper = () => {
                 <Text fz="lg">
                     Integrated Kuwait Advanced Research for Ultrafast Systems (IKARUS) 
                 </Text>
-                <Space/>
-                <Text>Developer Cluster</Text>
+
+                <Text mt={20}>Developer Cluster</Text>
                 <Table striped stripedColor="gray.2">
                     <TableThead>
                         <TableTr>
@@ -84,7 +89,8 @@ const ClusDeveloper = () => {
                     <Text>Submit Job</Text>
                 </CardSection>
                 <Text>
-                    To submit a job to "Developer" cluster in IKARUS, the “sbatch” file should have the following minimum "#SBATCH" configurations:
+                    To submit a job to "Developer" cluster in IKARUS, the “sbatch” file should have the 
+                    following minimum "#SBATCH" configurations:
                 </Text>
                 <Code block>
 {`#!/bin/bash

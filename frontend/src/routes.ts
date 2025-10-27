@@ -3,9 +3,7 @@ import Layout from "./views/Layout";
 import Dashboard from "./views/Dashboard";
 
 import Support from "./views/Support";
-import ClusResearch from "./views/ClusResearch";
-import ClusProject from "./views/ClusProject";
-import ClusDeveloper from "./views/ClusDeveloper";
+
 import Login from "./views/Login";
 import Profile from "./views/Profile";
 import TicketPortal from "./views/TicketPortal";
@@ -18,6 +16,10 @@ import Modules from "./views/userDocumentation/Modules";
 import FileManagement from "./views/userDocumentation/FileManagement";
 import UsefulCommands from "./views/userDocumentation/UsefulCommands";
 import JobSubmission from "./views/userDocumentation/JobSubmission";
+
+import ClusResearch from "./views/clusterInfo/ClusResearch";
+import ClusProject from "./views/clusterInfo/ClusProject";
+import ClusDeveloper from "./views/clusterInfo/ClusDeveloper";
 
 export const router = createBrowserRouter([
     { index: true, Component: Login},
