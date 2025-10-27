@@ -6,15 +6,31 @@ const prisma = new PrismaClient();
 
 // Get all tickets from DB
 export const getTickets = expressAsyncHandler(async (req, res) => {
-    await prisma.support.findMany({
-        orderBy: {
-            createdAt: 'desc'
-        }
-    }).then((tickets: SupportModel[] | null) => {
-        res.json(tickets);
-    }).catch((err: any) => {
-        res.status(400).json({databaseEmpty: "No tickets exist", err});
-    })
+    if (req.params.role === "sysAdmin" || req.params.role === "webAdmin") {
+        await prisma.support.findMany({
+            orderBy: {
+                createdAt: 'desc'
+            }
+        }).then((tickets: SupportModel[] | null) => {
+            res.json(tickets);
+        }).catch((err: any) => {
+            res.status(400).json({databaseEmpty: "No tickets exist", err});
+        })
+    }
+    else {
+        await prisma.support.findMany({
+            where: {
+                email: req.params.email!
+            },
+            orderBy: {
+                createdAt: 'desc'
+            }
+        }).then((tickets: SupportModel[] | null) => {
+            res.json(tickets);
+        }).catch((err: any) => {
+            res.status(400).json({databaseEmpty: "No tickets exist", err});
+        })
+    }
 });
 
 // Get a single ticket by ID
