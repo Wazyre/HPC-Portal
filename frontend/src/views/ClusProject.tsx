@@ -44,7 +44,7 @@ const ClusProject = () => {
         <Container fluid>
             <Title order={2}>Project Cluster</Title>
             <Card>
-                <CardSection bg="yellow.4">
+                <CardSection>
                     <Text>Project Cluster</Text>
                 </CardSection>
                 <Text>
@@ -56,7 +56,7 @@ const ClusProject = () => {
             </Card>
 
             <Card>
-                <CardSection bg="cyan.4">
+                <CardSection>
                     <Text>Avaliable Resources</Text>
                 </CardSection>
                 <Text fz="lg">
@@ -79,7 +79,7 @@ const ClusProject = () => {
             </Card>
 
             <Card>
-                <CardSection bg="cyan.4">
+                <CardSection>
                     <Text>Submit Job</Text>
                 </CardSection>
                 <Text>

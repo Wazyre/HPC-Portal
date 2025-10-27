@@ -90,7 +90,7 @@ const TicketTable = ({tickets, activeTab, filter}: ticketTableProps) => {
     }, [tickets, activeTab, filter, selectedRows])
 
     return (
-        <Table highlightOnHover>
+        <Table highlightOnHover mt={20}>
             <TableThead>
                 <TableTr>
                     <TableTh>
@@ -108,6 +108,7 @@ const TicketTable = ({tickets, activeTab, filter}: ticketTableProps) => {
                     <TableTh>Subject</TableTh>
                     <TableTh>Create Date</TableTh>
                     <TableTh>Status</TableTh>
+                    <TableTh></TableTh>
                 </TableTr>
             </TableThead>
             <TableTbody>

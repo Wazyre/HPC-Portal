@@ -12,7 +12,7 @@ const Modules = () => {
         <Container fluid>
             <Title order={2}>Modules Documentaion</Title>
             <Card>
-                <CardSection bg="blue">
+                <CardSection>
                     <Text>Modules</Text>
                 </CardSection>
                 <Text>
@@ -28,7 +28,7 @@ const Modules = () => {
             </Card>
 
             <Card>
-                <CardSection bg="cyan.4">
+                <CardSection>
                     <Text>Module Commands</Text>
                 </CardSection>
                 <Text>

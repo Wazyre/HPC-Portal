@@ -9,7 +9,7 @@ const AccessSSH = () => {
         <Container fluid>
             <Title order={2}>Access Using SSH</Title>
             <Card>
-                <CardSection bg="blue">
+                <CardSection >
                     <Text c="white">Secure Shell (SSH)</Text>
                 </CardSection>
                 <Text fw={700}>
@@ -27,7 +27,7 @@ const AccessSSH = () => {
             </Card>
 
             <Card id="windows">
-                <CardSection bg="cyan.4">
+                <CardSection>
                     <Text>Connecting on a Windows PC</Text>
                 </CardSection>
                 <Text>
@@ -60,7 +60,7 @@ const AccessSSH = () => {
             </Card>
 
             <Card id="mac">
-                <CardSection bg="green.4">
+                <CardSection>
                     <Text>Connecting on Mac/Linux</Text>
                 </CardSection>
                 <Text>
