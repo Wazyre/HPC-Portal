@@ -28,6 +28,9 @@
   font-size: x-large;
   /* font-family: "Comfortaa", cursive; */
 }
+:where([data-mantine-color-scheme="dark"]) .chartInnerText {
+  color: var(--mantine-color-dark-0);
+}
 
 .mantine-DonutChart-label {
   font-size: var(--mantine-font-size-lg);

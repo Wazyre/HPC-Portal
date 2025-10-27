@@ -3,7 +3,7 @@
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import type { AuthorizedUser, LoginUser } from '../slices/authorizationSlice';
-import { type CommentType, type CommentWithStatusType, type TicketType } from '../utils/types';
+import { type CommentType, type CommentWithStatusType, type TicketType, type TicketUser } from '../utils/types';
 import { type RootState } from '../app/store'
 
 // import type { Authorization } from 
@@ -44,8 +44,12 @@ export const loginApi = createApi({
                 body: pass
             })
         }),
-        getTickets: builder.query<TicketType[], void>({
-            query: () => '/support/'
+        getTickets: builder.query<TicketType[], TicketUser>({
+            query: tUser => ({
+                url: '/support/',
+                method: 'GET',
+                params: tUser
+            })
         }),
         getTicket: builder.query<TicketType, number>({
             query: id => `/support/ticket/${id}`

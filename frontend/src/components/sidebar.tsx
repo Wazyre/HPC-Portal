@@ -36,31 +36,37 @@ const Sidebar = () => {
                     <IconBook className={cx(classes.icon, classes.light)} stroke={1.5}/>
                 </>}
             >
-                <NavLink
-                    component={Link}
-                    label="Access-SSH"
-                    to="/documentation/ssh"
-                />
-                <NavLink
-                    component={Link}
-                    label="Modules"
-                    to="/documentation/modules"
-                />
-                <NavLink
-                    component={Link}
-                    label="File Management"
-                    to="/documentation/fmgmt"
-                />
-                <NavLink
-                    component={Link}
-                    label="Job Submission"
-                    to="/documentation/jobsub"
-                />
-                <NavLink
-                    component={Link}
-                    label="Useful Commands"
-                    to="/documentation/cmds"
-                />
+                {(userRole === "research" || userRole === "developer" || userRole === "project" || userRole === "webAdmin") ?
+                    <>
+                        <NavLink
+                            component={Link}
+                            label="Access-SSH"
+                            to="/documentation/ssh"
+                        />
+                        <NavLink
+                            component={Link}
+                            label="Modules"
+                            to="/documentation/modules"
+                        />
+                        <NavLink
+                            component={Link}
+                            label="File Management"
+                            to="/documentation/fmgmt"
+                        />
+                        <NavLink
+                            component={Link}
+                            label="Job Submission"
+                            to="/documentation/jobsub"
+                        />
+                        <NavLink
+                            component={Link}
+                            label="Useful Commands"
+                            to="/documentation/cmds"
+                        />
+                    </>
+                : <></>
+                }
+                
             </NavLink>
             <NavLink
                 label="Cluster Info"
@@ -69,7 +75,7 @@ const Sidebar = () => {
                     <IconLayoutBoard className={cx(classes.icon, classes.light)} stroke={1.5}/>
                 </>}
             >
-                {(userRole === "research" || userRole === "admin") ?
+                {(userRole === "research" || userRole === "webAdmin") ?
                         <NavLink
                             component={Link}
                             label="Research"
@@ -77,7 +83,7 @@ const Sidebar = () => {
                         />
                     : <></>
                 }
-                {(userRole === "project" || userRole === "admin") ?
+                {(userRole === "project" || userRole === "webAdmin") ?
                         <NavLink
                             component={Link}
                             label="Project"
@@ -85,7 +91,7 @@ const Sidebar = () => {
                         />
                     : <></>
                 }
-                {(userRole === "developer" || userRole === "admin") ?
+                {(userRole === "developer" || userRole === "webAdmin") ?
                         <NavLink
                             component={Link}
                             label="Developer"
@@ -94,7 +100,7 @@ const Sidebar = () => {
                     : <></>
                 }
             </NavLink>
-            {userRole === "admin" ?
+            {(userRole === "sysAdmin" || userRole === "webAdmin") ?
                     <NavLink
                         label="Statistics"
                         leftSection={<>
@@ -129,17 +135,15 @@ const Sidebar = () => {
                 </>}
                 to="/support"
             />
-            {userRole === 'admin' ? 
-                <NavLink
-                    component={Link}
-                    label="Ticket Queue"
-                    leftSection={<>
-                        <IconTicket className={cx(classes.icon, classes.dark)} stroke={1.5}/>
-                        <IconTicket className={cx(classes.icon, classes.light)} stroke={1.5}/>
-                    </>}
-                    to="/tickets"
-                />
-            : <></>}
+            <NavLink
+                component={Link}
+                label="Ticket Queue"
+                leftSection={<>
+                    <IconTicket className={cx(classes.icon, classes.dark)} stroke={1.5}/>
+                    <IconTicket className={cx(classes.icon, classes.light)} stroke={1.5}/>
+                </>}
+                to="/tickets"
+            />
             
         </Container>
     )

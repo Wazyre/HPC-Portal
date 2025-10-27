@@ -11,6 +11,11 @@ export interface TicketType {
     updatedAt: string
 }
 
+export interface TicketUser {
+    email: string,
+    role: string
+}
+
 export interface CommentType {
     id: number,
     comment: string,

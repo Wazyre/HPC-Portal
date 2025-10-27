@@ -4,8 +4,8 @@ import { useGetTicketsQuery } from "../apis/authorizeApi";
 import { useEffect, useState } from "react";
 import TicketTable from "../components/ticketTable";
 import { useAppSelector } from "../app/hooks";
-import { selectRole } from "../slices/authorizationSlice";
-import { useNavigate } from "react-router";
+import { selectEmail, selectRole } from "../slices/authorizationSlice";
+// import { useNavigate } from "react-router";
 import { useVerifyUser } from "../utils/useVerifyUser";
 import type { TicketType } from "../utils/types";
 
@@ -15,16 +15,17 @@ import type { TicketType } from "../utils/types";
 // ]
 
 const TicketPortal = () => {
-    const {data: tickets, isLoading, isSuccess} = useGetTicketsQuery();
+    const userEmail = useAppSelector(selectEmail);
+    const userRole = useAppSelector(selectRole);
+    const {data: tickets, isLoading, isSuccess} = useGetTicketsQuery({email: userEmail, role: userRole});
     const [allTickets, setAllTickets] = useState<TicketType[]>([]);
     const [openTickets, setOpenTickets] = useState<number>(0);
     const [closedTickets, setClosedTickets] = useState<number>(0);
     const [searchValue, setSearchValue] = useState<string>('');
     const [activeTab, setActiveTab] = useState<string>('all');
     const [activePage, setActivePage] = useState(1)
-    const userRole = useAppSelector(selectRole);
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     // useEffect(() => {
     //     const fetchData = async() => {
@@ -43,17 +44,10 @@ const TicketPortal = () => {
             setAllTickets(tickets);
             setOpenTickets(tickets.filter((ticket: TicketType) => ticket.status === 'open').length);
             setClosedTickets(tickets.filter((ticket: TicketType) => ticket.status === 'solved').length);
-            
         }
     }, [tickets])
 
     useVerifyUser();
-
-    useEffect(() => {
-        if (userRole !== "admin") {
-            navigate(-1);
-        }
-    }, []);
 
     if (isLoading) {
         return (
