@@ -49,7 +49,7 @@ const ClusterStats = () => {
     useVerifyUser();
 
     useEffect(() => {
-            if (userRole !== "admin") {
+            if (userRole !== "sysAdmin" && userRole !== "webAdmin") {
                 navigate(-1);
             }
         }, []);

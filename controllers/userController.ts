@@ -57,8 +57,10 @@ export const verifyUser = expressAsyncHandler(async (req, res) => {
             res.json({...user, accessToken: decoded!.data.token});
         }).catch((err: any) => {
             res.status(400).json({userNotFound: "Can't find user", err});
-        });
-    })
+    });
+    }).catch((err: any) => {
+        res.status(400).json({userNotVerified: "Can't verify user", err});
+    });
 });
 
 export const changePassword = expressAsyncHandler(async (req, res) => {

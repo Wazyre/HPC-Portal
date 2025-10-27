@@ -26,10 +26,10 @@ const StorageStats = () => {
     useVerifyUser();
 
     useEffect(() => {
-            if (userRole !== "admin") {
-                navigate(-1);
-            }
-        }, []);
+        if (userRole !== "sysAdmin" && userRole !== "webAdmin") {
+            navigate(-1);
+        }
+    }, []);
 
     return (
         <Container fluid>
