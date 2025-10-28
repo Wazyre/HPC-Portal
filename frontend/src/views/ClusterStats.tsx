@@ -73,6 +73,7 @@ const ClusterStats = () => {
                             withLegend
                             legendProps={{verticalAlign: 'top', height: 50}}
                             withXAxis={false}
+                            yAxisLabel="Percent %"
                             yAxisProps={{ domain: [0, 100] }}
                         />
                         
@@ -97,6 +98,7 @@ const ClusterStats = () => {
                             withLegend
                             legendProps={{verticalAlign: 'top', height: 50}}
                             withXAxis={false}
+                            yAxisLabel="Percent %"
                             yAxisProps={{ domain: [0, 100] }}
                         />
                         
@@ -128,6 +130,7 @@ const ClusterStats = () => {
                                 {name: 'Canceled', color: 'red.5'}
                             ]}
                             tickLine="y"
+                            yAxisLabel="Jobs"
                             withLegend
                         />
                     </Card>
@@ -157,6 +160,7 @@ const ClusterStats = () => {
                                 {name: 'Developer', color: 'red.5'}
                             ]}
                             tickLine="y"
+                            xAxisLabel="Jobs"
                             withLegend
                         />
                     </Card>

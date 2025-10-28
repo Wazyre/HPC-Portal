@@ -25,27 +25,6 @@
   justify-content: flex-end;
 }
 
-/* Charts */
-/* .barChart {
-  @mixin light {
-    --chart-cursor-fill: alpha(var(--mantine-color-black), 0.05);
-    --chart-grid-color: alpha(var(--mantine-color-black), 0.15);
-    --chart-text-color: var(--mantine-color-gray-7);
-  }
-
-  @mixin dark {
-    --chart-cursor-fill: alpha(var(--mantine-color-white), 0.05);
-    --chart-grid-color: alpha(var(--mantine-color-white), 0.15);
-    --chart-text-color: var(--mantine-color-dark-0);
-  }
-} */
-
-.chartInnerText {
-  /* color: light-dark(var(--mantine-color-black), var(--mantine-color-dark-0)); */
-  font-size: var(--mantine-font-size-lg)
-  /* font-family: "Comfortaa", cursive; */
-}
-
 /* Icons */
 .icon {
   width: 22px;
