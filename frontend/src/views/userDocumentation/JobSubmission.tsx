@@ -260,7 +260,9 @@ Submitted batch job 568`}
                     until the requested resources are allocated and the interactive session begins. See 
                     below example:
                 </Text>
-                <Code block>[hpcdemo@clavis2 ~]$ srun --partition=def2 --nodes=1 --time=00:10:00 bash -l</Code>
+                <Code block>
+                    [hpcdemo@clavis2 ~]$ srun --partition=def2 --nodes=1 --time=00:10:00 bash -l
+                </Code>
 
                 <Text td="underline" mt={20}>Use Cases:</Text>
                 <Text>
@@ -391,9 +393,18 @@ Submitted batch job 568`}
                      order. Shown below the most used “squeue” options:
                 </Text>
                 <List>
-                    <ListItem><Text component="span" fw={700}>squeue -u username:</Text> Shows a list of jobs in the queue for that specified username</ListItem>
-                    <ListItem><Text component="span" fw={700}>squeue -me:</Text> Shows a list of jobs in the queue for your account only</ListItem>
-                    <ListItem><Text component="span" fw={700}>squeue --start:</Text> Provides a method to calculate the estimated start time for the jobs</ListItem>
+                    <ListItem>
+                        <Text component="span" fw={700}>squeue -u username:</Text> Shows a list of jobs in 
+                        the queue for that specified username
+                    </ListItem>
+                    <ListItem>
+                        <Text component="span" fw={700}>squeue -me:</Text> Shows a list of jobs in the 
+                        queue for your account only
+                    </ListItem>
+                    <ListItem>
+                        <Text component="span" fw={700}>squeue --start:</Text> Provides a method to 
+                        calculate the estimated start time for the jobs
+                    </ListItem>
                 </List>
 
                 {/* ---------------------------------------- */}
@@ -440,6 +451,22 @@ Submitted batch job 568`}
                         Create a python script file named “seq_script.py”, copy the following code 
                         lines and save the file:
                     </ListItem>
+                    <Code block>
+{`#!/usr/bin/env python3
+
+
+import time
+
+
+print('start at ' + time.strftime('%H:%M:%S'))
+
+
+print('sleep for 10 seconds ...')
+time.sleep(10)
+
+
+print('stop at ' + time.strftime('%H:%M:%S'))`}
+                    </Code>
                     <ListItem>
                         Make sure to change the file permission to executable 
                         (See <Anchor to="/documentation/cmds" component={Link}>Useful Commands</Anchor>)
@@ -450,7 +477,7 @@ Submitted batch job 568`}
                         Next, create a SLURM submission script named “run_seq.sh”, copy the following code 
                         lines and save the script:
                     </ListItem>
-                    <Code block mt={10}>
+                    <Code block>
 {`#!/bin/bash
 
 
@@ -508,7 +535,7 @@ exit 0`}
                         Create a SLURM submission script named “run_pi-scripts.sh”, copy the following code 
                         lines and save the script:
                     </ListItem>
-                    <Code block mt={10}>
+                    <Code block>
 {`#!/bin/bash
 
 #SBATCH --job-name=mpi-example
