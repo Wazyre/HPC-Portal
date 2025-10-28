@@ -17,6 +17,7 @@
 .code {
   color: #000000;
   --code-bg: var(--mantine-color-gray-2);
+  margin-top: 10px;
 }
 
 .headerGroup {

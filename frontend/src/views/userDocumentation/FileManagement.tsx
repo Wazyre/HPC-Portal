@@ -57,7 +57,11 @@ const FileManagement = () => {
                         access (read/write/execute), users in “research” group have full access too and 
                         everyone else have read and execute permission only.
                     </ListItem>
-                    <ListItem>“job2” and “job3” are directories, user “hpcdemo” is the owner and have full access (read/write/execute), users in “hpcdemo” group have full access too and everyone else have read and execute permission only.</ListItem>
+                    <ListItem>
+                        “job2” and “job3” are directories, user “hpcdemo” is the owner and have full 
+                        access (read/write/execute), users in “hpcdemo” group have full access too and 
+                        everyone else have read and execute permission only.
+                    </ListItem>
                 </List>
                 
                 <Text fw={700} mt={20}>Example 2</Text>
@@ -66,39 +70,79 @@ const FileManagement = () => {
                     Using the example above would mean:
                 </Text>
                 <List listStyleType="square">
-                    <ListItem>“error” is a directory, user “hpcdemo” is the owner and have full access (read/write/execute), users in “research” group have full access too and everyone else have read and execute permission only.</ListItem>
-                    <ListItem>Files “data.csv”, “job_1.sh” and “output.txt” are owned by the user “hpcdemo”, the users in “research” read and write permission only and everyone else have read permission only.</ListItem>
-                    <ListItem>“script.py” is a file, user “hpcdemo” is the owner and have full access (read/write/execute), users in “research” group and everyone else have read and execute permission only.</ListItem>
+                    <ListItem>
+                        “error” is a directory, user “hpcdemo” is the owner and have full access 
+                        (read/write/execute), users in “research” group have full access too and everyone 
+                        else have read and execute permission only.
+                    </ListItem>
+                    <ListItem>
+                        Files “data.csv”, “job_1.sh” and “output.txt” are owned by the user “hpcdemo”, 
+                        the users in “research” read and write permission only and everyone else have read 
+                        permission only.
+                    </ListItem>
+                    <ListItem>
+                        “script.py” is a file, user “hpcdemo” is the owner and have full access 
+                        (read/write/execute), users in “research” group and everyone else have read and 
+                        execute permission only.
+                    </ListItem>
                 </List>
-                <Divider mt={10}/>
+            </Card>
 
-                {/* -------------------------------------------------------- */}
+            {/* -------------------------------------------------------- */}
 
-                <Text size="xl" mt={20}>Changing File Permission</Text>
-                <Text>To change the file (and directory) permissions use the command line “chmod” considering the following:</Text>
-                <Text>Linux file permissions are managed using four categories:</Text>    
+            <Card mt={20}>
+                <CardSection>Changing File Permissions</CardSection>
+                
+                <Text>
+                    To change the file (and directory) permissions use the command line “chmod” 
+                    considering the following:
+                </Text>
+                <Text mt={20}>Linux file permissions are managed using four categories:</Text>    
                 <List>
-                    <ListItem><Text component="span" fw={700}>User (u):</Text> The owner of the file or directory.</ListItem>
-                    <ListItem><Text component="span" fw={700}>Group (g):</Text> The group associated with the file or directory.</ListItem>
-                    <ListItem><Text component="span" fw={700}>Others (o):</Text> All other users on the system.</ListItem>
-                    <ListItem><Text component="span" fw={700}>All (a):</Text> All the users on the system</ListItem>
+                    <ListItem>
+                        <Text component="span" fw={700}>User (u):</Text> The owner of the file or 
+                        directory.
+                    </ListItem>
+                    <ListItem>
+                        <Text component="span" fw={700}>Group (g):</Text> The group associated with 
+                        the file or directory.
+                    </ListItem>
+                    <ListItem>
+                        <Text component="span" fw={700}>Others (o):</Text> All other users on the 
+                        system.
+                    </ListItem>
+                    <ListItem>
+                        <Text component="span" fw={700}>All (a):</Text> All the users on the system
+                    </ListItem>
                 </List> 
 
-                <Text mt={10}>Each category can have three types of permissions:</Text> 
+                <Text mt={20}>Each category can have three types of permissions:</Text> 
                 <List>
-                    <ListItem><Text component="span" fw={700}>Read (r):</Text> Allows viewing the contents of a file or listing the contents of a directory.</ListItem>
-                    <ListItem><Text component="span" fw={700}>Write (w):</Text> Allows modifying the contents of a file or creating/deleting files within a directory.</ListItem>
-                    <ListItem><Text component="span" fw={700}>Execute (x):</Text> Allows running a file (if it's an executable) or entering a directory.</ListItem>
+                    <ListItem>
+                        <Text component="span" fw={700}>Read (r):</Text> Allows viewing the contents of a 
+                        file or listing the contents of a directory.
+                    </ListItem>
+                    <ListItem>
+                        <Text component="span" fw={700}>Write (w):</Text> Allows modifying the contents of 
+                        a file or creating/deleting files within a directory.
+                    </ListItem>
+                    <ListItem>
+                        <Text component="span" fw={700}>Execute (x):</Text> Allows running a file (if it's 
+                        an executable) or entering a directory.
+                    </ListItem>
                 </List>   
 
-                <Text mt={10}>With the permission action:</Text>
+                <Text mt={20}>With the permission action:</Text>
                 <List>
-                    <ListItem>(+) Add permission</ListItem>
-                    <ListItem>(-) Remove permission</ListItem>
+                    <ListItem><Text component="span" fw={700}>(+):</Text> Add permission</ListItem>
+                    <ListItem><Text component="span" fw={700}>(-):</Text> Remove permission</ListItem>
                 </List>
 
                 <Text fw={700} mt={20}>Example 1</Text>
-                <Text>Allow the owner and the users within the “research” group to have full access of a file</Text>
+                <Text>
+                    Allow the owner and the users within the “research” group to have full access of a 
+                    file
+                </Text>
                 <Image radius="xs" src={fileMngImgs[2]} />
 
                 <Text fw={700} mt={20}>Example 2</Text>
@@ -108,19 +152,37 @@ const FileManagement = () => {
                 <Text fw={700} mt={20}>Example 3</Text>
                 <Text>Allow all the users to have execute permission of “job_1.sh” file</Text>
                 <Image radius="xs" src={fileMngImgs[4]} />
-                <Text mt={10} c="red">*Note: File permission issues commonly arise when attempting to access a file or directory without the write permissions. These issues can manifest as "Permission Denied" errors and typically involve incorrect ownership or permission settings.</Text>
-                <Divider mt={10} />
+                <Text mt={10} c="red">
+                    *Note: File permission issues commonly arise when attempting to access a file or 
+                    directory without the write permissions. These issues can manifest as "Permission 
+                    Denied" errors and typically involve incorrect ownership or permission settings.
+                </Text>
+            </Card>
 
                 {/* -------------------------------------------------------- */}
-
-                <Text size="xl" mt={20}>File Compression</Text>
-                <Text>The <Text component="span" fw={700}>gzip</Text> command is used to compress the files to take up less space and fast in transferring them.</Text>
+            
+            <Card>
+                <CardSection>File Compression</CardSection>
+                <Text fw={700} td="underline">Command "gzip"</Text>
+                <Text mt={10}>
+                    The command is used to compress the files to take up less space and fast in 
+                    transferring them.
+                </Text>
                 <Code block>[hpcdemo@clavis1 ~]$ gzip filname.c</Code>
+                <Divider mt={10}/>
+                
+                {/* -------------------------------------------------------- */}
 
-                <Text mt={20}>The <Text component="span" fw={700}>gunzip</Text> command is used to unzip the compressed file.</Text>
+                <Text mt={20} fw={700} td="underline">Command "gunzip"</Text>
+
+                <Text mt={10}>The command is used to unzip the compressed file.</Text>
                 <Code block>[hpcdemo@clavis1 ~]$ gunzip filname.cgz</Code>
-
-                <Text mt={20}>The <Text component="span" fw={700}>tar</Text> command is used to create archives, which are single files that contain a collection of other files and directories. It has several options:</Text>
+                <Divider mt={10}/>
+                
+                {/* -------------------------------------------------------- */}
+                
+                <Text mt={20} fw={700} td="underline">Command "tar"</Text>
+                <Text mt={10}>The command is used to create archives, which are single files that contain a collection of other files and directories. It has several options:</Text>
                 <List>
                     <ListItem><Text component="span" fw={700}>-c:</Text> Create a new archive</ListItem>
                     <ListItem><Text component="span" fw={700}>-z:</Text> Use gzip compression</ListItem>
