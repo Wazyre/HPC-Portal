@@ -13,7 +13,7 @@ const AccessSSH = () => {
                     <Text c="white">Secure Shell (SSH)</Text>
                 </CardSection>
                 <Text fw={700}>
-                    In this part, you will learn a common way to access high-performance computing 
+                    The following page documents a common way to access high-performance computing 
                     systems (IKARUS) using SSH sessions.
                 </Text>
 
@@ -43,7 +43,8 @@ const AccessSSH = () => {
                 </Text>
                 <List type="ordered" spacing={10}>
                     <ListItem>
-                        Visit <Anchor href="https://mobaxterm.mobatek.net/download-home-edition.html">MobaXterm Website</Anchor>
+                        Visit <Anchor href="https://mobaxterm.mobatek.net/download-home-edition.html">
+                        MobaXterm Website</Anchor>
                     </ListItem>
                     <ListItem>Accept the license agreement and download the portable version</ListItem>
                     <ListItem>Unzip the file</ListItem>
@@ -62,9 +63,13 @@ const AccessSSH = () => {
                     <ListItem>Enter the Remote host: hpc.kisr.edu.kw (port 22 if required)</ListItem>
                     <ListItem>Enter the Username (hpcdemo)</ListItem>
                     <ListItem>Click OK</ListItem>
-                    <ListItem>Enter your password followed by enter; this will not be echoed on the screen</ListItem>
+                    <ListItem>
+                        Enter your password followed by enter; this will not be echoed on the screen
+                    </ListItem>
                     <Code block>password: </Code>
-                    <ListItem>If you have connected successfully, you will see something like the following:</ListItem>
+                    <ListItem>
+                        If you have connected successfully, you will see something like the following:
+                    </ListItem>
                     <Code block>[hpcdemo@clavis1 ~]$ </Code>
                 </List>
             </Card>
@@ -84,12 +89,18 @@ const AccessSSH = () => {
                         The first time you connect to IKARUS, a message asks if you want to 
                         continue connecting. This message appears because IKARUS has an RSA key that is 
                         not stored in your system registry/keychain, the identity of which cannot be 
-                        verified. Type 'yes' and press enter.
+                        verified. Type 'yes' and press enter
                     </ListItem>
-                    <Code block>Are you sure you want to continue connecting (yes/no/[fingerprint])? yes </Code>
-                    <ListItem>Enter your password followed by enter; this will not be echoed on the screen.</ListItem>
+                    <Code block>
+                        Are you sure you want to continue connecting (yes/no/[fingerprint])? yes 
+                    </Code>
+                    <ListItem>
+                        Enter your password followed by enter; this will not be echoed on the screen
+                    </ListItem>
                     <Code block>password: </Code>
-                    <ListItem>If you have connected successfully, you will see something like the following:</ListItem>
+                    <ListItem>
+                        If you have connected successfully, you will see something like the following:
+                    </ListItem>
                     <Code block>[hpcdemo@clavis1 ~]$ </Code>
                 </List>
             </Card>

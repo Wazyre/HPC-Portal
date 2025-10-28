@@ -143,15 +143,15 @@ const FileManagement = () => {
                     Allow the owner and the users within the “research” group to have full access of a 
                     file
                 </Text>
-                <Image radius="xs" src={fileMngImgs[2]} />
+                <Image src={fileMngImgs[2]} />
 
                 <Text fw={700} mt={20}>Example 2</Text>
                 <Text>Remove the execute permission of everyone else from all the files</Text>
-                <Image radius="xs" src={fileMngImgs[3]} />
+                <Image src={fileMngImgs[3]} />
 
                 <Text fw={700} mt={20}>Example 3</Text>
                 <Text>Allow all the users to have execute permission of “job_1.sh” file</Text>
-                <Image radius="xs" src={fileMngImgs[4]} />
+                <Image src={fileMngImgs[4]} />
                 <Text mt={10} c="red">
                     *Note: File permission issues commonly arise when attempting to access a file or 
                     directory without the write permissions. These issues can manifest as "Permission 
@@ -184,12 +184,25 @@ const FileManagement = () => {
                 <Text mt={20} fw={700} td="underline">Command "tar"</Text>
                 <Text mt={10}>The command is used to create archives, which are single files that contain a collection of other files and directories. It has several options:</Text>
                 <List>
-                    <ListItem><Text component="span" fw={700}>-c:</Text> Create a new archive</ListItem>
-                    <ListItem><Text component="span" fw={700}>-z:</Text> Use gzip compression</ListItem>
-                    <ListItem><Text component="span" fw={700}>-v:</Text> Verbose mode (shows files being processed)</ListItem>
-                    <ListItem><Text component="span" fw={700}>-f:</Text> Specify the archive filename</ListItem>
-                    <ListItem><Text component="span" fw={700}>-x:</Text> Extract files from an archive</ListItem>
-                    <ListItem><Text component="span" fw={700}>-t:</Text> List the contents of an archive</ListItem>
+                    <ListItem>
+                        <Text component="span" fw={700}>-c:</Text> Create a new archive
+                    </ListItem>
+                    <ListItem>
+                        <Text component="span" fw={700}>-z:</Text> Use gzip compression
+                    </ListItem>
+                    <ListItem>
+                        <Text component="span" fw={700}>-v:</Text> Verbose mode (shows files being 
+                        processed)
+                    </ListItem>
+                    <ListItem>
+                        <Text component="span" fw={700}>-f:</Text> Specify the archive filename
+                    </ListItem>
+                    <ListItem>
+                        <Text component="span" fw={700}>-x:</Text> Extract files from an archive
+                    </ListItem>
+                    <ListItem>
+                        <Text component="span" fw={700}>-t:</Text> List the contents of an archive
+                    </ListItem>
                 </List>
                 
                 <Text mt={20}>To create a compressed archive:</Text>

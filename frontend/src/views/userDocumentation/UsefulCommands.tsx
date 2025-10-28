@@ -43,13 +43,13 @@ const UsefulCommands = () => {
                 <CardSection>Useful CLI Commands</CardSection>
                 <Text fw={700} td="underline">Command “pwd”</Text>
                 <Text mt={10}>
-                    On the command line <Text component="span" fw={700}>"pwd"</Text> (or print working 
-                    directory) displays the current directory you are in. This would appear as:
+                    On the command line <Text component="span" td="underline">"pwd"</Text> (or print 
+                    working directory) displays the current directory you are in. This would appear as:
                 </Text>
                 <Image src={cmdImgs[1]} mt={10}/>
                 <Divider mt={10}/>
 
-                {/* ------------------------------------ */}
+                {/* -------------------------------------------------------- */}
 
                 <Text mt={20} fw={700} td="underline">Command “cd”</Text>
                 <Text mt={10}>
@@ -72,14 +72,14 @@ const UsefulCommands = () => {
                 <Image src={cmdImgs[4]} mt={10}/>
                 <Divider mt={10}/>
 
-                {/* ------------------------------------ */}
+                {/* -------------------------------------------------------- */}
 
                 <Text mt={20} fw={700} td="underline">Command “ls”</Text>
                 <Text mt={10}>This command lists the contents of a directory, as shown below</Text>
                 <Image src={cmdImgs[5]} mt={10}/>
                 
                 <Text mt={20}>
-                    The command <Text component="span" fw={700}>"ls"</Text> has several options:
+                    The command <Text component="span" td="underline">"ls"</Text> has several options:
                 </Text>
                 <List>
                     <ListItem>
@@ -108,7 +108,7 @@ const UsefulCommands = () => {
                 <Image src={cmdImgs[8]} mt={10}/>
                 <Divider mt={10}/>
 
-                {/* ------------------------------------ */}
+                {/* -------------------------------------------------------- */}
 
                 <Text mt={20} fw={700} td="underline">Command “mkdir”</Text>
                 <Text mt={10}>
@@ -119,7 +119,7 @@ const UsefulCommands = () => {
                 <Image src={cmdImgs[10]} mt={10}/>
                 <Divider mt={10}/>
 
-                {/* ------------------------------------ */}
+                {/* -------------------------------------------------------- */}
                 
                 <Text mt={20} fw={700} td="underline">Command "rmdir"</Text>
                 <Text mt={10}>
@@ -136,7 +136,7 @@ const UsefulCommands = () => {
                 <Image src={cmdImgs[13]} mt={10}/>
                 <Divider mt={10}/>
 
-                {/* ------------------------------------ */}
+                {/* -------------------------------------------------------- */}
 
                 <Text mt={20} fw={700} td="underline">Command "touch"</Text>
                 <Text mt={10}>
@@ -163,7 +163,7 @@ const UsefulCommands = () => {
                 </List>
                 <Divider mt={10}/>
 
-                {/* ------------------------------------ */}
+                {/* -------------------------------------------------------- */}
 
                 <Text mt={20} fw={700} td="underline">Command "mv"</Text>
                 <Text mt={10}>
@@ -181,7 +181,7 @@ const UsefulCommands = () => {
                 </List>
                 <Divider mt={10}/>
 
-                {/* ------------------------------------ */}
+                {/* -------------------------------------------------------- */}
 
                 <Text mt={20} fw={700} td="underline">Command "cat"</Text>
                 <Text mt={10}>
@@ -193,17 +193,17 @@ const UsefulCommands = () => {
                 <Image src={cmdImgs[23]} mt={10}/>
                 <Divider mt={10}/>
                 
-                {/* ------------------------------------ */}
+                {/* -------------------------------------------------------- */}
 
                 <Text mt={20} fw={700} td="underline">Command "tac"</Text>
                 <Text mt={10}>
-                    Works the same as the command <Text component="span" fw={700}>"cat"</Text> but 
+                    Works the same as the command <Text component="span" td="underline">"cat"</Text> but 
                     will show you the file backwards:
                 </Text>
                 <Image src={cmdImgs[24]} mt={10}/>
                 <Divider mt={10}/>
                 
-                {/* ------------------------------------ */}
+                {/* -------------------------------------------------------- */}
 
                 <Text mt={20} fw={700} td="underline">Command "rm"</Text>
                 <Text mt={10}>{'Remove a file, as always be very careful with this command and without a backup, this file or directory will be lost forever. To remove directories that are not empty use “rm -r <directory name>”, as shown below: '}</Text>
@@ -214,7 +214,7 @@ const UsefulCommands = () => {
                 <Image src={cmdImgs[25]} mt={10}/>
                 <Divider mt={10}/>
                 
-                {/* ------------------------------------ */}
+                {/* -------------------------------------------------------- */}
 
                 <Text mt={20} fw={700} td="underline">Command "file"</Text>
                 <Text mt={10}>
@@ -225,12 +225,12 @@ const UsefulCommands = () => {
                 <Image src={cmdImgs[26]} mt={10}/>
                 <Divider mt={10}/>
 
-                {/* ------------------------------------ */}
+                {/* -------------------------------------------------------- */}
 
                 <Text mt={20} fw={700} td="underline">Command "head"</Text>
                 <Text mt={10}>
                     In general, this command is used to show the first ten lines of a file. The 
-                    command <Text component="span" fw={700}>"head"</Text> has several options:
+                    command <Text component="span" td="underline">"head"</Text> has several options:
                 </Text>
                 <List>
                     <ListItem>
@@ -249,13 +249,14 @@ const UsefulCommands = () => {
                 <Image src={cmdImgs[27]} mt={10}/>
                 <Divider mt={10}/>
 
-                {/* ------------------------------------ */}
+                {/* -------------------------------------------------------- */}
 
                 <Text mt={20} fw={700} td="underline">Command "tail"</Text>
                 <Text mt={10}>
-                    Like the command <Text component="span" fw={700}>"head"</Text> but this time it 
+                    Like the command <Text component="span" td="underline">"head"</Text> but this time it 
                     will show the last ten lines of the file by default. They share the same option but 
-                    in command <Text component="span" fw={700}>tail</Text> other options are available:
+                    in command <Text component="span" td="underline">"tail"</Text> other options are 
+                    available:
                 </Text>
                 <Image src={cmdImgs[28]} mt={10}/>
 
@@ -277,7 +278,7 @@ const UsefulCommands = () => {
                 <Text c="red" fw={700} mt={10}>*Note: To exit the tail -f/-F command, press Ctrl + C</Text>
                 <Divider mt={10}/>
                 
-                {/* ------------------------------------ */}
+                {/* -------------------------------------------------------- */}
 
                 <Text mt={20} fw={700} td="underline">Command "more"</Text>
                 <Text mt={10}>
@@ -298,18 +299,18 @@ const UsefulCommands = () => {
                 <Code block>[hpcdemo@clavis2 ~]$ more +10 file.log</Code>
                 <Divider mt={10}/>
                 
-                {/* ------------------------------------ */}
+                {/* -------------------------------------------------------- */}
 
                 <Text mt={20} fw={700} td="underline">Command "less"</Text>
                 <Text mt={10}>Very similar to the command “more” but with some additional features</Text>
                 <Divider mt={10}/>
                 
-                {/* ------------------------------------ */}
+                {/* -------------------------------------------------------- */}
 
                 <Text mt={20} fw={700} td="underline">Command "find"</Text>
                 <Text mt={10}>
                     This command is very useful to find files, more options are provided on the 
-                    command line by typing <Text component="span" fw={700}>"man find"</Text>, next 
+                    command line by typing <Text component="span" td="underline">"man find"</Text>, next 
                     are some examples of these options that are commenly used:
                 </Text>
 
@@ -321,18 +322,18 @@ const UsefulCommands = () => {
                 </List>
                 <Divider mt={10} />
 
-                {/* ------------------------------------ */}
+                {/* -------------------------------------------------------- */}
 
                 <Text mt={20} fw={700} td="underline">Command "grep"</Text>
                 <Text mt={10}>
                     The <Text component="span" fw={700}>"grep"</Text> filter is famous among Linux users. 
-                    The most common use of <Text component="span" fw={700}>"grep"</Text> is to filter 
+                    The most common use of <Text component="span" td="underline">"grep"</Text> is to filter 
                     lines of text containing (or not containing) a certain string.
                 </Text>
                 <Image src={cmdImgs[31]} />
                 <Text mt={10}>
                     As with most Linux commands, there are also many useful options that will go 
-                    with each command and <Text component="span" fw={700}>"grep"</Text> is certainly 
+                    with each command and <Text component="span" td="underline">"grep"</Text> is certainly 
                     no exception here
                 </Text>
                 
@@ -351,7 +352,7 @@ const UsefulCommands = () => {
                 <Code block>[hpcdemo@clavis2 ~]$ grep -i “text” /directory_name/file_name</Code>
                 <Divider mt={10} />
 
-                {/* ------------------------------------ */}
+                {/* -------------------------------------------------------- */}
 
                 <Text mt={20} fw={700} td="underline">Command "wc"</Text>
                 <Text mt={10}>
@@ -368,24 +369,24 @@ const UsefulCommands = () => {
                 <Image src={cmdImgs[33]} />
                 <Divider mt={10} />
 
-                {/* ------------------------------------ */}
+                {/* -------------------------------------------------------- */}
 
                 <Text mt={20} fw={700} td="underline">Command "cal"</Text>
                 <Text mt={10}>Displays the current month, with the current day highlighted.</Text>
                 <Image src={cmdImgs[34]} />
                 <Divider mt={10} />
 
-                {/* ------------------------------------ */}
+                {/* -------------------------------------------------------- */}
 
                 <Text mt={20} fw={700} td="underline">Command "time"</Text>
                 <Text mt={10}>
                     Displays how long it takes to execute a command. 
-                    The <Text component="span" fw={700}>"ls"</Text> command takes only a little time.
+                    The <Text component="span" td="underline">"ls"</Text> command takes only a little time.
                 </Text>
                 <Image src={cmdImgs[35]} />
                 <Divider mt={10} />
 
-                {/* ------------------------------------ */}
+                {/* -------------------------------------------------------- */}
 
                 <Text mt={20} fw={700} td="underline">Command "sleep"</Text>
                 <Text mt={10}>
@@ -395,7 +396,7 @@ const UsefulCommands = () => {
                 <Code block>[hpcdemo@clavis2 ~]$ sleep 5</Code>
                 <Divider mt={10} />
 
-                {/* ------------------------------------ */}
+                {/* -------------------------------------------------------- */}
 
                 <Text mt={20} fw={700} td="underline">Command "sort"</Text>
                 <Text mt={10}>
