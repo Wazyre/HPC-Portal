@@ -6,8 +6,10 @@ import { router } from './routes';
 import { Notifications } from '@mantine/notifications';
 import '@mantine/core/styles.css';
 import '@mantine/notifications/styles.css';
+import '@mantine/charts/styles.css';
 
 import classes from './sourceStyle.module.css';
+import { DonutChart } from '@mantine/charts';
 
 // The following theme controls the default css
 const theme = createTheme({
@@ -25,6 +27,11 @@ const theme = createTheme({
 	primaryColor: 'ikarus-blue',
 	primaryShade: 8,
 	components: {
+		// BarChart: BarChart.extend({
+		// 	classNames: {
+		// 		root: classes.barChart
+		// 	}
+		// }),
 		Card: Card.extend({
 			classNames: {
 				root: classes.card,
@@ -34,6 +41,11 @@ const theme = createTheme({
 		Code: Code.extend({
 			classNames: {
 				root: classes.code
+			}
+		}),
+		DonutChart: DonutChart.extend({
+			classNames: {
+				label: classes.chartInnerText
 			}
 		}),
 		Image: Image.extend({

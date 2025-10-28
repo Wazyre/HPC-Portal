@@ -1,4 +1,4 @@
-import { DonutChart } from "@mantine/charts";
+import { BarChart, DonutChart } from "@mantine/charts";
 import { Card, Container, Grid, GridCol, Group, Loader, Pill, ProgressLabel, ProgressRoot, ProgressSection, Stack, Text, Title, Tooltip } from "@mantine/core";
 import { useVerifyUser } from "../utils/useVerifyUser";
 import { IconMail } from "@tabler/icons-react";
@@ -47,9 +47,10 @@ const Dashboard = () => {
                     <IconMail/>
                     <Text fw={700}>{'Pending Support Tickets: '+pendingTickets} </Text>
                 </Group>
+
                 <Text fw={700} mt={20}>Storage Usage</Text>
                 <Text fz="xs" c="gray.6">Out of 500G</Text>
-                <ProgressRoot size={30}>
+                <ProgressRoot size={30} mt={20}>
                     <Tooltip label="33GB - Applications">
                         <ProgressSection value={28} color="green.5">
                             <ProgressLabel>Applications</ProgressLabel>
@@ -82,7 +83,9 @@ const Dashboard = () => {
                     </Tooltip>
                 </ProgressRoot>
 
-                <Text fw={700} mt={20}>Avg. Utilization</Text>
+                {/* -------------------------------------------------------- */}
+
+                <Text fw={700} mt={50}>Avg. Utilization</Text>
                 <Text fz="xs" c="gray.6">Cluster Resources</Text>
                 <Grid>
                     <GridCol span={3}>
@@ -155,6 +158,32 @@ const Dashboard = () => {
                     </GridCol>
                 </Grid>
 
+                {/* -------------------------------------------------------- */}
+
+                <Group mt={50}>
+                    <BarChart
+                        h={400}
+                        dataKey="month"
+                        data={[
+  { month: 'January', Jobs: 1200, Storage: 900, Runtime: 200 },
+  { month: 'February', Jobs: 1900, Storage: 1200, Runtime: 400 },
+  { month: 'March', Jobs: 400, Storage: 1000, Runtime: 200 },
+  { month: 'April', Jobs: 1000, Storage: 200, Runtime: 800 },
+  { month: 'May', Jobs: 800, Storage: 1400, Runtime: 1200 },
+  { month: 'June', Jobs: 750, Storage: 600, Runtime: 1000 },
+]}
+                        series={[
+                            {name: 'Jobs', color: 'violet.6'},
+                            {name: 'Storage', label: 'Storage (GB)',color: 'teal.6'},
+                            {name: 'Runtime', label: 'Runtime (Hr)', color: 'red.5'}
+                        ]}
+                        tickLine="y"
+                        withLegend
+                    />
+
+                    {/* -------------------------------------------------------- */}
+
+                </Group>
             </Card>
         </Container>
     );

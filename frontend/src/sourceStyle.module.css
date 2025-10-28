@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Comfortaa:300,400,700");
+@import "https://fonts.googleapis.com/css?family=Comfortaa:300,400,700";
 
 /* Card Overrides */
 .card {
@@ -6,6 +6,7 @@
   margin: 20px;
   --paper-radius: var(--mantine-radius-md);
 }
+
 .cardSection {
   border-bottom: calc(0.0625rem * var(--mantine-scale)) solid var(--paper-border-color);
   font-weight: 700;
@@ -15,7 +16,7 @@
 
 /* Color Overrides */
 .code {
-  color: #000000;
+  color: #000;
   --code-bg: var(--mantine-color-gray-2);
   margin-top: 10px;
 }
@@ -25,31 +26,24 @@
 }
 
 /* Charts */
+/* .barChart {
+  @mixin light {
+    --chart-cursor-fill: alpha(var(--mantine-color-black), 0.05);
+    --chart-grid-color: alpha(var(--mantine-color-black), 0.15);
+    --chart-text-color: var(--mantine-color-gray-7);
+  }
+
+  @mixin dark {
+    --chart-cursor-fill: alpha(var(--mantine-color-white), 0.05);
+    --chart-grid-color: alpha(var(--mantine-color-white), 0.15);
+    --chart-text-color: var(--mantine-color-dark-0);
+  }
+} */
+
 .chartInnerText {
-  font-size: x-large;
+  /* color: light-dark(var(--mantine-color-black), var(--mantine-color-dark-0)); */
+  font-size: var(--mantine-font-size-lg)
   /* font-family: "Comfortaa", cursive; */
-}
-:where([data-mantine-color-scheme="dark"]) .chartInnerText {
-  color: var(--mantine-color-dark-0);
-}
-
-.mantine-DonutChart-label {
-  font-size: var(--mantine-font-size-lg);
-}
-
-.lineChartLegend {
-  font-size: var(--mantine-font-size-sm);
-  display: flex;
-}
-
-.lineChartLegendItem {
-  width: 100px;
-  flex-direction: row;
-  display: flex;
-}
-
-.lineChartLegendName {
-  margin: 0;
 }
 
 /* Icons */
@@ -109,7 +103,7 @@
 }
 
 /* Viewport Changes */
-/* See https://mantine.dev/styles/css-variables-list/ for CSS vars*/
+/* See https://mantine.dev/styles/css-variables-list/ for CSS vars */
 @media only screen and (max-width: 48rem) {
   .headerGroup {justify-content: space-between;}
 }

@@ -2,16 +2,9 @@ import { useEffect } from "react";
 import { useAppSelector } from "../app/hooks";
 import { useNavigate } from "react-router";
 import { selectRole } from "../slices/authorizationSlice";
-import { DonutChart } from "@mantine/charts";
 import { Card, Container, Grid, GridCol, Pill, RingProgress, Stack, Text, Title } from "@mantine/core";
 
-import classes from "../sourceStyle.module.css";
 import { useVerifyUser } from "../utils/useVerifyUser";
-
-const data = [
-  { name: 'USA', value: 200, color: 'green.4' },
-  { name: '', value: 600, color: 'gray.3' },
-];
 
 const data2 = [
   { value: 20, color: 'green.4' },
@@ -46,7 +39,6 @@ const StorageStats = () => {
                                 label={<Text size="xl" ta="center">
                                     {perc}
                                 </Text>}
-                                // classNames={{label: classes.chartInnerText}}
                             />
                             <Text fz={"larger"} fw={700}>50 GB</Text>
                             <Text>Memory (RAM)</Text>
@@ -58,16 +50,13 @@ const StorageStats = () => {
                     <Card>
                         <Text>Project Cluster</Text>
                         <Stack align="center">
-                            <DonutChart 
-                                w={100} 
-                                h={100} 
-                                size={100} 
+                            <RingProgress 
+                                size={120} 
                                 thickness={10} 
-                                data={data} 
-                                chartLabel={perc}
-                                labelsType="value"
-                                withTooltip={false}
-                                classNames={{label: classes.chartInnerText}}
+                                sections={data2} 
+                                label={<Text size="xl" ta="center">
+                                    {perc}
+                                </Text>}
                             />
                             <Text fz={"larger"} fw={700}>50 GB</Text>
                             <Text>Memory (RAM)</Text>
@@ -79,16 +68,13 @@ const StorageStats = () => {
                     <Card>
                         <Text>Developer Cluster</Text>
                         <Stack align="center">
-                            <DonutChart 
-                                w={100} 
-                                h={100} 
-                                size={100} 
+                            <RingProgress 
+                                size={120} 
                                 thickness={10} 
-                                data={data} 
-                                chartLabel={perc}
-                                labelsType="value"
-                                withTooltip={false}
-                                classNames={{label: classes.chartInnerText}}
+                                sections={data2} 
+                                label={<Text size="xl" ta="center">
+                                    {perc}
+                                </Text>}
                             />
                             <Text fz={"larger"} fw={700}>50 GB</Text>
                             <Text>Memory (RAM)</Text>
@@ -100,16 +86,13 @@ const StorageStats = () => {
                 <GridCol span={6}>
                     <Card>
                         <Stack align="center">
-                            <DonutChart 
-                                w={100} 
-                                h={100} 
-                                size={100} 
+                            <RingProgress 
+                                size={120} 
                                 thickness={10} 
-                                data={data} 
-                                chartLabel={perc}
-                                labelsType="value"
-                                withTooltip={false}
-                                classNames={{label: classes.chartInnerText}}
+                                sections={data2} 
+                                label={<Text size="xl" ta="center">
+                                    {perc}
+                                </Text>}
                             />
                             <Text fz={"larger"} fw={700}>50 GB</Text>
                             <Text>Scratch</Text>
@@ -120,16 +103,13 @@ const StorageStats = () => {
                 <GridCol span={6}>
                     <Card>
                         <Stack align="center">
-                            <DonutChart 
-                                w={100} 
-                                h={100} 
-                                size={100} 
+                            <RingProgress 
+                                size={120} 
                                 thickness={10} 
-                                data={data} 
-                                chartLabel={perc}
-                                labelsType="value"
-                                withTooltip={false}
-                                classNames={{label: classes.chartInnerText}}
+                                sections={data2} 
+                                label={<Text size="xl" ta="center">
+                                    {perc}
+                                </Text>}
                             />
                             <Text fz={"larger"} fw={700}>50 GB</Text>
                             <Text>Archive</Text>
