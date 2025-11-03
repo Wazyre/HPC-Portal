@@ -7,7 +7,7 @@ datasource db {
 generator client {
     provider = "prisma-client"
     previewFeatures = ["relationJoins"]
-    binaryTargets = ["native", "debian-openssl-3.0.x"] // For running on Render platform
+    binaryTargets = ["native", "debian-openssl-3.0.x", "rhel-openssl-1.1.x"] // For running on Render and Rocky Linux platform
     output = "./generated/prisma"
 }
 

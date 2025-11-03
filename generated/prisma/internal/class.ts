@@ -37,6 +37,10 @@ const config: runtime.GetPrismaClientConfig = {
       {
         "fromEnvVar": null,
         "value": "debian-openssl-3.0.x"
+      },
+      {
+        "fromEnvVar": null,
+        "value": "rhel-openssl-1.1.x"
       }
     ],
     "previewFeatures": [
@@ -46,8 +50,8 @@ const config: runtime.GetPrismaClientConfig = {
     "isCustomOutput": true
   },
   "relativePath": "../..",
-  "clientVersion": "6.17.1",
-  "engineVersion": "272a37d34178c2894197e17273bf937f25acdeac",
+  "clientVersion": "6.18.0",
+  "engineVersion": "34b5a692b7bd79939a9a2c3ef97d816e749cda2f",
   "datasourceNames": [
     "db"
   ],
@@ -61,8 +65,8 @@ const config: runtime.GetPrismaClientConfig = {
       }
     }
   },
-  "inlineSchema": "datasource db {\n  provider  = \"postgresql\"\n  url       = env(\"DATABASE_URL\")\n  directUrl = env(\"DIRECT_URL\")\n}\n\ngenerator client {\n  provider        = \"prisma-client\"\n  previewFeatures = [\"relationJoins\"]\n  binaryTargets   = [\"native\", \"debian-openssl-3.0.x\"] // For running on Render platform\n  output          = \"./generated/prisma\"\n}\n\nmodel User {\n  id        Int       @id @default(autoincrement())\n  email     String    @unique\n  password  String\n  firstName String\n  lastName  String\n  company   String\n  role      String\n  comments  Comment[]\n}\n\nmodel Support {\n  id          Int       @id @default(autoincrement())\n  email       String\n  name        String\n  subject     String\n  description String\n  status      String\n  createdAt   DateTime  @default(now())\n  updatedAt   DateTime  @default(now())\n  comments    Comment[]\n}\n\nmodel Comment {\n  id        Int      @id @default(autoincrement())\n  comment   String\n  author    User     @relation(fields: [authorId], references: [id])\n  authorId  Int\n  createdAt DateTime\n  ticket    Support  @relation(fields: [ticketId], references: [id])\n  ticketId  Int\n}\n",
-  "inlineSchemaHash": "905705399b64b54ec08698b67021dea1c3d90dd3ef526439afd625c61226a88e",
+  "inlineSchema": "datasource db {\n  provider  = \"postgresql\"\n  url       = env(\"DATABASE_URL\")\n  directUrl = env(\"DIRECT_URL\")\n}\n\ngenerator client {\n  provider        = \"prisma-client\"\n  previewFeatures = [\"relationJoins\"]\n  binaryTargets   = [\"native\", \"debian-openssl-3.0.x\", \"rhel-openssl-1.1.x\"] // For running on Render and Rocky Linux platform\n  output          = \"./generated/prisma\"\n}\n\nmodel User {\n  id        Int       @id @default(autoincrement())\n  email     String    @unique\n  password  String\n  firstName String\n  lastName  String\n  company   String\n  role      String\n  comments  Comment[]\n}\n\nmodel Support {\n  id          Int       @id @default(autoincrement())\n  email       String\n  name        String\n  subject     String\n  description String\n  status      String\n  createdAt   DateTime  @default(now())\n  updatedAt   DateTime  @default(now())\n  comments    Comment[]\n}\n\nmodel Comment {\n  id        Int      @id @default(autoincrement())\n  comment   String\n  author    User     @relation(fields: [authorId], references: [id])\n  authorId  Int\n  createdAt DateTime\n  ticket    Support  @relation(fields: [ticketId], references: [id])\n  ticketId  Int\n}\n",
+  "inlineSchemaHash": "bd54352de87f414b6c228c0999379b07c167d669197551ee17b36d1ffbef73f1",
   "copyEngine": true,
   "runtimeDataModel": {
     "models": {},
