@@ -46,5 +46,5 @@
     "skipLibCheck": true,
   },
   "include": ["**/*"],
-  "exclude": ["node_modules", "./dist", "./frontend/**/*"]
+  "exclude": ["node_modules", "./dist", "./frontend/**/*", "./supabase"]
 }
