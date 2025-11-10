@@ -44,9 +44,7 @@ const ClusProject = () => {
         <Container fluid>
             <Title order={2}>Project Cluster</Title>
             <Card>
-                <CardSection>
-                    <Text>Project Cluster</Text>
-                </CardSection>
+                <CardSection>Project Cluster</CardSection>
                 <Text>
                     The Project cluster is a dedicated partition within IKARUS, utilizing almost 85% of 
                     its total resources to support KISR projects (equal-to-project lifespan) or 
@@ -63,9 +61,7 @@ const ClusProject = () => {
             </Card>
 
             <Card>
-                <CardSection>
-                    <Text>Avaliable Resources</Text>
-                </CardSection>
+                <CardSection>Avaliable Resources</CardSection>
                 <Text fz="lg">
                     Integrated Kuwait Advanced Research for Ultrafast Systems (IKARUS) 
                 </Text>
@@ -86,9 +82,7 @@ const ClusProject = () => {
             </Card>
 
             <Card>
-                <CardSection>
-                    <Text>Submit Job</Text>
-                </CardSection>
+                <CardSection>Submit Job</CardSection>
                 <Text>
                     To submit a job to "Project" cluster in IKARUS, the “sbatch” file should have the 
                     following minimum "#SBATCH" configurations:

@@ -45,9 +45,7 @@ const ClusDeveloper = () => {
         <Container fluid>
             <Title order={2}>Developer Cluster</Title>
             <Card>
-                <CardSection>
-                    <Text>Research Cluster</Text>
-                </CardSection>
+                <CardSection>Developer Cluster</CardSection>
                 <Text>
                     The Developer cluster is a dedicated partition within IKARUS, utilizing less than 
                     5% of its total resources to support experimental or small-scale scientific 
@@ -62,9 +60,7 @@ const ClusDeveloper = () => {
             </Card>
 
             <Card>
-                <CardSection>
-                    <Text>Avaliable Resources</Text>
-                </CardSection>
+                <CardSection>Avaliable Resources</CardSection>
                 <Text fz="lg">
                     Integrated Kuwait Advanced Research for Ultrafast Systems (IKARUS) 
                 </Text>
@@ -85,9 +81,7 @@ const ClusDeveloper = () => {
             </Card>
 
             <Card>
-                <CardSection>
-                    <Text>Submit Job</Text>
-                </CardSection>
+                <CardSection>Submit Job</CardSection>
                 <Text>
                     To submit a job to "Developer" cluster in IKARUS, the “sbatch” file should have the 
                     following minimum "#SBATCH" configurations:

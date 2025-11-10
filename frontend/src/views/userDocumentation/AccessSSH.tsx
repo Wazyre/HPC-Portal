@@ -9,9 +9,7 @@ const AccessSSH = () => {
         <Container fluid>
             <Title order={2}>Access Using SSH</Title>
             <Card>
-                <CardSection >
-                    <Text c="white">Secure Shell (SSH)</Text>
-                </CardSection>
+                <CardSection>Secure Shell (SSH)</CardSection>
                 <Text fw={700}>
                     The following page documents a common way to access high-performance computing 
                     systems (IKARUS) using SSH sessions.
@@ -30,9 +28,7 @@ const AccessSSH = () => {
             </Card>
 
             <Card id="windows">
-                <CardSection>
-                    <Text>Connecting on a Windows PC</Text>
-                </CardSection>
+                <CardSection>Connecting on a Windows PC</CardSection>
                 <Text>
                     To connect to IKARUS from a Windows PC, an application that allows SSH connections 
                     must be installed. We recommend MobaXterm.
@@ -75,9 +71,7 @@ const AccessSSH = () => {
             </Card>
 
             <Card id="mac">
-                <CardSection>
-                    <Text>Connecting on Mac/Linux</Text>
-                </CardSection>
+                <CardSection>Connecting on Mac/Linux</CardSection>
                 <Text>
                     To connect to IKARUS from MAC/Linux OS, follow the steps below:
                 </Text>

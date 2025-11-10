@@ -10,9 +10,7 @@ const JobSubmission = () => {
             <Title order={2}>Job Submission</Title>
 
             <Card>
-                <CardSection >
-                    <Text>SLURM</Text>
-                </CardSection>
+                <CardSection>SLURM</CardSection>
                 <Text >
                     One of the core components of HPC clusters such as IKARUS is the job scheduler. The 
                     basic task of the job scheduler is to manage the allocation of tasks to compute nodes. 
@@ -74,9 +72,7 @@ const JobSubmission = () => {
             {/* ---------------------------------------- */}
 
             <Card mt={20}>
-                <CardSection >
-                    <Text>SLURM Submission Scripts</Text>
-                </CardSection>
+                <CardSection>SLURM Submission Scripts</CardSection>
                 <Text>
                     A SLURM submission script must be created for each job. The script is used to specify 
                     where and how to run the job on IKARUS cluster and ends with the actual command(s)/code
@@ -90,7 +86,7 @@ const JobSubmission = () => {
                     working directory.
                 </Text>
                 
-                <Text mt={20} fw={700} td="underline">SHABANGE</Text>
+                <Text mt={20} fw={700} td="underline">SHEBANG</Text>
                 <Text>
                     It is the first line in any Linux shell script. All SLURM submission scripts must 
                     start with #!/bin/bash
@@ -101,7 +97,7 @@ const JobSubmission = () => {
                     Although the hash signs (#) are regarded as comments by the shell, they are 
                     nonetheless read and interpreted by the SLURM scheduler.
                 </Text>
-                <Divider mt={20}/>
+                <Divider mt={10}/>
 
                 {/* ---------------------------------------- */}
 
@@ -230,9 +226,7 @@ echo "Welcome to IKARUS by KISR "`}
             {/* ---------------------------------------- */}
 
             <Card mt={20}>
-                <CardSection >
-                    <Text>Job Submission</Text>
-                </CardSection>
+                <CardSection>Job Submission</CardSection>
                 <Text>
                     To submit the SLURM job use the “sbatch” command. This command submits a submission
                     script containing commands to be executed on compute nodes. See below example:
@@ -252,7 +246,7 @@ Submitted batch job 568`}
                 
                 {/* ---------------------------------------- */}
 
-                <Text>
+                <Text mt={20}>
                     Another way to execute jobs using SLURM scheduler 
                     is <Text component="span" td="underline">"srun"</Text>. 
                     This command is used to request resources for an interactive session on a compute node, 
@@ -263,14 +257,17 @@ Submitted batch job 568`}
                 <Code block>
                     [hpcdemo@clavis2 ~]$ srun --partition=def2 --nodes=1 --time=00:10:00 bash -l
                 </Code>
-
+                
                 <Text td="underline" mt={20}>Use Cases:</Text>
                 <Text>
                     Ideal for testing code, debugging, or performing tasks that require direct user 
                     interaction on a compute node.
                 </Text>
+                <Divider mt={10}/>
 
-                <Text td="underline" mt={20}>Use Cases:</Text>
+                {/* ---------------------------------------- */}
+
+                <Text td="underline" mt={20}>SLURM Run Commands:</Text>
                 <Table striped mt={10}>
                     <TableThead>
                         <TableTr>
@@ -302,9 +299,7 @@ Submitted batch job 568`}
             {/* ---------------------------------------- */}
 
             <Card mt={20}>
-                <CardSection >
-                    <Text>SLURM Commands</Text>
-                </CardSection>
+                <CardSection>SLURM Commands</CardSection>
                 <Text>
                     Manual (Man) pages exist for all SLURM daemons, commands, and functions. The command 
                     option “--help" also provides a summary of the options. Note that the command options 
@@ -437,9 +432,7 @@ Submitted batch job 568`}
             {/* ---------------------------------------- */}
 
             <Card mt={20}>
-                <CardSection >
-                    <Text>Example - Many Sequential Running Parallel using Array</Text>
-                </CardSection>
+                <CardSection>Example - Many Sequential Running Parallel using Array</CardSection>
                 <Text>
                     In this example, the submission script is aimed to run many similar sequential jobs 
                     in parallel using job arrays. Python is used for the coding but this does not matter 
@@ -473,6 +466,7 @@ print('stop at ' + time.strftime('%H:%M:%S'))`}
                     </ListItem>
                         <Code block>[hpcdemo@clavis2 ~]$ chmod u+x seq_script.py</Code>
                     <ListItem>Test it using the following command:</ListItem>
+                        <Code block>[hpcdemo@clavis2 ~]$ ./seq_script.py</Code>
                     <ListItem>
                         Next, create a SLURM submission script named “run_seq.sh”, copy the following code 
                         lines and save the script:
@@ -514,9 +508,7 @@ exit 0`}
             {/* ---------------------------------------- */}
 
             <Card mt={20}>
-                <CardSection >
-                    <Text>Example - Parallel Using MPI</Text>
-                </CardSection>
+                <CardSection>Example - Parallel Using MPI</CardSection>
                 <Text c="red">*Assumption: you have the following scripts (“pi-digits.py” & “sum-digit.py”)</Text>
 
                 <Text mt={20}>

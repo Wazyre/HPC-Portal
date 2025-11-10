@@ -12,9 +12,7 @@ const Modules = () => {
         <Container fluid>
             <Title order={2}>Modules Documentaion</Title>
             <Card>
-                <CardSection>
-                    <Text>Modules</Text>
-                </CardSection>
+                <CardSection>Modules</CardSection>
                 <Text>
                     IKARUS uses a module environment to provide access to applications, tools and 
                     libraries. Modules are used to provide multiple versions of applications and libraries 
@@ -34,9 +32,7 @@ const Modules = () => {
             </Card>
 
             <Card>
-                <CardSection>
-                    <Text>Module Commands</Text>
-                </CardSection>
+                <CardSection>Module Commands</CardSection>
                 <Text>
                     The following commands are the most common ones that you will need to use the modules 
                     that are available on IKARUS:

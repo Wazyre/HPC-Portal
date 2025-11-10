@@ -44,9 +44,7 @@ const ClusResearch = () => {
         <Container fluid>
             <Title order={2}>Research Cluster</Title>
             <Card>
-                <CardSection>
-                    <Text>Research Cluster</Text>
-                </CardSection>
+                <CardSection>Research Cluster</CardSection>
                 <Text>
                     The Research cluster is a dedicated partition within IKARUS, utilizing less than 
                     10% of its total resources to support experimental, early-stage or small-scale 
@@ -62,9 +60,7 @@ const ClusResearch = () => {
             </Card>
 
             <Card>
-                <CardSection>
-                    <Text>Avaliable Resources</Text>
-                </CardSection>
+                <CardSection>Avaliable Resources</CardSection>
                 <Text fz="lg">
                     Integrated Kuwait Advanced Research for Ultrafast Systems (IKARUS) 
                 </Text>
@@ -85,9 +81,7 @@ const ClusResearch = () => {
             </Card>
 
             <Card>
-                <CardSection>
-                    <Text>Submit Job</Text>
-                </CardSection>
+                <CardSection>Submit Job</CardSection>
                 <Text>
                     To submit a job to "Research" cluster in IKARUS, the “sbatch” file should have the 
                     following minimum "#SBATCH" configurations:

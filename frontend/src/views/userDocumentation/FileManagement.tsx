@@ -11,7 +11,7 @@ const FileManagement = () => {
             <Title order={2}>File Management</Title>
             <Card>
                 <CardSection>
-                    <Text>File Permissions in Linux</Text>
+                    File Permissions in Linux
                 </CardSection>
                 <Text>
                     Like many other operating systems Linux uses a method of access rights on files and 
@@ -76,7 +76,7 @@ const FileManagement = () => {
                         else have read and execute permission only.
                     </ListItem>
                     <ListItem>
-                        Files “data.csv”, “job_1.sh” and “output.txt” are owned by the user “hpcdemo”, 
+                        Files “data.csv”, “job_1.sh”, and “output.txt” are owned by the user “hpcdemo”, 
                         the users in “research” read and write permission only and everyone else have read 
                         permission only.
                     </ListItem>
