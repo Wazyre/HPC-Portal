@@ -1,4 +1,17 @@
-import type { AuthorizedUser } from "../slices/authorizationSlice"
+export interface LoginUser {
+    email: string,
+    password: string
+}
+
+export interface AuthorizedUser {
+    id: number,
+    firstName: string,
+    lastName: string,
+    email: string,
+    company: string,
+    role: string,
+    accessToken: string
+}
 
 export interface TicketType {
     id: number,

@@ -1,16 +1,17 @@
 import { configureStore, createAsyncThunk } from '@reduxjs/toolkit';
 import authorizationReducer  from '../slices/authorizationSlice';
 import notificationsReducer  from '../slices/notificationSlice';
-import { loginApi } from '../apis/authorizeApi';
+import { rtkApi } from '../apis/rtkApi';
 
+// Configure Redux store with RTK Query
 export const store = configureStore({
     reducer: {
         authorization: authorizationReducer,
         notifications: notificationsReducer,
-        [loginApi.reducerPath]: loginApi.reducer
+        [rtkApi.reducerPath]: rtkApi.reducer
     },
     middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(loginApi.middleware),
+    getDefaultMiddleware().concat(rtkApi.middleware),
 })
 
 // Infer the type of `store`

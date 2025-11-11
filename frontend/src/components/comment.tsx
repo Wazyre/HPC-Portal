@@ -1,5 +1,9 @@
 import { Avatar, Group, Stack, Text } from "@mantine/core";
 
+/* 
+Shows a comment in the comment chain in a support ticket
+*/
+
 interface CommentProps {
     avatarLink: string,
     name: string,

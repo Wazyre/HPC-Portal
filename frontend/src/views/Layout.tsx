@@ -6,6 +6,7 @@ import Header from "../components/header";
 import ikarusLogo from "../assets/images/ikarus_logo.png";
 
 const Layout = () => {
+    // Toggles handle opening and closing of sidebar
     const [mobileOpened, { toggle: toggleMobile }] = useDisclosure(); // Burger toggle
     const [desktopOpened, { toggle: toggleDesktop }] = useDisclosure(); // Burger toggle
     

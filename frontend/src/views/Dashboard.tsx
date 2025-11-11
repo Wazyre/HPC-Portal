@@ -4,7 +4,7 @@ import { useVerifyUser } from "../utils/useVerifyUser";
 import { IconMail } from "@tabler/icons-react";
 import { useAppSelector } from "../app/hooks";
 import { selectEmail } from "../slices/authorizationSlice";
-import { useGetPendingTicketsQuery } from "../apis/authorizeApi";
+import { useGetPendingTicketsQuery } from "../apis/rtkApi";
 
 import classes from "../sourceStyle.module.css";
 

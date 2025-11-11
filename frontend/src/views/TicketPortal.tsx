@@ -1,6 +1,6 @@
 import { Breadcrumbs, Card, Container, Grid, GridCol, Group, Loader, Pagination, Space, Stack, Tabs, TabsList, TabsTab, Text, TextInput, ThemeIcon, Title } from "@mantine/core";
 import { IconCircleCheck, IconHourglassEmpty, IconSearch, IconTicket } from "@tabler/icons-react";
-import { useGetTicketsQuery } from "../apis/authorizeApi";
+import { useGetTicketsQuery } from "../apis/rtkApi";
 import { useEffect, useState } from "react";
 import TicketTable from "../components/ticketTable";
 import { useAppSelector } from "../app/hooks";

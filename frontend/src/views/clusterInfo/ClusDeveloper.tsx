@@ -5,8 +5,6 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import { useVerifyUser } from "../../utils/useVerifyUser";
 
-// TODO check submit job bash instructions
-
 // Table data
 const params = [
     {param: "Groups", value: "Developer", desc: "Accounts with free access, small-scale or short-time projects will be part of this group"},
@@ -32,6 +30,7 @@ const ClusDeveloper = () => {
 
     useVerifyUser();
 
+    // Restrict page entry to developer users and admins
     useEffect(() => {
         if (userRole === "project") {
             navigate('/clusters/project')

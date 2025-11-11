@@ -1,9 +1,14 @@
 import { useForm } from "@mantine/form";
-import { useEditPasswordMutation } from "../apis/authorizeApi";
+import { useEditPasswordMutation } from "../apis/rtkApi";
 import { Button, PasswordInput } from "@mantine/core";
-import { selectEmail, type LoginUser } from "../slices/authorizationSlice";
+import { selectEmail } from "../slices/authorizationSlice";
 import { useAppSelector } from "../app/hooks";
 import { notifications } from "@mantine/notifications";
+import type { LoginUser } from "../utils/types";
+
+/* 
+The password modal that handles editing a user's password
+*/
 
 interface PassModalProps {
     close: () => void

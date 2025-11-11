@@ -6,14 +6,10 @@ import classes from "../sourceStyle.module.css"
 import { Link } from "react-router";
 import { useAppSelector } from "../app/hooks";
 import { selectRole } from "../slices/authorizationSlice";
-// import type { MouseEventHandler } from "react";
 
-// interface SidebarProps {
-//     mobileOpened: boolean,
-//     toggleMobile: MouseEventHandler<HTMLButtonElement>,
-//     desktopOpened: boolean,
-//     toggleDesktop: MouseEventHandler<HTMLButtonElement>
-// };
+/* 
+The sidebar of the entire portal
+*/
 
 const Sidebar = () => {
     const userRole = useAppSelector(selectRole);

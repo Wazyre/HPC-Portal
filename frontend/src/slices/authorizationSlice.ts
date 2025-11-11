@@ -1,36 +1,6 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
 import { type RootState } from '../app/store'
-
-export interface LoginUser {
-    email: string,
-    password: string
-}
-
-export interface AuthorizedUser {
-    id: number,
-    firstName: string,
-    lastName: string,
-    email: string,
-    company: string,
-    role: string,
-    accessToken: string
-}
-
-// export const loginById = createAppAsyncThunk(
-//     'users/',
-//     async(id: string) => {
-//         const res = await loginUser(id);
-//         return res.data;
-//     },
-//     {
-//         condition(arg, thunkApi) {
-//             const status = selectLoginStatus(thunkApi.getState());
-//             if (status !== 'idle') {
-//                 return false;
-//             }
-//         }
-//     }
-// );
+import type { AuthorizedUser } from '../utils/types';
 
 interface AuthorizationState {
     loggedIn: boolean,
@@ -100,26 +70,7 @@ export const authorizationSlice = createSlice({
             state.company = '';
             state.role = '';
         }
-    },
-    // extraReducers: builder => {
-    //     builder
-    //     .addCase(loginById.pending, (state, action) => {
-    //         state.status = 'pending'
-    //     })
-    //     .addCase(loginById.fulfilled, (state, action) => {
-    //         state.status = 'succeeded'
-    //         state.loggedIn = true;
-    //         state.accessToken = action.payload.accessToken
-            
-    //         const date = new Date()
-    //         date.setSeconds(date.getSeconds() + action.payload);
-    //         state.tokenExpiryDate = date.toISOString();
-    //     })
-    //     .addCase(loginById.rejected, (state, action) => {
-    //         state.status = 'failed'
-    //         state.error = action.error.message ?? 'Unknown Error'
-    //     })
-    // }
+    }
 })
 
 export const {setLoggedIn, setAccessToken, setTokenExpiryDate, setRole, setAuthorizedUser, clearLogInData} = authorizationSlice.actions;

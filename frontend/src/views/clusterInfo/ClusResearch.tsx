@@ -31,6 +31,7 @@ const ClusResearch = () => {
 
     useVerifyUser();
 
+    // Restrict page entry to research users and admins
     useEffect(() => {
         if (userRole === "project") {
             navigate('/clusters/project')

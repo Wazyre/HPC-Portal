@@ -1,10 +1,10 @@
 import { useEffect } from "react";
-import { useAppSelector } from "../app/hooks";
+import { useAppSelector } from "../../app/hooks";
 import { useNavigate } from "react-router";
-import { selectRole } from "../slices/authorizationSlice";
+import { selectRole } from "../../slices/authorizationSlice";
 import { Card, Container, Grid, GridCol, Pill, RingProgress, Stack, Text, Title } from "@mantine/core";
 
-import { useVerifyUser } from "../utils/useVerifyUser";
+import { useVerifyUser } from "../../utils/useVerifyUser";
 
 const data2 = [
   { value: 20, color: 'green.4' },
@@ -18,6 +18,7 @@ const StorageStats = () => {
 
     useVerifyUser();
 
+    // Restrict page entry only to admins
     useEffect(() => {
         if (userRole !== "sysAdmin" && userRole !== "webAdmin") {
             navigate(-1);

@@ -5,6 +5,10 @@ import React from "react";
 import { IconDotsVertical, IconEye } from "@tabler/icons-react";
 import { Link } from "react-router";
 
+/* 
+The table that lists support tickets based on the user
+*/
+
 interface ticketTableProps {
     tickets: TicketType[],
     activeTab: string,

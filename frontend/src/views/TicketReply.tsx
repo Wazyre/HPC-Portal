@@ -1,5 +1,5 @@
 import { Button, Card, CardSection, Container, Divider, Grid, GridCol, Group, Loader, Pill, Radio, RadioGroup, Stack, Table, TableTbody, TableTd, TableTr, Text, Textarea } from "@mantine/core";
-import { useGetCommentsQuery, useGetTicketQuery, usePostCommentMutation } from "../apis/authorizeApi";
+import { useGetCommentsQuery, useGetTicketQuery, usePostCommentMutation } from "../apis/rtkApi";
 import { useParams } from "react-router";
 import { useEffect, useState } from "react";
 import Comment from "../components/comment";

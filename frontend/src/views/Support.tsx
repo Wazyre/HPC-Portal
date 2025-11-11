@@ -5,7 +5,7 @@ import { useForm } from "@mantine/form";
 import { IconHelp } from "@tabler/icons-react";
 
 import classes from "../sourceStyle.module.css";
-import { useSubmitSupportMutation } from "../apis/authorizeApi";
+import { useSubmitSupportMutation } from "../apis/rtkApi";
 // import { notifications } from "@mantine/notifications";
 import { useVerifyUser } from "../utils/useVerifyUser";
 import type { TicketType } from "../utils/types";

@@ -1,65 +1,66 @@
 import { useEffect } from "react";
-import { useAppSelector } from "../app/hooks";
+import { useAppSelector } from "../../app/hooks";
 import { useNavigate } from "react-router";
-import { selectRole } from "../slices/authorizationSlice";
+import { selectRole } from "../../slices/authorizationSlice";
 import { BarChart, LineChart } from "@mantine/charts";
 import { Card, Container, Grid, GridCol, Text, Title } from "@mantine/core";
 
-import { useVerifyUser } from "../utils/useVerifyUser";
+import { useVerifyUser } from "../../utils/useVerifyUser";
 
 const data = [
     {
         date: 0,
-        Research: 25,
-        Project: 85,
-        Developer: 28,
+        Research: 253,
+        Project: 562,
+        Developer: 526,
     },
     {
         date: 1,
-        Research: 34,
-        Project: 64,
-        Developer: 46,
+        Research: 936,
+        Project: 248,
+        Developer: 753,
     },
     {
         date: 2,
-        Research: 12,
-        Project: 34,
-        Developer: 76,
+        Research: 398,
+        Project: 742,
+        Developer: 915,
     },
     {
         date: 3,
-        Research: 45,
-        Project: 16,
-        Developer: 36,
+        Research: 575,
+        Project: 458,
+        Developer: 634,
     },
     {
         date: 4,
-        Research: 25,
-        Project: 78,
-        Developer: 34,
+        Research: 272,
+        Project: 767,
+        Developer: 102,
     },
 ];
 
-const ClusterStats = () => {
+const JobStats = () => {
     const userRole = useAppSelector(selectRole);
-
+    
     const navigate = useNavigate();
 
     useVerifyUser();
 
+    // Restrict page entry only to admins
     useEffect(() => {
         if (userRole !== "sysAdmin" && userRole !== "webAdmin") {
             navigate(-1);
         }
     }, []);
-
+    
     return (
         <Container fluid>
-            <Title order={2}>Cluster Statistics</Title>
+            <Title order={2}>Job Statistics</Title>
             <Grid>
                 <GridCol span={6}>
                     <Card>
-                        <Text>Resource Utilization %</Text>
+                        <Text>Amount of Jobs</Text>
                         <LineChart
                             h={300}
                             data={data}
@@ -73,8 +74,8 @@ const ClusterStats = () => {
                             withLegend
                             legendProps={{verticalAlign: 'top', height: 50}}
                             withXAxis={false}
-                            yAxisLabel="Percent %"
-                            yAxisProps={{ domain: [0, 100] }}
+                            yAxisLabel="Amount"
+                            // yAxisProps={{ domain: [0, 1000] }}
                         />
                         
                     </Card>
@@ -84,7 +85,7 @@ const ClusterStats = () => {
 
                 <GridCol span={6}>
                     <Card>
-                        <Text>Running Tasks %</Text>
+                        <Text>Running Jobs</Text>
                         <LineChart
                             h={300}
                             data={data}
@@ -99,7 +100,7 @@ const ClusterStats = () => {
                             legendProps={{verticalAlign: 'top', height: 50}}
                             withXAxis={false}
                             yAxisLabel="Percent %"
-                            yAxisProps={{ domain: [0, 100] }}
+                            // yAxisProps={{ domain: [0, 1000] }}
                         />
                         
                     </Card>
@@ -111,7 +112,7 @@ const ClusterStats = () => {
             <Grid>
                 <GridCol span={6}>
                     <Card>
-                        <Text>Performance</Text>
+                        <Text>Job Performance</Text>
                         <Text fz="xs" c="gray.6">From Slurm log</Text>
                         <BarChart
                             h={400}
@@ -167,7 +168,7 @@ const ClusterStats = () => {
                 </GridCol>
             </Grid>
         </Container>
-    );    
+    )
 };
 
-export default ClusterStats;
+export default JobStats;

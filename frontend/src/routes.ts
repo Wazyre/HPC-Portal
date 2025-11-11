@@ -7,8 +7,11 @@ import Support from "./views/Support";
 import Login from "./views/Login";
 import Profile from "./views/Profile";
 import TicketPortal from "./views/TicketPortal";
-import StorageStats from "./views/StorageStats";
-import ClusterStats from "./views/ClusterStats";
+
+import StorageStats from "./views/statistics/StorageStats";
+import ClusterStats from "./views/statistics/ClusterStats";
+import JobStats from "./views/statistics/JobStats";
+
 import TicketReply from "./views/TicketReply";
 
 import AccessSSH from "./views/userDocumentation/AccessSSH";
@@ -21,11 +24,15 @@ import ClusResearch from "./views/clusterInfo/ClusResearch";
 import ClusProject from "./views/clusterInfo/ClusProject";
 import ClusDeveloper from "./views/clusterInfo/ClusDeveloper";
 
+/*
+All routes and subroutes for the portal are handled in this page
+*/
+
 export const router = createBrowserRouter([
     { index: true, Component: Login},
     {
         Component: Layout, // Main Component
-        children: [ // Children are Outlets that fill the AppShell Main
+        children: [ // Children are Outlets that fill the AppShell Main component in Layout.tsx
             {path: "/dashboard", Component: Dashboard},
             {path: "/documentation",
                 children: [
@@ -47,7 +54,7 @@ export const router = createBrowserRouter([
                 children: [
                     {path: "clusters", Component: ClusterStats},
                     {path: "storage", Component: StorageStats},
-                    {path: "job", Component: Dashboard},
+                    {path: "job", Component: JobStats},
                 ]
             },
             {path: "support", Component: Support},
