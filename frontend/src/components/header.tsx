@@ -1,8 +1,8 @@
 import { ActionIcon, Avatar, Burger, Group, Indicator, useComputedColorScheme, useMantineColorScheme } from "@mantine/core";
 import { IconBell, IconMoon, IconSun } from "@tabler/icons-react";
 import { Link } from "react-router";
-import { useAppSelector } from "../app/hooks";
-import { selectAllNotifications } from "../slices/notificationSlice";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
+import { removeNotification, selectAllNotifications } from "../slices/notificationSlice";
 import { notifications } from "@mantine/notifications";
 import cx from "clsx";
 import ikarusIcon from "../assets/images/icon.png";
@@ -11,6 +11,9 @@ import classes from "../sourceStyle.module.css"
 import type { MouseEventHandler } from "react";
 import HeaderMenu from "./headerMenu";
 
+/* 
+The header for the entire portal
+*/
 
 interface HeaderProps {
     mobileOpened: boolean,
@@ -24,6 +27,8 @@ const Header = ({mobileOpened, toggleMobile}: HeaderProps) => {
     const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true });
     const notifs = useAppSelector(selectAllNotifications);
 
+    const dispatch = useAppDispatch();
+
     const showNotifications = () => {
         for (const n of notifs) {
             notifications.show({
@@ -35,6 +40,7 @@ const Header = ({mobileOpened, toggleMobile}: HeaderProps) => {
                 withBorder: n.withBorder,
                 position: n.position,
             });
+            dispatch(removeNotification(n.id));
         }
     };
 
@@ -60,7 +66,7 @@ const Header = ({mobileOpened, toggleMobile}: HeaderProps) => {
                     radius={"100%"}
                     aria-label="Notifications"
                 >
-                    <Indicator processing>
+                    <Indicator processing disabled={notifs.length === 0}>
                         <IconBell className={cx(classes.icon, classes.light)} stroke={1.5} />
                         <IconBell className={cx(classes.icon, classes.dark)} stroke={1.5} />
                     </Indicator>
