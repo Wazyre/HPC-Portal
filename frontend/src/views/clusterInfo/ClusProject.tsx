@@ -29,7 +29,7 @@ const ClusProject = () => {
     const userRole = useAppSelector(selectRole);
     const navigate = useNavigate();
 
-    useVerifyUser();
+    useVerifyUser(['any']);
 
     // Restrict page entry to project users and admins
     useEffect(() => {

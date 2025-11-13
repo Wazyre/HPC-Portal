@@ -28,7 +28,7 @@ const ClusDeveloper = () => {
     const userRole = useAppSelector(selectRole);
     const navigate = useNavigate();
 
-    useVerifyUser();
+    useVerifyUser(['any']);
 
     // Restrict page entry to developer users and admins
     useEffect(() => {
