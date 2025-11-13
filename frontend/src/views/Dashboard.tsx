@@ -27,7 +27,7 @@ const Dashboard = () => {
     const email = useAppSelector(selectEmail);
     const {data: pendingTickets, isLoading} = useGetPendingTicketsQuery(email);
 
-    useVerifyUser();
+    useVerifyUser(['any']);
 
     if (isLoading) {
         return (

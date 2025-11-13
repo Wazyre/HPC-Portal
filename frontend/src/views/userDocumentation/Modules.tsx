@@ -6,7 +6,7 @@ import { useVerifyUser } from "../../utils/useVerifyUser";
 
 const Modules = () => {
 
-    useVerifyUser();
+    useVerifyUser(['any']);
 
     return (
         <Container fluid>

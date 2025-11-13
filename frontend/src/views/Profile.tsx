@@ -15,7 +15,7 @@ const Profile  = () => {
     const company = useAppSelector(selectCompany);
     const role = useAppSelector(selectRole);
 
-    useVerifyUser();
+    useVerifyUser(['any']);
     
     return (
         <Container fluid>

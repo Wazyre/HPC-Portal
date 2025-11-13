@@ -3,7 +3,7 @@ import { useVerifyUser } from "../../utils/useVerifyUser";
 import { Link } from "react-router";
 
 const JobSubmission = () => {
-    useVerifyUser();
+    useVerifyUser(['any']);
 
     return (
         <Container fluid>

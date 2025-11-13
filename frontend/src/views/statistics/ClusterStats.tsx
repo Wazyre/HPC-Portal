@@ -1,11 +1,8 @@
-import { useEffect } from "react";
-import { useAppSelector } from "../../app/hooks";
-import { useNavigate } from "react-router";
-import { selectRole } from "../../slices/authorizationSlice";
 import { BarChart, LineChart } from "@mantine/charts";
 import { Card, Container, Grid, GridCol, Text, Title } from "@mantine/core";
 
 import { useVerifyUser } from "../../utils/useVerifyUser";
+// import jobPart from '../../assets/data/jobs_partition.json';
 
 const data = [
     {
@@ -40,19 +37,17 @@ const data = [
     },
 ];
 
+
 const ClusterStats = () => {
-    const userRole = useAppSelector(selectRole);
 
-    const navigate = useNavigate();
-
-    useVerifyUser();
+    // const createData = () => {
+    //     let data = [];
+    //     console.log(jobPart)
+        
+    // }
 
     // Restrict page entry only to admins
-    useEffect(() => {
-        if (userRole !== "sysAdmin" && userRole !== "webAdmin") {
-            navigate(-1);
-        }
-    }, []);
+    useVerifyUser(["sysAdmin", "webAdmin"]);
 
     return (
         <Container fluid>

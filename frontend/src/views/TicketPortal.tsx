@@ -47,7 +47,7 @@ const TicketPortal = () => {
         }
     }, [tickets])
 
-    useVerifyUser();
+    useVerifyUser(['any']);
 
     if (isLoading) {
         return (

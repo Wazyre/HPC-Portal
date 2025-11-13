@@ -83,7 +83,7 @@ const Support = () => {
         }
     }
 
-    useVerifyUser();
+    useVerifyUser(['any']);
 
     return (
         <Container fluid>

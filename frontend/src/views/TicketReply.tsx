@@ -92,7 +92,7 @@ const TicketReply = () => {
         }
     }
 
-    useVerifyUser();
+    useVerifyUser(['any']);
 
     useEffect(() => {
         if(isSuccess) {

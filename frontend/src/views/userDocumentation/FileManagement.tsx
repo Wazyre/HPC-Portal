@@ -4,7 +4,7 @@ import { fileMngImgs } from "../../assets/images/filemng";
 
 const FileManagement = () => {
 
-    useVerifyUser();
+    useVerifyUser(['any']);
     
     return (
         <Container fluid>

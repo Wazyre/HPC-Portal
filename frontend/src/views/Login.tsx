@@ -40,7 +40,7 @@ const Login = () => {
         }
     };
 
-    useVerifyUser();
+    useVerifyUser(['any']);
 
     return (
         <Container fluid mt={20}>

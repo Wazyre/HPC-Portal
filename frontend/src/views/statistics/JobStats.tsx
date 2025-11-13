@@ -1,7 +1,3 @@
-import { useEffect } from "react";
-import { useAppSelector } from "../../app/hooks";
-import { useNavigate } from "react-router";
-import { selectRole } from "../../slices/authorizationSlice";
 import { BarChart, LineChart } from "@mantine/charts";
 import { Card, Container, Grid, GridCol, Text, Title } from "@mantine/core";
 
@@ -41,18 +37,9 @@ const data = [
 ];
 
 const JobStats = () => {
-    const userRole = useAppSelector(selectRole);
-    
-    const navigate = useNavigate();
-
-    useVerifyUser();
 
     // Restrict page entry only to admins
-    useEffect(() => {
-        if (userRole !== "sysAdmin" && userRole !== "webAdmin") {
-            navigate(-1);
-        }
-    }, []);
+    useVerifyUser(["sysAdmin", "webAdmin"]);
     
     return (
         <Container fluid>

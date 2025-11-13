@@ -5,8 +5,7 @@ import { selectRole, selectTokenExpiryDate, setAuthorizedUser } from "../slices/
 import { useLocation, useNavigate } from "react-router";
 import type { AuthorizedUser } from "./types";
 
-
-export const useVerifyUser = () => {
+export const useVerifyUser = (roles: string[]) => {
     const tokenExpiryDate = useAppSelector(selectTokenExpiryDate);
     const role = useAppSelector(selectRole);
     const [verifyUser] = useLazyVerifyUserQuery();
@@ -19,11 +18,16 @@ export const useVerifyUser = () => {
         if (tokenExpiryDate !== '' && role === '') {
             const date = new Date();
             const tokenDate = new Date(tokenExpiryDate);
+
             if (tokenDate > date) {
                 verifyUser().unwrap()
                 .then((user: AuthorizedUser) => {
                     dispatch(setAuthorizedUser(user));
-                    if(location.pathname === '/') {
+                    
+                    if ('any' !in roles && user.role !in roles) {
+                        navigate(-1);
+                    }
+                    if (location.pathname === '/') {
                         navigate('/dashboard');
                     }
                 }).catch(err => {

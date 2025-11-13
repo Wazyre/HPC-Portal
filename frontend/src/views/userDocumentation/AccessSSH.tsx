@@ -3,7 +3,7 @@ import { useVerifyUser } from "../../utils/useVerifyUser";
 
 const AccessSSH = () => {
 
-    useVerifyUser();
+    useVerifyUser(['any']);
 
     return (
         <Container fluid>

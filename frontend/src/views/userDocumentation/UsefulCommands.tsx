@@ -3,7 +3,7 @@ import { cmdImgs } from "../../assets/images/commands";
 import { useVerifyUser } from "../../utils/useVerifyUser";
 
 const UsefulCommands = () => {
-    useVerifyUser();
+    useVerifyUser(['any']);
 
     return (
         <Container fluid>
