@@ -94,8 +94,8 @@ echo "{" >> $output_file
 for search_string in "${string_to_find[@]}"; do
 	for (( i=0; i<${#sta_months[@]}; i++ )); do
 		echo "${sta_months[i]}"
-		line_count=$(grep -o $search_string $job_sta_file | grep ${sta_months[i]} | wc -l)
-		echo "${sta_months[i]} $search_string: $line_count" >> $output_file
+		line_count=$(grep $search_string $job_sta_file | grep ${sta_months[i]} | wc -l)
+		echo "month_name[$i] $search_string: $line_count" >> $output_file
 	done
 	line_count=$(grep -o $search_string $job_sta_file | wc -l)
 	echo "Total $search_string: $line_count" >> $output_file
