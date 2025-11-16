@@ -49,7 +49,7 @@ const Dashboard = () => {
                 </Group>
 
                 <Text fw={700} mt={20}>Storage Usage</Text>
-                <Text fz="xs" c="gray.6">Out of 500G</Text>
+                <Text fz="xs" c="gray.6">Out of 2T</Text>
                 <ProgressRoot size={30} mt={20}>
                     <Tooltip label="33GB - Applications">
                         <ProgressSection value={28} color="green.5">

@@ -123,7 +123,7 @@ const JobSubmission = () => {
                         </TableTr>
                         <TableTr>
                             <TableTd>--partition</TableTd>
-                            <TableTd>Specify the cluster partition name</TableTd>
+                            <TableTd>Specify the cluster partition name (Default is "research")</TableTd>
                         </TableTr>
                         <TableTr>
                             <TableTd>--nodes</TableTd>
@@ -178,7 +178,7 @@ const JobSubmission = () => {
                     It will run as <Text component="span" td="underline">“hello-ikarus”</Text> job name 
                     reserving <Text component="span" td="underline">100M RAM</Text> with unattended for up 
                     to <Text component="span" td="underline">30 seconds</Text> in 
-                    the <Text component="span" td="underline">"def2"</Text> partition, 
+                    the <Text component="span" td="underline">"research"</Text> partition, 
                     and will simply print out the words, "Welcome to IKARUS by KISR":
                 </Text>
 
@@ -187,7 +187,7 @@ const JobSubmission = () => {
 
 ######## Start of option ########
 #SBATCH --job-name=hello-ikarus
-#SBATCH --partition=def2
+#SBATCH --partition=research
 #SBATCH --mem=100M
 #SBATCH --time=00:00:30
 ######## End of option ########
@@ -201,7 +201,7 @@ echo "Welcome to IKARUS by KISR "`}
                     for <Text component="span" td="underline">40</Text> cores
                     per <Text component="span" td="underline">one</Text> task 
                     on <Text component="span" td="underline">one</Text> of the compute nodes in 
-                    the <Text component="span" td="underline">"def"</Text> partition 
+                    the <Text component="span" td="underline">"research"</Text> partition 
                     utilizing <Text component="span" td="underline">50G</Text> RAM with 
                     maximum <Text component="span" td="underline">5 minutes</Text> and will simply print 
                     out the words, "Welcome to IKARUS by KISR":
@@ -211,7 +211,7 @@ echo "Welcome to IKARUS by KISR "`}
 
 ######## Start of option ########
 #SBATCH --job-name=hello-ikarus
-#SBATCH --partition=def2
+#SBATCH --partition=research
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=40
@@ -476,7 +476,7 @@ print('stop at ' + time.strftime('%H:%M:%S'))`}
 
 
 #SBATCH --job-name=seq_example
-#SBATCH --partition=def2
+#SBATCH --partition=research
 #SBATCH --array=1-16
 #SBATCH --time=0-00:05:00
 #SBATCH --mem-per-cpu=500MB
@@ -531,7 +531,7 @@ exit 0`}
 {`#!/bin/bash
 
 #SBATCH --job-name=mpi-example
-#SBATCH --partition=def2
+#SBATCH --partition=research
 #SBATCH --ntasks=20
 #SBATCH --time=0-00:05:00
 #SBATCH --mem-per-cpu=500MB

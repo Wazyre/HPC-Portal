@@ -91,7 +91,7 @@ const ClusResearch = () => {
 {`#!/bin/bash
 
 #SBATCH --job-name=example
-#SBATCH --partition=def2
+#SBATCH --partition=research         # Optional, default is research
 #SBATCH --nodes=1                    # Max 6
 #SBATCH --time=00:05:00              # Max 36:00:00
 #SBATCH --mem=16G                    # Max 2T
