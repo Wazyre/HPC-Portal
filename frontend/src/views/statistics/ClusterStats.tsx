@@ -2,7 +2,8 @@ import { BarChart, LineChart } from "@mantine/charts";
 import { Card, Container, Grid, GridCol, Text, Title } from "@mantine/core";
 
 import { useVerifyUser } from "../../utils/useVerifyUser";
-// import jobPart from '../../assets/data/jobs_partition.json';
+import jobStat from "../../assets/data/jobsStat.json";
+import jobPart from "../../assets/data/jobsPartition.json";
 
 const data = [
     {
@@ -40,11 +41,50 @@ const data = [
 
 const ClusterStats = () => {
 
-    // const createData = () => {
-    //     let data = [];
-    //     console.log(jobPart)
-        
-    // }
+    const getLastSixMonths = () => {
+        const months = [];
+        const currentDate = new Date(); // Get the current date
+
+        for (let i = 0; i < 6; i++) {
+            const date = new Date(currentDate.getFullYear(), currentDate.getMonth() - i, 1); // Create a date object for the first day of the month, 'i' months ago
+            const monthName = date.toLocaleString('default', { month: 'long' }); // Get the full month name
+            // Add to the beginning of the array to maintain chronological order
+            months.unshift(monthName);
+        }
+        return months;
+    };
+
+    const buildStateData = () => {
+        const months = getLastSixMonths();
+        const data = [];
+        for (let i = 0; i < months.length; i++) {
+            data.push({
+                month: months[i],
+                Submitted: jobStat[i].Total,
+                Completed: jobStat[i].Completed,
+                Failed: jobStat[i].Failed,
+                Cancelled: jobStat[i].Cancelled,
+                Running: jobStat[i].Running,
+                Pending: jobStat[i].Pending
+            });
+        }
+        return data;
+    }
+
+    const buildPartData = () => {
+        const months = getLastSixMonths();
+        const data = [];
+        for (let i = 0; i < months.length; i++) {
+            data.push({
+                Month: months[i],
+                Developer: jobPart[i].Developer,
+                Project: jobPart[i].Project,
+                Research: jobPart[i].Research,
+            });
+        }
+        return data;
+    }
+
 
     // Restrict page entry only to admins
     useVerifyUser(["sysAdmin", "webAdmin"]);
@@ -107,23 +147,19 @@ const ClusterStats = () => {
             <Grid>
                 <GridCol span={6}>
                     <Card>
-                        <Text>Performance</Text>
+                        <Text>Job Performance</Text>
                         <Text fz="xs" c="gray.6">From Slurm log</Text>
                         <BarChart
                             h={400}
                             dataKey="month"
-                            data={[
-    { month: 'January', Submitted: 1200, Completed: 900, Canceled: 200 },
-    { month: 'February', Submitted: 1900, Completed: 1200, Canceled: 400 },
-    { month: 'March', Submitted: 400, Completed: 1000, Canceled: 200 },
-    { month: 'April', Submitted: 1000, Completed: 200, Canceled: 800 },
-    { month: 'May', Submitted: 800, Completed: 1400, Canceled: 1200 },
-    { month: 'June', Submitted: 750, Completed: 600, Canceled: 1000 },
-    ]}
+                            data={buildStateData()}
                             series={[
                                 {name: 'Submitted', color: 'violet.6'},
                                 {name: 'Completed', color: 'teal.6'},
-                                {name: 'Canceled', color: 'red.5'}
+                                {name: 'Failed', color: 'red.5'},
+                                {name: 'Cancelled', color: 'orange.6'},
+                                {name: 'Running', color: 'blue.5'},
+                                {name: 'Pending', color: 'yellow.5'}
                             ]}
                             tickLine="y"
                             yAxisLabel="Jobs"
@@ -142,14 +178,7 @@ const ClusterStats = () => {
                             h={400}
                             dataKey="month"
                             orientation="vertical"
-                            data={[
-    { month: 'January', Research: 1200, Project: 900, Developer: 200 },
-    { month: 'February', Research: 1900, Project: 1200, Developer: 400 },
-    { month: 'March', Research: 400, Project: 1000, Developer: 200 },
-    { month: 'April', Research: 1000, Project: 200, Developer: 800 },
-    { month: 'May', Research: 800, Project: 1400, Developer: 1200 },
-    { month: 'June', Research: 750, Project: 600, Developer: 1000 },
-    ]}
+                            data={buildPartData()}
                             series={[
                                 {name: 'Research', color: 'violet.6'},
                                 {name: 'Project', color: 'teal.6'},

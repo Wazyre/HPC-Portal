@@ -7,6 +7,8 @@ import { selectEmail } from "../slices/authorizationSlice";
 import { useGetPendingTicketsQuery } from "../apis/rtkApi";
 
 import classes from "../sourceStyle.module.css";
+// import nodeInfo from "../assets/data/nodeInfo.json";
+// import { useEffect, useState } from "react";
 
 //TODO Pulled from backend
 /*
@@ -24,10 +26,24 @@ const data = [
 const perc = 8.9
 
 const Dashboard = () => {
+    // const [nodeRole, setNodeRole] = useState({})
     const email = useAppSelector(selectEmail);
+    // const role = useAppSelector(selectRole);
     const {data: pendingTickets, isLoading} = useGetPendingTicketsQuery(email);
 
     useVerifyUser(['any']);
+
+    // useEffect(() => {
+    //     if(role === "research") {
+    //         setNodeRole(nodeInfo.research);
+    //     }
+    //     else if(role === "project") {
+    //         setNodeRole(nodeInfo.project);
+    //     }
+    //     else {
+    //         setNodeRole(nodeInfo.developer);
+    //     }
+    // }, [nodeInfo])
 
     if (isLoading) {
         return (
