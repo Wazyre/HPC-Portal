@@ -63,7 +63,8 @@ const StorageStats = () => {
                                 size={120} 
                                 thickness={10} 
                                 sections={data2} 
-                                label={<Text size="xl" ta="center">
+                                label={
+                                <Text size="xl" ta="center">
                                     {perc}
                                 </Text>}
                             />
@@ -83,7 +84,8 @@ const StorageStats = () => {
                                 sections={[
                                     { value: scratchPerc, color: 'green.4' }
                                 ]}
-                                label={<Text size="xl" ta="center">
+                                label={
+                                <Text size="xl" ta="center">
                                     {scratchPerc}
                                 </Text>}
                             />
@@ -102,7 +104,8 @@ const StorageStats = () => {
                                 sections={[
                                     { value: sharedPerc, color: 'green.4' }
                                 ]} 
-                                label={<Text size="xl" ta="center">
+                                label={
+                                <Text size="xl" ta="center">
                                     {sharedPerc}
                                 </Text>}
                             />

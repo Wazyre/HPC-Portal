@@ -1,14 +1,14 @@
 import { BarChart, DonutChart } from "@mantine/charts";
-import { Card, Container, Grid, GridCol, Group, Loader, Pill, ProgressLabel, ProgressRoot, ProgressSection, Stack, Text, Title, Tooltip } from "@mantine/core";
+import { Card, Container, Grid, GridCol, Group, Loader, Pill, ProgressLabel, ProgressRoot, ProgressSection, RingProgress, Stack, Text, Title, Tooltip } from "@mantine/core";
 import { useVerifyUser } from "../utils/useVerifyUser";
 import { IconMail } from "@tabler/icons-react";
 import { useAppSelector } from "../app/hooks";
-import { selectEmail } from "../slices/authorizationSlice";
+import { selectEmail, selectRole } from "../slices/authorizationSlice";
 import { useGetPendingTicketsQuery } from "../apis/rtkApi";
 
 import classes from "../sourceStyle.module.css";
-// import nodeInfo from "../assets/data/nodeInfo.json";
-// import { useEffect, useState } from "react";
+import nodeInfo from "../assets/data/nodeInfo.json";
+import { useEffect, useState } from "react";
 
 //TODO Pulled from backend
 /*
@@ -26,24 +26,36 @@ const data = [
 const perc = 8.9
 
 const Dashboard = () => {
-    // const [nodeRole, setNodeRole] = useState({})
+    const [cpuState, setCpuState] = useState<string[]>([]);
+    const [cpuPerc, setCpuPerc] = useState<number>(0);
+    const [nodeState, setNodeState] = useState<string[]>([]);
+    const [nodePerc, setNodePerc] = useState<number>(0);
     const email = useAppSelector(selectEmail);
-    // const role = useAppSelector(selectRole);
+    const role = useAppSelector(selectRole);
     const {data: pendingTickets, isLoading} = useGetPendingTicketsQuery(email);
 
     useVerifyUser(['any']);
 
-    // useEffect(() => {
-    //     if(role === "research") {
-    //         setNodeRole(nodeInfo.research);
-    //     }
-    //     else if(role === "project") {
-    //         setNodeRole(nodeInfo.project);
-    //     }
-    //     else {
-    //         setNodeRole(nodeInfo.developer);
-    //     }
-    // }, [nodeInfo])
+    useEffect(() => {
+        let tempNode: string[] = [];
+        let tempCpu: string[] = [];
+        if(role === "research") {
+            tempCpu = nodeInfo.research.cpuState.split('/'); // [allocated, idle, other, total]
+            tempNode = nodeInfo.research.nodeState.split('/'); // [allocated, idle, other, total]
+        }
+        else if(role === "project") {
+            tempCpu = nodeInfo.project.cpuState.split('/');
+            tempNode = nodeInfo.project.nodeState.split('/');
+        }
+        else {
+            tempCpu = nodeInfo.developer.cpuState.split('/');
+            tempNode = nodeInfo.developer.nodeState.split('/');
+        }
+        setCpuState(tempCpu);
+        setNodeState(tempNode);
+        setCpuPerc((1-parseInt(tempCpu[1])/parseInt(tempCpu[3]))*100);
+        setNodePerc((1-parseInt(tempNode[1])/parseInt(tempNode[3]))*100);
+    }, [nodeInfo])
 
     if (isLoading) {
         return (
@@ -106,36 +118,54 @@ const Dashboard = () => {
                 <Grid>
                     <GridCol span={3}>
                         <Stack align="center">
-                            <DonutChart 
+                            {/* <DonutChart 
                                 w={100} 
                                 h={100} 
                                 size={100} 
                                 thickness={10} 
                                 data={data} 
-                                chartLabel={perc}
+                                chartLabel={nodeState[1]}
                                 labelsType="value"
                                 withTooltip={false}
                                 classNames={{label: classes.chartInnerText}}
+                            /> */}
+                            <RingProgress 
+                                size={120} 
+                                thickness={10} 
+                                sections={[{ value: nodePerc, color: 'green.4'}]}
+                                label={
+                                <Text size="xl" ta="center">
+                                    {nodeState[1]}
+                                </Text>}
                             />
                             <Text>Nodes</Text>
-                            <Pill>15%</Pill>
+                            <Pill>{nodePerc + "%"}</Pill>
                         </Stack>
                     </GridCol>
                     <GridCol span={3}>
                         <Stack align="center">
-                            <DonutChart 
+                            {/* <DonutChart 
                                 w={100} 
                                 h={100} 
                                 size={100} 
                                 thickness={10} 
                                 data={data} 
-                                chartLabel={perc}
+                                chartLabel={cpuState[1]}
                                 labelsType="value"
                                 withTooltip={false}
                                 classNames={{label: classes.chartInnerText}}
+                            /> */}
+                            <RingProgress 
+                                size={120} 
+                                thickness={10} 
+                                sections={[{ value: cpuPerc, color: 'green.4'}]}
+                                label={
+                                <Text size="xl" ta="center">
+                                    {cpuState[1]}
+                                </Text>}
                             />
                             <Text>Cores</Text>
-                            <Pill>15%</Pill>
+                            <Pill>{cpuPerc + "%"}</Pill>
                         </Stack>
                     </GridCol>
                     <GridCol span={3}>
