@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { BarChart, DonutChart } from "@mantine/charts";
 import { Card, Container, Grid, GridCol, Group, Loader, Pill, ProgressLabel, ProgressRoot, ProgressSection, RingProgress, Stack, Text, Title, Tooltip } from "@mantine/core";
 import { useVerifyUser } from "../utils/useVerifyUser";
@@ -8,7 +9,8 @@ import { useGetPendingTicketsQuery } from "../apis/rtkApi";
 
 import classes from "../sourceStyle.module.css";
 import nodeInfo from "../assets/data/nodeInfo.json";
-import { useEffect, useState } from "react";
+// import userStorage from "../assets/data/userStorage.json";
+import userJobs from "../assets/data/userJobs.json";
 
 //TODO Pulled from backend
 /*
@@ -30,20 +32,34 @@ const Dashboard = () => {
     const [cpuPerc, setCpuPerc] = useState<number>(0);
     const [nodeState, setNodeState] = useState<string[]>([]);
     const [nodePerc, setNodePerc] = useState<number>(0);
-    const user = useAppSelector(selectUsername);
+    const [jobData, setJobData] = useState([{}]);
+    const username = useAppSelector(selectUsername);
     const role = useAppSelector(selectRole);
-    const {data: pendingTickets, isLoading} = useGetPendingTicketsQuery(user);
+    const {data: pendingTickets, isLoading} = useGetPendingTicketsQuery(username);
+
+    const buildData = () => {
+        const data = [];
+        console.log(username)
+        const jobs = userJobs.find(user => user.name === username)!;
+        const {name, ...newJobs} = jobs;
+        console.log(name);
+        for (const month in Object.keys(newJobs)) {
+            console.log(month);
+            data.push({ month: month, Jobs: newJobs[month as keyof typeof newJobs].jobs, Storage: 900, Runtime: (newJobs[month as keyof typeof newJobs].time/3600).toFixed(1) },)
+        }
+        return data;
+    };
 
     useVerifyUser(['any']);
 
     useEffect(() => {
         let tempNode: string[] = [];
         let tempCpu: string[] = [];
-        if(role === "research") {
+        if (role === "research") {
             tempCpu = nodeInfo.research.cpuState.split('/'); // [allocated, idle, other, total]
             tempNode = nodeInfo.research.nodeState.split('/'); // [allocated, idle, other, total]
         }
-        else if(role === "project") {
+        else if (role === "project") {
             tempCpu = nodeInfo.project.cpuState.split('/');
             tempNode = nodeInfo.project.nodeState.split('/');
         }
@@ -55,7 +71,8 @@ const Dashboard = () => {
         setNodeState(tempNode);
         setCpuPerc((1-parseInt(tempCpu[1])/parseInt(tempCpu[3]))*100);
         setNodePerc((1-parseInt(tempNode[1])/parseInt(tempNode[3]))*100);
-    }, [nodeInfo])
+        setJobData(buildData());
+    }, [nodeInfo, userJobs, username])
 
     if (isLoading) {
         return (
@@ -193,14 +210,7 @@ const Dashboard = () => {
                     <BarChart
                         h={400}
                         dataKey="month"
-                        data={[
-  { month: 'January', Jobs: 1200, Storage: 900, Runtime: 200 },
-  { month: 'February', Jobs: 1900, Storage: 1200, Runtime: 400 },
-  { month: 'March', Jobs: 400, Storage: 1000, Runtime: 200 },
-  { month: 'April', Jobs: 1000, Storage: 200, Runtime: 800 },
-  { month: 'May', Jobs: 800, Storage: 1400, Runtime: 1200 },
-  { month: 'June', Jobs: 750, Storage: 600, Runtime: 1000 },
-]}
+                        data={jobData}
                         series={[
                             {name: 'Jobs', color: 'violet.6'},
                             {name: 'Storage', label: 'Storage (GB)',color: 'teal.6'},

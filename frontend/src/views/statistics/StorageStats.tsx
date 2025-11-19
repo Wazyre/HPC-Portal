@@ -1,5 +1,5 @@
 import { Card, Container, Grid, GridCol, Pill, RingProgress, Stack, Text, Title } from "@mantine/core";
-
+import humanFileSize from "../../utils/humanFileSize";
 import { useVerifyUser } from "../../utils/useVerifyUser";
 import storageUsed from "../../assets/data/userStorage.json";
 
@@ -8,6 +8,8 @@ const data2 = [
 ];
 
 const perc = 15
+const scratchData = humanFileSize(parseInt(storageUsed.scratchUsed));
+const sharedData = humanFileSize(parseInt(storageUsed.sharedUsed));
 const scratchPerc = parseFloat(((parseInt(storageUsed.scratchUsed) / 497925168128) * 100).toFixed(1));
 const sharedPerc = parseFloat(((parseInt(storageUsed.sharedUsed) / 248034075648) * 100).toFixed(1));
 
@@ -85,8 +87,8 @@ const StorageStats = () => {
                                     { value: scratchPerc, color: 'green.4' }
                                 ]}
                                 label={
-                                <Text size="xl" ta="center">
-                                    {scratchPerc}
+                                <Text size="lg" ta="center">
+                                    {scratchData}
                                 </Text>}
                             />
                             <Text fz={"larger"} fw={700}>464 GB</Text>
@@ -105,8 +107,8 @@ const StorageStats = () => {
                                     { value: sharedPerc, color: 'green.4' }
                                 ]} 
                                 label={
-                                <Text size="xl" ta="center">
-                                    {sharedPerc}
+                                <Text size="lg" ta="center">
+                                    {sharedData}
                                 </Text>}
                             />
                             <Text fz={"larger"} fw={700}>231 GB</Text>
