@@ -7,12 +7,12 @@
 #SLURM Job Log statistics                                                                          
 #========================                                                                          
 job_sta_file=slurmJobs.json
-sacct -X --starttime=2024-01-01 --format=JobID,JobName,User,Partition,State,Start,ElapsedRaw > $job_sta_file  
+sacct -aX --starttime=2024-01-01 --format=JobID,JobName%15,User%15,Partition,State,Start,ElapsedRaw > $job_sta_file  
 
 # #Get Users Statistics
 # #=====================
-# user_path=/NFS/scratch/homes
-# user_list=( $(ls $user_path) )
+user_path=/NFS/scratch/homes
+user_list=( $(sacctmgr show users format=User%15 | tail -n +3 ) )
 
 # 1) Format - Last six months
 # ---------------------------
@@ -33,13 +33,17 @@ output_file=userStorage.json
 > $output_file
 scratchUsed=$(df | grep scratch | awk '{print $3}')
 sharedUsed=$(df | grep shared | awk '{print $3}')
-echo "Scratch Used:$scratchUsed" >> $output_file
-echo "Shared Used:$sharedUsed" >> $output_file
+echo "{" >> $output_file
+echo "\"scratchUsed\": \"$scratchUsed\"," >> $output_file
+echo "\"sharedUsed\": \"$sharedUsed\"," >> $output_file
 
-# for item in "${user_list[@]}"; do
-# 	total_size=$(du -sh $user_path/$item | awk '{print $1}' )
-# 	echo "$item		$total_size" >> $output_file
-# done
+for item in "${user_list[@]}"; do
+	user_8s="${item:0:8}"
+	total_size=$(du -s $user_path/$item | awk '{print $1}' )
+	echo "\"$item\": \"$total_size\"," >> $output_file
+done
+sed -i '$ s/.$//' $output_file                           
+echo "}" >> $output_file
 
 # 3) Submitted Jobs
 # -----------------
@@ -49,14 +53,17 @@ output_file=userJobs.json
 echo "[" >> $output_file
 for item in "${user_list[@]}"; do
 	echo "{" >> $output_file
-	user_8s="${item:0:8}"
-	echo "\"name\": \"$item\"" >> $output_file
+	# user_8s="${item:0:8}"
+	echo "\"name\": \"$item\", " >> $output_file
 	for (( i=0; i<${#sta_months[@]}; i++ )); do
-		echo "\"$month_name[$i]\": {"
-		line_count=$(grep $user_8s $job_sta_file | grep -o ${sta_months[i]} | wc -l)
-		echo "\"jobs\": $line_count,"
-		time_count=$(grep $user_8s $job_sta_file | grep ${sta_months[i]} | awk '{print $7}' | paste -s -d+ filename.txt | bc)
-		echo "\"time\": $time_count,"
+		echo "\"${month_name[$i]}\": {" >> $output_file
+		line_count=$(grep $item $job_sta_file | grep -o ${sta_months[i]} | wc -l)
+		echo "\"jobs\": $line_count," >> $output_file
+		time_count=$(grep $item $job_sta_file | grep ${sta_months[i]} | awk '{print $7}' | paste -s -d+ | bc)
+		if [[ -z "$time_count" ]]; then
+			time_count=0
+		fi
+		echo "\"time\": $time_count" >> $output_file
 		echo "}," >> $output_file
 	done
 	sed -i '$ s/.$//' $output_file                           

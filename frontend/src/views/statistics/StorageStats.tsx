@@ -8,8 +8,8 @@ const data2 = [
 ];
 
 const perc = 15
-const scratchPerc = parseFloat(((storageUsed.scratchUsed / 497925168128) * 100).toFixed(1));
-const sharedPerc = parseFloat(((storageUsed.sharedUsed / 248034075648) * 100).toFixed(1));
+const scratchPerc = parseFloat(((parseInt(storageUsed.scratchUsed) / 497925168128) * 100).toFixed(1));
+const sharedPerc = parseFloat(((parseInt(storageUsed.sharedUsed) / 248034075648) * 100).toFixed(1));
 
 const StorageStats = () => {
     // Restrict page entry only to admins
