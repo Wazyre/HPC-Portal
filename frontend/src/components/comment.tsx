@@ -7,12 +7,12 @@ Shows a comment in the comment chain in a support ticket
 interface CommentProps {
     avatarLink: string,
     name: string,
-    email: string, 
+    username: string, 
     date: string,
     comment: string
 }
 
-const Comment = ({avatarLink, name, email, date, comment}: CommentProps) => {
+const Comment = ({avatarLink, name, username, date, comment}: CommentProps) => {
     return (
         <>
             <Group justify="space-between" mt={20}>
@@ -20,7 +20,7 @@ const Comment = ({avatarLink, name, email, date, comment}: CommentProps) => {
                     <Avatar src={avatarLink}/>
                     <Stack gap="xs">
                         <Text>{name}</Text>
-                        <Text size="xs" c="gray">{email}</Text>
+                        <Text size="xs" c="gray">{username}</Text>
                     </Stack>
                 </Group>
                 <Text size="xs" c="gray">{date}</Text>

@@ -1,7 +1,7 @@
 import { useAppSelector } from "../app/hooks";
 import { useDisclosure } from "@mantine/hooks";
 import PasswordModal from "../components/passwordModal";
-import { selectCompany, selectEmail, selectName, selectRole } from "../slices/authorizationSlice";
+import { selectCompany, selectUsername, selectName, selectRole } from "../slices/authorizationSlice";
 import { Button, Card, Container, Flex, Image, Modal, Stack, Text, Title } from "@mantine/core";
 import profImg from "../assets/images/icon.png";
 import { IconEdit } from "@tabler/icons-react";
@@ -11,7 +11,7 @@ const Profile  = () => {
     const [opened, {open, close}] = useDisclosure(false);
 
     const name = useAppSelector(selectName);
-    const email = useAppSelector(selectEmail);
+    const username = useAppSelector(selectUsername);
     const company = useAppSelector(selectCompany);
     const role = useAppSelector(selectRole);
 
@@ -38,7 +38,7 @@ const Profile  = () => {
             <Card>   
                 <Text fw={700}>Login Information</Text>
                 <Stack mt={20}>
-                    <Text>{'Email: ' + email}</Text>
+                    <Text>{'Username: ' + username}</Text>
                     {/* <Text>Password:</Text> */}
                     <Text>{'Role: ' + role.toUpperCase()}</Text>
                     <Button leftSection={<IconEdit/>} onClick={open}>

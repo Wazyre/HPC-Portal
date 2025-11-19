@@ -3,7 +3,7 @@ import { Card, Container, Grid, GridCol, Group, Loader, Pill, ProgressLabel, Pro
 import { useVerifyUser } from "../utils/useVerifyUser";
 import { IconMail } from "@tabler/icons-react";
 import { useAppSelector } from "../app/hooks";
-import { selectEmail, selectRole } from "../slices/authorizationSlice";
+import { selectUsername, selectRole } from "../slices/authorizationSlice";
 import { useGetPendingTicketsQuery } from "../apis/rtkApi";
 
 import classes from "../sourceStyle.module.css";
@@ -30,9 +30,9 @@ const Dashboard = () => {
     const [cpuPerc, setCpuPerc] = useState<number>(0);
     const [nodeState, setNodeState] = useState<string[]>([]);
     const [nodePerc, setNodePerc] = useState<number>(0);
-    const email = useAppSelector(selectEmail);
+    const user = useAppSelector(selectUsername);
     const role = useAppSelector(selectRole);
-    const {data: pendingTickets, isLoading} = useGetPendingTicketsQuery(email);
+    const {data: pendingTickets, isLoading} = useGetPendingTicketsQuery(user);
 
     useVerifyUser(['any']);
 
@@ -113,7 +113,7 @@ const Dashboard = () => {
 
                 {/* -------------------------------------------------------- */}
 
-                <Text fw={700} mt={50}>Avg. Utilization</Text>
+                <Text fw={700} mt={50}>Available Resources</Text>
                 <Text fz="xs" c="gray.6">Cluster Resources</Text>
                 <Grid>
                     <GridCol span={3}>
@@ -182,23 +182,6 @@ const Dashboard = () => {
                                 classNames={{label: classes.chartInnerText}}
                             />
                             <Text>Storage</Text>
-                            <Pill>15%</Pill>
-                        </Stack>
-                    </GridCol>
-                    <GridCol span={3}>
-                        <Stack align="center">
-                            <DonutChart 
-                                w={100} 
-                                h={100} 
-                                size={100} 
-                                thickness={10} 
-                                data={data} 
-                                chartLabel={perc}
-                                labelsType="value"
-                                withTooltip={false}
-                                classNames={{label: classes.chartInnerText}}
-                            />
-                            <Text>Network</Text>
                             <Pill>15%</Pill>
                         </Stack>
                     </GridCol>

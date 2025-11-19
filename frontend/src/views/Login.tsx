@@ -1,5 +1,5 @@
 import { Button, Container, Group, Image, PasswordInput, Stack, TextInput } from "@mantine/core";
-import { isEmail, useForm } from "@mantine/form";
+import { useForm } from "@mantine/form";
 import { setAuthorizedUser } from "../slices/authorizationSlice";
 import { useAppDispatch } from "../app/hooks";
 import { useNavigate } from "react-router";
@@ -16,15 +16,15 @@ const Login = () => {
 
     const form = useForm({
         mode: 'uncontrolled',
-        initialValues: {email: '', password: ''},
-        validate: {
-            email: isEmail('Invalid email')
-        },
+        initialValues: {username: '', password: ''},
+        // validate: {
+        //     email: isEmail('Invalid email')
+        // },
     });
 
     const handleSubmit = async(values: typeof form.values) => {
         const user: LoginUser = {
-            email: values.email,
+            username: values.username,
             password: values.password
         }
         try {
@@ -47,7 +47,7 @@ const Login = () => {
             <Stack align="center">
                 <Image fit="contain" h={150} src={ikarusLogo}/>
                 <form onSubmit={form.onSubmit(handleSubmit)}>
-                    <TextInput key={form.key('email')} type="email" {...form.getInputProps('email')} mt="md" label="Email" placeholder="Email" />
+                    <TextInput key={form.key('username')}  {...form.getInputProps('username')} mt="md" label="Username" placeholder="" />
                     <PasswordInput key={form.key('password')} type="password" {...form.getInputProps('password')} mt="md" label="Password" placeholder="****" error={error ?"Invalid Credentials" : ""}/>
                     <Group justify="flex-end">
                         <Button component="a" disabled={isLoading} size="xs" href="https://khpc.kisr.edu.kw/" mt="md">

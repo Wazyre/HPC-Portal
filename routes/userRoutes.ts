@@ -4,7 +4,7 @@ import { authorizeUser, changePassword, getUser, getUsers, verifyUser } from "..
 const router = Router();
 
 router.get('/', getUsers);
-router.get('/user/:email', getUser);
+router.get('/user/:username', getUser);
 router.get('/login', authorizeUser);
 router.get('/verify', verifyUser);
 router.post('/editPassword', changePassword);

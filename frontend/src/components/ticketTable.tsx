@@ -27,8 +27,8 @@ const TicketTable = ({tickets, activeTab, filter}: ticketTableProps) => {
 
     const constructTable = () => {
         const tempRows = tickets.map((ticket) => {
-            // Search filter for name, email, or subject. Also matches to type of status
-            if ((filter === '' || ticket.name.toLowerCase().includes(filter) || ticket.email.toLowerCase().includes(filter) || ticket.subject.toLowerCase().includes(filter)) && (activeTab === 'all' || activeTab === ticket.status.toLowerCase())) {
+            // Search filter for name, username, or subject. Also matches to type of status
+            if ((filter === '' || ticket.name.toLowerCase().includes(filter) || ticket.username.toLowerCase().includes(filter) || ticket.subject.toLowerCase().includes(filter)) && (activeTab === 'all' || activeTab === ticket.status.toLowerCase())) {
                 let name = ticket.name; // Because ticket is read-only
                 if (ticket.id === 3) {
                     name = 'Tester for Ticket Viewing'
@@ -51,7 +51,7 @@ const TicketTable = ({tickets, activeTab, filter}: ticketTableProps) => {
                         <TableTd>{'#'+ticket.id}</TableTd>
                         <TableTd>
                             {name}
-                            <Text fz={12} c="gray.7">{ticket.email}</Text>
+                            <Text fz={12} c="gray.7">{ticket.username}</Text>
                         </TableTd>
                         <TableTd>{ticket.subject}</TableTd>
                         <TableTd>{getDateString(ticket.createdAt)}</TableTd>

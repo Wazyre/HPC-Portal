@@ -35,9 +35,9 @@ export const rtkApi = createApi({
         verifyUser: builder.query<AuthorizedUser, void>({
             query: () => (`/users/verify`)
         }),
-        // Get user details using email
+        // Get user details using username
         getUserDetails: builder.query<AuthorizedUser, string>({
-            query: email => `/users/user/${email}`
+            query: username => `/users/user/${username}`
         }),
         // Edit a user's password
         editPassword: builder.mutation<AuthorizedUser, LoginUser>({
@@ -59,10 +59,10 @@ export const rtkApi = createApi({
         getTicket: builder.query<TicketType, number>({
             query: id => `/support/ticket/${id}`
         }),
-        // Get all of user's pending tickets using email
+        // Get all of user's pending tickets using username
         getPendingTickets: builder.query<number, string>({
-            query: email => ({
-                url: `/support/pending/${email}`,
+            query: username => ({
+                url: `/support/pending/${username}`,
                 method: 'GET'
             })
         }),

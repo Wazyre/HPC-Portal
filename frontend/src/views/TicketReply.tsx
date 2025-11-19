@@ -53,7 +53,7 @@ const TicketReply = () => {
                     <Comment
                         avatarLink='../assets/icon.png'
                         name={comment.author?.firstName + ' ' + comment.author?.lastName}
-                        email={comment.author?.email || ''}
+                        username={comment.author?.username || ''}
                         date={formatAMPM(new Date(comment.createdAt))}
                         comment={comment.comment}
                     />
@@ -173,8 +173,8 @@ const TicketReply = () => {
                                     <TableTd>{ticket!.name}</TableTd>
                                 </TableTr>
                                 <TableTr>
-                                    <TableTd>Email</TableTd>
-                                    <TableTd>{ticket!.email}</TableTd>
+                                    <TableTd>Username</TableTd>
+                                    <TableTd>{ticket!.username}</TableTd>
                                 </TableTr>
                                 <TableTr>
                                     <TableTd>Ticket ID</TableTd>

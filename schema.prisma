@@ -13,7 +13,7 @@ generator client {
 
 model User {
     id          Int         @id @default(autoincrement())
-    email       String      @unique
+    username       String      @unique
     password    String
     firstName   String
     lastName    String
@@ -24,7 +24,7 @@ model User {
 
 model Support {
     id          Int         @id @default(autoincrement())
-    email       String      
+    username       String      
     name        String
     subject     String
     description String

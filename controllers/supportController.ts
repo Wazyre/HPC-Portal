@@ -20,7 +20,7 @@ export const getTickets = expressAsyncHandler(async (req, res) => {
     else {
         await prisma.support.findMany({
             where: {
-                email: req.params.email!
+                username: req.params.username!
             },
             orderBy: {
                 createdAt: 'desc'
@@ -50,7 +50,7 @@ export const getTicket = expressAsyncHandler(async (req, res) => {
 export const getPendingTickets = expressAsyncHandler(async (req, res) => {
     await prisma.support.findMany({
         where: {
-            email: req.params.email!,
+            username: req.params.username!,
             status: 'open'
         }
     }).then((tickets: SupportModel[] | null) => {
@@ -64,7 +64,7 @@ export const getPendingTickets = expressAsyncHandler(async (req, res) => {
 export const submitTicket = expressAsyncHandler(async (req, res) => {
     await prisma.support.create({
         data: {
-            email: req.body.email,
+            username: req.body.username,
             name: req.body.name,
             subject: req.body.subject,
             description: req.body.description,

@@ -1,5 +1,5 @@
 import { useAppSelector } from "../app/hooks";
-import { selectEmail, selectName } from "../slices/authorizationSlice";
+import { selectName, selectUsername } from "../slices/authorizationSlice";
 import { Accordion, AccordionControl, AccordionItem, AccordionPanel, Button, Card, CardSection, Checkbox, Container, Group, NativeSelect, Text, Textarea, TextInput, Title } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { IconHelp } from "@tabler/icons-react";
@@ -12,7 +12,7 @@ import type { TicketType } from "../utils/types";
 
 // export interface SupportTicket {
 //     id: number,
-//     email: string,
+//     username: string,
 //     name: string,
 //     subject: string,
 //     description: string,
@@ -34,20 +34,20 @@ const selectData = [
 ];
 
 const Support = () => {
-    const email = useAppSelector(selectEmail);
+    const username = useAppSelector(selectUsername);
     const name = useAppSelector(selectName);
     const [submitTicket, { isLoading, isSuccess, isError }] = useSubmitSupportMutation();
 
     const form = useForm({
         mode: 'uncontrolled',
         initialValues: {
-            email: email,
+            username: username,
             subject: '',
             description: '',
             agreement: false,
         },
         validate: {
-            email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
+            username: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid username'),
             subject: (value) => (/^\S+$/.test(value) ? null : 'Please select a subject'),
             description: (value) => (/^\S+$/.test(value) ? null : 'Please describe in a few words your problem'),
             agreement: (value) => (value ? null : 'Agree to the terms')
@@ -57,7 +57,7 @@ const Support = () => {
     const handleSubmit = async(values: typeof form.values) => {
         const ticket: TicketType = {
             id: 0, // Dummy ID to satisfy type
-            email: values.email,
+            username: values.username,
             name: name,
             subject: values.subject,
             description: values.description,
@@ -135,10 +135,10 @@ const Support = () => {
                     <TextInput
                         withAsterisk
                         mt={20}
-                        label="Email"
-                        placeholder="your@email.com"
-                        key={form.key('email')}
-                        {...form.getInputProps('email')}
+                        label="Username"
+                        placeholder=""
+                        key={form.key('username')}
+                        {...form.getInputProps('username')}
                     />
                     <NativeSelect
                         withAsterisk

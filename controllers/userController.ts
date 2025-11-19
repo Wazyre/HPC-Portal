@@ -17,7 +17,7 @@ export const getUsers = expressAsyncHandler(async (req, res) => {
 export const getUser = expressAsyncHandler(async (req, res) => {
     await prisma.user.findUnique({
         where: {
-            email: req.body.email,
+            username: req.body.username,
         }
     }).then((user: UserModel | null) => {
         res.json(user);
@@ -29,7 +29,7 @@ export const getUser = expressAsyncHandler(async (req, res) => {
 export const authorizeUser = expressAsyncHandler(async (req, res) => {
     await prisma.user.findUnique({
         where: {
-            email: req.query.email!.toString(),
+            username: req.query.username!.toString(),
         }
     }).then(async(user: UserModel | null) => {
         const isMatch = await verify(user?.password!, req.query.password!.toString());
@@ -68,7 +68,7 @@ export const changePassword = expressAsyncHandler(async (req, res) => {
 
     await prisma.user.update({
         where: {
-            email: req.body.email!
+            username: req.body.username!
         },
         data: {
             password: newPassword!

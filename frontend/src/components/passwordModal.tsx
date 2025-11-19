@@ -1,7 +1,7 @@
 import { useForm } from "@mantine/form";
 import { useEditPasswordMutation } from "../apis/rtkApi";
 import { Button, PasswordInput } from "@mantine/core";
-import { selectEmail } from "../slices/authorizationSlice";
+import { selectUsername } from "../slices/authorizationSlice";
 import { useAppSelector } from "../app/hooks";
 import { notifications } from "@mantine/notifications";
 import type { LoginUser } from "../utils/types";
@@ -16,7 +16,7 @@ interface PassModalProps {
 
 const PasswordModal = ({close}: PassModalProps) => {
     const [editPassword, {isLoading, error}] = useEditPasswordMutation();
-    const email = useAppSelector(selectEmail);
+    const username = useAppSelector(selectUsername);
 
     const form = useForm({
         mode: 'uncontrolled',
@@ -29,7 +29,7 @@ const PasswordModal = ({close}: PassModalProps) => {
 
     const handleSubmit = async(values: typeof form.values) => {
         const user: LoginUser = {
-            email: email,
+            username: username,
             password: values.password
         }
         try {

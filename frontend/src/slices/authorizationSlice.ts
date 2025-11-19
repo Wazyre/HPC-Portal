@@ -8,7 +8,7 @@ interface AuthorizationState {
     accessToken: string,
     tokenExpiryDate: string,
     name: string,
-    email: string,
+    username: string,
     company: string,
     role: string,
 };
@@ -19,7 +19,7 @@ const initialState: AuthorizationState = {
     accessToken: localStorage.getItem('authToken') || '',
     tokenExpiryDate: localStorage.getItem('tokenExpiryDate') || '',
     name: '',
-    email: '',
+    username: '',
     company: '',
     role: '',
 }
@@ -56,7 +56,7 @@ export const authorizationSlice = createSlice({
             localStorage.setItem('tokenExpiryDate', date.toISOString());
 
             state.name = action.payload.firstName + ' ' + action.payload.lastName;
-            state.email = action.payload.email;
+            state.username = action.payload.username;
             state.company = action.payload.company;
             state.role = action.payload.role;
         },
@@ -66,7 +66,7 @@ export const authorizationSlice = createSlice({
             state.accessToken = '';
             state.tokenExpiryDate = '';
             state.name = '';
-            state.email = '';
+            state.username = '';
             state.company = '';
             state.role = '';
         }
@@ -80,7 +80,7 @@ export const selectUserId = (state: RootState) => state.authorization.id;
 export const selectAccessToken = (state: RootState) => state.authorization.accessToken;
 export const selectTokenExpiryDate = (state: RootState) => state.authorization.tokenExpiryDate;
 export const selectName = (state: RootState) => state.authorization.name;
-export const selectEmail = (state: RootState) => state.authorization.email;
+export const selectUsername = (state: RootState) => state.authorization.username;
 export const selectCompany = (state: RootState) => state.authorization.company;
 export const selectRole = (state: RootState) => state.authorization.role;
 

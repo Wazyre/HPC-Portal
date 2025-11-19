@@ -4,7 +4,7 @@ import { useGetTicketsQuery } from "../apis/rtkApi";
 import { useEffect, useState } from "react";
 import TicketTable from "../components/ticketTable";
 import { useAppSelector } from "../app/hooks";
-import { selectEmail, selectRole } from "../slices/authorizationSlice";
+import { selectRole, selectUsername } from "../slices/authorizationSlice";
 // import { useNavigate } from "react-router";
 import { useVerifyUser } from "../utils/useVerifyUser";
 import type { TicketType } from "../utils/types";
@@ -15,9 +15,9 @@ import type { TicketType } from "../utils/types";
 // ]
 
 const TicketPortal = () => {
-    const userEmail = useAppSelector(selectEmail);
+    const username = useAppSelector(selectUsername);
     const userRole = useAppSelector(selectRole);
-    const {data: tickets, isLoading, isSuccess} = useGetTicketsQuery({email: userEmail, role: userRole});
+    const {data: tickets, isLoading, isSuccess} = useGetTicketsQuery({username: username, role: userRole});
     const [allTickets, setAllTickets] = useState<TicketType[]>([]);
     const [openTickets, setOpenTickets] = useState<number>(0);
     const [closedTickets, setClosedTickets] = useState<number>(0);

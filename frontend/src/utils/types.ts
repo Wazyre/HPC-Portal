@@ -1,5 +1,5 @@
 export interface LoginUser {
-    email: string,
+    username: string,
     password: string
 }
 
@@ -7,7 +7,7 @@ export interface AuthorizedUser {
     id: number,
     firstName: string,
     lastName: string,
-    email: string,
+    username: string,
     company: string,
     role: string,
     accessToken: string
@@ -15,7 +15,7 @@ export interface AuthorizedUser {
 
 export interface TicketType {
     id: number,
-    email: string,
+    username: string,
     name: string,
     subject: string,
     description: string,
@@ -25,7 +25,7 @@ export interface TicketType {
 }
 
 export interface TicketUser {
-    email: string,
+    username: string,
     role: string
 }
 

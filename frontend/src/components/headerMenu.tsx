@@ -1,7 +1,7 @@
 import { Button, Menu, MenuDropdown, MenuItem, MenuLabel, MenuTarget, Stack, Text } from "@mantine/core";
 import { IconChevronDown, IconLogout, IconUserCircle } from "@tabler/icons-react";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
-import { clearLogInData, selectEmail, selectName } from "../slices/authorizationSlice";
+import { clearLogInData, selectName, selectUsername } from "../slices/authorizationSlice";
 import { Link, useNavigate } from "react-router";
 
 /* 
@@ -10,7 +10,7 @@ The menu dropdown at the top right of the header
 
 const HeaderMenu = () => {
     const name = useAppSelector(selectName);
-    const email = useAppSelector(selectEmail);
+    const username = useAppSelector(selectUsername);
 
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
@@ -34,7 +34,7 @@ const HeaderMenu = () => {
                 <MenuLabel>
                     <Stack>
                         <Text fz={"sm"}>{name}</Text>
-                        {email}
+                        {username}
                     </Stack>
                     
                 </MenuLabel>
