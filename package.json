@@ -33,6 +33,6 @@
     "start": "concurrently \"npm run server\" \"npm run client\"",
     "build": "concurrently \"npm run server-build\" \"npm run client-build\"",
     "all": "concurrently \"node ./dist/server.js\" \"npm run dev --prefix frontend\"",
-    "linuxRun": "npm run server-build && npm run client-build && pm2 start ./dist/server.js"
+    "linuxRun": "npm run server-build && npm run client-build && pm2 start ecosystem.config.cjs"
   }
 }
