@@ -12,7 +12,7 @@ sacct -aX --starttime=2024-01-01 --format=JobID,JobName%15,User%15,Partition,Sta
 # #Get Users Statistics
 # #=====================
 user_path=/NFS/scratch/homes
-user_list=( $(sacctmgr show users format=User%15 | tail -n +3 ) )
+user_list=( $(sacctmgr show users format=User%15 DefaultAccount=default | tail -n +3 ) )
 
 # 1) Format - Last six months
 # ---------------------------
@@ -34,13 +34,16 @@ output_file=userStorage.json
 scratchUsed=$(df | grep scratch | awk '{print $3}')
 sharedUsed=$(df | grep shared | awk '{print $3}')
 echo "{" >> $output_file
-echo "\"scratchUsed\": \"$scratchUsed\"," >> $output_file
-echo "\"sharedUsed\": \"$sharedUsed\"," >> $output_file
+echo "\"scratchUsed\": $scratchUsed," >> $output_file
+echo "\"sharedUsed\": $sharedUsed," >> $output_file
 
 for item in "${user_list[@]}"; do
-	user_8s="${item:0:8}"
-	total_size=$(du -s $user_path/$item | awk '{print $1}' )
-	echo "\"$item\": \"$total_size\"," >> $output_file
+	# user_8s="${item:0:8}"
+	total_size=$(find $user_path/$item -printf '%TY-%TB %s\n' | awk '{b[$1]+=$2} \
+			END{for (date in b){ split(date,d,"-"); print d[1],d[2],b[date];}}' | sort -k 1n -k 2M \
+			| awk '{if (NR>1) {print prev} prev="\""$1"-"$2"\": "$3","} END {print "\""$1"-"$2"\": "$3}')
+	# total_size=$(du -bs $user_path/$item | awk '{print $1}' )
+	echo "\"$item\": {$total_size}," >> $output_file
 done
 sed -i '$ s/.$//' $output_file                           
 echo "}" >> $output_file
@@ -56,7 +59,7 @@ for item in "${user_list[@]}"; do
 	# user_8s="${item:0:8}"
 	echo "\"name\": \"$item\", " >> $output_file
 	for (( i=0; i<${#sta_months[@]}; i++ )); do
-		echo "\"${month_name[$i]}\": {" >> $output_file
+		echo "\"${month_year[$i]}\": {" >> $output_file
 		line_count=$(grep $item $job_sta_file | grep -o ${sta_months[i]} | wc -l)
 		echo "\"jobs\": $line_count," >> $output_file
 		time_count=$(grep $item $job_sta_file | grep ${sta_months[i]} | awk '{print $7}' | paste -s -d+ | bc)
