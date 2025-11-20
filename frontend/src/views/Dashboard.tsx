@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BarChart, DonutChart } from "@mantine/charts";
+import { BarChart } from "@mantine/charts";
 import { Card, Container, Grid, GridCol, Group, Loader, Pill, ProgressLabel, ProgressRoot, ProgressSection, RingProgress, Stack, Text, Title, Tooltip } from "@mantine/core";
 import { useVerifyUser } from "../utils/useVerifyUser";
 import { IconMail } from "@tabler/icons-react";
@@ -7,25 +7,10 @@ import { useAppSelector } from "../app/hooks";
 import { selectUsername, selectRole } from "../slices/authorizationSlice";
 import { useGetPendingTicketsQuery } from "../apis/rtkApi";
 
-import classes from "../sourceStyle.module.css";
 import nodeInfo from "../assets/data/nodeInfo.json";
-// import userStorage from "../assets/data/userStorage.json";
+import userStorage from "../assets/data/userStorage.json";
 import userJobs from "../assets/data/userJobs.json";
 
-//TODO Pulled from backend
-/*
-- Storage Usage
-- Donut chart data
-- Donut chart labels
-- Area chart data
-*/
-
-const data = [
-  { name: 'USA', value: 200, color: 'green.4' },
-  { name: '', value: 600, color: 'gray.3' },
-];
-
-const perc = 8.9
 
 const Dashboard = () => {
     const [cpuState, setCpuState] = useState<string[]>([]);
@@ -38,16 +23,22 @@ const Dashboard = () => {
     const {data: pendingTickets, isLoading} = useGetPendingTicketsQuery(username);
 
     const buildData = () => {
-        const data = [];
-        console.log(username)
-        const jobs = userJobs.find(user => user.name === username)!;
-        const {name, ...newJobs} = jobs;
-        console.log(name);
-        for (const month in Object.keys(newJobs)) {
-            console.log(month);
-            data.push({ month: month, Jobs: newJobs[month as keyof typeof newJobs].jobs, Storage: 900, Runtime: (newJobs[month as keyof typeof newJobs].time/3600).toFixed(1) },)
+        if (username) {
+            const data = [];
+            const jobs = userJobs.find(user => user.name === username)!;
+            const {name, ...newJobs} = jobs;
+            console.log(name);
+            const storage = userStorage[username as keyof typeof userStorage]; 
+
+            for (const month of Object.keys(newJobs)) {
+                // Convert from bytes to GB, and assign zero if month has no storage changes
+                const newStorage = parseFloat((storage[month as keyof typeof storage] / (1024 * 1024 * 1024)).toFixed(2)) || 0.00;
+                data.push({ month: month.split('-')[1], Jobs: newJobs[month as keyof typeof newJobs].jobs, Storage: newStorage, Runtime: (newJobs[month as keyof typeof newJobs].time/3600).toFixed(1) },)
+            }
+            console.log(data)
+            return data;
         }
-        return data;
+        return [{}];
     };
 
     useVerifyUser(['any']);
@@ -72,7 +63,7 @@ const Dashboard = () => {
         setCpuPerc((1-parseInt(tempCpu[1])/parseInt(tempCpu[3]))*100);
         setNodePerc((1-parseInt(tempNode[1])/parseInt(tempNode[3]))*100);
         setJobData(buildData());
-    }, [nodeInfo, userJobs, username])
+    }, [nodeInfo, userJobs, userStorage, username])
 
     if (isLoading) {
         return (
@@ -133,7 +124,7 @@ const Dashboard = () => {
                 <Text fw={700} mt={50}>Available Resources</Text>
                 <Text fz="xs" c="gray.6">Cluster Resources</Text>
                 <Grid>
-                    <GridCol span={3}>
+                    <GridCol span={6}>
                         <Stack align="center">
                             {/* <DonutChart 
                                 w={100} 
@@ -159,7 +150,7 @@ const Dashboard = () => {
                             <Pill>{nodePerc + "%"}</Pill>
                         </Stack>
                     </GridCol>
-                    <GridCol span={3}>
+                    <GridCol span={6}>
                         <Stack align="center">
                             {/* <DonutChart 
                                 w={100} 
@@ -185,9 +176,9 @@ const Dashboard = () => {
                             <Pill>{cpuPerc + "%"}</Pill>
                         </Stack>
                     </GridCol>
-                    <GridCol span={3}>
+                    {/* <GridCol span={3}>
                         <Stack align="center">
-                            <DonutChart 
+                            {/* <DonutChart 
                                 w={100} 
                                 h={100} 
                                 size={100} 
@@ -197,11 +188,20 @@ const Dashboard = () => {
                                 labelsType="value"
                                 withTooltip={false}
                                 classNames={{label: classes.chartInnerText}}
+                            /> 
+                            <RingProgress 
+                                size={120} 
+                                thickness={10} 
+                                sections={[{ value: cpuPerc, color: 'green.4'}]}
+                                label={
+                                <Text size="xl" ta="center">
+                                    {cpuState[1]}
+                                </Text>}
                             />
                             <Text>Storage</Text>
                             <Pill>15%</Pill>
                         </Stack>
-                    </GridCol>
+                    </GridCol> */}
                 </Grid>
 
                 {/* -------------------------------------------------------- */}

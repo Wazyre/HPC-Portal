@@ -1,13 +1,15 @@
 {
-"scratchUsed": "2272839680",
-"sharedUsed": "67103744",
-"aabduljalil": "724K",
-"adallura": "4.0K",
-"hpcdemo": "4.0K",
-"jaredlee": "4.0K",
-"nghanmi": "52K",
-"nobody": "",
-"nsulaiman": "4.0K",
-"root": "",
-"thussain": "199M"
+"scratchUsed": 2272848896,
+"sharedUsed": 67103744,
+"aabduljalil": {"2025-November": 471197},
+"adallura": {"2025-November": 4096},
+"hpcdemo": {"2025-November": 4096},
+"jaredlee": {"2025-August": 4096},
+"nsulaiman": {"2025-November": 4096},
+"check@check.com": {"2024-October": 388,
+"2025-January": 171179521,
+"2025-June": 432411,
+"2025-August": 4472,
+"2025-October": 14974,
+"2025-November": 35844484}
 }

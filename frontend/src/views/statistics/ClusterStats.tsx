@@ -4,6 +4,8 @@ import { Card, Container, Grid, GridCol, Text, Title } from "@mantine/core";
 import { useVerifyUser } from "../../utils/useVerifyUser";
 import jobStat from "../../assets/data/jobsStat.json";
 import jobPart from "../../assets/data/jobsPartition.json";
+import liveResources from "../../assets/data/liveResources.json";
+import { useEffect, useState } from "react";
 
 const data = [
     {
@@ -40,6 +42,9 @@ const data = [
 
 
 const ClusterStats = () => {
+    const [resourceData, setResourceData] = useState([{}]);
+    const [partData, setPartData] = useState([{}]);
+    const [statData, setStatData] = useState([{}]);
 
     const getLastSixMonths = () => {
         const months = [];
@@ -54,7 +59,23 @@ const ClusterStats = () => {
         return months;
     };
 
-    const buildStateData = () => {
+    const buildResourceData = () => {
+        const data = [];
+        for (let i = 0; i < 10; i++) {
+            const tempCPUDev = liveResources[i].Developer.cpuState.split('/');
+            const tempCPUProj = liveResources[i].Project.cpuState.split('/');
+            const tempCPURes = liveResources[i].Research.cpuState.split('/');
+            data.push({
+                date: Date.now()+i, //TODO FIX AND USE TIMESTAMP
+                Developer: ((1 - parseInt(tempCPUDev[1])/parseInt(tempCPUDev[3])) * 100),
+                Project: ((1 - parseInt(tempCPUProj[1])/parseInt(tempCPUProj[3])) * 100),
+                Research: ((1 - parseInt(tempCPURes[1])/parseInt(tempCPURes[3])) * 100),
+            });
+        }
+        return data;
+    };
+
+    const buildStatData = () => {
         const months = getLastSixMonths();
         const data = [];
         for (let i = 0; i < months.length; i++) {
@@ -69,25 +90,30 @@ const ClusterStats = () => {
             });
         }
         return data;
-    }
+    };
 
     const buildPartData = () => {
         const months = getLastSixMonths();
         const data = [];
         for (let i = 0; i < months.length; i++) {
             data.push({
-                Month: months[i],
+                month: months[i],
                 Developer: jobPart[i].Developer,
                 Project: jobPart[i].Project,
                 Research: jobPart[i].Research,
             });
         }
         return data;
-    }
-
+    };
 
     // Restrict page entry only to admins
     useVerifyUser(["sysAdmin", "webAdmin"]);
+
+    useEffect(() => {
+        setResourceData(buildResourceData());
+        setPartData(buildPartData());
+        setStatData(buildStatData())
+    }, [jobPart, jobStat, liveResources]);
 
     return (
         <Container fluid>
@@ -96,9 +122,10 @@ const ClusterStats = () => {
                 <GridCol span={6}>
                     <Card>
                         <Text>Resource Utilization %</Text>
+                        <Text fz="xs" c="gray.6">Combined CPU and Node Use</Text>
                         <LineChart
                             h={300}
-                            data={data}
+                            data={resourceData}
                             dataKey="date"
                             series={[
                                 { name: 'Research', color: 'indigo.6' },
@@ -152,7 +179,7 @@ const ClusterStats = () => {
                         <BarChart
                             h={400}
                             dataKey="month"
-                            data={buildStateData()}
+                            data={statData}
                             series={[
                                 {name: 'Submitted', color: 'violet.6'},
                                 {name: 'Completed', color: 'teal.6'},
@@ -178,7 +205,8 @@ const ClusterStats = () => {
                             h={400}
                             dataKey="month"
                             orientation="vertical"
-                            data={buildPartData()}
+                            type="stacked"
+                            data={partData}
                             series={[
                                 {name: 'Research', color: 'violet.6'},
                                 {name: 'Project', color: 'teal.6'},
@@ -186,6 +214,7 @@ const ClusterStats = () => {
                             ]}
                             tickLine="y"
                             xAxisLabel="Jobs"
+                            yAxisProps={{width: 80}}
                             withLegend
                         />
                     </Card>
