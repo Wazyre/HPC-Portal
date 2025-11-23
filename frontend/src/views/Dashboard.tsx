@@ -10,9 +10,11 @@ import { useGetPendingTicketsQuery } from "../apis/rtkApi";
 import nodeInfo from "../assets/data/nodeInfo.json";
 import userStorage from "../assets/data/userStorage.json";
 import userJobs from "../assets/data/userJobs.json";
+import humanFileSize from "../utils/humanFileSize";
 
 
 const Dashboard = () => {
+    const [storageUsed, setStorageUsed] = useState<number>(0);
     const [cpuState, setCpuState] = useState<string[]>([]);
     const [cpuPerc, setCpuPerc] = useState<number>(0);
     const [nodeState, setNodeState] = useState<string[]>([]);
@@ -43,6 +45,7 @@ const Dashboard = () => {
     useVerifyUser(['any']);
 
     useEffect(() => {
+        setStorageUsed(userStorage.scratchUsed);
         let tempNode: string[] = [];
         let tempCpu: string[] = [];
         if (role === "developer") {
@@ -84,14 +87,14 @@ const Dashboard = () => {
                 </Group>
 
                 <Text fw={700} mt={20}>Storage Usage</Text>
-                <Text fz="xs" c="gray.6">Out of 2T</Text>
+                <Text fz="xs" c="gray.6">{'Out of ' + humanFileSize(userStorage.scratchSize)}</Text>
                 <ProgressRoot size={30} mt={20}>
-                    <Tooltip label="33GB - Applications">
-                        <ProgressSection value={28} color="green.5">
-                            <ProgressLabel>Applications</ProgressLabel>
+                    <Tooltip label={humanFileSize(storageUsed)}>
+                        <ProgressSection value={(storageUsed/userStorage.scratchSize)*100} color="green.5">
+                            <ProgressLabel></ProgressLabel>
                         </ProgressSection>
                     </Tooltip>
-                    <Tooltip label="15GB - Documents">
+                    {/* <Tooltip label="15GB - Documents">
                         <ProgressSection value={15} color="blue.5">
                             <ProgressLabel>Documents</ProgressLabel>
                         </ProgressSection>
@@ -115,13 +118,13 @@ const Dashboard = () => {
                         <ProgressSection value={100} color="gray.1">
                             <ProgressLabel></ProgressLabel>
                         </ProgressSection>
-                    </Tooltip>
+                    </Tooltip> */}
                 </ProgressRoot>
 
                 {/* -------------------------------------------------------- */}
 
-                <Text fw={700} mt={50}>Available Resources</Text>
-                <Text fz="xs" c="gray.6">Cluster Resources</Text>
+                <Text fw={700} mt={50}>Cluster Resources</Text>
+                <Text fz="xs" c="gray.6">Available Resources</Text>
                 <Grid>
                     <GridCol span={6}>
                         <Stack align="center">

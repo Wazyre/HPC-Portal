@@ -33,9 +33,13 @@ output_file=userStorage.json
 > $output_file
 scratchUsed=$(df | grep scratch | awk '{print $3}')
 sharedUsed=$(df | grep shared | awk '{print $3}')
+scratchSize=$(df | grep shared | awk '{print $4}')
+sharedSize=$(df | grep shared | awk '{print $4}')
 echo "{" >> $output_file
 echo "\"scratchUsed\": $scratchUsed," >> $output_file
 echo "\"sharedUsed\": $sharedUsed," >> $output_file
+echo "\"scratchSize\": $scratchSize," >> $output_file
+echo "\"sharedSize\": $sharedSize," >> $output_file
 
 for item in "${user_list[@]}"; do
 	# user_8s="${item:0:8}"
