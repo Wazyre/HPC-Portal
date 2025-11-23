@@ -115,7 +115,7 @@ const Modules = () => {
                     To confirm that the module has been added/loaded to your session, you should see L 
                     near the module name, something like this:
                 </Text>
-                <Image src={moduleImgs[2]}/>
+                <Image src={moduleImgs[3]}/>
             </Card>
         </Container>
     );

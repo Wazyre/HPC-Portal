@@ -114,56 +114,85 @@ const JobSubmission = () => {
                         <TableTr>
                             <TableTh>Variable</TableTh>
                             <TableTh>Description</TableTh>
+                            <TableTh>Format</TableTh>
                         </TableTr>
                     </TableThead>
                     <TableTbody>
                         <TableTr>
                             <TableTd>--job-name</TableTd>
                             <TableTd>Specify the job submission name</TableTd>
+                            <TableTd>Any text</TableTd>
                         </TableTr>
                         <TableTr>
                             <TableTd>--partition</TableTd>
-                            <TableTd>Specify the cluster partition name (Default is "research")</TableTd>
+                            <TableTd>Specify the cluster partition name (Default is "Res")</TableTd>
+                            <TableTd>Dev, def1, or Res (according to user account)</TableTd>
                         </TableTr>
                         <TableTr>
                             <TableTd>--nodes</TableTd>
-                            <TableTd>Specify number of nodes</TableTd>
-                        </TableTr>
-                        <TableTr>
-                            <TableTd>--ntasks-per-node</TableTd>
-                            <TableTd>Specify number of tasks per node</TableTd>
+                            <TableTd>Specify the minimum number of nodes</TableTd>
+                            <TableTd>Full number</TableTd>
                         </TableTr>
                         <TableTr>
                             <TableTd>--ntasks</TableTd>
-                            <TableTd>Specify number of tasks per job</TableTd>
+                            <TableTd>Specify maximum number of tasks per job</TableTd>
+                            <TableTd>Full number</TableTd>
+                        </TableTr>
+                        <TableTr>
+                            <TableTd>--ntasks-per-node</TableTd>
+                            <TableTd>Specify maximum number of tasks per node</TableTd>
+                            <TableTd>Full number</TableTd>
                         </TableTr>
                         <TableTr>
                             <TableTd>--cpus-per-task</TableTd>
                             <TableTd>Specify number of cores per task</TableTd>
+                            <TableTd>Full number (Default is 1)</TableTd>
                         </TableTr>
                         <TableTr>
                             <TableTd>--mem</TableTd>
                             <TableTd>Specify the maximum amount of RAM requested per node</TableTd>
+                            <TableTd>Default unit is megabytes. Specify using [K|M|G|T]</TableTd>
                         </TableTr>
                         <TableTr>
-                            <TableTd>---mem-per-cpu</TableTd>
+                            <TableTd>--mem-per-cpu</TableTd>
                             <TableTd>Specify the minimum RAM for each CPU core allocated to the job</TableTd>
+                            <TableTd>Default unit is megabytes. Specify using [K|M|G|T]</TableTd>
                         </TableTr>
                         <TableTr>
                             <TableTd>--time</TableTd>
                             <TableTd>Specify the maximum wall clock execution time for the job</TableTd>
-                        </TableTr>
+                            <TableTd>
+                                "minutes", "minutes:seconds", "hours:minutes:seconds", "days-hours",
+                                "days-hours:minutes", "days-hours:minutes:seconds"
+                            </TableTd>
+                        </TableTr>       
                         <TableTr>
-                            <TableTd>--output</TableTd>
-                            <TableTd>Specify the job output file name or path/filename</TableTd>
-                        </TableTr>
-                        <TableTr>
-                            <TableTd>--error</TableTd>
-                            <TableTd>Specify the job logs and error file name or path/filename</TableTd>
+                            <TableTd>--array</TableTd>
+                            <TableTd>Submit the same job multiple times with identical parameters</TableTd>
+                            <TableTd></TableTd>
                         </TableTr>
                         <TableTr>
                             <TableTd>--input</TableTd>
                             <TableTd>Specify the scripts input file name or path/filename</TableTd>
+                            <TableTd>/path/to/filename</TableTd>
+                        </TableTr>
+                        <TableTr>
+                            <TableTd>--output</TableTd>
+                            <TableTd>Specify the job output file name or path/filename</TableTd>
+                            <TableTd>/path/to/filename</TableTd>
+                        </TableTr>
+                        <TableTr>
+                            <TableTd>--error</TableTd>
+                            <TableTd>Specify the job logs and error file name or path/filename</TableTd>
+                            <TableTd>/path/to/filename</TableTd>
+                        </TableTr>
+                        <TableTr>
+                            <TableTd>--test-only</TableTd>
+                            <TableTd>
+                                Validate the batch script and return an estimate of when job would be 
+                                scheduled given current job queue
+                            </TableTd>
+                            <TableTd>N/A</TableTd>
                         </TableTr>
                     </TableTbody>
                 </Table>
@@ -178,7 +207,7 @@ const JobSubmission = () => {
                     It will run as <Text component="span" td="underline">“hello-ikarus”</Text> job name 
                     reserving <Text component="span" td="underline">100M RAM</Text> with unattended for up 
                     to <Text component="span" td="underline">30 seconds</Text> in 
-                    the <Text component="span" td="underline">"research"</Text> partition, 
+                    the <Text component="span" td="underline">"Res"</Text> partition, 
                     and will simply print out the words, "Welcome to IKARUS by KISR":
                 </Text>
 
@@ -187,7 +216,7 @@ const JobSubmission = () => {
 
 ######## Start of option ########
 #SBATCH --job-name=hello-ikarus
-#SBATCH --partition=research
+#SBATCH --partition=Res
 #SBATCH --mem=100M
 #SBATCH --time=00:00:30
 ######## End of option ########
@@ -201,7 +230,7 @@ echo "Welcome to IKARUS by KISR "`}
                     for <Text component="span" td="underline">40</Text> cores
                     per <Text component="span" td="underline">one</Text> task 
                     on <Text component="span" td="underline">one</Text> of the compute nodes in 
-                    the <Text component="span" td="underline">"research"</Text> partition 
+                    the <Text component="span" td="underline">"Res"</Text> partition 
                     utilizing <Text component="span" td="underline">50G</Text> RAM with 
                     maximum <Text component="span" td="underline">5 minutes</Text> and will simply print 
                     out the words, "Welcome to IKARUS by KISR":
@@ -211,7 +240,7 @@ echo "Welcome to IKARUS by KISR "`}
 
 ######## Start of option ########
 #SBATCH --job-name=hello-ikarus
-#SBATCH --partition=research
+#SBATCH --partition=Res
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=40
@@ -255,7 +284,7 @@ Submitted batch job 568`}
                     below example:
                 </Text>
                 <Code block>
-                    [hpcdemo@clavis2 ~]$ srun --partition=def2 --nodes=1 --time=00:10:00 bash -l
+                    [hpcdemo@clavis2 ~]$ srun --partition=Res --nodes=1 --time=00:10:00 bash -l
                 </Code>
                 
                 <Text td="underline" mt={20}>Use Cases:</Text>
@@ -349,7 +378,7 @@ Submitted batch job 568`}
                             <TableTd>PARTITION</TableTd>
                             <TableTd>
                                 The queue or partition the task is running on, which indicates the 
-                                type of node being used (def1, def2, or longrun)
+                                type of node being used (def1, Res, or Dev)
                             </TableTd>
                         </TableTr>
                         <TableTr>
