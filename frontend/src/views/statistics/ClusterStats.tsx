@@ -204,7 +204,7 @@ const ClusterStats = () => {
                         <BarChart
                             h={400}
                             dataKey="month"
-                            orientation="vertical"
+                            // orientation="vertical"
                             type="stacked"
                             data={partData}
                             series={[

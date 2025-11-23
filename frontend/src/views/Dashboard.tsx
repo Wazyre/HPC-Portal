@@ -35,7 +35,6 @@ const Dashboard = () => {
                 const newStorage = parseFloat((storage[month as keyof typeof storage] / (1024 * 1024 * 1024)).toFixed(2)) || 0.00;
                 data.push({ month: month.split('-')[1], Jobs: newJobs[month as keyof typeof newJobs].jobs, Storage: newStorage, Runtime: (newJobs[month as keyof typeof newJobs].time/3600).toFixed(1) },)
             }
-            console.log(data)
             return data;
         }
         return [{}];
@@ -46,17 +45,17 @@ const Dashboard = () => {
     useEffect(() => {
         let tempNode: string[] = [];
         let tempCpu: string[] = [];
-        if (role === "research") {
-            tempCpu = nodeInfo.research.cpuState.split('/'); // [allocated, idle, other, total]
-            tempNode = nodeInfo.research.nodeState.split('/'); // [allocated, idle, other, total]
+        if (role === "developer") {
+            tempCpu = nodeInfo.developer.cpuState.split('/'); // [allocated, idle, other, total]
+            tempNode = nodeInfo.developer.nodeState.split('/'); // [allocated, idle, other, total]
         }
         else if (role === "project") {
             tempCpu = nodeInfo.project.cpuState.split('/');
             tempNode = nodeInfo.project.nodeState.split('/');
         }
         else {
-            tempCpu = nodeInfo.developer.cpuState.split('/');
-            tempNode = nodeInfo.developer.nodeState.split('/');
+            tempCpu = nodeInfo.research.cpuState.split('/');
+            tempNode = nodeInfo.research.nodeState.split('/');
         }
         setCpuState(tempCpu);
         setNodeState(tempNode);
@@ -126,17 +125,6 @@ const Dashboard = () => {
                 <Grid>
                     <GridCol span={6}>
                         <Stack align="center">
-                            {/* <DonutChart 
-                                w={100} 
-                                h={100} 
-                                size={100} 
-                                thickness={10} 
-                                data={data} 
-                                chartLabel={nodeState[1]}
-                                labelsType="value"
-                                withTooltip={false}
-                                classNames={{label: classes.chartInnerText}}
-                            /> */}
                             <RingProgress 
                                 size={120} 
                                 thickness={10} 
@@ -152,17 +140,6 @@ const Dashboard = () => {
                     </GridCol>
                     <GridCol span={6}>
                         <Stack align="center">
-                            {/* <DonutChart 
-                                w={100} 
-                                h={100} 
-                                size={100} 
-                                thickness={10} 
-                                data={data} 
-                                chartLabel={cpuState[1]}
-                                labelsType="value"
-                                withTooltip={false}
-                                classNames={{label: classes.chartInnerText}}
-                            /> */}
                             <RingProgress 
                                 size={120} 
                                 thickness={10} 
