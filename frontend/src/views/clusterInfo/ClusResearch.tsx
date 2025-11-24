@@ -84,14 +84,14 @@ const ClusResearch = () => {
             <Card>
                 <CardSection>Submit Job</CardSection>
                 <Text>
-                    To submit a job to "Research" cluster in IKARUS, the “sbatch” file should have the 
+                    To submit a job to "Res" cluster in IKARUS, the “sbatch” file should have the 
                     following minimum "#SBATCH" configurations:
                 </Text>
                 <Code block>
 {`#!/bin/bash
 
 #SBATCH --job-name=example
-#SBATCH --partition=research         # Optional, default is research
+#SBATCH --partition=Res              # Optional, default is Res
 #SBATCH --nodes=1                    # Max 6
 #SBATCH --time=00:05:00              # Max 36:00:00
 #SBATCH --mem=16G                    # Max 2T
