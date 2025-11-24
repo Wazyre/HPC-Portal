@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useLazyVerifyUserQuery } from "../apis/rtkApi";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
-import { selectRole, selectTokenExpiryDate, setAuthorizedUser } from "../slices/authorizationSlice";
+import { clearLogInData, selectRole, selectTokenExpiryDate, setAuthorizedUser } from "../slices/authorizationSlice";
 import { useLocation, useNavigate } from "react-router";
 import type { AuthorizedUser } from "./types";
 
@@ -34,6 +34,9 @@ export const useVerifyUser = (roles: string[]) => {
                     console.error(err);
                     navigate('/');
                 })
+            } else {
+                dispatch(clearLogInData());
+                navigate('/');
             }
         }
     }, [tokenExpiryDate]);
