@@ -3,7 +3,8 @@ module.exports = {
     name: 'HPC-Portal',
     script: './dist/server.js',
     instances: 1,
-    watch: '.'
+    watch: true,
+    ignore_watch: ["frontend", "node_modules", "supabase"]
   }],
 
   deploy : {
