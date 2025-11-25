@@ -82,14 +82,14 @@ const ClusDeveloper = () => {
             <Card>
                 <CardSection>Submit Job</CardSection>
                 <Text>
-                    To submit a job to "Developer" cluster in IKARUS, the “sbatch” file should have the 
+                    To submit a job to "Dev" cluster in IKARUS, the “sbatch” file should have the 
                     following minimum "#SBATCH" configurations:
                 </Text>
                 <Code block>
 {`#!/bin/bash
 
 #SBATCH --job-name=example
-#SBATCH --partition=longrun
+#SBATCH --partition=Dev
 #SBATCH --nodes=1                    # Max 1
 #SBATCH --time=00:05:00              # Max 72:00:00
 #SBATCH --mem=16G                    # Max 1T
