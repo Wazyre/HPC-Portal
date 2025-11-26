@@ -3,7 +3,7 @@ import { useDisclosure } from "@mantine/hooks";
 import PasswordModal from "../components/passwordModal";
 import { selectCompany, selectUsername, selectName, selectRole } from "../slices/authorizationSlice";
 import { Button, Card, Container, Flex, Image, Modal, Stack, Text, Title } from "@mantine/core";
-import profImg from "../assets/images/icon.png";
+import profImg from "../assets/images/icon.svg";
 import { IconEdit } from "@tabler/icons-react";
 import { useVerifyUser } from "../utils/useVerifyUser";
 
@@ -28,7 +28,7 @@ const Profile  = () => {
                     direction="row"
                     gap="lg"
                 >
-                    <Image src={profImg} radius={150} w={150} h={150}/>
+                    <Image src={profImg} radius={150} fit="contain" w={150} h={150}/>
                     <Stack>
                         <Text>{'Name: '+ name}</Text>
                         <Text>{'Company: ' + company}</Text>

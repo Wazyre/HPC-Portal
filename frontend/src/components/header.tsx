@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { removeNotification, selectAllNotifications } from "../slices/notificationSlice";
 import { notifications } from "@mantine/notifications";
 import cx from "clsx";
-import ikarusIcon from "../assets/images/icon.png";
+import ikarusIcon from "../assets/images/icon.svg";
 
 import classes from "../sourceStyle.module.css"
 import type { MouseEventHandler } from "react";
