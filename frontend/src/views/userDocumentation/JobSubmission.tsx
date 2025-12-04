@@ -505,7 +505,7 @@ print('stop at ' + time.strftime('%H:%M:%S'))`}
 
 
 #SBATCH --job-name=seq_example
-#SBATCH --partition=research
+#SBATCH --partition=Res
 #SBATCH --array=1-16
 #SBATCH --time=0-00:05:00
 #SBATCH --mem-per-cpu=500MB
@@ -560,7 +560,7 @@ exit 0`}
 {`#!/bin/bash
 
 #SBATCH --job-name=mpi-example
-#SBATCH --partition=research
+#SBATCH --partition=Res
 #SBATCH --ntasks=20
 #SBATCH --time=0-00:05:00
 #SBATCH --mem-per-cpu=500MB
