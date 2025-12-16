@@ -28,15 +28,15 @@ export const useVerifyUser = (roles: string[]) => {
                         navigate(-1);
                     }
                     if (location.pathname === '/') {
-                        navigate('/dashboard');
+                        navigate('/portal/dashboard');
                     }
                 }).catch(err => {
                     console.error(err);
-                    navigate('/');
+                    navigate('/login');
                 })
             } else {
                 dispatch(clearLogInData());
-                navigate('/');
+                navigate('/login');
             }
         }
     }, [tokenExpiryDate]);

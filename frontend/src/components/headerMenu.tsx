@@ -17,7 +17,7 @@ const HeaderMenu = () => {
 
     const handleClick = () => {
         dispatch(clearLogInData());
-        navigate('/');
+        navigate('/login');
     }
 
     return (

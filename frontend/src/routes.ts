@@ -29,9 +29,8 @@ All routes and subroutes for the portal are handled in this page
 */
 
 export const router = createBrowserRouter([
-    { index: true, Component: Login},
-    {
-        Component: Layout, // Main Component
+    { path: "/login", Component: Login},
+    { path: "/portal", Component: Layout, // Main Component
         children: [ // Children are Outlets that fill the AppShell Main component in Layout.tsx
             {path: "/dashboard", Component: Dashboard},
             {path: "/documentation",

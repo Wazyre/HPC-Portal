@@ -31,7 +31,7 @@ const Login = () => {
             await authorizeUser(user).unwrap()
             .then((user: AuthorizedUser) => {
                 dispatch(setAuthorizedUser(user));
-                navigate('/dashboard');
+                navigate('/portal/dashboard');
             }); // Unwrap to catch any errors
             
         } catch (err) {

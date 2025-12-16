@@ -34,10 +34,10 @@ const ClusResearch = () => {
     // Restrict page entry to research users and admins
     useEffect(() => {
         if (userRole === "project") {
-            navigate('/clusters/project')
+            navigate('/portal/clusters/project')
         }
         else if (userRole === "developer") {
-            navigate('/clusters/dev')
+            navigate('/portal/clusters/dev')
         }
     }, []);
 
