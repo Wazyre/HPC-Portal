@@ -23,7 +23,7 @@ const config: runtime.GetPrismaClientConfig = {
       "value": "prisma-client"
     },
     "output": {
-      "value": "C:\\Users\\khpcuser1\\Documents\\Projects\\HPC-Portal\\generated\\prisma",
+      "value": "/var/www/HPC-Portal/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -32,7 +32,7 @@ const config: runtime.GetPrismaClientConfig = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "windows",
+        "value": "rhel-openssl-1.1.x",
         "native": true
       },
       {
@@ -47,7 +47,7 @@ const config: runtime.GetPrismaClientConfig = {
     "previewFeatures": [
       "relationJoins"
     ],
-    "sourceFilePath": "C:\\Users\\khpcuser1\\Documents\\Projects\\HPC-Portal\\schema.prisma",
+    "sourceFilePath": "/var/www/HPC-Portal/schema.prisma",
     "isCustomOutput": true
   },
   "relativePath": "../..",
@@ -57,7 +57,7 @@ const config: runtime.GetPrismaClientConfig = {
     "db"
   ],
   "activeProvider": "postgresql",
-  "postinstall": false,
+  "postinstall": true,
   "inlineDatasources": {
     "db": {
       "url": {

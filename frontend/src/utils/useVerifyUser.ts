@@ -32,11 +32,11 @@ export const useVerifyUser = (roles: string[]) => {
                     }
                 }).catch(err => {
                     console.error(err);
-                    navigate('/login');
+                    navigate('/portal/login');
                 })
             } else {
                 dispatch(clearLogInData());
-                navigate('/login');
+                navigate('/portal/login');
             }
         }
     }, [tokenExpiryDate]);

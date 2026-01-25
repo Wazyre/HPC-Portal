@@ -62,7 +62,7 @@ const JobSubmission = () => {
                     </List>
                     <ListItem>
                         Information about how the job environment should be set up, for example, what 
-                        application (See <Anchor to="/documentation/modules" component={Link}>Modules</Anchor>) should 
+                        application (See <Anchor to="/portal/documentation/modules" component={Link}>Modules</Anchor>) should 
                         be loaded.
                     </ListItem>
                     <ListItem>The actual command(s) or developed code that needs to be executed.</ListItem>
@@ -203,7 +203,7 @@ const JobSubmission = () => {
                 <Text>
                     The following is an example of a minimal SLURM submission script that includes the 
                     required options to run in 
-                    the <Anchor to="/clusters/research" component={Link}>Research Cluster</Anchor>. 
+                    the <Anchor to="/portal/clusters/research" component={Link}>Research Cluster</Anchor>. 
                     It will run as <Text component="span" td="underline">“hello-ikarus”</Text> job name 
                     reserving <Text component="span" td="underline">100M RAM</Text> with unattended for up 
                     to <Text component="span" td="underline">30 seconds</Text> in 
@@ -491,7 +491,7 @@ print('stop at ' + time.strftime('%H:%M:%S'))`}
                     </Code>
                     <ListItem>
                         Make sure to change the file permission to executable 
-                        (See <Anchor to="/documentation/cmds" component={Link}>Useful Commands</Anchor>)
+                        (See <Anchor to="/portal/documentation/cmds" component={Link}>Useful Commands</Anchor>)
                     </ListItem>
                         <Code block>[hpcdemo@clavis2 ~]$ chmod u+x seq_script.py</Code>
                     <ListItem>Test it using the following command:</ListItem>
@@ -542,7 +542,7 @@ exit 0`}
 
                 <Text mt={20}>
                     In this example, the “pi-digits” file will be running for 5 jobs simultaneously using 
-                    MPI module (See <Anchor to="/documentation/modules" component={Link}>Modules</Anchor>), 
+                    MPI module (See <Anchor to="/portal/documentation/modules" component={Link}>Modules</Anchor>), 
                     each using 4 tasks, thus totalling to 20 tasks. Once they finish, the “sum-digit.py” 
                     will be executed with 20 tasks.
                 </Text>

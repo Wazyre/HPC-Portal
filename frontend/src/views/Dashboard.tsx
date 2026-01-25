@@ -49,21 +49,21 @@ const Dashboard = () => {
         let tempNode: string[] = [];
         let tempCpu: string[] = [];
         if (role === "developer") {
-            tempCpu = nodeInfo.developer.cpuState.split('/'); // [allocated, idle, other, total]
-            tempNode = nodeInfo.developer.nodeState.split('/'); // [allocated, idle, other, total]
+            tempCpu = nodeInfo.Developer.cpuState.split('/'); // [allocated, idle, other, total]
+            tempNode = nodeInfo.Developer.nodeState.split('/'); // [allocated, idle, other, total]
         }
         else if (role === "project") {
-            tempCpu = nodeInfo.project.cpuState.split('/');
-            tempNode = nodeInfo.project.nodeState.split('/');
+            tempCpu = nodeInfo.Project.cpuState.split('/');
+            tempNode = nodeInfo.Project.nodeState.split('/');
         }
         else {
-            tempCpu = nodeInfo.research.cpuState.split('/');
-            tempNode = nodeInfo.research.nodeState.split('/');
+            tempCpu = nodeInfo.Research.cpuState.split('/');
+            tempNode = nodeInfo.Research.nodeState.split('/');
         }
         setCpuState(tempCpu);
         setNodeState(tempNode);
-        setCpuPerc((1-parseInt(tempCpu[1])/parseInt(tempCpu[3]))*100);
-        setNodePerc((1-parseInt(tempNode[1])/parseInt(tempNode[3]))*100);
+        setCpuPerc(parseFloat(((1-parseInt(tempCpu[1])/parseInt(tempCpu[3]))*100).toFixed(1)));
+        setNodePerc(parseFloat(((1-parseInt(tempNode[1])/parseInt(tempNode[3]))*100).toFixed(1)));
         setJobData(buildData());
     }, [nodeInfo, userJobs, userStorage, username])
 
@@ -87,9 +87,9 @@ const Dashboard = () => {
                 </Group>
 
                 <Text fw={700} mt={20}>Storage Usage</Text>
-                <Text fz="xs" c="gray.6">{'Out of ' + humanFileSize(userStorage.scratchSize)}</Text>
+                <Text fz="xs" c="gray.6">{'Out of ' + humanFileSize(userStorage.scratchSize, false)}</Text>
                 <ProgressRoot size={30} mt={20}>
-                    <Tooltip label={humanFileSize(storageUsed)}>
+                    <Tooltip label={humanFileSize(storageUsed, false)}>
                         <ProgressSection value={(storageUsed/userStorage.scratchSize)*100} color="green.5">
                             <ProgressLabel></ProgressLabel>
                         </ProgressSection>

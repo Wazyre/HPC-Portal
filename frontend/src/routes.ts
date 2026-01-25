@@ -29,41 +29,43 @@ All routes and subroutes for the portal are handled in this page
 */
 
 export const router = createBrowserRouter([
-    { path: "/login", Component: Login},
-    { path: "/portal", Component: Layout, // Main Component
-        children: [ // Children are Outlets that fill the AppShell Main component in Layout.tsx
-            {path: "/dashboard", Component: Dashboard},
-            {path: "/documentation",
-                children: [
-                    {path: "ssh", Component: AccessSSH},
-                    {path: "modules", Component: Modules},
-                    {path: "fmgmt", Component: FileManagement},
-                    {path: "jobsub", Component: JobSubmission},
-                    {path: "cmds", Component: UsefulCommands},
-                ]
-            },
-            {path: "/clusters",
-                children: [
-                    {path: "research", Component: ClusResearch},
-                    {path: "project", Component: ClusProject},
-                    {path: "dev", Component: ClusDeveloper},
-                ]
-            },
-            {path: "/stats",
-                children: [
-                    {path: "clusters", Component: ClusterStats},
-                    {path: "storage", Component: StorageStats},
-                    {path: "job", Component: JobStats},
-                ]
-            },
-            {path: "support", Component: Support},
-            {path: "tickets", 
-                children: [
-                    {index: true, Component: TicketPortal},
-                    {path: ":tid", Component: TicketReply}
-                ]
-            },
-            {path: "profile", Component: Profile}
-        ]
-    }
+    {path: "/portal", children: [
+        { path: "login", Component: Login},
+        { path: "", Component: Layout, // Main Component
+            children: [ // Children are Outlets that fill the AppShell Main component in Layout.tsx
+                {path: "dashboard", Component: Dashboard},
+                {path: "documentation",
+                    children: [
+                        {path: "ssh", Component: AccessSSH},
+                        {path: "modules", Component: Modules},
+                        {path: "fmgmt", Component: FileManagement},
+                        {path: "jobsub", Component: JobSubmission},
+                        {path: "cmds", Component: UsefulCommands},
+                    ]
+                },
+                {path: "clusters",
+                    children: [
+                        {path: "research", Component: ClusResearch},
+                        {path: "project", Component: ClusProject},
+                        {path: "dev", Component: ClusDeveloper},
+                    ]
+                },
+                {path: "stats",
+                    children: [
+                        {path: "clusters", Component: ClusterStats},
+                        {path: "storage", Component: StorageStats},
+                        {path: "job", Component: JobStats},
+                    ]
+                },
+                {path: "support", Component: Support},
+                {path: "tickets", 
+                    children: [
+                        {index: true, Component: TicketPortal},
+                        {path: ":tid", Component: TicketReply}
+                    ]
+                },
+                {path: "profile", Component: Profile}
+            ]
+        }
+    ]}
 ])

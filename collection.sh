@@ -161,5 +161,7 @@ done
 sed -i '$ s/.$//' $output_file
 echo "}" >> $output_file
 
+scp -r *.json root@summus1:/var/www/HPC-Portal/frontend/src/assets/data/
+
 
 exit 0

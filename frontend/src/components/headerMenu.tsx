@@ -17,7 +17,7 @@ const HeaderMenu = () => {
 
     const handleClick = () => {
         dispatch(clearLogInData());
-        navigate('/login');
+        navigate('/portal/login');
     }
 
     return (
@@ -41,7 +41,7 @@ const HeaderMenu = () => {
                 <MenuItem 
                     leftSection={<IconUserCircle/>}
                     component={Link}
-                    to="/profile"
+                    to="/portal/profile"
                 >
                     Profile
                 </MenuItem>

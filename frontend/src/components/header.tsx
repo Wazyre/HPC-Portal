@@ -80,7 +80,7 @@ const Header = ({mobileOpened, toggleMobile}: HeaderProps) => {
                     <IconSun className={cx(classes.icon, classes.light)} stroke={1.5} />
                     <IconMoon className={cx(classes.icon, classes.dark)} stroke={1.5} />
                 </ActionIcon>
-                <Avatar component={Link} to="/profile" src={ikarusIcon}/>
+                <Avatar component={Link} to="/portal/profile" src={ikarusIcon}/>
                 <HeaderMenu/>
             </Group>
         </Group>

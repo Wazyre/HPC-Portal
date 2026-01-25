@@ -8,8 +8,10 @@ const data2 = [
 ];
 
 const perc = 15
-const scratchData = humanFileSize(storageUsed.scratchUsed);
-const sharedData = humanFileSize(storageUsed.sharedUsed);
+const scratchData = humanFileSize(storageUsed.scratchUsed,false);
+const sharedData = humanFileSize(storageUsed.sharedUsed, false);
+const scratchTotal = humanFileSize(storageUsed.scratchSize, false);
+const sharedTotal = humanFileSize(storageUsed.sharedSize, false);
 const scratchPerc = parseFloat(((storageUsed.scratchUsed / storageUsed.scratchSize) * 100).toFixed(1));
 const sharedPerc = parseFloat(((storageUsed.sharedUsed / storageUsed.sharedSize) * 100).toFixed(1));
 
@@ -33,8 +35,8 @@ const StorageStats = () => {
                                     {perc}
                                 </Text>}
                             />
-                            <Text fz={"larger"} fw={700}>50 GB</Text>
-                            <Text>Memory (RAM)</Text>
+                            <Text fz={"larger"} fw={700}>{scratchTotal}</Text>
+                            <Text>Storage</Text>
                             <Pill>15%</Pill>
                         </Stack>
                     </Card>
@@ -51,8 +53,8 @@ const StorageStats = () => {
                                     {perc}
                                 </Text>}
                             />
-                            <Text fz={"larger"} fw={700}>50 GB</Text>
-                            <Text>Memory (RAM)</Text>
+                            <Text fz={"larger"} fw={700}>{scratchTotal}</Text>
+                            <Text>Storage</Text>
                             <Pill>15%</Pill>
                         </Stack>
                     </Card>
@@ -70,8 +72,8 @@ const StorageStats = () => {
                                     {perc}
                                 </Text>}
                             />
-                            <Text fz={"larger"} fw={700}>50 GB</Text>
-                            <Text>Memory (RAM)</Text>
+                            <Text fz={"larger"} fw={700}>{scratchTotal}</Text>
+                            <Text>Storage</Text>
                             <Pill>15%</Pill>
                         </Stack>
                     </Card>
@@ -91,7 +93,7 @@ const StorageStats = () => {
                                     {scratchData}
                                 </Text>}
                             />
-                            <Text fz={"larger"} fw={700}>464 GB</Text>
+                            <Text fz={"larger"} fw={700}>{scratchTotal}</Text>
                             <Text>Scratch</Text>
                             <Pill>{scratchPerc + "%"}</Pill>
                         </Stack>
@@ -111,7 +113,7 @@ const StorageStats = () => {
                                     {sharedData}
                                 </Text>}
                             />
-                            <Text fz={"larger"} fw={700}>231 GB</Text>
+                            <Text fz={"larger"} fw={700}>{sharedTotal}</Text>
                             <Text>Archive</Text>
                             <Pill>{sharedPerc + "%"}</Pill>
                         </Stack>

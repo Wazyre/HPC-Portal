@@ -1,14 +1,6 @@
 [
 {
-"name": "check@check.com",
-"2025-June": {
-"jobs": 0,
-"time": 0
-},
-"2025-July": {
-"jobs": 0,
-"time": 0
-},
+"name": "aabduljalil", 
 "2025-August": {
 "jobs": 0,
 "time": 0
@@ -24,18 +16,45 @@
 "2025-November": {
 "jobs": 35,
 "time": 397
+},
+"2025-December": {
+"jobs": 23,
+"time": 169
+},
+"2026-January": {
+"jobs": 85,
+"time": 103139
 }
 },
 {
-"name": "nalsaleh",
-"2025-June": {
+"name": "adallura", 
+"2025-August": {
 "jobs": 0,
 "time": 0
 },
-"2025-July": {
+"2025-September": {
 "jobs": 0,
 "time": 0
 },
+"2025-October": {
+"jobs": 1709,
+"time": 132344
+},
+"2025-November": {
+"jobs": 995,
+"time": 496029
+},
+"2025-December": {
+"jobs": 1230,
+"time": 548438
+},
+"2026-January": {
+"jobs": 960,
+"time": 480991
+}
+},
+{
+"name": "aragum", 
 "2025-August": {
 "jobs": 0,
 "time": 0
@@ -49,8 +68,691 @@
 "time": 0
 },
 "2025-November": {
-"jobs": 35,
-"time": 397
+"jobs": 0,
+"time": 0
+},
+"2025-December": {
+"jobs": 0,
+"time": 0
+},
+"2026-January": {
+"jobs": 2,
+"time": 337
+}
+},
+{
+"name": "demouser1", 
+"2025-August": {
+"jobs": 0,
+"time": 0
+},
+"2025-September": {
+"jobs": 0,
+"time": 0
+},
+"2025-October": {
+"jobs": 0,
+"time": 0
+},
+"2025-November": {
+"jobs": 1,
+"time": 11
+},
+"2025-December": {
+"jobs": 41,
+"time": 3043
+},
+"2026-January": {
+"jobs": 0,
+"time": 0
+}
+},
+{
+"name": "demouser10", 
+"2025-August": {
+"jobs": 0,
+"time": 0
+},
+"2025-September": {
+"jobs": 0,
+"time": 0
+},
+"2025-October": {
+"jobs": 0,
+"time": 0
+},
+"2025-November": {
+"jobs": 0,
+"time": 0
+},
+"2025-December": {
+"jobs": 8,
+"time": 86
+},
+"2026-January": {
+"jobs": 0,
+"time": 0
+}
+},
+{
+"name": "demouser11", 
+"2025-August": {
+"jobs": 0,
+"time": 0
+},
+"2025-September": {
+"jobs": 0,
+"time": 0
+},
+"2025-October": {
+"jobs": 0,
+"time": 0
+},
+"2025-November": {
+"jobs": 0,
+"time": 0
+},
+"2025-December": {
+"jobs": 5,
+"time": 657
+},
+"2026-January": {
+"jobs": 0,
+"time": 0
+}
+},
+{
+"name": "demouser12", 
+"2025-August": {
+"jobs": 0,
+"time": 0
+},
+"2025-September": {
+"jobs": 0,
+"time": 0
+},
+"2025-October": {
+"jobs": 0,
+"time": 0
+},
+"2025-November": {
+"jobs": 0,
+"time": 0
+},
+"2025-December": {
+"jobs": 5,
+"time": 644
+},
+"2026-January": {
+"jobs": 0,
+"time": 0
+}
+},
+{
+"name": "demouser13", 
+"2025-August": {
+"jobs": 0,
+"time": 0
+},
+"2025-September": {
+"jobs": 0,
+"time": 0
+},
+"2025-October": {
+"jobs": 0,
+"time": 0
+},
+"2025-November": {
+"jobs": 0,
+"time": 0
+},
+"2025-December": {
+"jobs": 4,
+"time": 168
+},
+"2026-January": {
+"jobs": 0,
+"time": 0
+}
+},
+{
+"name": "demouser14", 
+"2025-August": {
+"jobs": 0,
+"time": 0
+},
+"2025-September": {
+"jobs": 0,
+"time": 0
+},
+"2025-October": {
+"jobs": 0,
+"time": 0
+},
+"2025-November": {
+"jobs": 0,
+"time": 0
+},
+"2025-December": {
+"jobs": 0,
+"time": 0
+},
+"2026-January": {
+"jobs": 0,
+"time": 0
+}
+},
+{
+"name": "demouser15", 
+"2025-August": {
+"jobs": 0,
+"time": 0
+},
+"2025-September": {
+"jobs": 0,
+"time": 0
+},
+"2025-October": {
+"jobs": 0,
+"time": 0
+},
+"2025-November": {
+"jobs": 0,
+"time": 0
+},
+"2025-December": {
+"jobs": 0,
+"time": 0
+},
+"2026-January": {
+"jobs": 0,
+"time": 0
+}
+},
+{
+"name": "demouser16", 
+"2025-August": {
+"jobs": 0,
+"time": 0
+},
+"2025-September": {
+"jobs": 0,
+"time": 0
+},
+"2025-October": {
+"jobs": 0,
+"time": 0
+},
+"2025-November": {
+"jobs": 0,
+"time": 0
+},
+"2025-December": {
+"jobs": 3,
+"time": 283
+},
+"2026-January": {
+"jobs": 0,
+"time": 0
+}
+},
+{
+"name": "demouser17", 
+"2025-August": {
+"jobs": 0,
+"time": 0
+},
+"2025-September": {
+"jobs": 0,
+"time": 0
+},
+"2025-October": {
+"jobs": 0,
+"time": 0
+},
+"2025-November": {
+"jobs": 0,
+"time": 0
+},
+"2025-December": {
+"jobs": 5,
+"time": 451
+},
+"2026-January": {
+"jobs": 0,
+"time": 0
+}
+},
+{
+"name": "demouser2", 
+"2025-August": {
+"jobs": 0,
+"time": 0
+},
+"2025-September": {
+"jobs": 0,
+"time": 0
+},
+"2025-October": {
+"jobs": 0,
+"time": 0
+},
+"2025-November": {
+"jobs": 0,
+"time": 0
+},
+"2025-December": {
+"jobs": 9,
+"time": 269
+},
+"2026-January": {
+"jobs": 0,
+"time": 0
+}
+},
+{
+"name": "demouser3", 
+"2025-August": {
+"jobs": 0,
+"time": 0
+},
+"2025-September": {
+"jobs": 0,
+"time": 0
+},
+"2025-October": {
+"jobs": 0,
+"time": 0
+},
+"2025-November": {
+"jobs": 0,
+"time": 0
+},
+"2025-December": {
+"jobs": 0,
+"time": 0
+},
+"2026-January": {
+"jobs": 0,
+"time": 0
+}
+},
+{
+"name": "demouser4", 
+"2025-August": {
+"jobs": 0,
+"time": 0
+},
+"2025-September": {
+"jobs": 0,
+"time": 0
+},
+"2025-October": {
+"jobs": 0,
+"time": 0
+},
+"2025-November": {
+"jobs": 0,
+"time": 0
+},
+"2025-December": {
+"jobs": 8,
+"time": 208
+},
+"2026-January": {
+"jobs": 0,
+"time": 0
+}
+},
+{
+"name": "demouser5", 
+"2025-August": {
+"jobs": 0,
+"time": 0
+},
+"2025-September": {
+"jobs": 0,
+"time": 0
+},
+"2025-October": {
+"jobs": 0,
+"time": 0
+},
+"2025-November": {
+"jobs": 0,
+"time": 0
+},
+"2025-December": {
+"jobs": 0,
+"time": 0
+},
+"2026-January": {
+"jobs": 0,
+"time": 0
+}
+},
+{
+"name": "demouser6", 
+"2025-August": {
+"jobs": 0,
+"time": 0
+},
+"2025-September": {
+"jobs": 0,
+"time": 0
+},
+"2025-October": {
+"jobs": 0,
+"time": 0
+},
+"2025-November": {
+"jobs": 0,
+"time": 0
+},
+"2025-December": {
+"jobs": 10,
+"time": 211
+},
+"2026-January": {
+"jobs": 0,
+"time": 0
+}
+},
+{
+"name": "demouser7", 
+"2025-August": {
+"jobs": 0,
+"time": 0
+},
+"2025-September": {
+"jobs": 0,
+"time": 0
+},
+"2025-October": {
+"jobs": 0,
+"time": 0
+},
+"2025-November": {
+"jobs": 0,
+"time": 0
+},
+"2025-December": {
+"jobs": 4,
+"time": 616
+},
+"2026-January": {
+"jobs": 0,
+"time": 0
+}
+},
+{
+"name": "demouser8", 
+"2025-August": {
+"jobs": 0,
+"time": 0
+},
+"2025-September": {
+"jobs": 0,
+"time": 0
+},
+"2025-October": {
+"jobs": 0,
+"time": 0
+},
+"2025-November": {
+"jobs": 0,
+"time": 0
+},
+"2025-December": {
+"jobs": 7,
+"time": 219
+},
+"2026-January": {
+"jobs": 0,
+"time": 0
+}
+},
+{
+"name": "demouser9", 
+"2025-August": {
+"jobs": 0,
+"time": 0
+},
+"2025-September": {
+"jobs": 0,
+"time": 0
+},
+"2025-October": {
+"jobs": 0,
+"time": 0
+},
+"2025-November": {
+"jobs": 0,
+"time": 0
+},
+"2025-December": {
+"jobs": 5,
+"time": 729
+},
+"2026-January": {
+"jobs": 0,
+"time": 0
+}
+},
+{
+"name": "hpcdemo", 
+"2025-August": {
+"jobs": 1,
+"time": 3
+},
+"2025-September": {
+"jobs": 0,
+"time": 0
+},
+"2025-October": {
+"jobs": 26,
+"time": 24
+},
+"2025-November": {
+"jobs": 427,
+"time": 12241
+},
+"2025-December": {
+"jobs": 0,
+"time": 0
+},
+"2026-January": {
+"jobs": 0,
+"time": 0
+}
+},
+{
+"name": "jaredlee", 
+"2025-August": {
+"jobs": 0,
+"time": 0
+},
+"2025-September": {
+"jobs": 0,
+"time": 0
+},
+"2025-October": {
+"jobs": 0,
+"time": 0
+},
+"2025-November": {
+"jobs": 0,
+"time": 0
+},
+"2025-December": {
+"jobs": 0,
+"time": 0
+},
+"2026-January": {
+"jobs": 0,
+"time": 0
+}
+},
+{
+"name": "mkhaldi", 
+"2025-August": {
+"jobs": 0,
+"time": 0
+},
+"2025-September": {
+"jobs": 0,
+"time": 0
+},
+"2025-October": {
+"jobs": 0,
+"time": 0
+},
+"2025-November": {
+"jobs": 0,
+"time": 0
+},
+"2025-December": {
+"jobs": 0,
+"time": 0
+},
+"2026-January": {
+"jobs": 2,
+"time": 111
+}
+},
+{
+"name": "nsaleh", 
+"2025-August": {
+"jobs": 0,
+"time": 0
+},
+"2025-September": {
+"jobs": 0,
+"time": 0
+},
+"2025-October": {
+"jobs": 0,
+"time": 0
+},
+"2025-November": {
+"jobs": 0,
+"time": 0
+},
+"2025-December": {
+"jobs": 0,
+"time": 0
+},
+"2026-January": {
+"jobs": 33,
+"time": 180
+}
+},
+{
+"name": "nsulaiman", 
+"2025-August": {
+"jobs": 0,
+"time": 0
+},
+"2025-September": {
+"jobs": 0,
+"time": 0
+},
+"2025-October": {
+"jobs": 64,
+"time": 138
+},
+"2025-November": {
+"jobs": 19,
+"time": 3717
+},
+"2025-December": {
+"jobs": 374,
+"time": 66078
+},
+"2026-January": {
+"jobs": 50,
+"time": 15390
+}
+},
+{
+"name": "rbourisli", 
+"2025-August": {
+"jobs": 0,
+"time": 0
+},
+"2025-September": {
+"jobs": 0,
+"time": 0
+},
+"2025-October": {
+"jobs": 0,
+"time": 0
+},
+"2025-November": {
+"jobs": 0,
+"time": 0
+},
+"2025-December": {
+"jobs": 0,
+"time": 0
+},
+"2026-January": {
+"jobs": 0,
+"time": 0
+}
+},
+{
+"name": "thussain", 
+"2025-August": {
+"jobs": 61,
+"time": 2632
+},
+"2025-September": {
+"jobs": 0,
+"time": 0
+},
+"2025-October": {
+"jobs": 182,
+"time": 14250
+},
+"2025-November": {
+"jobs": 59,
+"time": 12105
+},
+"2025-December": {
+"jobs": 0,
+"time": 0
+},
+"2026-January": {
+"jobs": 0,
+"time": 0
+}
+},
+{
+"name": "yosairi", 
+"2025-August": {
+"jobs": 0,
+"time": 0
+},
+"2025-September": {
+"jobs": 0,
+"time": 0
+},
+"2025-October": {
+"jobs": 0,
+"time": 0
+},
+"2025-November": {
+"jobs": 0,
+"time": 0
+},
+"2025-December": {
+"jobs": 2,
+"time": 41
+},
+"2026-January": {
+"jobs": 5,
+"time": 330
 }
 }
 ]

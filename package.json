@@ -1,29 +1,30 @@
 {
   "name": "hpcportal-server",
   "type": "module",
+  "homepage": "https://www.khpc.kisr.edu.kw/portal/",
   "dependencies": {
-    "@prisma/client": "^6.16.2",
-    "@supabase/supabase-js": "^2.57.4",
+    "@prisma/client": "6.16.2",
+    "@supabase/supabase-js": "2.57.4",
     "argon2": "0.43.0",
-    "body-parser": "^2.2.0",
-    "concurrently": "^9.2.1",
-    "copyfiles": "^2.4.1",
-    "dotenv": "^17.2.2",
-    "eslint": "^9.36.0",
-    "express": "^5.1.0",
-    "express-async-handler": "^1.2.0",
-    "jsonwebtoken": "^9.0.2",
-    "path": "^0.12.7",
-    "pm2": "^6.0.13",
+    "body-parser": "^2.2.1",
+    "concurrently": "9.2.1",
+    "copyfiles": "2.4.1",
+    "dotenv": "17.2.2",
+    "eslint": "9.36.0",
+    "express": "5.1.0",
+    "express-async-handler": "1.2.0",
+    "jsonwebtoken": "9.0.2",
+    "path": "0.12.7",
+    "pm2": "6.0.14",
     "prisma": "6.19.0"
   },
   "devDependencies": {
-    "@types/express": "^5.0.5",
-    "@types/jsonwebtoken": "^9.0.10",
-    "@types/node": "^24.10.0",
-    "supabase": "^2.54.11",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.9.3"
+    "@types/express": "5.0.5",
+    "@types/jsonwebtoken": "9.0.10",
+    "@types/node": "24.10.0",
+    "supabase": "^2.67.2",
+    "ts-node": "10.9.2",
+    "typescript": "5.9.3"
   },
   "scripts": {
     "dev": "node --watch ./dist/server.js && npm run dev --prefix frontend",
@@ -31,9 +32,10 @@
     "server-build": "npm install && tsc -b && copyfiles generated/prisma/*.node dist/",
     "client": "npm run preview --prefix frontend",
     "client-build": "npm install --prefix frontend && npm run build --prefix frontend",
+    "lclient-build": "npm install --prefix frontend && npm run build --prefix frontend/",
     "start": "concurrently \"npm run server\" \"npm run client\"",
     "build": "concurrently \"npm run server-build\" \"npm run client-build\"",
     "all": "concurrently \"node ./dist/server.js\" \"npm run dev --prefix frontend\"",
-    "linuxRun": "npm run server-build && npm run client-build && pm2 start ecosystem.config.cjs"
+    "linuxRun": "npm run server-build && npm run lclient-build && node ./dist/server.js"
   }
 }

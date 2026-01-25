@@ -10,7 +10,7 @@ import { type RootState } from '../app/store'
 export const rtkApi = createApi({
     reducerPath: 'api',
     baseQuery: fetchBaseQuery({ 
-        baseUrl: '/api',
+        baseUrl: '/portal/api',
         prepareHeaders: (headers, {getState}) => {
             const token = (getState() as RootState).authorization.accessToken;
 

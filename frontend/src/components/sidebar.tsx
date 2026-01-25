@@ -23,7 +23,7 @@ const Sidebar = () => {
                     <IconBrandSpeedtest className={cx(classes.icon, classes.dark)} stroke={1.5}/>
                     <IconBrandSpeedtest className={cx(classes.icon, classes.light)} stroke={1.5}/>
                 </>}
-                to="/dashboard"
+                to="/portal/dashboard"
             />
             <NavLink
                 label="Documentation"
@@ -37,27 +37,27 @@ const Sidebar = () => {
                         <NavLink
                             component={Link}
                             label="Access-SSH"
-                            to="/documentation/ssh"
+                            to="/portal/documentation/ssh"
                         />
                         <NavLink
                             component={Link}
                             label="Modules"
-                            to="/documentation/modules"
+                            to="/portal/documentation/modules"
                         />
                         <NavLink
                             component={Link}
                             label="File Management"
-                            to="/documentation/fmgmt"
+                            to="/portal/documentation/fmgmt"
                         />
                         <NavLink
                             component={Link}
                             label="Job Submission"
-                            to="/documentation/jobsub"
+                            to="/portal/documentation/jobsub"
                         />
                         <NavLink
                             component={Link}
                             label="Useful Commands"
-                            to="/documentation/cmds"
+                            to="/portal/documentation/cmds"
                         />
                     </>
                 : <></>
@@ -75,7 +75,7 @@ const Sidebar = () => {
                         <NavLink
                             component={Link}
                             label="Research"
-                            to="/clusters/research"
+                            to="/portal/clusters/research"
                         />
                     : <></>
                 }
@@ -83,7 +83,7 @@ const Sidebar = () => {
                         <NavLink
                             component={Link}
                             label="Project"
-                            to="/clusters/project"
+                            to="/portal/clusters/project"
                         />
                     : <></>
                 }
@@ -91,7 +91,7 @@ const Sidebar = () => {
                         <NavLink
                             component={Link}
                             label="Developer"
-                            to="/clusters/dev"
+                            to="/portal/clusters/dev"
                         />
                     : <></>
                 }
@@ -107,18 +107,18 @@ const Sidebar = () => {
                         <NavLink
                             component={Link}
                             label="Clusters"
-                            to="/stats/clusters"
+                            to="/portal/stats/clusters"
                         />
                         <NavLink
                             component={Link}
                             label="Storage"
-                            to="/stats/storage"
+                            to="/portal/stats/storage"
                         />
-                        <NavLink
+                        {/* <NavLink
                             component={Link}
                             label="Jobs"
-                            to="/stats/job"
-                        />
+                            to="/portal/stats/job"
+                        /> */}
                     </NavLink>
             : <></>}
             
@@ -129,7 +129,7 @@ const Sidebar = () => {
                     <IconMail className={cx(classes.icon, classes.dark)} stroke={1.5}/>
                     <IconMail className={cx(classes.icon, classes.light)} stroke={1.5}/>
                 </>}
-                to="/support"
+                to="/portal/support"
             />
             <NavLink
                 component={Link}
@@ -138,7 +138,7 @@ const Sidebar = () => {
                     <IconTicket className={cx(classes.icon, classes.dark)} stroke={1.5}/>
                     <IconTicket className={cx(classes.icon, classes.light)} stroke={1.5}/>
                 </>}
-                to="/tickets"
+                to="/portal/tickets"
             />
             
         </Container>

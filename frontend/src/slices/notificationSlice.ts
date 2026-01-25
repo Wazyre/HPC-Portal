@@ -10,11 +10,10 @@ interface Notification {
     withBorder: true,
     position: 'top-right',
 };
+// {id: 'wow', dateTitle: 'check-it', message: 'nice', color: 'blue', 
+        // withCloseButton: true, withBorder: true, position: 'top-right'}
 
-const initialState: Notification[] = [
-    {id: 'wow', dateTitle: 'check-it', message: 'nice', color: 'blue', 
-        withCloseButton: true, withBorder: true, position: 'top-right'}
-]
+const initialState: Notification[] = []
 
 export const notificationsSlice = createSlice({
     name: 'notifications',

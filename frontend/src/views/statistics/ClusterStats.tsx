@@ -5,44 +5,46 @@ import { useVerifyUser } from "../../utils/useVerifyUser";
 import jobStat from "../../assets/data/jobsStat.json";
 import jobPart from "../../assets/data/jobsPartition.json";
 import liveResources from "../../assets/data/liveResources.json";
+import runningJobs from "../../assets/data/runningJobs.json";
 import { useEffect, useState } from "react";
 
-const data = [
-    {
-        date: 0,
-        Research: 25,
-        Project: 85,
-        Developer: 28,
-    },
-    {
-        date: 1,
-        Research: 34,
-        Project: 64,
-        Developer: 46,
-    },
-    {
-        date: 2,
-        Research: 12,
-        Project: 34,
-        Developer: 76,
-    },
-    {
-        date: 3,
-        Research: 45,
-        Project: 16,
-        Developer: 36,
-    },
-    {
-        date: 4,
-        Research: 25,
-        Project: 78,
-        Developer: 34,
-    },
-];
+// const data = [
+//     {
+//         date: 0,
+//         Research: 25,
+//         Project: 85,
+//         Developer: 28,
+//     },
+//     {
+//         date: 1,
+//         Research: 34,
+//         Project: 64,
+//         Developer: 46,
+//     },
+//     {
+//         date: 2,
+//         Research: 12,
+//         Project: 34,
+//         Developer: 76,
+//     },
+//     {
+//         date: 3,
+//         Research: 45,
+//         Project: 16,
+//         Developer: 36,
+//     },
+//     {
+//         date: 4,
+//         Research: 25,
+//         Project: 78,
+//         Developer: 34,
+//     },
+// ];
 
 
 const ClusterStats = () => {
     const [resourceData, setResourceData] = useState([{}]);
+    const [jobData, setJobData] = useState([{}]);
     const [partData, setPartData] = useState([{}]);
     const [statData, setStatData] = useState([{}]);
 
@@ -61,15 +63,31 @@ const ClusterStats = () => {
 
     const buildResourceData = () => {
         const data = [];
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < liveResources.length; i++) {
             const tempCPUDev = liveResources[i].Developer.cpuState.split('/');
             const tempCPUProj = liveResources[i].Project.cpuState.split('/');
             const tempCPURes = liveResources[i].Research.cpuState.split('/');
             data.push({
-                date: Date.now()+i, //TODO FIX AND USE TIMESTAMP
+                date: liveResources[i].Timestamp,
                 Developer: ((1 - parseInt(tempCPUDev[1])/parseInt(tempCPUDev[3])) * 100),
                 Project: ((1 - parseInt(tempCPUProj[1])/parseInt(tempCPUProj[3])) * 100),
                 Research: ((1 - parseInt(tempCPURes[1])/parseInt(tempCPURes[3])) * 100),
+            });
+        }
+        return data;
+    };
+
+    const buildJobData = () => {
+        const data = [];
+        for (let i = 0; i < runningJobs.length; i++) {
+            const tempDev = runningJobs[i].Developer.jobs;
+            const tempProj = runningJobs[i].Project.jobs;
+            const tempRes = runningJobs[i].Research.jobs;
+            data.push({
+                date: runningJobs[i].Timestamp,
+                Developer: parseInt(tempDev),
+                Project: parseInt(tempProj),
+                Research: parseInt(tempRes),
             });
         }
         return data;
@@ -111,6 +129,7 @@ const ClusterStats = () => {
 
     useEffect(() => {
         setResourceData(buildResourceData());
+        setJobData(buildJobData());
         setPartData(buildPartData());
         setStatData(buildStatData())
     }, [jobPart, jobStat, liveResources]);
@@ -147,10 +166,10 @@ const ClusterStats = () => {
 
                 <GridCol span={6}>
                     <Card>
-                        <Text>Running Tasks %</Text>
+                        <Text>Running Jobs</Text>
                         <LineChart
                             h={300}
-                            data={data}
+                            data={jobData}
                             dataKey="date"
                             series={[
                                 { name: 'Research', color: 'indigo.6' },
@@ -161,8 +180,8 @@ const ClusterStats = () => {
                             withLegend
                             legendProps={{verticalAlign: 'top', height: 50}}
                             withXAxis={false}
-                            yAxisLabel="Percent %"
-                            yAxisProps={{ domain: [0, 100] }}
+                            yAxisLabel="Jobs"
+                            yAxisProps={{ domain: [0, 50] }}
                         />
                         
                     </Card>

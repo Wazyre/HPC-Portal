@@ -8,7 +8,7 @@
  * 
  * @return Formatted string.
  */
-const humanFileSize = (bytes: number, si = true, dp = 1) => {
+export const humanFileSize = (bytes: number, si = true, dp = 1) => {
   const thresh = si ? 1000 : 1024;
 
   if (Math.abs(bytes) < thresh) {
