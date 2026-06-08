@@ -1,5 +1,9 @@
 import { Container, NavLink } from "@mantine/core";
-import { IconBook, IconBrandSpeedtest, IconChartBarPopular, IconLayoutBoard, IconMail, IconTicket } from "@tabler/icons-react";
+import { 
+    IconBook, IconBrandSpeedtest, IconChartBarPopular, 
+    IconLayoutBoard, IconMail, IconTicket,
+    IconDatabase 
+} from "@tabler/icons-react";
 import cx from "clsx";
 
 import classes from "../sourceStyle.module.css"
@@ -117,7 +121,7 @@ const Sidebar = () => {
                         {/* <NavLink
                             component={Link}
                             label="Jobs"
-                            to="/portal/stats/job"
+                            to="/stats/job"
                         /> */}
                     </NavLink>
             : <></>}
@@ -140,6 +144,26 @@ const Sidebar = () => {
                 </>}
                 to="/portal/tickets"
             />
+
+
+            <NavLink
+                label="Logging System"
+                leftSection={<>
+                    <IconDatabase className={cx(classes.icon, classes.dark)} stroke={1.5}/>
+                    <IconDatabase className={cx(classes.icon, classes.light)} stroke={1.5}/>
+                </>}
+            >
+                <NavLink
+                    component={Link}
+                    label="Add"
+                    to="/portal/change-requests"
+                />
+                <NavLink
+                    component={Link}
+                    label="History"
+                    to="/portal/modification-history"
+                />
+            </NavLink>
             
         </Container>
     )

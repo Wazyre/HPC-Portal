@@ -1,31 +1,34 @@
 import path from 'path';
 import dotenv from 'dotenv';
 import express from 'express';
-import { PrismaClient } from './generated/prisma/client.ts';
+import { PrismaClient } from '@prisma/client';
 import userRoutes from './routes/userRoutes.ts';
 import supportRoutes from './routes/supportRoutes.ts';
+import changeRequestRoutes from './routes/changeRequestRoutes.ts';
 
-// Allow referencing .env files
 dotenv.config();
 
 // Start Express and define local path
 const app = express();
 const __dirname = path.resolve();
 
-// Ecnode express to send json over https packets
-const urlencodedParser = express.urlencoded({extended: false});
-app.use(urlencodedParser, express.json());
+// Encode express to send json over https packets
+app.use(express.urlencoded({extended: false}), express.json());
 
 // Initialize Postgres ORM and DB
 const prisma = new PrismaClient();
 
 // Env variables
 const PORT = process.env.SERVER_PORT || 54322;
-const STATUS = process.env.NODE_ENV || 'development'
+const STATUS = process.env.NODE_ENV || 'development';
 
 // Setup APIs
 app.use('/api/users', userRoutes);
 app.use('/api/support', supportRoutes);
+app.use('/api/change-requests', changeRequestRoutes);
+
+//  Serve uploaded attachment files so admins can download them from the History table
+app.use('/api/change-requests/download', express.static(path.join(__dirname, 'uploads')));
 
 // Serve static assets if in production
 if(STATUS === 'production') {
@@ -34,7 +37,7 @@ if(STATUS === 'production') {
   // See https://expressjs.com/en/guide/migrating-5.html#path-syntax for splat explanation
   app.get('/*splat', (req, res) => {
     res.sendFile(path.resolve(__dirname, 'frontend', 'dist', 'index.html'));
-  })
+  });
 }
 
 // Log if server is up

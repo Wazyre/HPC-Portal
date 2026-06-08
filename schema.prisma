@@ -1,45 +1,194 @@
-datasource db {
-    provider = "postgresql"
-    url = env("DATABASE_URL")
-    directUrl = env("DIRECT_URL")
+generator client {
+  provider        = "prisma-client-js"
+  binaryTargets   = ["native", "debian-openssl-3.0.x", "rhel-openssl-1.1.x"]
+  previewFeatures = ["relationJoins"]
 }
 
-generator client {
-    provider = "prisma-client"
-    previewFeatures = ["relationJoins"]
-    binaryTargets = ["native", "debian-openssl-3.0.x", "rhel-openssl-1.1.x"] // For running on Render and Rocky Linux platform
-    output = "./generated/prisma"
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model User {
-    id          Int         @id @default(autoincrement())
-    username    String      @unique
-    password    String
-    firstName   String
-    lastName    String
-    company     String
-    role        String
-    comments    Comment[]
+  id        Int       @id @default(autoincrement())
+  username  String    @unique(map: "User_email_key")
+  password  String
+  firstName String
+  lastName  String
+  company   String
+  role      String
+  comments  Comment[]
 }
 
 model Support {
-    id          Int         @id @default(autoincrement())
-    username    String      
-    name        String
-    subject     String
-    description String
-    status      String
-    createdAt   DateTime    @default(now())
-    updatedAt   DateTime    @default(now())
-    comments    Comment[]
+  id          Int       @id @default(autoincrement())
+  username    String
+  name        String
+  subject     String
+  description String
+  status      String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @default(now())
+  comments    Comment[]
 }
 
 model Comment {
-    id          Int         @id @default(autoincrement())
-    comment     String
-    author      User        @relation(fields: [authorId], references: [id])
-    authorId    Int         
-    createdAt   DateTime
-    ticket      Support     @relation(fields: [ticketId], references: [id])
-    ticketId    Int
+  id        Int      @id @default(autoincrement())
+  comment   String
+  createdAt DateTime
+  ticketId  Int
+  authorId  Int
+  author    User     @relation(fields: [authorId], references: [id])
+  ticket    Support  @relation(fields: [ticketId], references: [id])
+}
+
+model AccessPoint {
+  Name        String  @id
+  Manufacture String?
+  Model       String?
+  IP          String?
+  MAC         String?
+  Switch2     String?
+  Port        String?
+  VLANs       BigInt?
+}
+
+model Account {
+  System         String?
+  Level          String?
+  Term_of_Access String? @map("Term of Access")
+  Username       String?
+  E_mail         String? @map("E-mail")
+  Purpose        String?
+  id             BigInt  @id @default(autoincrement())
+  Password       String?
+}
+
+model FirewallNetwork {
+  Node     String?
+  Ethernet String?
+  IP       String?
+  MAC      String?
+  Switch   String?
+  Port     String?
+  id       BigInt  @id @default(autoincrement())
+}
+
+model FirewallProduct {
+  Serial_Number        String            @id @map("Serial Number")
+  Product_Model        String?           @map("Product Model")
+  Description          String?
+  Unit_Expiration_Date String?           @map("Unit Expiration Date")
+  Registration_Date    String?           @map("Registration Date")
+  FirewallSoftware     FirewallSoftware?
+}
+
+model FirewallSoftware {
+  Models                     String?
+  End_of_Engineering_Support String?         @map("End of Engineering Support")
+  End_of_Support             String?         @map("End of Support")
+  Serial_Number              String          @id @map("Serial Number")
+  Product_Model              String?         @map("Product Model")
+  Days_to_Expire             String?         @map("Days to Expire")
+  Registration_Date          String?         @map("Registration Date")
+  FirewallProduct            FirewallProduct @relation(fields: [Serial_Number], references: [Serial_Number], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model Node {
+  Node     String?
+  Ethernet String?
+  IP       String?
+  MAC      String?
+  Switch   String?
+  Port     String?
+  Float    String?
+  id       BigInt  @id @default(autoincrement())
+}
+
+model Rack1 {
+  Node                 String  @id
+  Model                String?
+  iDrac_IP___Access_IP String? @map("iDrac IP / Access IP")
+  Service_Tag          String? @map("Service Tag")
+  MAC                  String?
+  Usage                String?
+  Rack_Layout          String? @map("Rack Layout")
+}
+
+model Rack2 {
+  Node                 String  @id
+  Model                String?
+  iDrac_IP___Access_IP String? @map("iDrac IP / Access IP")
+  Service_Tag          String? @map("Service Tag")
+  MAC                  String?
+  Usage                String?
+  Rack_Layout          String? @map("Rack Layout")
+}
+
+model Rack3 {
+  Node                 String  @id
+  Model                String?
+  iDrac_IP___Access_IP String? @map("iDrac IP / Access IP")
+  Service_Tag          String? @map("Service Tag")
+  MAC                  String?
+  Usage                String?
+  Rack_Layout          String? @map("Rack Layout")
+}
+
+model Rack4 {
+  Node                 String  @id
+  Model                String?
+  iDrac_IP___Access_IP String? @map("iDrac IP / Access IP")
+  Service_Tag          String? @map("Service Tag")
+  MAC                  String?
+  Usage                String?
+  Rack_Layout          String? @map("Rack Layout")
+}
+
+model RackWAN {
+  Node                 String
+  Model                String?
+  iDrac_IP___Access_IP String? @map("iDrac IP / Access IP")
+  Service_Tag          String? @map("Service Tag")
+  MAC                  String?
+  Usage                String?
+  Rack_Layout          String? @map("Rack Layout")
+  id                   BigInt  @id @default(autoincrement())
+}
+
+model Switch {
+  Switch      String  @id
+  Manufacture String?
+  Model       String?
+  IP          String?
+  MAC         String?
+  Core1       String?
+  Core2       String?
+  VLANs       String?
+  RACK        String?
+}
+
+model VLAN {
+  VLAN        BigInt  @id
+  Name        String?
+  Subnet      String?
+  Description String?
+}
+
+model VPN {
+  Remote_Gateway String  @id @map("Remote Gateway")
+  IP             String?
+  Port           BigInt?
+}
+
+model ChangeRequest {
+  id                String   @id @default(uuid())
+  createdAt         DateTime @default(now())
+  completedAt       DateTime? // Added this for the second date & time
+  adminName         String
+  scopeOfChange     String
+  changeDescription String
+  status            String   @default("Pending")
+  attachedFile      String?   // Optional file attachment field
 }
