@@ -33,7 +33,7 @@ app.use('/api/change-requests/download', express.static(path.join(__dirname, 'up
 // Serve static assets if in production
 if(STATUS === 'production') {
   //Set static folder
-  app.use(express.static('frontend/dist'));
+  app.use(express.static(path.join(__dirname, 'frontend/dist')));
   // See https://expressjs.com/en/guide/migrating-5.html#path-syntax for splat explanation
   app.get('/*splat', (req, res) => {
     res.sendFile(path.resolve(__dirname, 'frontend', 'dist', 'index.html'));
