@@ -34,3 +34,5 @@ dist-ssr
 
 # Keep the generated Prisma Client + query engine out of version control
 # generated/prisma/
+ecosystem.config.cjs
+frontend/vite.config.ts

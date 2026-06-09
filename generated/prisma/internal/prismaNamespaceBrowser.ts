@@ -51,7 +51,22 @@ export const AnyNull = runtime.objectEnumValues.instances.AnyNull
 export const ModelName = {
   User: 'User',
   Support: 'Support',
-  Comment: 'Comment'
+  Comment: 'Comment',
+  AccessPoint: 'AccessPoint',
+  Account: 'Account',
+  FirewallNetwork: 'FirewallNetwork',
+  FirewallProduct: 'FirewallProduct',
+  FirewallSoftware: 'FirewallSoftware',
+  Node: 'Node',
+  Rack1: 'Rack1',
+  Rack2: 'Rack2',
+  Rack3: 'Rack3',
+  Rack4: 'Rack4',
+  RackWAN: 'RackWAN',
+  Switch: 'Switch',
+  VLAN: 'VLAN',
+  VPN: 'VPN',
+  ChangeRequest: 'ChangeRequest'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -108,12 +123,203 @@ export type SupportScalarFieldEnum = (typeof SupportScalarFieldEnum)[keyof typeo
 export const CommentScalarFieldEnum = {
   id: 'id',
   comment: 'comment',
-  authorId: 'authorId',
   createdAt: 'createdAt',
-  ticketId: 'ticketId'
+  ticketId: 'ticketId',
+  authorId: 'authorId'
 } as const
 
 export type CommentScalarFieldEnum = (typeof CommentScalarFieldEnum)[keyof typeof CommentScalarFieldEnum]
+
+
+export const AccessPointScalarFieldEnum = {
+  Name: 'Name',
+  Manufacture: 'Manufacture',
+  Model: 'Model',
+  IP: 'IP',
+  MAC: 'MAC',
+  Switch2: 'Switch2',
+  Port: 'Port',
+  VLANs: 'VLANs'
+} as const
+
+export type AccessPointScalarFieldEnum = (typeof AccessPointScalarFieldEnum)[keyof typeof AccessPointScalarFieldEnum]
+
+
+export const AccountScalarFieldEnum = {
+  System: 'System',
+  Level: 'Level',
+  Term_of_Access: 'Term_of_Access',
+  Username: 'Username',
+  E_mail: 'E_mail',
+  Purpose: 'Purpose',
+  id: 'id',
+  Password: 'Password'
+} as const
+
+export type AccountScalarFieldEnum = (typeof AccountScalarFieldEnum)[keyof typeof AccountScalarFieldEnum]
+
+
+export const FirewallNetworkScalarFieldEnum = {
+  Node: 'Node',
+  Ethernet: 'Ethernet',
+  IP: 'IP',
+  MAC: 'MAC',
+  Switch: 'Switch',
+  Port: 'Port',
+  id: 'id'
+} as const
+
+export type FirewallNetworkScalarFieldEnum = (typeof FirewallNetworkScalarFieldEnum)[keyof typeof FirewallNetworkScalarFieldEnum]
+
+
+export const FirewallProductScalarFieldEnum = {
+  Serial_Number: 'Serial_Number',
+  Product_Model: 'Product_Model',
+  Description: 'Description',
+  Unit_Expiration_Date: 'Unit_Expiration_Date',
+  Registration_Date: 'Registration_Date'
+} as const
+
+export type FirewallProductScalarFieldEnum = (typeof FirewallProductScalarFieldEnum)[keyof typeof FirewallProductScalarFieldEnum]
+
+
+export const FirewallSoftwareScalarFieldEnum = {
+  Models: 'Models',
+  End_of_Engineering_Support: 'End_of_Engineering_Support',
+  End_of_Support: 'End_of_Support',
+  Serial_Number: 'Serial_Number',
+  Product_Model: 'Product_Model',
+  Days_to_Expire: 'Days_to_Expire',
+  Registration_Date: 'Registration_Date'
+} as const
+
+export type FirewallSoftwareScalarFieldEnum = (typeof FirewallSoftwareScalarFieldEnum)[keyof typeof FirewallSoftwareScalarFieldEnum]
+
+
+export const NodeScalarFieldEnum = {
+  Node: 'Node',
+  Ethernet: 'Ethernet',
+  IP: 'IP',
+  MAC: 'MAC',
+  Switch: 'Switch',
+  Port: 'Port',
+  Float: 'Float',
+  id: 'id'
+} as const
+
+export type NodeScalarFieldEnum = (typeof NodeScalarFieldEnum)[keyof typeof NodeScalarFieldEnum]
+
+
+export const Rack1ScalarFieldEnum = {
+  Node: 'Node',
+  Model: 'Model',
+  iDrac_IP___Access_IP: 'iDrac_IP___Access_IP',
+  Service_Tag: 'Service_Tag',
+  MAC: 'MAC',
+  Usage: 'Usage',
+  Rack_Layout: 'Rack_Layout'
+} as const
+
+export type Rack1ScalarFieldEnum = (typeof Rack1ScalarFieldEnum)[keyof typeof Rack1ScalarFieldEnum]
+
+
+export const Rack2ScalarFieldEnum = {
+  Node: 'Node',
+  Model: 'Model',
+  iDrac_IP___Access_IP: 'iDrac_IP___Access_IP',
+  Service_Tag: 'Service_Tag',
+  MAC: 'MAC',
+  Usage: 'Usage',
+  Rack_Layout: 'Rack_Layout'
+} as const
+
+export type Rack2ScalarFieldEnum = (typeof Rack2ScalarFieldEnum)[keyof typeof Rack2ScalarFieldEnum]
+
+
+export const Rack3ScalarFieldEnum = {
+  Node: 'Node',
+  Model: 'Model',
+  iDrac_IP___Access_IP: 'iDrac_IP___Access_IP',
+  Service_Tag: 'Service_Tag',
+  MAC: 'MAC',
+  Usage: 'Usage',
+  Rack_Layout: 'Rack_Layout'
+} as const
+
+export type Rack3ScalarFieldEnum = (typeof Rack3ScalarFieldEnum)[keyof typeof Rack3ScalarFieldEnum]
+
+
+export const Rack4ScalarFieldEnum = {
+  Node: 'Node',
+  Model: 'Model',
+  iDrac_IP___Access_IP: 'iDrac_IP___Access_IP',
+  Service_Tag: 'Service_Tag',
+  MAC: 'MAC',
+  Usage: 'Usage',
+  Rack_Layout: 'Rack_Layout'
+} as const
+
+export type Rack4ScalarFieldEnum = (typeof Rack4ScalarFieldEnum)[keyof typeof Rack4ScalarFieldEnum]
+
+
+export const RackWANScalarFieldEnum = {
+  Node: 'Node',
+  Model: 'Model',
+  iDrac_IP___Access_IP: 'iDrac_IP___Access_IP',
+  Service_Tag: 'Service_Tag',
+  MAC: 'MAC',
+  Usage: 'Usage',
+  Rack_Layout: 'Rack_Layout',
+  id: 'id'
+} as const
+
+export type RackWANScalarFieldEnum = (typeof RackWANScalarFieldEnum)[keyof typeof RackWANScalarFieldEnum]
+
+
+export const SwitchScalarFieldEnum = {
+  Switch: 'Switch',
+  Manufacture: 'Manufacture',
+  Model: 'Model',
+  IP: 'IP',
+  MAC: 'MAC',
+  Core1: 'Core1',
+  Core2: 'Core2',
+  VLANs: 'VLANs',
+  RACK: 'RACK'
+} as const
+
+export type SwitchScalarFieldEnum = (typeof SwitchScalarFieldEnum)[keyof typeof SwitchScalarFieldEnum]
+
+
+export const VLANScalarFieldEnum = {
+  VLAN: 'VLAN',
+  Name: 'Name',
+  Subnet: 'Subnet',
+  Description: 'Description'
+} as const
+
+export type VLANScalarFieldEnum = (typeof VLANScalarFieldEnum)[keyof typeof VLANScalarFieldEnum]
+
+
+export const VPNScalarFieldEnum = {
+  Remote_Gateway: 'Remote_Gateway',
+  IP: 'IP',
+  Port: 'Port'
+} as const
+
+export type VPNScalarFieldEnum = (typeof VPNScalarFieldEnum)[keyof typeof VPNScalarFieldEnum]
+
+
+export const ChangeRequestScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  adminName: 'adminName',
+  scopeOfChange: 'scopeOfChange',
+  changeDescription: 'changeDescription',
+  status: 'status'
+} as const
+
+export type ChangeRequestScalarFieldEnum = (typeof ChangeRequestScalarFieldEnum)[keyof typeof ChangeRequestScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -130,4 +336,12 @@ export const QueryMode = {
 } as const
 
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 

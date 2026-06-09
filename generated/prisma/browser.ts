@@ -32,3 +32,79 @@ export type Support = Prisma.SupportModel
  * 
  */
 export type Comment = Prisma.CommentModel
+/**
+ * Model AccessPoint
+ * This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+ */
+export type AccessPoint = Prisma.AccessPointModel
+/**
+ * Model Account
+ * This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+ */
+export type Account = Prisma.AccountModel
+/**
+ * Model FirewallNetwork
+ * This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+ */
+export type FirewallNetwork = Prisma.FirewallNetworkModel
+/**
+ * Model FirewallProduct
+ * This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+ */
+export type FirewallProduct = Prisma.FirewallProductModel
+/**
+ * Model FirewallSoftware
+ * This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+ */
+export type FirewallSoftware = Prisma.FirewallSoftwareModel
+/**
+ * Model Node
+ * This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+ */
+export type Node = Prisma.NodeModel
+/**
+ * Model Rack1
+ * This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+ * This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+ */
+export type Rack1 = Prisma.Rack1Model
+/**
+ * Model Rack2
+ * This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+ */
+export type Rack2 = Prisma.Rack2Model
+/**
+ * Model Rack3
+ * This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+ */
+export type Rack3 = Prisma.Rack3Model
+/**
+ * Model Rack4
+ * This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+ */
+export type Rack4 = Prisma.Rack4Model
+/**
+ * Model RackWAN
+ * This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+ */
+export type RackWAN = Prisma.RackWANModel
+/**
+ * Model Switch
+ * This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+ */
+export type Switch = Prisma.SwitchModel
+/**
+ * Model VLAN
+ * This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+ */
+export type VLAN = Prisma.VLANModel
+/**
+ * Model VPN
+ * This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+ */
+export type VPN = Prisma.VPNModel
+/**
+ * Model ChangeRequest
+ * 
+ */
+export type ChangeRequest = Prisma.ChangeRequestModel

@@ -28,76 +28,76 @@ export type AggregateComment = {
 
 export type CommentAvgAggregateOutputType = {
   id: number | null
-  authorId: number | null
   ticketId: number | null
+  authorId: number | null
 }
 
 export type CommentSumAggregateOutputType = {
   id: number | null
-  authorId: number | null
   ticketId: number | null
+  authorId: number | null
 }
 
 export type CommentMinAggregateOutputType = {
   id: number | null
   comment: string | null
-  authorId: number | null
   createdAt: Date | null
   ticketId: number | null
+  authorId: number | null
 }
 
 export type CommentMaxAggregateOutputType = {
   id: number | null
   comment: string | null
-  authorId: number | null
   createdAt: Date | null
   ticketId: number | null
+  authorId: number | null
 }
 
 export type CommentCountAggregateOutputType = {
   id: number
   comment: number
-  authorId: number
   createdAt: number
   ticketId: number
+  authorId: number
   _all: number
 }
 
 
 export type CommentAvgAggregateInputType = {
   id?: true
-  authorId?: true
   ticketId?: true
+  authorId?: true
 }
 
 export type CommentSumAggregateInputType = {
   id?: true
-  authorId?: true
   ticketId?: true
+  authorId?: true
 }
 
 export type CommentMinAggregateInputType = {
   id?: true
   comment?: true
-  authorId?: true
   createdAt?: true
   ticketId?: true
+  authorId?: true
 }
 
 export type CommentMaxAggregateInputType = {
   id?: true
   comment?: true
-  authorId?: true
   createdAt?: true
   ticketId?: true
+  authorId?: true
 }
 
 export type CommentCountAggregateInputType = {
   id?: true
   comment?: true
-  authorId?: true
   createdAt?: true
   ticketId?: true
+  authorId?: true
   _all?: true
 }
 
@@ -190,9 +190,9 @@ export type CommentGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
 export type CommentGroupByOutputType = {
   id: number
   comment: string
-  authorId: number
   createdAt: Date
   ticketId: number
+  authorId: number
   _count: CommentCountAggregateOutputType | null
   _avg: CommentAvgAggregateOutputType | null
   _sum: CommentSumAggregateOutputType | null
@@ -221,9 +221,9 @@ export type CommentWhereInput = {
   NOT?: Prisma.CommentWhereInput | Prisma.CommentWhereInput[]
   id?: Prisma.IntFilter<"Comment"> | number
   comment?: Prisma.StringFilter<"Comment"> | string
-  authorId?: Prisma.IntFilter<"Comment"> | number
   createdAt?: Prisma.DateTimeFilter<"Comment"> | Date | string
   ticketId?: Prisma.IntFilter<"Comment"> | number
+  authorId?: Prisma.IntFilter<"Comment"> | number
   author?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   ticket?: Prisma.XOR<Prisma.SupportScalarRelationFilter, Prisma.SupportWhereInput>
 }
@@ -231,9 +231,9 @@ export type CommentWhereInput = {
 export type CommentOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   comment?: Prisma.SortOrder
-  authorId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   ticketId?: Prisma.SortOrder
+  authorId?: Prisma.SortOrder
   author?: Prisma.UserOrderByWithRelationInput
   ticket?: Prisma.SupportOrderByWithRelationInput
 }
@@ -244,9 +244,9 @@ export type CommentWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.CommentWhereInput[]
   NOT?: Prisma.CommentWhereInput | Prisma.CommentWhereInput[]
   comment?: Prisma.StringFilter<"Comment"> | string
-  authorId?: Prisma.IntFilter<"Comment"> | number
   createdAt?: Prisma.DateTimeFilter<"Comment"> | Date | string
   ticketId?: Prisma.IntFilter<"Comment"> | number
+  authorId?: Prisma.IntFilter<"Comment"> | number
   author?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   ticket?: Prisma.XOR<Prisma.SupportScalarRelationFilter, Prisma.SupportWhereInput>
 }, "id">
@@ -254,9 +254,9 @@ export type CommentWhereUniqueInput = Prisma.AtLeast<{
 export type CommentOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   comment?: Prisma.SortOrder
-  authorId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   ticketId?: Prisma.SortOrder
+  authorId?: Prisma.SortOrder
   _count?: Prisma.CommentCountOrderByAggregateInput
   _avg?: Prisma.CommentAvgOrderByAggregateInput
   _max?: Prisma.CommentMaxOrderByAggregateInput
@@ -270,9 +270,9 @@ export type CommentScalarWhereWithAggregatesInput = {
   NOT?: Prisma.CommentScalarWhereWithAggregatesInput | Prisma.CommentScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"Comment"> | number
   comment?: Prisma.StringWithAggregatesFilter<"Comment"> | string
-  authorId?: Prisma.IntWithAggregatesFilter<"Comment"> | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Comment"> | Date | string
   ticketId?: Prisma.IntWithAggregatesFilter<"Comment"> | number
+  authorId?: Prisma.IntWithAggregatesFilter<"Comment"> | number
 }
 
 export type CommentCreateInput = {
@@ -285,9 +285,9 @@ export type CommentCreateInput = {
 export type CommentUncheckedCreateInput = {
   id?: number
   comment: string
-  authorId: number
   createdAt: Date | string
   ticketId: number
+  authorId: number
 }
 
 export type CommentUpdateInput = {
@@ -300,17 +300,17 @@ export type CommentUpdateInput = {
 export type CommentUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   comment?: Prisma.StringFieldUpdateOperationsInput | string
-  authorId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ticketId?: Prisma.IntFieldUpdateOperationsInput | number
+  authorId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type CommentCreateManyInput = {
   id?: number
   comment: string
-  authorId: number
   createdAt: Date | string
   ticketId: number
+  authorId: number
 }
 
 export type CommentUpdateManyMutationInput = {
@@ -321,9 +321,9 @@ export type CommentUpdateManyMutationInput = {
 export type CommentUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   comment?: Prisma.StringFieldUpdateOperationsInput | string
-  authorId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ticketId?: Prisma.IntFieldUpdateOperationsInput | number
+  authorId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type CommentListRelationFilter = {
@@ -339,37 +339,37 @@ export type CommentOrderByRelationAggregateInput = {
 export type CommentCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   comment?: Prisma.SortOrder
-  authorId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   ticketId?: Prisma.SortOrder
+  authorId?: Prisma.SortOrder
 }
 
 export type CommentAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  authorId?: Prisma.SortOrder
   ticketId?: Prisma.SortOrder
+  authorId?: Prisma.SortOrder
 }
 
 export type CommentMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   comment?: Prisma.SortOrder
-  authorId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   ticketId?: Prisma.SortOrder
+  authorId?: Prisma.SortOrder
 }
 
 export type CommentMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   comment?: Prisma.SortOrder
-  authorId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   ticketId?: Prisma.SortOrder
+  authorId?: Prisma.SortOrder
 }
 
 export type CommentSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  authorId?: Prisma.SortOrder
   ticketId?: Prisma.SortOrder
+  authorId?: Prisma.SortOrder
 }
 
 export type CommentCreateNestedManyWithoutAuthorInput = {
@@ -501,9 +501,9 @@ export type CommentScalarWhereInput = {
   NOT?: Prisma.CommentScalarWhereInput | Prisma.CommentScalarWhereInput[]
   id?: Prisma.IntFilter<"Comment"> | number
   comment?: Prisma.StringFilter<"Comment"> | string
-  authorId?: Prisma.IntFilter<"Comment"> | number
   createdAt?: Prisma.DateTimeFilter<"Comment"> | Date | string
   ticketId?: Prisma.IntFilter<"Comment"> | number
+  authorId?: Prisma.IntFilter<"Comment"> | number
 }
 
 export type CommentCreateWithoutTicketInput = {
@@ -515,8 +515,8 @@ export type CommentCreateWithoutTicketInput = {
 export type CommentUncheckedCreateWithoutTicketInput = {
   id?: number
   comment: string
-  authorId: number
   createdAt: Date | string
+  authorId: number
 }
 
 export type CommentCreateOrConnectWithoutTicketInput = {
@@ -575,8 +575,8 @@ export type CommentUncheckedUpdateManyWithoutAuthorInput = {
 export type CommentCreateManyTicketInput = {
   id?: number
   comment: string
-  authorId: number
   createdAt: Date | string
+  authorId: number
 }
 
 export type CommentUpdateWithoutTicketInput = {
@@ -588,15 +588,15 @@ export type CommentUpdateWithoutTicketInput = {
 export type CommentUncheckedUpdateWithoutTicketInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   comment?: Prisma.StringFieldUpdateOperationsInput | string
-  authorId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  authorId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type CommentUncheckedUpdateManyWithoutTicketInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   comment?: Prisma.StringFieldUpdateOperationsInput | string
-  authorId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  authorId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 
@@ -604,9 +604,9 @@ export type CommentUncheckedUpdateManyWithoutTicketInput = {
 export type CommentSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   comment?: boolean
-  authorId?: boolean
   createdAt?: boolean
   ticketId?: boolean
+  authorId?: boolean
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   ticket?: boolean | Prisma.SupportDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["comment"]>
@@ -614,9 +614,9 @@ export type CommentSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
 export type CommentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   comment?: boolean
-  authorId?: boolean
   createdAt?: boolean
   ticketId?: boolean
+  authorId?: boolean
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   ticket?: boolean | Prisma.SupportDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["comment"]>
@@ -624,9 +624,9 @@ export type CommentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
 export type CommentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   comment?: boolean
-  authorId?: boolean
   createdAt?: boolean
   ticketId?: boolean
+  authorId?: boolean
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   ticket?: boolean | Prisma.SupportDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["comment"]>
@@ -634,12 +634,12 @@ export type CommentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
 export type CommentSelectScalar = {
   id?: boolean
   comment?: boolean
-  authorId?: boolean
   createdAt?: boolean
   ticketId?: boolean
+  authorId?: boolean
 }
 
-export type CommentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "comment" | "authorId" | "createdAt" | "ticketId", ExtArgs["result"]["comment"]>
+export type CommentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "comment" | "createdAt" | "ticketId" | "authorId", ExtArgs["result"]["comment"]>
 export type CommentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   ticket?: boolean | Prisma.SupportDefaultArgs<ExtArgs>
@@ -662,9 +662,9 @@ export type $CommentPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     comment: string
-    authorId: number
     createdAt: Date
     ticketId: number
+    authorId: number
   }, ExtArgs["result"]["comment"]>
   composites: {}
 }
@@ -1092,9 +1092,9 @@ export interface Prisma__CommentClient<T, Null = never, ExtArgs extends runtime.
 export interface CommentFieldRefs {
   readonly id: Prisma.FieldRef<"Comment", 'Int'>
   readonly comment: Prisma.FieldRef<"Comment", 'String'>
-  readonly authorId: Prisma.FieldRef<"Comment", 'Int'>
   readonly createdAt: Prisma.FieldRef<"Comment", 'DateTime'>
   readonly ticketId: Prisma.FieldRef<"Comment", 'Int'>
+  readonly authorId: Prisma.FieldRef<"Comment", 'Int'>
 }
     
 

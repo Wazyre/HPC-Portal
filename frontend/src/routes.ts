@@ -24,6 +24,9 @@ import ClusResearch from "./views/clusterInfo/ClusResearch";
 import ClusProject from "./views/clusterInfo/ClusProject";
 import ClusDeveloper from "./views/clusterInfo/ClusDeveloper";
 
+import ChangeRequest from "./views/ChangeRequest";
+import ModificationHistory from "./views/ModificationHistory";
+
 /*
 All routes and subroutes for the portal are handled in this page
 */
@@ -64,7 +67,9 @@ export const router = createBrowserRouter([
                         {path: ":tid", Component: TicketReply}
                     ]
                 },
-                {path: "profile", Component: Profile}
+                {path: "profile", Component: Profile},
+                {path: "change-requests", Component: ChangeRequest},
+                {path: "modification-history", Component: ModificationHistory}
             ]
         }
     ]}
