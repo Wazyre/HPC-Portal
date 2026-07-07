@@ -81,6 +81,71 @@
   }
 }
 
+/* Sidebar Styles */
+/* Section label above each group of sidebar links */
+.sidebarSectionLabel {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--mantine-color-dimmed);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0 8px;
+  margin-bottom: 4px;
+}
+
+/* Main sidebar navigation link styling */
+.sidebarLink {
+  border-radius: var(--mantine-radius-md) !important;
+  border-left: 3px solid transparent !important;
+  font-size: 13px !important;
+  margin-bottom: 2px !important;
+}
+
+/* Active state — blue left border and light blue background */
+.sidebarLink[data-active] {
+  border-left: 3px solid var(--mantine-color-ikarus-blue-8) !important;
+  background-color: var(--mantine-color-ikarus-blue-0) !important;
+  color: var(--mantine-color-ikarus-blue-8) !important;
+}
+
+/* Sub-link styling for nested items like Documentation sub-pages */
+.sidebarSubLink {
+  font-size: 12px !important;
+  border-radius: var(--mantine-radius-md) !important;
+  margin-bottom: 2px !important;
+  padding-left: 24px !important;
+}
+
+/* Active sub-link */
+.sidebarSubLink[data-active] {
+  background-color: var(--mantine-color-ikarus-blue-0) !important;
+  color: var(--mantine-color-ikarus-blue-8) !important;
+}
+
+/* User info box at the bottom of the sidebar */
+.sidebarUserInfo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-top: 1px solid var(--mantine-color-gray-2);
+  margin-top: auto;
+}
+
+/* Sidebar logo area — holds the IKARUS full logo at the top */
+.sidebarLogoArea {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--mantine-color-gray-2);
+}
+
+/* Vertical divider between two logos (used in Option 1) */
+.sidebarLogoDivider {
+  width: 1px;
+  height: 28px;
+  background-color: var(--mantine-color-gray-3);
+  flex-shrink: 0;
+}
+
 /* Viewport Changes */
 /* See https://mantine.dev/styles/css-variables-list/ for CSS vars */
 @media only screen and (max-width: 48rem) {

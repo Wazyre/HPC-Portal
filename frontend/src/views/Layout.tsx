@@ -1,15 +1,14 @@
-import { AppShell, AppShellFooter, AppShellHeader, AppShellMain, AppShellNavbar, Burger, Image } from "@mantine/core";
+import { AppShell, AppShellFooter, AppShellHeader, AppShellMain, AppShellNavbar, Burger } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { Outlet } from "react-router";
 import Sidebar from "../components/sidebar";
 import Header from "../components/header";
-import ikarusLogo from "../assets/images/ikarus_logo.png";
 
 const Layout = () => {
     // Toggles handle opening and closing of sidebar
     const [mobileOpened, { toggle: toggleMobile }] = useDisclosure(); // Burger toggle
     const [desktopOpened, { toggle: toggleDesktop }] = useDisclosure(); // Burger toggle
-    
+
     return (
         <AppShell
             w="100vw"
@@ -23,27 +22,21 @@ const Layout = () => {
             }}
         >
             <AppShellHeader pt={5} pr={10} pl={10}>
-                <Header 
+                <Header
                     mobileOpened={mobileOpened}
                     desktopOpened={desktopOpened}
                     toggleMobile={toggleMobile}
                     toggleDesktop={toggleDesktop}
                 />
             </AppShellHeader>
-            <AppShellNavbar pt={5} pl={10} pr={10}>
+            <AppShellNavbar pt={0} pl={0} pr={0}>
                 <Burger
                     opened={mobileOpened}
                     onClick={toggleMobile}
                     hiddenFrom="sm"
                     size="sm"
                 />
-                <Image radius="sm" src={ikarusLogo} w="auto" fit="contain"/>
-                <Sidebar
-                    // mobileOpened={mobileOpened}
-                    // desktopOpened={desktopOpened}
-                    // toggleMobile={toggleMobile}
-                    // toggleDesktop={toggleDesktop}
-                />
+                <Sidebar/>
             </AppShellNavbar>
             <AppShellMain bg="backgroundColor.0">
                 <Outlet/>
