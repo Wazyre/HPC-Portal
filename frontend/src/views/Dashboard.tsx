@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { BarChart } from "@mantine/charts";
-import { Card, Container, Grid, GridCol, Group, Loader, Pill, ProgressLabel, ProgressRoot, ProgressSection, RingProgress, Stack, Text, Title, Tooltip } from "@mantine/core";
+import { Container, Group, Loader, Paper, SimpleGrid, Stack, Text, Title, Tooltip, ProgressRoot, ProgressSection, Box } from "@mantine/core";
 import { useVerifyUser } from "../utils/useVerifyUser";
-import { IconMail } from "@tabler/icons-react";
+import { IconMail, IconServer, IconCpu } from "@tabler/icons-react";
 import { useAppSelector } from "../app/hooks";
-import { selectUsername, selectRole } from "../slices/authorizationSlice";
+import { selectUsername, selectRole, selectName } from "../slices/authorizationSlice";
 import { useGetPendingTicketsQuery } from "../apis/rtkApi";
 
 import nodeInfo from "../assets/data/nodeInfo.json";
@@ -22,6 +22,8 @@ const Dashboard = () => {
     const [jobData, setJobData] = useState([{}]);
     const username = useAppSelector(selectUsername);
     const role = useAppSelector(selectRole);
+    const name = useAppSelector(selectName); // Get full name to extract first name
+    const firstName = name ? name.split(' ')[0] : ''; // Extract first name only
     const {data: pendingTickets, isLoading} = useGetPendingTicketsQuery(username);
 
     const buildData = () => {
@@ -79,131 +81,100 @@ const Dashboard = () => {
 
     return (
         <Container fluid>
-            <Title order={2}>Dashboard</Title>
-            <Card>
-                <Group>
-                    <IconMail/>
-                    <Text fw={700}>{'Pending Support Tickets: '+pendingTickets} </Text>
-                </Group>
 
-                <Text fw={700} mt={20}>Storage Usage</Text>
-                <Text fz="xs" c="gray.6">{'Out of ' + humanFileSize(userStorage.scratchSize, false)}</Text>
-                <ProgressRoot size={30} mt={20}>
-                    <Tooltip label={humanFileSize(storageUsed, false)}>
-                        <ProgressSection value={(storageUsed/userStorage.scratchSize)*100} color="green.5">
-                            <ProgressLabel></ProgressLabel>
-                        </ProgressSection>
-                    </Tooltip>
-                    {/* <Tooltip label="15GB - Documents">
-                        <ProgressSection value={15} color="blue.5">
-                            <ProgressLabel>Documents</ProgressLabel>
-                        </ProgressSection>
-                    </Tooltip>
-                    <Tooltip label="7GB - Images">
-                        <ProgressSection value={7} color="yellow.5">
-                            <ProgressLabel>Images</ProgressLabel>
-                        </ProgressSection>
-                    </Tooltip>
-                    <Tooltip label="26GB - Scripts">
-                        <ProgressSection value={26} color="red.5">
-                            <ProgressLabel>Scripts</ProgressLabel>
-                        </ProgressSection>
-                    </Tooltip>
-                    <Tooltip label="40GB - Other">
-                        <ProgressSection value={40} color="gray.5">
-                            <ProgressLabel>Other</ProgressLabel>
-                        </ProgressSection>
-                    </Tooltip>
-                    <Tooltip label="300GB - Unused">
-                        <ProgressSection value={100} color="gray.1">
-                            <ProgressLabel></ProgressLabel>
-                        </ProgressSection>
-                    </Tooltip> */}
-                </ProgressRoot>
+            {/* Page title, welcome message and today's date */}
+            <Group justify="space-between" align="flex-start" mt="md" mb="md">
+                <div>
+                    <Title order={1}>Dashboard</Title>
+                    <Text c="dimmed" size="md" mt={4}>Welcome back, {firstName}</Text>
+                </div>
+                <Paper withBorder px="md" py="xs" radius="md" mt="xs">
+                    <Text size="sm" c="dimmed">
+                        {new Date().toLocaleDateString('en-GB', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
+                    </Text>
+                </Paper>
+            </Group>
 
-                {/* -------------------------------------------------------- */}
+            {/* 3 colorful gradient stat cards — Pending Tickets, Nodes, Cores */}
+            <SimpleGrid cols={{ base: 1, sm: 3 }} mb="md">
 
-                <Text fw={700} mt={50}>Cluster Resources</Text>
-                <Text fz="xs" c="gray.6">Available Resources</Text>
-                <Grid>
-                    <GridCol span={6}>
-                        <Stack align="center">
-                            <RingProgress 
-                                size={120} 
-                                thickness={10} 
-                                sections={[{ value: nodePerc, color: 'green.4'}]}
-                                label={
-                                <Text size="xl" ta="center">
-                                    {nodeState[1]}
-                                </Text>}
-                            />
-                            <Text>Nodes</Text>
-                            <Pill>{nodePerc + "%"}</Pill>
-                        </Stack>
-                    </GridCol>
-                    <GridCol span={6}>
-                        <Stack align="center">
-                            <RingProgress 
-                                size={120} 
-                                thickness={10} 
-                                sections={[{ value: cpuPerc, color: 'green.4'}]}
-                                label={
-                                <Text size="xl" ta="center">
-                                    {cpuState[1]}
-                                </Text>}
-                            />
-                            <Text>Cores</Text>
-                            <Pill>{cpuPerc + "%"}</Pill>
-                        </Stack>
-                    </GridCol>
-                    {/* <GridCol span={3}>
-                        <Stack align="center">
-                            {/* <DonutChart 
-                                w={100} 
-                                h={100} 
-                                size={100} 
-                                thickness={10} 
-                                data={data} 
-                                chartLabel={perc}
-                                labelsType="value"
-                                withTooltip={false}
-                                classNames={{label: classes.chartInnerText}}
-                            /> 
-                            <RingProgress 
-                                size={120} 
-                                thickness={10} 
-                                sections={[{ value: cpuPerc, color: 'green.4'}]}
-                                label={
-                                <Text size="xl" ta="center">
-                                    {cpuState[1]}
-                                </Text>}
-                            />
-                            <Text>Storage</Text>
-                            <Pill>15%</Pill>
-                        </Stack>
-                    </GridCol> */}
-                </Grid>
+                {/* Pending Tickets — blue gradient */}
+                <Box
+                    style={{
+                        background: 'linear-gradient(135deg, #1f6dbf, #0a4a8a)',
+                        borderRadius: 'var(--mantine-radius-md)',
+                        padding: '16px',
+                        color: 'white',
+                    }}
+                >
+                    <IconMail size={20} style={{ opacity: 0.85 }}/>
+                    <Text fz={24} fw={600} mt={10}>{pendingTickets ?? 0}</Text>
+                    <Text fz={11} style={{ opacity: 0.85 }} mt={2}>Pending Tickets</Text>
+                </Box>
 
-                {/* -------------------------------------------------------- */}
+                {/* Nodes — orange gradient */}
+                <Box
+                    style={{
+                        background: 'linear-gradient(135deg, #f59e0b, #d97706)',
+                        borderRadius: 'var(--mantine-radius-md)',
+                        padding: '16px',
+                        color: 'white',
+                    }}
+                >
+                    <IconServer size={20} style={{ opacity: 0.85 }}/>
+                    <Text fz={24} fw={600} mt={10}>{nodeState[1] ?? 0}</Text>
+                    <Text fz={11} style={{ opacity: 0.85 }} mt={2}>Nodes Active ({nodePerc}% in use)</Text>
+                </Box>
 
-                <Group mt={50}>
-                    <BarChart
-                        h={400}
-                        dataKey="month"
-                        data={jobData}
-                        series={[
-                            {name: 'Jobs', color: 'violet.6'},
-                            {name: 'Storage', label: 'Storage (GB)',color: 'teal.6'},
-                            {name: 'Runtime', label: 'Runtime (Hr)', color: 'red.5'}
-                        ]}
-                        tickLine="y"
-                        withLegend
-                    />
+                {/* Cores — pink gradient */}
+                <Box
+                    style={{
+                        background: 'linear-gradient(135deg, #ec4899, #be185d)',
+                        borderRadius: 'var(--mantine-radius-md)',
+                        padding: '16px',
+                        color: 'white',
+                    }}
+                >
+                    <IconCpu size={20} style={{ opacity: 0.85 }}/>
+                    <Text fz={24} fw={600} mt={10}>{cpuState[1] ?? 0}</Text>
+                    <Text fz={11} style={{ opacity: 0.85 }} mt={2}>Cores Active ({cpuPerc}% in use)</Text>
+                </Box>
 
-                    {/* -------------------------------------------------------- */}
+            </SimpleGrid>
 
-                </Group>
-            </Card>
+            {/* Storage Usage card with gradient progress bar */}
+            <Paper withBorder radius="md" p="lg" mb="md">
+                <Text fw={600} fz="md" mb={4}>Storage Usage</Text>
+                <Text fz="xs" c="dimmed" mb="md">{'Out of ' + humanFileSize(userStorage.scratchSize, false)}</Text>
+                <Tooltip label={humanFileSize(storageUsed, false)}>
+                    {/* Increased size from 12 to 30 to make the bar thicker like the original design */}
+                    <ProgressRoot size={30} radius="xl">
+                        <ProgressSection
+                            value={(storageUsed/userStorage.scratchSize)*100}
+                            style={{ background: 'linear-gradient(90deg, #06b6d4, #3b82f6)' }}
+                        />
+                    </ProgressRoot>
+                </Tooltip>
+            </Paper>
+
+            {/* Job Activity chart card */}
+            <Paper withBorder radius="md" p="lg">
+                <Text fw={600} fz="md" mb={4}>Job Activity</Text>
+                <Text fz="xs" c="dimmed" mb="md">Jobs, runtime and storage usage per month</Text>
+                <BarChart
+                    h={400}
+                    dataKey="month"
+                    data={jobData}
+                    series={[
+                        {name: 'Jobs', color: 'violet.6'},
+                        {name: 'Storage', label: 'Storage (GB)', color: 'teal.6'},
+                        {name: 'Runtime', label: 'Runtime (Hr)', color: 'red.5'}
+                    ]}
+                    tickLine="y"
+                    withLegend
+                />
+            </Paper>
+
         </Container>
     );
 };
