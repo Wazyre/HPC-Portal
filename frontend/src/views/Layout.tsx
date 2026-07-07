@@ -4,6 +4,8 @@ import { Outlet } from "react-router";
 import Sidebar from "../components/sidebar";
 import Header from "../components/header";
 
+const getCurrentYear = () => new Date().getFullYear();
+
 const Layout = () => {
     // Toggles handle opening and closing of sidebar
     const [mobileOpened, { toggle: toggleMobile }] = useDisclosure(); // Burger toggle
@@ -22,7 +24,7 @@ const Layout = () => {
             }}
         >
             <AppShellHeader pt={5} pr={10} pl={10}>
-                <Header
+                <Header 
                     mobileOpened={mobileOpened}
                     desktopOpened={desktopOpened}
                     toggleMobile={toggleMobile}
@@ -41,7 +43,7 @@ const Layout = () => {
             <AppShellMain bg="backgroundColor.0">
                 <Outlet/>
             </AppShellMain>
-            <AppShellFooter ta="center" withBorder={false}>© 2025 KISR/IKARUS - All Rights Reserved</AppShellFooter>
+            <AppShellFooter ta="center" withBorder={false}>© {getCurrentYear()} KISR/IKARUS - All Rights Reserved</AppShellFooter>
         </AppShell>
     );
 };

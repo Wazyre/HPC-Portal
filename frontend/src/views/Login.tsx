@@ -9,6 +9,8 @@ import kisrIcon from "../assets/images/icon.svg";
 import { useVerifyUser } from "../utils/useVerifyUser";
 import type { AuthorizedUser, LoginUser } from "../utils/types";
 
+const getCurrentYear = () => new Date().getFullYear();
+
 const Login = () => {
     const [authorizeUser, {isLoading, error}] = useLazyAuthorizeUserQuery();
     const dispatch = useAppDispatch();
@@ -113,7 +115,7 @@ const Login = () => {
 
                 {/* Copyright text at the bottom center */}
                 <Text size="xs" c="dimmed" ta="center" mt="xl">
-                    © 2025 KISR/IKARUS
+                    © {getCurrentYear()} KISR/IKARUS
                 </Text>
 
                 {/* KISR small icon at the bottom right corner of the card */}
