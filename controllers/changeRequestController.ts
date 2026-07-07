@@ -87,3 +87,44 @@ export const deleteChangeRequest = async (req: any, res: any) => {
     res.status(500).json({ error: 'Failed to delete the request' });
   }
 };
+
+// Updates the attached file for a PENDING log entry
+// If a new file is uploaded it replaces the old one (old file is deleted from disk)
+// If no new file is provided the attachment is cleared (set to null)
+export const updateAttachment = async (req: any, res: any) => {
+  const { id } = req.params;
+
+  try {
+    // Find the existing log to get the current file name before making any changes
+    const existingRequest = await prisma.changeRequest.findUnique({
+      where: { id: String(id) },
+    });
+
+    if (!existingRequest) {
+      return res.status(404).json({ error: 'Log entry not found' });
+    }
+
+    // Delete the old file from disk if one existed before this update
+    if (existingRequest.attachedFile) {
+      const oldFilePath = path.join(process.cwd(), 'uploads', existingRequest.attachedFile);
+      if (fs.existsSync(oldFilePath)) {
+        fs.unlinkSync(oldFilePath); // Remove old file from uploads folder
+        console.log(`Deleted old file: ${existingRequest.attachedFile}`);
+      }
+    }
+
+    // If a new file was uploaded use its name, otherwise set attachment to null (remove only)
+    const newAttachedFile = req.file ? req.file.filename : null;
+
+    // Save the new file name (or null) to the database
+    const updated = await prisma.changeRequest.update({
+      where: { id: String(id) },
+      data: { attachedFile: newAttachedFile },
+    });
+
+    res.status(200).json(updated);
+  } catch (error) {
+    console.error("Attachment Update Error:", error);
+    res.status(500).json({ error: 'Failed to update attachment' });
+  }
+};

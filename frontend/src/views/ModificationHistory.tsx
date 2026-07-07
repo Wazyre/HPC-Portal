@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react'; // Added useRef for the hidden file input in the attachment edit feature
 import {
     Container, Title, Table, Paper, Badge, Text,
     Group, TextInput, Loader, Stack, Button, rem,
     ActionIcon, Textarea, Pagination, Select
 } from '@mantine/core';
-import { IconSearch, IconSearchOff, IconCheck, IconTrash, IconX, IconEdit, IconDeviceFloppy, IconPaperclip } from '@tabler/icons-react'; //  Added IconPaperclip for the attachment link icon
+import { IconSearch, IconSearchOff, IconCheck, IconTrash, IconX, IconEdit, IconDeviceFloppy, IconPaperclip, IconUpload } from '@tabler/icons-react'; // Added IconUpload for the attachment upload button
 import { notifications } from '@mantine/notifications';
 import axios from 'axios';
 
@@ -15,6 +15,15 @@ const ModificationHistory = () => {
     const [confirmDeleteId, setConfirmDeleteId] = useState<string | null>(null);
     const [editingId, setEditingId] = useState<string | null>(null);
     const [editValue, setEditValue] = useState('');
+
+    // State to track which log's attachment is currently being updated
+    const [attachmentLoadingId, setAttachmentLoadingId] = useState<string | null>(null);
+
+    // Ref for the hidden file input used to trigger file selection for attachment updates
+    const attachmentInputRef = useRef<HTMLInputElement>(null);
+
+    // Tracks which log id the attachment file input is currently targeting
+    const [attachmentTargetId, setAttachmentTargetId] = useState<string | null>(null);
 
     const [activePage, setPage] = useState(1);
     const [pageSize, setPageSize] = useState<string | null>('10');
@@ -88,6 +97,47 @@ const ModificationHistory = () => {
         }
     };
 
+    // Removes the attachment from a PENDING log without replacing it
+    // Calls the update-attachment endpoint with no file so the database sets attachedFile to null
+    const handleRemoveAttachment = async (id: string) => {
+        setAttachmentLoadingId(id);
+        try {
+            const response = await axios.patch(`/api/change-requests/update-attachment/${id}`, new FormData());
+            setLogs((prev: any) =>
+                (prev || []).map((log: any) => log.id === id ? { ...log, attachedFile: response.data.attachedFile } : log)
+            );
+            notifications.show({ title: 'Attachment Removed', message: 'The file has been removed successfully.', color: 'orange' });
+        } catch (error) {
+            console.error("Remove attachment failed:", error);
+            notifications.show({ title: 'Error', message: 'Failed to remove the attachment.', color: 'red' });
+        } finally {
+            setAttachmentLoadingId(null);
+        }
+    };
+
+    // Uploads a new file as the attachment for a PENDING log
+    // Triggered when the admin selects a file from the hidden file input
+    const handleUploadAttachment = async (id: string, file: File) => {
+        setAttachmentLoadingId(id);
+        try {
+            const formData = new FormData();
+            formData.append('attachedFile', file); // Append the selected file to the form data
+            const response = await axios.patch(`/api/change-requests/update-attachment/${id}`, formData, {
+                headers: { 'Content-Type': 'multipart/form-data' } // Required header for file upload requests
+            });
+            setLogs((prev: any) =>
+                (prev || []).map((log: any) => log.id === id ? { ...log, attachedFile: response.data.attachedFile } : log)
+            );
+            notifications.show({ title: 'Attachment Updated', message: 'The file has been uploaded successfully.', color: 'green' });
+        } catch (error) {
+            console.error("Upload attachment failed:", error);
+            notifications.show({ title: 'Error', message: 'Failed to upload the attachment.', color: 'red' });
+        } finally {
+            setAttachmentLoadingId(null);
+            setAttachmentTargetId(null);
+        }
+    };
+
     const filteredLogs = (logs || []).filter((log: any) => {
         const name = log.adminName || "";
         const scope = log.scopeOfChange || "";
@@ -147,6 +197,22 @@ const ModificationHistory = () => {
                 </Group>
             </Group>
 
+            {/* Hidden file input used for attachment updates in the history table */}
+            {/* Triggered programmatically when admin clicks the upload button on a PENDING log */}
+            <input
+                ref={attachmentInputRef}
+                type="file"
+                accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.csv,.png,.jpg,.jpeg,.zip"
+                style={{ display: 'none' }}
+                onChange={(e) => {
+                    const file = e.target.files?.[0];
+                    if (file && attachmentTargetId) {
+                        handleUploadAttachment(attachmentTargetId, file); // Upload the selected file for the targeted log
+                    }
+                    e.target.value = ''; // Reset input so the same file can be reselected if needed
+                }}
+            />
+
             <Paper withBorder shadow="sm" radius="md">
                 {loading ? (
                     //  Spinner shows while fetching so the empty state never flashes prematurely
@@ -180,6 +246,7 @@ const ModificationHistory = () => {
                                         paginatedLogs.map((log: any) => {
                                             const isDone = log.status?.toUpperCase() === 'COMPLETED';
                                             const isEditing = editingId === log.id;
+                                            const isAttachmentLoading = attachmentLoadingId === log.id;
 
                                             return (
                                                 <Table.Tr key={log.id}>
@@ -229,25 +296,64 @@ const ModificationHistory = () => {
                                                     </Table.Td>
 
                                                     {/*  Attachment column — shows a clickable download link if a file was uploaded, otherwise shows a dash */}
+                                                    {/* If PENDING: shows Remove button if file exists, or Upload button if no file exists */}
+                                                    {/* If COMPLETED: shows the file link only, no editing allowed */}
                                                     <Table.Td>
-                                                        {log.attachedFile ? (
-                                                            <Text
-                                                                size="sm"
-                                                                c="blue"
-                                                                style={{ cursor: 'pointer', textDecoration: 'underline', wordBreak: 'break-word' }}
-                                                                component="a"
-                                                                href={`/api/change-requests/download/${log.attachedFile}`}
-                                                                target="_blank"
-                                                                rel="noopener noreferrer"
-                                                            >
-                                                                <Group gap={4} wrap="nowrap" align="flex-start">
-                                                                    <IconPaperclip size={14} style={{ flexShrink: 0, marginTop: '2px' }} />
-                                                                    {log.attachedFile.replace(/^\d+-/, '')}
+                                                        <Stack gap={4}>
+                                                            {/* Show the file download link if an attachment exists */}
+                                                            {log.attachedFile ? (
+                                                                <Text
+                                                                    size="sm"
+                                                                    c="blue"
+                                                                    style={{ cursor: 'pointer', textDecoration: 'underline', wordBreak: 'break-word' }}
+                                                                    component="a"
+                                                                    href={`/api/change-requests/download/${log.attachedFile}`}
+                                                                    target="_blank"
+                                                                    rel="noopener noreferrer"
+                                                                >
+                                                                    <Group gap={4} wrap="nowrap" align="flex-start">
+                                                                        <IconPaperclip size={14} style={{ flexShrink: 0, marginTop: '2px' }} />
+                                                                        {log.attachedFile.replace(/^\d+-/, '')}
+                                                                    </Group>
+                                                                </Text>
+                                                            ) : (
+                                                                <Text size="xs" c="dimmed">-</Text>
+                                                            )}
+
+                                                            {/* Show remove or upload button only when status is PENDING */}
+                                                            {/* If a file exists show Remove only — if no file exists show Upload only */}
+                                                            {!isDone && (
+                                                                <Group gap={4} wrap="nowrap">
+                                                                    {log.attachedFile ? (
+                                                                        // Remove button — shown only when a file currently exists
+                                                                        <Button
+                                                                            size="compact-xs"
+                                                                            color="red"
+                                                                            variant="subtle"
+                                                                            loading={isAttachmentLoading}
+                                                                            onClick={() => handleRemoveAttachment(log.id)}
+                                                                        >
+                                                                            Remove
+                                                                        </Button>
+                                                                    ) : (
+                                                                        // Upload button — shown only when no file is currently attached
+                                                                        <Button
+                                                                            size="compact-xs"
+                                                                            color="blue"
+                                                                            variant="subtle"
+                                                                            leftSection={<IconUpload size={12} />}
+                                                                            loading={isAttachmentLoading}
+                                                                            onClick={() => {
+                                                                                setAttachmentTargetId(log.id); // Set which log this upload belongs to
+                                                                                attachmentInputRef.current?.click(); // Open the file picker
+                                                                            }}
+                                                                        >
+                                                                            Upload
+                                                                        </Button>
+                                                                    )}
                                                                 </Group>
-                                                            </Text>
-                                                        ) : (
-                                                            <Text size="xs" c="dimmed">-</Text>
-                                                        )}
+                                                            )}
+                                                        </Stack>
                                                     </Table.Td>
 
                                                     <Table.Td>

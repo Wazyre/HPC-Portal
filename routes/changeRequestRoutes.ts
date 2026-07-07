@@ -6,7 +6,8 @@ import {
   createChangeRequest, 
   getAllChangeRequests, 
   updateChangeRequestStatus,
-  deleteChangeRequest 
+  deleteChangeRequest,
+  updateAttachment // Added import for the new attachment update function
 } from '../controllers/changeRequestController.ts';
 
 const router = express.Router();
@@ -44,6 +45,8 @@ const upload = multer({ storage, fileFilter });
 router.post('/create', upload.single('attachedFile'), createChangeRequest); //  Added multer middleware to handle file on create
 router.get('/all', getAllChangeRequests);
 router.patch('/update/:id', updateChangeRequestStatus); 
-router.delete('/delete/:id', deleteChangeRequest); 
+router.delete('/delete/:id', deleteChangeRequest);
+// New route to handle attachment updates (remove or replace) for PENDING logs
+router.patch('/update-attachment/:id', upload.single('attachedFile'), updateAttachment);
 
 export default router;

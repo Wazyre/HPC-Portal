@@ -11,7 +11,7 @@ const ChangeRequest = () => {
 
     const scopeOptions = [
         'Firewall', 'Network', 'Nodes', 'Cores', 'Headnode', 
-        'Website', 'Admin Scripts', 'Policies', 'Account', 'Troubleshooting', 'Documentation', 'Other'
+        'Website', 'Admin Scripts', 'Policies', 'Account', 'Troubleshooting', 'Documentation', 'Modules', 'Other'
     ];
 
     const statusOptions = ['Pending', 'Completed'];
