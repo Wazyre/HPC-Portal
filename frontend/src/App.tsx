@@ -13,7 +13,7 @@ import { DonutChart } from '@mantine/charts';
 
 // The following theme controls the default css
 const theme = createTheme({
-	fontFamily: 'Comfortaa, cursive',
+	fontFamily: 'Inter, sans-serif',
 	// fontSizes: [],
 	colors: {
 		'ikarus-blue': ["#ebf6fe","#d6e9f8","#a8d1f4","#77b8f1","#53a2ef","#4095ee","#358fef","#2a7bd5","#1f6dbf","#055ca4"],
