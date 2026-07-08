@@ -15,27 +15,31 @@ export const useVerifyUser = (roles: string[]) => {
     const location = useLocation();
     
     useEffect(() => {
-        if (tokenExpiryDate !== '' && role === '') {
-            const date = new Date();
-            const tokenDate = new Date(tokenExpiryDate);
+        if (role !== '') return; // Already verified this session
 
-            if (tokenDate > date) {
-                verifyUser().unwrap()
-                .then((user: AuthorizedUser) => {
-                    dispatch(setAuthorizedUser(user));
-                    
-                    if ('any' !in roles && user.role !in roles) {
-                        navigate(-1);
-                    }
-                    if (location.pathname === '/') {
-                        navigate('/portal/dashboard');
-                    }
-                }).catch(err => {
-                    console.error(err);
-                    navigate('/portal/login');
-                })
-            } else {
+        const tokenDate = tokenExpiryDate ? new Date(tokenExpiryDate) : null;
+
+        if (tokenDate && tokenDate > new Date()) {
+            verifyUser().unwrap()
+            .then((user: AuthorizedUser) => {
+                dispatch(setAuthorizedUser(user));
+
+                if (!roles.includes('any') && !roles.includes(user.role)) {
+                    navigate(-1);
+                }
+                if (location.pathname === '/portal/login') {
+                    navigate('/portal/dashboard');
+                }
+            }).catch(err => {
+                console.error(err);
                 dispatch(clearLogInData());
+                navigate('/portal/login');
+            })
+        } else {
+            // No token, or it has expired — make sure stale storage is cleared
+            // and kick the user back to login instead of leaving them on this page.
+            dispatch(clearLogInData());
+            if (location.pathname !== '/portal/login') {
                 navigate('/portal/login');
             }
         }
