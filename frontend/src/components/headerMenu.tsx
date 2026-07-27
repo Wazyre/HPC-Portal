@@ -2,7 +2,7 @@ import { Button, Menu, MenuDropdown, MenuItem, MenuLabel, MenuTarget, Stack, Tex
 import { IconChevronDown, IconLogout, IconUserCircle } from "@tabler/icons-react";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { clearLogInData, selectName, selectUsername } from "../slices/authorizationSlice";
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router";
 
 /* 
 The menu dropdown at the top right of the header
@@ -13,11 +13,18 @@ const HeaderMenu = () => {
     const username = useAppSelector(selectUsername);
 
     const dispatch = useAppDispatch();
-    const navigate = useNavigate();
 
     const handleClick = () => {
         dispatch(clearLogInData());
-        navigate('/portal/login');
+
+        // Also end the Authentik/mod_auth_openidc session (not just the local
+        // HPC-Portal one) so an SSO'd-in admin can't silently get back in.
+        // /ood/redirect_uri is mod_auth_openidc's configured OIDCRedirectURI;
+        // hitting it with ?logout= clears the Apache session and, since the
+        // OP supports end-session (discovered via OIDCProviderMetadataURL),
+        // routes through Authentik's real logout before returning here.
+        const returnTo = encodeURIComponent(`${window.location.origin}/portal/login`);
+        window.location.href = `/ood/redirect_uri?logout=${returnTo}`;
     }
 
     return (
