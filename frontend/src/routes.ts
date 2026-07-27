@@ -5,6 +5,7 @@ import Dashboard from "./views/Dashboard";
 import Support from "./views/Support";
 
 import Login from "./views/Login";
+import SsoLogin from "./views/SsoLogin";
 import Profile from "./views/Profile";
 import TicketPortal from "./views/TicketPortal";
 
@@ -34,6 +35,7 @@ All routes and subroutes for the portal are handled in this page
 export const router = createBrowserRouter([
     {path: "/portal", children: [
         { path: "login", Component: Login},
+        { path: "sso", Component: SsoLogin},
         { path: "", Component: Layout, // Main Component
             children: [ // Children are Outlets that fill the AppShell Main component in Layout.tsx
                 {path: "dashboard", Component: Dashboard},

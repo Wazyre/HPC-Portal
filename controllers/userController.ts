@@ -1,4 +1,5 @@
 import expressAsyncHandler from 'express-async-handler';
+import { randomUUID } from 'crypto';
 import { PrismaClient } from '../generated/prisma/client.ts';
 import { argon2id, hash, verify } from 'argon2';
 import type { UserModel } from '../generated/prisma/models.ts';
@@ -61,6 +62,45 @@ export const verifyUser = expressAsyncHandler(async (req, res) => {
     }).catch((err: any) => {
         res.status(400).json({userNotVerified: "Can't verify user", err});
     });
+});
+
+export const ssoLogin = expressAsyncHandler(async (req, res) => {
+    const username = req.headers['x-authenticated-user']?.toString();
+
+    if (!username) {
+        res.status(401).json({ ssoFailed: "Missing authenticated user header" });
+        return;
+    }
+
+    const fullName = req.headers['x-authenticated-name']?.toString().trim() ?? '';
+    const [firstName, ...rest] = fullName.split(/\s+/).filter(Boolean);
+    const lastName = rest.join(' ');
+
+    try {
+        const randomPassword = await hashPassword(randomUUID()) as string;
+
+        const user = await prisma.user.upsert({
+            where: { username },
+            update: {
+                firstName: firstName || username,
+                lastName
+            },
+            create: {
+                username,
+                firstName: firstName || username,
+                lastName,
+                company: '',
+                role: 'sysAdmin',
+                password: randomPassword
+            }
+        });
+
+        const token = generateToken({ id: user.id, role: user.role });
+        res.json({ ...user, accessToken: token });
+    } catch (err) {
+        console.error(err);
+        res.status(400).json({ ssoFailed: "Could not log in via SSO", err });
+    }
 });
 
 export const changePassword = expressAsyncHandler(async (req, res) => {

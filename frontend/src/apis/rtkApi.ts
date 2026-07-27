@@ -35,6 +35,10 @@ export const rtkApi = createApi({
         verifyUser: builder.query<AuthorizedUser, void>({
             query: () => (`/users/verify`)
         }),
+        // Mint a session from the identity Apache forwards via OIDC SSO (see the OOD admin button)
+        ssoLogin: builder.query<AuthorizedUser, void>({
+            query: () => (`/users/sso-login`)
+        }),
         // Get user details using username
         getUserDetails: builder.query<AuthorizedUser, string>({
             query: username => `/users/user/${username}`
@@ -89,9 +93,10 @@ export const rtkApi = createApi({
     })
 })
 
-export const { 
-    useLazyAuthorizeUserQuery, 
-    useLazyVerifyUserQuery, 
+export const {
+    useLazyAuthorizeUserQuery,
+    useLazyVerifyUserQuery,
+    useLazySsoLoginQuery,
     useGetUserDetailsQuery, 
     useEditPasswordMutation, 
     useGetTicketsQuery, 
