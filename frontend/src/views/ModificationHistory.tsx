@@ -7,8 +7,11 @@ import {
 import { IconSearch, IconSearchOff, IconCheck, IconTrash, IconX, IconEdit, IconDeviceFloppy, IconPaperclip, IconUpload } from '@tabler/icons-react'; // Added IconUpload for the attachment upload button
 import { notifications } from '@mantine/notifications';
 import axios from 'axios';
+import { useVerifyUser } from '../utils/useVerifyUser';
 
 const ModificationHistory = () => {
+    useVerifyUser(['any']);
+
     const [logs, setLogs] = useState([]);
     const [loading, setLoading] = useState(true);
     const [search, setSearch] = useState('');

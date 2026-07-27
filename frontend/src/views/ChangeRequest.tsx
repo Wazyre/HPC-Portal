@@ -5,9 +5,12 @@ import { IconCheck, IconX, IconPaperclip } from '@tabler/icons-react'; //  Added
 import axios from 'axios';
 import { useAppSelector } from "../app/hooks";
 import { selectName } from "../slices/authorizationSlice";
+import { useVerifyUser } from "../utils/useVerifyUser";
 
 const ChangeRequest = () => {
     const loggedInName = useAppSelector(selectName);
+
+    useVerifyUser(['any']);
 
     const scopeOptions = [
         'Firewall', 'Network', 'Nodes', 'Cores', 'Headnode', 
