@@ -1,4 +1,5 @@
-@import "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap";
+/* Inter in upright (0) and italic (1) styles, weights 300–700 */
+@import "https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap";
 @import "https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap";
 
 :root {
@@ -29,7 +30,6 @@ a:hover {
 body {
   margin: 0;
   /* display: flex; */
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
 }
@@ -70,7 +70,6 @@ button:focus-visible {
 }
 
 p {
-  hyphens: auto;
   word-wrap: break-word;
 }
 
@@ -89,4 +88,3 @@ p {
     background-color: #f9f9f9;
   }
 }
-

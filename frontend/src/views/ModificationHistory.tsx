@@ -1,13 +1,144 @@
-import { useState, useEffect, useRef } from 'react'; // Added useRef for the hidden file input in the attachment edit feature
+import { useState, useEffect, useRef, useMemo } from 'react'; // Added useRef for the hidden file input in the attachment edit feature
 import {
     Container, Title, Table, Paper, Badge, Text,
     Group, TextInput, Loader, Stack, Button, rem,
-    ActionIcon, Textarea, Pagination, Select
+    ActionIcon, Pagination, Select, Modal, Typography, Spoiler
 } from '@mantine/core';
 import { IconSearch, IconSearchOff, IconCheck, IconTrash, IconX, IconEdit, IconDeviceFloppy, IconPaperclip, IconUpload } from '@tabler/icons-react'; // Added IconUpload for the attachment upload button
 import { notifications } from '@mantine/notifications';
 import axios from 'axios';
+import DOMPurify from 'dompurify'; // Sanitizes stored HTML before rendering
+import { RichTextEditor } from '@mantine/tiptap'; // Rich text editor UI (toolbar and content area)
+import { useEditor } from '@tiptap/react';
+import StarterKit from '@tiptap/starter-kit'; // Core formatting: bold, italic, underline, strikethrough, lists
+import { TextStyle, FontSize } from '@tiptap/extension-text-style'; // Font size support
 import { useVerifyUser } from '../utils/useVerifyUser';
+import classes from './ModificationHistory.module.css'; // Spacing for formatted descriptions in the table
+
+// Tags and attributes permitted in rendered descriptions; everything else is stripped
+const ALLOWED_TAGS = ['p', 'br', 'strong', 'em', 'u', 's', 'span', 'ul', 'ol', 'li', 'a', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'blockquote', 'pre', 'code', 'hr'];
+const ALLOWED_ATTR = ['style', 'href', 'target', 'rel'];
+
+// Restrict inline styles to a font size only (e.g. "font-size: 16px")
+DOMPurify.addHook('uponSanitizeAttribute', (_node, data) => {
+    if (data.attrName === 'style') {
+        const match = /font-size:\s*(\d{1,2})px/i.exec(data.attrValue);
+        if (match) {
+            data.attrValue = `font-size: ${match[1]}px`;
+        } else {
+            data.keepAttr = false;
+        }
+    }
+});
+
+// Force links to open in a new tab without access to this page
+DOMPurify.addHook('afterSanitizeAttributes', (node) => {
+    if (node.tagName === 'A') {
+        node.setAttribute('target', '_blank');
+        node.setAttribute('rel', 'noopener noreferrer');
+    }
+});
+
+const sanitizeDescription = (html: string) => DOMPurify.sanitize(html, { ALLOWED_TAGS, ALLOWED_ATTR });
+
+// Descriptions saved from the rich text editor start with a block-level tag; older entries are plain text
+const isHtmlDescription = (desc: string) => /^\s*<(p|ul|ol|h[1-6]|blockquote|pre|hr)[\s>/]/i.test(desc);
+
+// Visible text of a description, used for searching
+const getSearchText = (desc: string) => {
+    if (!isHtmlDescription(desc)) return desc;
+    const doc = new DOMParser().parseFromString(desc, 'text/html');
+    return doc.body.textContent || '';
+};
+
+// Converts a stored description into editor content; plain text is escaped and wrapped in a paragraph
+const toEditorContent = (desc: string) => {
+    if (isHtmlDescription(desc)) return sanitizeDescription(desc);
+    const escaped = desc.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    return `<p>${escaped.replace(/\n/g, '<br>')}</p>`;
+};
+
+// Font sizes available in the description editor (in px)
+const fontSizeOptions = ['12', '14', '16', '18', '20', '24'];
+
+// Line height used in the description cell; the collapsed height below is exactly 6 lines
+const DESCRIPTION_LINE_HEIGHT = 22;
+const DESCRIPTION_COLLAPSED_HEIGHT = DESCRIPTION_LINE_HEIGHT * 6;
+
+type DescriptionEditFormProps = {
+    initialContent: string;
+    onChange: (value: string) => void;
+    onSave: () => void;
+    onCancel: () => void;
+};
+
+// Rich text editor shown in the edit modal for updating a log description
+const DescriptionEditForm = ({ initialContent, onChange, onSave, onCancel }: DescriptionEditFormProps) => {
+    const editor = useEditor({
+        extensions: [StarterKit, TextStyle, FontSize],
+        content: initialContent,
+        shouldRerenderOnTransaction: true, // Keeps toolbar state in sync with the cursor position
+        editorProps: {
+            // Taller writing area; text size matches the other form inputs
+            attributes: { style: 'min-height: 200px; font-size: var(--mantine-font-size-sm);' },
+        },
+        onUpdate: ({ editor }) => {
+            // Treat an editor with no visible text as empty
+            onChange(editor.getText().trim() === '' ? '' : editor.getHTML());
+        },
+    });
+
+    // Currently applied font size at the cursor, without the "px" unit
+    const currentFontSize: string | null = editor?.getAttributes('textStyle').fontSize?.replace('px', '') ?? null;
+
+    return (
+        <>
+            <RichTextEditor editor={editor}>
+                <RichTextEditor.Toolbar>
+                    <RichTextEditor.ControlsGroup>
+                        <RichTextEditor.Bold />
+                        <RichTextEditor.Italic />
+                        <RichTextEditor.Underline />
+                        <RichTextEditor.Strikethrough />
+                        <RichTextEditor.ClearFormatting />
+                    </RichTextEditor.ControlsGroup>
+
+                    <RichTextEditor.ControlsGroup>
+                        <Select
+                            size="xs"
+                            w={90}
+                            placeholder="Size"
+                            data={fontSizeOptions}
+                            value={currentFontSize}
+                            onChange={(value) => {
+                                if (!editor) return;
+                                if (value) {
+                                    editor.chain().focus().setFontSize(`${value}px`).run();
+                                } else {
+                                    editor.chain().focus().unsetFontSize().run();
+                                }
+                            }}
+                            clearable
+                            aria-label="Font size"
+                        />
+                    </RichTextEditor.ControlsGroup>
+
+                    <RichTextEditor.ControlsGroup>
+                        <RichTextEditor.BulletList />
+                        <RichTextEditor.OrderedList />
+                    </RichTextEditor.ControlsGroup>
+                </RichTextEditor.Toolbar>
+
+                <RichTextEditor.Content />
+            </RichTextEditor>
+
+            <Group justify="flex-end" mt="md">
+                <Button variant="default" onClick={onCancel}>Cancel</Button>
+                <Button color="blue" leftSection={<IconDeviceFloppy size={16} />} onClick={onSave}>Save</Button>
+            </Group>
+        </>
+    );
+};
 
 const ModificationHistory = () => {
     useVerifyUser(['any']);
@@ -31,6 +162,9 @@ const ModificationHistory = () => {
     const [activePage, setPage] = useState(1);
     const [pageSize, setPageSize] = useState<string | null>('10');
 
+    // Status filter for the table: All, Pending or Completed
+    const [statusFilter, setStatusFilter] = useState<string | null>('All');
+
     const fetchLogs = () => {
         //  Always set loading to true before fetching so the spinner shows
         // instead of flashing "No logs found" when navigating to this page
@@ -52,9 +186,14 @@ const ModificationHistory = () => {
 
     useEffect(() => {
         setPage(1);
-    }, [search, pageSize]);
+    }, [search, pageSize, statusFilter]);
 
     const handleEditSave = async (id: string) => {
+        // Prevent saving an empty description
+        if (!editValue) {
+            notifications.show({ title: 'Missing Information', message: 'Description cannot be empty.', color: 'orange' });
+            return;
+        }
         try {
             await axios.patch(`/api/change-requests/update/${id}`, { changeDescription: editValue });
             setLogs((prev: any) =>
@@ -141,15 +280,20 @@ const ModificationHistory = () => {
         }
     };
 
-    const filteredLogs = (logs || []).filter((log: any) => {
+    // Recalculated only when logs, the search term or the status filter change
+    const filteredLogs = useMemo(() => (logs || []).filter((log: any) => {
         const name = log.adminName || "";
         const scope = log.scopeOfChange || "";
-        const desc = log.changeDescription || "";
+        const desc = getSearchText(log.changeDescription || ""); // Search visible text only, not HTML tags
         const searchTerm = search.toLowerCase();
-        return name.toLowerCase().includes(searchTerm) ||
+        const matchesSearch = name.toLowerCase().includes(searchTerm) ||
                scope.toLowerCase().includes(searchTerm) ||
                desc.toLowerCase().includes(searchTerm);
-    });
+        // Case-insensitive status match; "All" shows every log
+        const matchesStatus = !statusFilter || statusFilter === 'All' ||
+               (log.status || "").toUpperCase() === statusFilter.toUpperCase();
+        return matchesSearch && matchesStatus;
+    }), [logs, search, statusFilter]);
 
     const numericPageSize = parseInt(pageSize || '10');
     const totalPages = Math.ceil(filteredLogs.length / numericPageSize);
@@ -179,6 +323,16 @@ const ModificationHistory = () => {
                 </div>
                 
                 <Group gap="sm">
+                    {/* Filter logs by status */}
+                    <Select
+                        label="Status"
+                        data={['All', 'Pending', 'Completed']}
+                        value={statusFilter}
+                        onChange={setStatusFilter}
+                        allowDeselect={false}
+                        style={{ width: rem(120) }}
+                        size="xs"
+                    />
                     <Select
                         label="Rows per page"
                         data={['5', '10', '15', '20']}
@@ -199,6 +353,23 @@ const ModificationHistory = () => {
                     />
                 </Group>
             </Group>
+
+            {/* Edit description modal with rich text editor */}
+            <Modal
+                opened={editingId !== null}
+                onClose={() => setEditingId(null)}
+                title="Edit Description"
+                size="lg"
+                centered
+            >
+                <DescriptionEditForm
+                    key={editingId ?? 'none'}
+                    initialContent={editValue}
+                    onChange={setEditValue}
+                    onSave={() => { if (editingId) handleEditSave(editingId); }}
+                    onCancel={() => setEditingId(null)}
+                />
+            </Modal>
 
             {/* Hidden file input used for attachment updates in the history table */}
             {/* Triggered programmatically when admin clicks the upload button on a PENDING log */}
@@ -238,10 +409,10 @@ const ModificationHistory = () => {
                                         <Table.Th style={{ width: '9%' }}><Text fw={700} c="black">Completed At</Text></Table.Th>
                                         <Table.Th style={{ width: '11%' }}><Text fw={700} c="black">Admin Name</Text></Table.Th>
                                         <Table.Th style={{ width: '7%' }}><Text fw={700} c="black">Scope</Text></Table.Th>
-                                        <Table.Th style={{ width: '17%' }}><Text fw={700} c="black">Description</Text></Table.Th>
-                                        <Table.Th style={{ width: '22%' }}><Text fw={700} c="black">Attachment</Text></Table.Th> {/*  New column for file attachments */}
+                                        <Table.Th style={{ width: '28%' }}><Text fw={700} c="black">Description</Text></Table.Th>
+                                        <Table.Th style={{ width: '17%' }}><Text fw={700} c="black">Attachment</Text></Table.Th> {/*  New column for file attachments */}
                                         <Table.Th style={{ width: '10%' }}><Text fw={700} c="black">Status</Text></Table.Th>
-                                        <Table.Th style={{ width: '17%' }}><Text fw={700} c="black">Action</Text></Table.Th>
+                                        <Table.Th style={{ width: '11%' }}><Text fw={700} c="black">Action</Text></Table.Th>
                                     </Table.Tr>
                                 </Table.Thead>
                                 <Table.Tbody>
@@ -250,6 +421,7 @@ const ModificationHistory = () => {
                                             const isDone = log.status?.toUpperCase() === 'COMPLETED';
                                             const isEditing = editingId === log.id;
                                             const isAttachmentLoading = attachmentLoadingId === log.id;
+                                            const isConfirmingDelete = confirmDeleteId === log.id; // Row is waiting for delete confirmation
 
                                             return (
                                                 <Table.Tr key={log.id}>
@@ -272,30 +444,25 @@ const ModificationHistory = () => {
                                                         </Text>
                                                     </Table.Td>
 
-                                                    {/*  Added minWidth so the edit textarea has enough space to display horizontally */}
+                                                    {/*  Description cell — formatted descriptions are sanitized before rendering; older plain-text entries are shown as text */}
+                                                    {/* Long descriptions are collapsed to about 6 lines with a Show more / Show less toggle */}
                                                     <Table.Td>
-                                                        {isEditing ? (
-                                                            <Group gap="xs" align="flex-start" wrap="wrap">
-                                                                <Textarea
-                                                                    autosize minRows={1}
-                                                                    value={editValue}
-                                                                    onChange={(e) => setEditValue(e.currentTarget.value)}
-                                                                    style={{ flex: 1, minWidth: '100px' }}
-                                                                />
-                                                                <Group gap={4} wrap="nowrap">
-                                                                    <ActionIcon color="blue" variant="light" onClick={() => handleEditSave(log.id)}>
-                                                                        <IconDeviceFloppy size={16} />
-                                                                    </ActionIcon>
-                                                                    <ActionIcon color="gray" variant="subtle" onClick={() => setEditingId(null)}>
-                                                                        <IconX size={16} />
-                                                                    </ActionIcon>
-                                                                </Group>
-                                                            </Group>
-                                                        ) : (
-                                                            <Text size="sm" style={{ whiteSpace: 'normal', wordBreak: 'break-word' }}>
-                                                                {log.changeDescription}
-                                                            </Text>
-                                                        )}
+                                                        <Spoiler
+                                                            maxHeight={DESCRIPTION_COLLAPSED_HEIGHT}
+                                                            showLabel="Show more"
+                                                            hideLabel="Show less"
+                                                            styles={{ control: { fontSize: 'var(--mantine-font-size-xs)' } }}
+                                                        >
+                                                            {isHtmlDescription(log.changeDescription || '') ? (
+                                                                <Typography className={classes.description} style={{ fontSize: 'var(--mantine-font-size-sm)', lineHeight: `${DESCRIPTION_LINE_HEIGHT}px`, wordBreak: 'break-word' }}>
+                                                                    <div dangerouslySetInnerHTML={{ __html: sanitizeDescription(log.changeDescription) }} />
+                                                                </Typography>
+                                                            ) : (
+                                                                <Text size="sm" style={{ whiteSpace: 'normal', wordBreak: 'break-word', lineHeight: `${DESCRIPTION_LINE_HEIGHT}px` }}>
+                                                                    {log.changeDescription}
+                                                                </Text>
+                                                            )}
+                                                        </Spoiler>
                                                     </Table.Td>
 
                                                     {/*  Attachment column — shows a clickable download link if a file was uploaded, otherwise shows a dash */}
@@ -371,15 +538,16 @@ const ModificationHistory = () => {
                                                     </Table.Td>
                                                     <Table.Td>
                                                         <Group gap="xs" wrap="nowrap">
-                                                            {!isDone && !isEditing && (
+                                                            {/* Edit and Done are hidden while a delete is being confirmed */}
+                                                            {!isDone && !isEditing && !isConfirmingDelete && (
                                                                 <ActionIcon variant="subtle" color="blue" onClick={() => {
                                                                     setEditingId(log.id);
-                                                                    setEditValue(log.changeDescription);
+                                                                    setEditValue(toEditorContent(log.changeDescription || '')); // Load the description into the edit modal
                                                                 }}>
                                                                     <IconEdit size={16} />
                                                                 </ActionIcon>
                                                             )}
-                                                            {!isDone && !isEditing && (
+                                                            {!isDone && !isEditing && !isConfirmingDelete && (
                                                                 <Button size="compact-xs" color="green" variant="light" leftSection={<IconCheck size={14} />} onClick={() => handleStatusUpdate(log.id)}>
                                                                     Done
                                                                 </Button>

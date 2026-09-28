@@ -7,6 +7,7 @@ import { Notifications } from '@mantine/notifications';
 import '@mantine/core/styles.css';
 import '@mantine/notifications/styles.css';
 import '@mantine/charts/styles.css';
+import '@mantine/tiptap/styles.css'; // Rich text editor styles
 
 import classes from './sourceStyle.module.css';
 import { DonutChart } from '@mantine/charts';

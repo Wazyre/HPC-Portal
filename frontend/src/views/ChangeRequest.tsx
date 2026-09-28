@@ -1,8 +1,13 @@
 import { useState } from 'react';
-import { Title, Container, Text, Select, Textarea, Button, Paper, Group } from '@mantine/core';
+import { Title, Container, Text, Select, Button, Paper, Group } from '@mantine/core';
 import { notifications } from '@mantine/notifications'; 
 import { IconCheck, IconX, IconPaperclip } from '@tabler/icons-react'; //  Added IconPaperclip for the file upload button icon
 import axios from 'axios';
+import { RichTextEditor } from '@mantine/tiptap'; // Rich text editor UI (toolbar and content area)
+import { useEditor } from '@tiptap/react';
+import StarterKit from '@tiptap/starter-kit'; // Core formatting: bold, italic, underline, strikethrough, lists
+import { Placeholder } from '@tiptap/extensions';
+import { TextStyle, FontSize } from '@tiptap/extension-text-style'; // Font size support
 import { useAppSelector } from "../app/hooks";
 import { selectName } from "../slices/authorizationSlice";
 import { useVerifyUser } from "../utils/useVerifyUser";
@@ -19,11 +24,37 @@ const ChangeRequest = () => {
 
     const statusOptions = ['Pending', 'Completed'];
 
+    // Font sizes available in the description editor (in px)
+    const fontSizeOptions = ['12', '14', '16', '18', '20', '24'];
+
     const [scope, setScope] = useState<string | null>(null);
     const [status, setStatus] = useState<string | null>(null);
     const [description, setDescription] = useState('');
     const [loading, setLoading] = useState(false);
     const [attachedFile, setAttachedFile] = useState<File | null>(null); //  State to hold the selected file
+
+    // Rich text editor for the change description; content is stored as HTML
+    const editor = useEditor({
+        extensions: [
+            StarterKit,
+            TextStyle,
+            FontSize,
+            Placeholder.configure({ placeholder: 'Describe exactly what was modified...' }),
+        ],
+        content: '',
+        shouldRerenderOnTransaction: true, // Keeps toolbar state in sync with the cursor position
+        editorProps: {
+            // Taller writing area; text size matches the other form inputs
+            attributes: { style: 'min-height: 150px; font-size: var(--mantine-font-size-sm);' },
+        },
+        onUpdate: ({ editor }) => {
+            // Treat an editor with no visible text as empty so required-field validation still applies
+            setDescription(editor.getText().trim() === '' ? '' : editor.getHTML());
+        },
+    });
+
+    // Currently applied font size at the cursor, without the "px" unit
+    const currentFontSize: string | null = editor?.getAttributes('textStyle').fontSize?.replace('px', '') ?? null;
 
     const handleSubmit = async () => {
         if (!scope || !status || !description) {
@@ -68,6 +99,7 @@ const ChangeRequest = () => {
                 setScope(null);
                 setStatus(null);
                 setDescription('');
+                editor?.commands.clearContent(); // Clear the description editor
                 setAttachedFile(null); //  Clear the file after successful submission
             }
         } catch (error) {
@@ -113,15 +145,48 @@ const ChangeRequest = () => {
                     />
                 </Group>
 
-                <Textarea 
-                    label="Change Description" 
-                    placeholder="Describe exactly what was modified..." 
-                    mt="md" 
-                    minRows={4}
-                    value={description}
-                    onChange={(event) => setDescription(event.currentTarget.value)}
-                    required
-                />
+                {/* Change description with formatting toolbar */}
+                <Text size="sm" fw={500} mt="md" mb={4}>
+                    Change Description <Text span c="var(--mantine-color-error)" aria-hidden>*</Text>
+                </Text>
+                <RichTextEditor editor={editor}>
+                    <RichTextEditor.Toolbar>
+                        <RichTextEditor.ControlsGroup>
+                            <RichTextEditor.Bold />
+                            <RichTextEditor.Italic />
+                            <RichTextEditor.Underline />
+                            <RichTextEditor.Strikethrough />
+                            <RichTextEditor.ClearFormatting />
+                        </RichTextEditor.ControlsGroup>
+
+                        <RichTextEditor.ControlsGroup>
+                            <Select
+                                size="xs"
+                                w={90}
+                                placeholder="Size"
+                                data={fontSizeOptions}
+                                value={currentFontSize}
+                                onChange={(value) => {
+                                    if (!editor) return;
+                                    if (value) {
+                                        editor.chain().focus().setFontSize(`${value}px`).run();
+                                    } else {
+                                        editor.chain().focus().unsetFontSize().run();
+                                    }
+                                }}
+                                clearable
+                                aria-label="Font size"
+                            />
+                        </RichTextEditor.ControlsGroup>
+
+                        <RichTextEditor.ControlsGroup>
+                            <RichTextEditor.BulletList />
+                            <RichTextEditor.OrderedList />
+                        </RichTextEditor.ControlsGroup>
+                    </RichTextEditor.Toolbar>
+
+                    <RichTextEditor.Content />
+                </RichTextEditor>
 
                 {/*  File upload box added below the Change Description field */}
                 {/* Admins can optionally upload a Word, PDF, or Excel file as an attachment */}

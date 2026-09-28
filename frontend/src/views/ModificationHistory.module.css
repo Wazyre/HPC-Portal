@@ -1,0 +1,31 @@
+/* Comfortable spacing for formatted descriptions in the history table */
+.description p,
+.description ul,
+.description ol,
+.description h1,
+.description h2,
+.description h3,
+.description h4,
+.description h5,
+.description h6,
+.description blockquote,
+.description pre {
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+/* Small space between list items */
+.description li {
+  margin-top: 0;
+  margin-bottom: 4px;
+}
+
+/* Paragraphs inside list items use the list item spacing */
+.description li p {
+  margin-bottom: 0;
+}
+
+/* No trailing space after the last block */
+.description > div > :last-child {
+  margin-bottom: 0;
+}
