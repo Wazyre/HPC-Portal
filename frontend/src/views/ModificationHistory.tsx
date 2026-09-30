@@ -408,11 +408,11 @@ const ModificationHistory = () => {
                             >
                                 <Table.Thead bg="gray.1">
                                     <Table.Tr>
-                                        {/*  Fixed pixel widths for dates, status and actions; Description takes 30%; Admin Name, Scope and Attachment share the remaining width equally */}
+                                        {/*  Fixed pixel widths for dates, scope, status and actions; Description takes 30%; Admin Name and Attachment share the remaining width equally */}
                                         <Table.Th style={{ width: '110px' }}><Text fw={700} c="black">Created At</Text></Table.Th>
                                         <Table.Th style={{ width: '110px' }}><Text fw={700} c="black">Completed At</Text></Table.Th>
                                         <Table.Th><Text fw={700} c="black">Admin Name</Text></Table.Th>
-                                        <Table.Th><Text fw={700} c="black">Scope</Text></Table.Th>
+                                        <Table.Th style={{ width: '140px' }}><Text fw={700} c="black">Scope</Text></Table.Th>
                                         <Table.Th style={{ width: '30%' }}><Text fw={700} c="black">Description</Text></Table.Th>
                                         <Table.Th><Text fw={700} c="black">Attachment</Text></Table.Th> {/*  New column for file attachments */}
                                         <Table.Th style={{ width: '130px' }}><Text fw={700} c="black">Status</Text></Table.Th>
