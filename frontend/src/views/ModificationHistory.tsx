@@ -150,6 +150,9 @@ const ModificationHistory = () => {
     const [editingId, setEditingId] = useState<string | null>(null);
     const [editValue, setEditValue] = useState('');
 
+    // Tracks which log is waiting for confirmation before being marked as done
+    const [confirmDoneId, setConfirmDoneId] = useState<string | null>(null);
+
     // State to track which log's attachment is currently being updated
     const [attachmentLoadingId, setAttachmentLoadingId] = useState<string | null>(null);
 
@@ -212,6 +215,7 @@ const ModificationHistory = () => {
             setLogs((prev: any) =>
                 (prev || []).map((log: any) => log.id === id ? response.data : log)
             );
+            setConfirmDoneId(null); // Close the done confirmation after a successful update
             notifications.show({
                 title: 'Status Updated',
                 message: 'The change request has been marked as completed.',
@@ -393,9 +397,9 @@ const ModificationHistory = () => {
                     <Group justify="center" p="xl"><Loader /></Group>
                 ) : (
                     <>
-                        {/*  Removed large minWidth so table fits the full screen naturally */}
-                        <Table.ScrollContainer minWidth={1100}>
-                            {/*  tableLayout fixed + width 100% so columns share the full available width evenly */}
+                        {/*  Minimum table width; only screens narrower than this scroll horizontally */}
+                        <Table.ScrollContainer minWidth={1200}>
+                            {/*  tableLayout fixed + width 100% so column widths follow the header settings and stay the same on every page */}
                             <Table
                                 verticalSpacing="md"
                                 horizontalSpacing="sm"
@@ -404,15 +408,15 @@ const ModificationHistory = () => {
                             >
                                 <Table.Thead bg="gray.1">
                                     <Table.Tr>
-                                        {/*  Each column given a percentage width so they all fit on screen without scrolling */}
-                                        <Table.Th style={{ width: '9%' }}><Text fw={700} c="black">Created At</Text></Table.Th>
-                                        <Table.Th style={{ width: '9%' }}><Text fw={700} c="black">Completed At</Text></Table.Th>
-                                        <Table.Th style={{ width: '11%' }}><Text fw={700} c="black">Admin Name</Text></Table.Th>
-                                        <Table.Th style={{ width: '7%' }}><Text fw={700} c="black">Scope</Text></Table.Th>
-                                        <Table.Th style={{ width: '28%' }}><Text fw={700} c="black">Description</Text></Table.Th>
-                                        <Table.Th style={{ width: '17%' }}><Text fw={700} c="black">Attachment</Text></Table.Th> {/*  New column for file attachments */}
-                                        <Table.Th style={{ width: '10%' }}><Text fw={700} c="black">Status</Text></Table.Th>
-                                        <Table.Th style={{ width: '11%' }}><Text fw={700} c="black">Action</Text></Table.Th>
+                                        {/*  Fixed pixel widths for dates, status and actions; Description takes 30%; Admin Name, Scope and Attachment share the remaining width equally */}
+                                        <Table.Th style={{ width: '110px' }}><Text fw={700} c="black">Created At</Text></Table.Th>
+                                        <Table.Th style={{ width: '110px' }}><Text fw={700} c="black">Completed At</Text></Table.Th>
+                                        <Table.Th><Text fw={700} c="black">Admin Name</Text></Table.Th>
+                                        <Table.Th><Text fw={700} c="black">Scope</Text></Table.Th>
+                                        <Table.Th style={{ width: '30%' }}><Text fw={700} c="black">Description</Text></Table.Th>
+                                        <Table.Th><Text fw={700} c="black">Attachment</Text></Table.Th> {/*  New column for file attachments */}
+                                        <Table.Th style={{ width: '130px' }}><Text fw={700} c="black">Status</Text></Table.Th>
+                                        <Table.Th style={{ width: '170px' }}><Text fw={700} c="black">Action</Text></Table.Th>
                                     </Table.Tr>
                                 </Table.Thead>
                                 <Table.Tbody>
@@ -422,6 +426,7 @@ const ModificationHistory = () => {
                                             const isEditing = editingId === log.id;
                                             const isAttachmentLoading = attachmentLoadingId === log.id;
                                             const isConfirmingDelete = confirmDeleteId === log.id; // Row is waiting for delete confirmation
+                                            const isConfirmingDone = confirmDoneId === log.id; // Row is waiting for done confirmation
 
                                             return (
                                                 <Table.Tr key={log.id}>
@@ -538,8 +543,8 @@ const ModificationHistory = () => {
                                                     </Table.Td>
                                                     <Table.Td>
                                                         <Group gap="xs" wrap="nowrap">
-                                                            {/* Edit and Done are hidden while a delete is being confirmed */}
-                                                            {!isDone && !isEditing && !isConfirmingDelete && (
+                                                            {/* Edit and Done are hidden while a delete is being confirmed; Edit is also hidden while Done is being confirmed */}
+                                                            {!isDone && !isEditing && !isConfirmingDelete && !isConfirmingDone && (
                                                                 <ActionIcon variant="subtle" color="blue" onClick={() => {
                                                                     setEditingId(log.id);
                                                                     setEditValue(toEditorContent(log.changeDescription || '')); // Load the description into the edit modal
@@ -548,11 +553,22 @@ const ModificationHistory = () => {
                                                                 </ActionIcon>
                                                             )}
                                                             {!isDone && !isEditing && !isConfirmingDelete && (
-                                                                <Button size="compact-xs" color="green" variant="light" leftSection={<IconCheck size={14} />} onClick={() => handleStatusUpdate(log.id)}>
-                                                                    Done
-                                                                </Button>
+                                                                isConfirmingDone ? (
+                                                                    // Confirm or cancel marking the log as done
+                                                                    <Group gap={5} wrap="nowrap">
+                                                                        <Button size="compact-xs" color="green" variant="filled" onClick={() => handleStatusUpdate(log.id)}>Confirm</Button>
+                                                                        <ActionIcon variant="subtle" color="gray" onClick={() => setConfirmDoneId(null)}><IconX size={14} /></ActionIcon>
+                                                                    </Group>
+                                                                ) : (
+                                                                    <Button size="compact-xs" color="green" variant="light" leftSection={<IconCheck size={14} />} onClick={() => {
+                                                                        setConfirmDeleteId(null); // Only one confirmation open per row
+                                                                        setConfirmDoneId(log.id);
+                                                                    }}>
+                                                                        Done
+                                                                    </Button>
+                                                                )
                                                             )}
-                                                            {!isDone && (
+                                                            {!isDone && !isConfirmingDone && (
                                                                 <>
                                                                     {confirmDeleteId === log.id ? (
                                                                         <Group gap={5} wrap="nowrap">
@@ -561,7 +577,10 @@ const ModificationHistory = () => {
                                                                         </Group>
                                                                     ) : (
                                                                         !isEditing && (
-                                                                            <ActionIcon variant="subtle" color="red" onClick={() => setConfirmDeleteId(log.id)}>
+                                                                            <ActionIcon variant="subtle" color="red" onClick={() => {
+                                                                                setConfirmDoneId(null); // Only one confirmation open per row
+                                                                                setConfirmDeleteId(log.id);
+                                                                            }}>
                                                                                 <IconTrash size={16} />
                                                                             </ActionIcon>
                                                                         )
